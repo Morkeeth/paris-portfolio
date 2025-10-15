@@ -106,56 +106,51 @@ export default function Terminal() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="border-b border-[var(--glass-border)] px-4 py-3 flex items-center gap-2">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-[var(--neon-pink)]" />
-          <div className="w-3 h-3 rounded-full bg-[var(--neon-purple)]" />
-          <div className="w-3 h-3 rounded-full bg-[var(--neon-cyan)]" />
-        </div>
-        <span className="font-mono text-xs text-foreground/60 ml-4">
-          paris@portfolio:~
+      <div className="border-b border-[var(--glass-border)] px-4 py-2 flex items-center gap-2">
+        <span className="font-mono text-xs text-[var(--foreground-dim)]">
+          paris@terminal:~$
         </span>
       </div>
       
       <div
         ref={terminalRef}
-        className="p-4 font-mono text-sm h-96 overflow-y-auto custom-scrollbar"
+        className="p-4 font-mono text-xs h-96 overflow-y-auto custom-scrollbar"
         onClick={() => inputRef.current?.focus()}
       >
         {lines.map((line, index) => (
           <div
             key={index}
-            className={`mb-2 ${
+            className={`mb-1 ${
               line.type === 'input'
-                ? 'text-[var(--neon-cyan)]'
+                ? 'text-[var(--accent)]'
                 : line.type === 'error'
-                ? 'text-[var(--neon-pink)]'
-                : 'text-foreground/80'
+                ? 'text-[var(--foreground-dim)]'
+                : 'text-[var(--foreground)]'
             }`}
           >
-            <pre className="whitespace-pre-wrap break-words font-mono">
+            <pre className="whitespace-pre-wrap break-words font-mono leading-relaxed">
               {line.content}
             </pre>
           </div>
         ))}
         
-        <form onSubmit={handleSubmit} className="flex items-center gap-2">
-          <span className="text-[var(--neon-cyan)]">$</span>
+        <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
+          <span className="text-[var(--foreground-dim)]">$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent outline-none text-foreground"
+            className="flex-1 bg-transparent outline-none text-[var(--foreground)]"
             autoFocus
             spellCheck={false}
           />
         </form>
         
         {suggestions.length > 0 && (
-          <div className="mt-2 text-xs text-foreground/40">
-            Suggestions: {suggestions.join(', ')}
+          <div className="mt-1 text-xs text-[var(--foreground-dimmer)]">
+            tab: {suggestions.join(', ')}
           </div>
         )}
       </div>

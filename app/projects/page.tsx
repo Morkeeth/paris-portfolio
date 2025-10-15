@@ -1,271 +1,140 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import GlassCard from '@/components/ui/GlassCard';
-import Button from '@/components/ui/Button';
-import AsciiAnimation from '@/components/ascii-art/AsciiAnimation';
+import Link from 'next/link';
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  role: string;
-  impact: string[];
-  tech: string[];
-  year: string;
-  color: 'cyan' | 'purple' | 'pink';
-}
-
-const projects: Project[] = [
+const projects = [
   {
     id: 1,
     title: 'Ledger Tier-1 Roadmap',
-    description: 'Leading the strategic product vision for Ledger\'s core platform. Orchestrating cross-functional teams to deliver market-leading crypto solutions that serve millions of users worldwide.',
+    year: '2023-Present',
     role: 'Staff Product Manager',
-    impact: [
-      'Drove 40% increase in user engagement',
-      'Led team of 15+ across engineering, design, and marketing',
-      'Shipped 5 major features in 2024',
-      'Improved NPS score by 25 points',
-    ],
-    tech: ['Product Strategy', 'User Research', 'Agile/Scrum', 'Data Analytics', 'Crypto/Web3'],
-    year: '2023 - Present',
-    color: 'cyan',
+    description: 'Leading strategic product vision for Ledger\'s core platform.',
+    impact: ['40% increase in engagement', '15+ team members', '5 major features in 2024'],
+    tech: ['Product Strategy', 'User Research', 'Agile', 'Crypto/Web3'],
   },
   {
     id: 2,
     title: 'Product Innovation Lab',
-    description: 'Established internal innovation lab to explore emerging technologies and prototype next-generation features. Focus on user-centric design and rapid experimentation.',
-    role: 'Innovation Lead',
-    impact: [
-      'Created framework for rapid prototyping',
-      '10+ concepts validated through user testing',
-      '3 concepts moved to production',
-      'Reduced time-to-market by 30%',
-    ],
-    tech: ['Design Thinking', 'Prototyping', 'User Testing', 'MVP Development'],
     year: '2023',
-    color: 'purple',
+    role: 'Innovation Lead',
+    description: 'Internal lab for emerging tech and next-gen features.',
+    impact: ['10+ concepts validated', '3 moved to production', '30% faster time-to-market'],
+    tech: ['Design Thinking', 'Prototyping', 'MVP Development'],
   },
   {
     id: 3,
     title: 'Cross-Platform Harmony',
-    description: 'Unified product experience across web, mobile, and desktop platforms. Streamlined user journeys and created consistent design language.',
-    role: 'Product Lead',
-    impact: [
-      'Unified 3 disparate platforms',
-      'Reduced support tickets by 45%',
-      'Increased cross-platform usage by 60%',
-      'Improved development velocity by 35%',
-    ],
-    tech: ['Platform Strategy', 'API Design', 'Design Systems', 'Cross-functional Leadership'],
     year: '2022',
-    color: 'pink',
+    role: 'Product Lead',
+    description: 'Unified experience across web, mobile, and desktop.',
+    impact: ['3 platforms unified', '45% fewer support tickets', '60% cross-platform usage'],
+    tech: ['Platform Strategy', 'API Design', 'Design Systems'],
   },
   {
     id: 4,
     title: 'Community-Driven Features',
-    description: 'Built feedback loop between product team and user community. Implemented data-driven prioritization framework based on user needs and market demands.',
-    role: 'Product Manager',
-    impact: [
-      'Established community feedback pipeline',
-      'Launched 8 community-requested features',
-      'Increased community satisfaction by 50%',
-      'Created transparency in roadmap planning',
-    ],
-    tech: ['Community Management', 'Feature Prioritization', 'Analytics', 'Roadmap Planning'],
     year: '2022',
-    color: 'cyan',
+    role: 'Product Manager',
+    description: 'Feedback loop between product team and users.',
+    impact: ['8 community features launched', '50% satisfaction increase'],
+    tech: ['Community Management', 'Analytics', 'Feature Prioritization'],
   },
 ];
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  
   return (
-    <div className="min-h-screen px-4 py-24 relative z-10">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen px-8 py-24 font-mono">
+      <div className="max-w-3xl mx-auto">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <AsciiAnimation 
-            type="rocket" 
-            className="text-[var(--neon-cyan)] text-xs mb-6"
-          />
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 gradient-text">
-            Featured Projects
-          </h1>
-          <p className="text-xl text-foreground/60 font-mono">
+          <h1 className="text-2xl text-[var(--foreground)] mb-2">$ projects</h1>
+          <div className="h-px bg-[var(--glass-border)] my-4" />
+          <p className="text-[var(--foreground-dim)] text-sm">
             Transforming vision into reality, one product at a time
           </p>
         </motion.div>
         
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {/* Projects List */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="space-y-12"
+        >
           {projects.map((project, index) => (
-            <GlassCard 
-              key={project.id} 
-              delay={0.2 + index * 0.1}
-              className="cursor-pointer"
+            <div 
+              key={project.id}
+              className="border border-[var(--glass-border)] p-6 hover:border-[var(--foreground-dim)] transition-colors"
             >
-              <div onClick={() => setSelectedProject(project)}>
-                {/* Project Header */}
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className={`text-2xl font-bold neon-${project.color}`}>
-                    {project.title}
-                  </h3>
-                  <span className="text-xs font-mono text-foreground/40">
-                    {project.year}
-                  </span>
+              {/* Header */}
+              <div className="flex justify-between items-start mb-3">
+                <h2 className="text-[var(--foreground)] font-medium">
+                  {project.title}
+                </h2>
+                <span className="text-[var(--foreground-dimmer)] text-xs">
+                  {project.year}
+                </span>
+              </div>
+              
+              {/* Role */}
+              <div className="text-[var(--accent)] text-sm mb-3">
+                {project.role}
+              </div>
+              
+              {/* Description */}
+              <p className="text-[var(--foreground-dim)] text-sm mb-4 leading-relaxed">
+                {project.description}
+              </p>
+              
+              {/* Impact */}
+              <div className="mb-4">
+                <div className="text-[var(--foreground-dimmer)] text-xs mb-2">IMPACT:</div>
+                <div className="space-y-1 text-sm text-[var(--foreground-dim)]">
+                  {project.impact.map((item, i) => (
+                    <div key={i}>• {item}</div>
+                  ))}
                 </div>
-                
-                {/* Role */}
-                <div className="mb-4">
-                  <span className="text-sm font-mono text-[var(--neon-cyan)]">
-                    {project.role}
-                  </span>
-                </div>
-                
-                {/* Description */}
-                <p className="text-foreground/80 mb-6 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-6">
+              </div>
+              
+              {/* Tech */}
+              <div>
+                <div className="text-[var(--foreground-dimmer)] text-xs mb-2">TECH:</div>
+                <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="glass text-xs font-mono px-3 py-1 text-foreground/70"
+                      className="text-xs text-[var(--foreground-dim)] border border-[var(--glass-border)] px-2 py-1"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                
-                {/* View Details Button */}
-                <Button 
-                  variant="ghost" 
-                  onClick={() => setSelectedProject(project)}
-                >
-                  View Details →
-                </Button>
               </div>
-            </GlassCard>
+            </div>
           ))}
-        </div>
-        
-        {/* Call to Action */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <GlassCard>
-            <h2 className="text-3xl font-bold neon-purple mb-4">
-              Want to collaborate?
-            </h2>
-            <p className="text-foreground/70 mb-6">
-              I'm always open to discussing new projects, creative ideas, or opportunities.
-            </p>
-            <Button variant="primary" href="/contact">
-              Get In Touch
-            </Button>
-          </GlassCard>
         </motion.div>
-      </div>
-      
-      {/* Project Detail Modal */}
-      {selectedProject && (
+        
+        {/* Footer */}
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          onClick={() => setSelectedProject(null)}
+          transition={{ delay: 0.6 }}
+          className="mt-12 pt-8 border-t border-[var(--glass-border)] text-sm"
         >
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-          
-          <motion.div
-            className="glass-card max-w-3xl w-full max-h-[80vh] overflow-y-auto relative z-10"
-            initial={{ scale: 0.9, y: 50 }}
-            animate={{ scale: 1, y: 0 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-6 right-6 text-foreground/60 hover:text-[var(--neon-cyan)] transition-colors"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            
-            {/* Modal Content */}
-            <div className="mb-6">
-              <h2 className={`text-3xl font-bold neon-${selectedProject.color} mb-2`}>
-                {selectedProject.title}
-              </h2>
-              <span className="text-sm font-mono text-foreground/60">
-                {selectedProject.role} • {selectedProject.year}
-              </span>
-            </div>
-            
-            <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
-              {selectedProject.description}
-            </p>
-            
-            <div className="mb-8">
-              <h3 className="text-xl font-bold neon-cyan mb-4">Impact & Results</h3>
-              <ul className="space-y-3">
-                {selectedProject.impact.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    className="flex items-start gap-3 text-foreground/80"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <span className="text-[var(--neon-cyan)] mt-1">▸</span>
-                    <span>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-bold neon-purple mb-4">Technologies & Skills</h3>
-              <div className="flex flex-wrap gap-3">
-                {selectedProject.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="glass-card px-4 py-2 text-sm font-mono"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+          <div className="text-[var(--foreground-dim)]">
+            Want to collaborate?{' '}
+            <Link href="/contact" className="text-[var(--accent)] hover:underline">
+              Get in touch →
+            </Link>
+          </div>
         </motion.div>
-      )}
+      </div>
     </div>
   );
 }
-

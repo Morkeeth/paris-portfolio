@@ -1,26 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, JetBrains_Mono, Space_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation/Navigation";
-import CursorTrail from "@/components/effects/CursorTrail";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
-});
-
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  display: "swap",
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -42,10 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="smooth-scroll">
-      <body
-        className={`${geistSans.variable} ${jetbrainsMono.variable} ${spaceMono.variable} antialiased`}
-      >
-        <CursorTrail />
+      <body className={`${jetbrainsMono.variable} antialiased`}>
         <Navigation />
         <main>{children}</main>
       </body>
