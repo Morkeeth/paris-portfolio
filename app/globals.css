@@ -211,6 +211,22 @@ body::before {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
 /* Parallax section */
 .parallax-section {
   transform-style: preserve-3d;
