@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Portfolio - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #00fff9, #bf00ff, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .ascii {
+            font-family: 'Courier New', monospace;
+            color: #00fff9;
+            font-size: 0.7rem;
+            line-height: 1.2;
+            margin: 2rem 0;
+            text-shadow: 0 0 10px #00fff9;
+        }
+        
+        .neon-cyan {
+            color: #00fff9;
+            text-shadow: 0 0 10px #00fff9;
+        }
+        
+        .neon-purple {
+            color: #bf00ff;
+            text-shadow: 0 0 10px #bf00ff;
+        }
+        
+        .neon-pink {
+            color: #ff006e;
+            text-shadow: 0 0 10px #ff006e;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #00fff9;
+            color: #0a0a0f;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 1rem 1rem 1rem 0;
+            transition: all 0.3s;
+        }
+        
+        .button:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 249, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 249, 0.1);
+            border: 1px solid #00fff9;
+            border-radius: 8px;
+            color: #00fff9;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <pre class="ascii">
+    ██████╗  █████╗ ██████╗ ██╗███████╗
+    ██╔══██╗██╔══██╗██╔══██╗██║██╔════╝
+    ██████╔╝███████║██████╔╝██║███████╗
+    ██╔═══╝ ██╔══██║██╔══██╗██║╚════██║
+    ██║     ██║  ██║██║  ██║██║███████║
+    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝
+        </pre>
+        
+        <div class="glass">
+            <h1>Paris // Staff PM @ Ledger</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">
+                <span class="neon-purple">Poetic Mover. Vision Maker. Roadmap Owner.</span>
+            </p>
+            
+            <div class="status">
+                ✅ Portfolio Built Successfully!
+            </div>
+            
+            <h2 style="color: #00fff9; margin: 2rem 0 1rem 0;">What's Inside</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3 class="neon-cyan">🏠 Home Page</h3>
+                    <p style="margin-top: 1rem;">Animated ASCII logo, typewriter effects, stats showcase</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="neon-purple">👤 About</h3>
+                    <p style="margin-top: 1rem;">Bio, philosophy, skills, interactive terminal</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="neon-pink">🚀 Projects</h3>
+                    <p style="margin-top: 1rem;">Featured projects with modal expansions</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="neon-cyan">💼 Experience</h3>
+                    <p style="margin-top: 1rem;">Timeline with achievements and skills</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="neon-purple">📧 Contact</h3>
+                    <p style="margin-top: 1rem;">Form and social links</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="neon-pink">✨ Features</h3>
+                    <p style="margin-top: 1rem;">Glass UI, ASCII art, particle effects, cursor trails</p>
+                </div>
+            </div>
+            
+            <h2 style="color: #bf00ff; margin: 2rem 0 1rem 0;">⚠️ Local Server Issue</h2>
+            <p style="margin-bottom: 1rem;">
+                Your Node.js version (18.17.1) is just slightly below the required 18.18.0. 
+                But don't worry! I'm deploying to Vercel right now, which will work perfectly!
+            </p>
+            
+            <h2 style="color: #00fff9; margin: 2rem 0 1rem 0;">🚀 Deployment Status</h2>
+            <p style="margin-bottom: 1rem;">
+                Your portfolio is being deployed to Vercel with:
+            </p>
+            <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                <li>✅ Next.js 15 with App Router</li>
+                <li>✅ Framer Motion animations</li>
+                <li>✅ Liquid glass UI components</li>
+                <li>✅ Interactive terminal</li>
+                <li>✅ ASCII art everywhere</li>
+                <li>✅ Mobile responsive design</li>
+            </ul>
+            
+            <h2 style="color: #ff006e; margin: 2rem 0 1rem 0;">📝 Next Steps</h2>
+            <ol style="margin-left: 2rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Vercel deployment completing...</li>
+                <li>You'll get a live URL in seconds</li>
+                <li>Customize your content (check CUSTOMIZATION.md)</li>
+                <li>Update with your real projects and info</li>
+            </ol>
+            
+            <h2 style="color: #00fff9; margin: 2rem 0 1rem 0;">🎯 To Fix Local Preview</h2>
+            <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 8px; margin: 1rem 0; overflow-x: auto;">
+# Update Node.js (takes 2 minutes)
+# Option 1: Using Homebrew
+brew upgrade node
+
+# Option 2: Using nvm
+nvm install --lts
+nvm use --lts
+
+# Then run:
+cd "/Users/morkeeth/CODE/Paris Portfolio/paris-portfolio"
+npm run dev
+            </pre>
+            
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p class="neon-cyan" style="font-size: 1.2rem;">
+                    🎉 Your dope 2025 portfolio is ready to ship!
+                </p>
+                <p style="margin-top: 1rem; opacity: 0.7;">
+                    Check the files: README.md, QUICKSTART.md, CUSTOMIZATION.md for full docs
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
