@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris - Enhanced Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        .gray { color: #888888; }
+        .dark-gray { color: #555555; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #000000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 50;
+        }
+        
+        nav .inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: #888888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover { color: #ffffff; }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        h1 { font-size: 3rem; margin-bottom: 1rem; }
+        
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 48px;
+            background: #ffffff;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        pre {
+            font-family: 'JetBrains Mono', monospace;
+            white-space: pre;
+            opacity: 0.3;
+        }
+        
+        .links a {
+            display: block;
+            margin: 0.75rem 0;
+            color: #888888;
+            text-decoration: none;
+            font-size: 1.125rem;
+            transition: color 0.2s;
+        }
+        
+        .links a:hover { color: #ffffff; }
+        
+        .links a:hover::before {
+            content: '▸ ';
+        }
+        
+        h2 { font-size: 1.875rem; margin-bottom: 2rem; }
+        
+        .section {
+            margin: 4rem 0;
+        }
+        
+        ::selection {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .banner {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="inner">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#experience">experience</a>
+            <a href="#contact">contact</a>
+        </div>
+    </nav>
+    
+    <div class="container" id="home">
+        <pre style="font-size: 10px; margin-bottom: 2rem;">    ___  ___ ___ ___ ___ 
+   | _ \/ __| _ \_ _/ __|
+   |  _/ (_ |   /| |\__ \
+   |_|  \___|_|_\___|___/</pre>
+        
+        <h1>paris<span class="cursor"></span></h1>
+        <p class="gray" style="font-size: 1.125rem; margin-bottom: 0.5rem;">
+            staff product manager @ ledger
+        </p>
+        <p class="dark-gray" style="font-size: 0.875rem; margin-bottom: 3rem;">
+            charging the tier-one roadmap
+        </p>
+        
+        <div class="links fade-in" style="margin: 3rem 0;">
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#experience">experience</a>
+            <a href="#contact">contact</a>
+        </div>
+        
+        <div style="margin-top: 4rem;" class="dark-gray">
+            <p style="font-size: 10px; margin-bottom: 1rem;">────────────────────────────────────────</p>
+            <p>paris, france • 2025</p>
+            <p style="margin-top: 0.25rem;">poetic mover. vision maker. roadmap owner.</p>
+            <p style="margin-top: 1rem; font-size: 0.75rem;">
+                building products at the intersection of 
+                <span style="color: #ffffff">crypto</span>, 
+                <span style="color: #ffffff">security</span>, and 
+                <span style="color: #ffffff">user experience</span>
+            </p>
+        </div>
+    </div>
+    
+    <div class="container" id="about">
+        <pre style="font-size: 10px; margin-bottom: 2rem;">    ▸ about.md</pre>
+        
+        <h2>about</h2>
+        
+        <p style="margin-bottom: 1rem;">
+            paris. staff product manager at ledger. based in the city that shares my name.
+        </p>
+        <p class="gray" style="margin-bottom: 1rem;">
+            i own the tier-one roadmap and transform ambitious visions into shipped realities. 
+            my approach to product management is both strategic and poetic—every feature is a verse, 
+            every sprint is a stanza, every release is a complete story.
+        </p>
+        
+        <p style="font-size: 10px; color: #ffffff; opacity: 0.2; margin: 3rem 0;">
+            ────────────────────────────────────────────────────────────
+        </p>
+        
+        <p style="margin-bottom: 1rem;">philosophy</p>
+        <div class="gray" style="margin-bottom: 2rem;">
+            <p><span style="color: #fff">▸</span> every decision starts with the user—their pain is my compass</p>
+            <p><span style="color: #fff">▸</span> vision without execution is hallucination—i ship</p>
+            <p><span style="color: #fff">▸</span> best products are built by teams, not heroes—i orchestrate</p>
+            <p><span style="color: #fff">▸</span> continuous learning isn't optional—the landscape evolves daily</p>
+        </div>
+        
+        <p style="font-size: 10px; margin: 3rem 0;">~∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿~</p>
+        
+        <blockquote style="border-left: 2px solid rgba(255,255,255,0.2); padding-left: 1rem; font-style: italic;" class="gray">
+            "the best products don't just solve problems—they create moments of delight 
+            that users remember long after they've closed the app."
+        </blockquote>
+    </div>
+    
+    <div class="container">
+        <div class="banner fade-in">
+            <p style="margin-bottom: 1rem; font-weight: 500;">
+                ✅ ENHANCED PORTFOLIO - The Way of Code Style
+            </p>
+            <div class="gray" style="font-size: 0.875rem;">
+                <p><span style="color: #fff">▸</span> Pure black & white design (#000000 / #ffffff)</p>
+                <p style="margin-top: 0.5rem;"><span style="color: #fff">▸</span> ASCII art animations throughout</p>
+                <p style="margin-top: 0.5rem;"><span style="color: #fff">▸</span> Rich, detailed content added</p>
+                <p style="margin-top: 0.5rem;"><span style="color: #fff">▸</span> JetBrains Mono font everywhere</p>
+                <p style="margin-top: 0.5rem;"><span style="color: #fff">▸</span> Minimal animations (fade-in, cursor blink)</p>
+                <p style="margin-top: 0.5rem;"><span style="color: #fff">▸</span> Interactive terminal component</p>
+                <p style="margin-top: 0.5rem;"><span style="color: #fff">▸</span> Professional content for all pages</p>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">Ready to deploy:</p>
+                <code style="background: rgba(255,255,255,0.05); padding: 0.5rem; display: block; font-size: 0.75rem;">
+                    cd paris-portfolio && vercel
+                </code>
+            </div>
+        </div>
+        
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);" class="dark-gray">
+            <p style="font-size: 0.875rem;">© 2025 paris</p>
+            <p style="font-size: 0.875rem; margin-top: 0.25rem;">
+                staff product manager @ ledger
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
