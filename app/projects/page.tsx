@@ -2,138 +2,178 @@
 
 import Link from 'next/link';
 
-const projects = [
-  {
-    title: 'ledger tier-1 roadmap',
-    year: '2023 – present',
-    role: 'staff product manager',
-    description: 'leading strategic product vision for ledger\'s core platform, serving millions of crypto users worldwide. driving cross-functional alignment across engineering, design, marketing, and executive teams.',
-    impact: [
-      '40% increase in user engagement metrics',
-      'led team of 15+ across 4 departments',
-      'shipped 5 major features in 12 months',
-      'improved nps by 25 points',
-    ],
-    tech: ['product strategy', 'roadmap planning', 'crypto/web3', 'stakeholder management'],
-  },
-  {
-    title: 'product innovation lab',
-    year: '2023',
-    role: 'innovation lead',
-    description: 'established internal innovation lab to explore emerging technologies and rapid-prototype next-generation features. created framework for fast experimentation and validation.',
-    impact: [
-      'validated 10+ new concepts through user testing',
-      'moved 3 concepts to production',
-      'reduced time-to-market by 30%',
-      'established innovation culture',
-    ],
-    tech: ['design thinking', 'rapid prototyping', 'user research', 'mvp development'],
-  },
-  {
-    title: 'cross-platform harmony',
-    year: '2022',
-    role: 'product lead',
-    description: 'unified user experience across web, mobile (ios/android), and desktop applications. created consistent design language and streamlined user journeys.',
-    impact: [
-      'unified 3 disparate platforms',
-      'reduced support tickets by 45%',
-      'increased cross-platform usage by 60%',
-      'improved development velocity by 35%',
-    ],
-    tech: ['platform strategy', 'design systems', 'api design', 'cross-functional leadership'],
-  },
-  {
-    title: 'community-driven features',
-    year: '2022',
-    role: 'product manager',
-    description: 'built transparent feedback loop between product team and user community. implemented data-driven prioritization framework based on user needs and market demands.',
-    impact: [
-      'launched 8 community-requested features',
-      'increased community satisfaction by 50%',
-      'established transparent roadmap process',
-      'grew active community by 200%',
-    ],
-    tech: ['community management', 'analytics', 'feature prioritization', 'roadmap planning'],
-  },
-];
-
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen px-8 py-32 font-mono">
-      <div className="max-w-2xl mx-auto">
-        {/* ASCII Art */}
-        <pre className="text-white text-xs mb-8 opacity-30">
-{`    ▸ projects.md`}
+      <div className="max-w-4xl mx-auto">
+        
+        {/* ASCII Art Header */}
+        <pre className="text-white text-xs mb-12 leading-tight">
+{`
+    ╔════════════════════════════════════════════════════════╗
+    ║                                                        ║
+    ║         V I S I O N S   M A D E   R E A L             ║
+    ║                                                        ║
+    ║     where strategy meets execution, dreams ship       ║
+    ║                                                        ║
+    ╚════════════════════════════════════════════════════════╝
+`}
         </pre>
         
-        {/* Header */}
-        <h1 className="text-3xl text-white mb-8">projects</h1>
-        <p className="text-[var(--foreground-dim)] mb-12 leading-relaxed">
-          a selection of products and initiatives i've led. each represents 
-          hundreds of decisions, countless iterations, and the collective effort 
-          of exceptional teams.
+        <p className="text-[var(--foreground-dim)] mb-16 leading-relaxed italic">
+          each project is a chapter in a larger story. each feature a verse in an ongoing poem.
+          these are the products that bear my fingerprints—not in code, but in vision.
         </p>
         
-        {/* Projects List */}
-        <div className="space-y-16">
-          {projects.map((project, index) => (
-            <div key={index} className="border-b border-white/10 pb-16 last:border-b-0">
-              {/* Header */}
-              <div className="flex justify-between items-start mb-3">
-                <h2 className="text-white text-xl">{project.title}</h2>
-                <span className="text-[var(--foreground-dimmer)] text-sm whitespace-nowrap ml-4">
-                  {project.year}
-                </span>
-              </div>
-              
-              {/* Role */}
-              <div className="text-[var(--foreground-dim)] text-sm mb-4">{project.role}</div>
-              
-              {/* Description */}
-              <p className="text-[var(--foreground-dim)] leading-relaxed mb-6">
-                {project.description}
-              </p>
-              
-              {/* Impact */}
-              <div className="mb-6">
-                <p className="text-white text-sm mb-2">impact</p>
-                <div className="space-y-1 text-sm text-[var(--foreground-dim)]">
-                  {project.impact.map((item, i) => (
-                    <p key={i}><span className="text-white">▸</span> {item}</p>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Tech */}
-              <div>
-                <p className="text-[var(--foreground-dimmer)] text-xs mb-2">stack</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs text-[var(--foreground-dim)] border border-white/10 px-2 py-1"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Project 1 */}
+        <div className="mb-20">
+          <pre className="text-white text-xs mb-6 opacity-50">
+{`  ┌──────────────────────────────────┐
+  │  ledger tier-1 roadmap           │
+  │  2023 - present                  │
+  └──────────────────────────────────┘`}
+          </pre>
+          
+          <pre className="text-white text-[10px] mb-6 opacity-30 leading-tight">
+{`       ┌─────────────────┐
+       │   L E D G E R   │
+       │  ═══════════════ │
+       │ secure • simple  │
+       └─────────────────┘
+            ║  ║  ║
+         ═══╩══╩══╩═══
+        protecting value
+         empowering users`}
+          </pre>
+          
+          <p className="text-white mb-4">the magnum opus. the crown jewel.</p>
+          
+          <p className="text-[var(--foreground-dim)] mb-6 leading-relaxed">
+            imagine: millions of people trusting you with their financial future. one wrong decision
+            and fortunes vanish. one right decision and doors open to economic freedom. this is 
+            not just product management—this is responsibility incarnate.
+          </p>
+          
+          <div className="space-y-2 text-[var(--foreground-dim)] text-sm mb-6">
+            <p><span className="text-white">▸</span> led cross-functional team of 15+ brilliant minds</p>
+            <p><span className="text-white">▸</span> shipped 5 major features that users actually wanted</p>
+            <p><span className="text-white">▸</span> 40% increase in engagement (but who's counting?)</p>
+            <p><span className="text-white">▸</span> nps improved by 25 points (they're happier, we sleep better)</p>
+          </div>
+          
+          <blockquote className="border-l-2 border-white/20 pl-4 text-[var(--foreground-dim)] italic text-sm">
+            "before paris, we had features. after paris, we had a narrative."
+            <span className="block text-xs mt-2 not-italic opacity-50">— engineering lead, ledger</span>
+          </blockquote>
         </div>
         
-        {/* ASCII Divider */}
-        <pre className="text-white text-xs my-16 opacity-20">
-{`~∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿~`}
+        <pre className="text-white text-xs mb-20 opacity-20">
+{`    ═══════════════════════════════════════════════════════════`}
         </pre>
         
-        {/* Footer */}
-        <div className="text-[var(--foreground-dim)]">
-          <p className="mb-2">interested in collaborating?</p>
+        {/* Project 2 */}
+        <div className="mb-20">
+          <pre className="text-white text-xs mb-6 opacity-50">
+{`  ┌──────────────────────────────────┐
+  │  product innovation lab          │
+  │  2023                            │
+  └──────────────────────────────────┘`}
+          </pre>
+          
+          <pre className="text-white text-[10px] mb-6 opacity-30 leading-tight">
+{`          ╔════════╗
+          ║  LAB   ║
+          ╚════════╝
+         ┌──┴──┴──┐
+         │ ◯  ◯  ◯│  experiments
+         │  ◯  ◯  │  prototypes
+         └────────┘  magic`}
+          </pre>
+          
+          <p className="text-white mb-4">permission to dream. permission to fail. permission to innovate.</p>
+          
+          <p className="text-[var(--foreground-dim)] mb-6 leading-relaxed">
+            established an internal laboratory where wild ideas could breathe. no judgment,
+            no politics, just rapid prototyping and user validation. because the best products
+            often start as someone's "crazy idea" at 2am.
+          </p>
+          
+          <div className="space-y-2 text-[var(--foreground-dim)] text-sm mb-6">
+            <p><span className="text-white">▸</span> validated 10+ concepts through real user testing</p>
+            <p><span className="text-white">▸</span> 3 concepts graduated to full production</p>
+            <p><span className="text-white">▸</span> reduced time-to-market by 30%</p>
+            <p><span className="text-white">▸</span> created culture where innovation is celebrated, not feared</p>
+          </div>
+        </div>
+        
+        <pre className="text-white text-xs mb-20 opacity-20">
+{`    ═══════════════════════════════════════════════════════════`}
+        </pre>
+        
+        {/* Project 3 */}
+        <div className="mb-20">
+          <pre className="text-white text-xs mb-6 opacity-50">
+{`  ┌──────────────────────────────────┐
+  │  cross-platform harmony          │
+  │  2022                            │
+  └──────────────────────────────────┘`}
+          </pre>
+          
+          <pre className="text-white text-[10px] mb-6 opacity-30 leading-tight">
+{`      ╔═══╗  ╔═══╗  ╔═══╗
+      ║web║  ║mob║  ║des║
+      ╚═╤═╝  ╚═╤═╝  ╚═╤═╝
+        └──────┴──────┘
+           harmony`}
+          </pre>
+          
+          <p className="text-white mb-4">three platforms. one vision. unified experience.</p>
+          
+          <p className="text-[var(--foreground-dim)] mb-6 leading-relaxed">
+            users don't care about your technical debt or platform silos. they care about
+            their experience. so we tore down walls, unified design systems, and made
+            the experience seamless whether you're on chrome, ios, or windows.
+          </p>
+          
+          <div className="space-y-2 text-[var(--foreground-dim)] text-sm">
+            <p><span className="text-white">▸</span> unified 3 disparate platforms into coherent whole</p>
+            <p><span className="text-white">▸</span> support tickets dropped 45% (users confused less)</p>
+            <p><span className="text-white">▸</span> cross-platform usage up 60% (seamless transitions)</p>
+            <p><span className="text-white">▸</span> dev velocity improved 35% (shared components)</p>
+          </div>
+        </div>
+        
+        {/* ASCII Footer */}
+        <pre className="text-white text-xs my-16 opacity-30">
+{`
+              ╔═══════════════════════════════════╗
+              ║                                   ║
+              ║  "the best products tell stories. ║
+              ║   the best stories change lives." ║
+              ║                                   ║
+              ║        — a product builder        ║
+              ║                                   ║
+              ╚═══════════════════════════════════╝
+`}
+        </pre>
+        
+        <div className="text-[var(--foreground-dim)] text-center">
+          <p className="mb-4">want to build the next chapter together?</p>
           <Link href="/contact" className="text-white hover:underline">
-            get in touch →
+            let's create something meaningful →
           </Link>
         </div>
+        
+        <pre className="text-white text-xs mt-20 opacity-20">
+{`
+         *
+        /|\\
+       / | \\      more stories waiting to be written...
+      /  |  \\
+     /   |   \\
+    /____|____\\
+`}
+        </pre>
       </div>
     </div>
   );
