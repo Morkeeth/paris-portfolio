@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
 
 const navItems = [
   { name: 'home', path: '/' },
@@ -16,28 +15,22 @@ export default function Navigation() {
   const pathname = usePathname();
   
   return (
-    <motion.nav
-      className="fixed top-8 left-8 z-50 font-mono text-sm"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="flex gap-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 font-mono text-sm bg-black border-b border-white/10">
+      <div className="max-w-4xl mx-auto px-8 py-4 flex gap-6">
         {navItems.map((item) => (
           <Link
             key={item.path}
             href={item.path}
             className={`transition-colors ${
               pathname === item.path
-                ? 'text-[var(--foreground)]'
-                : 'text-[var(--foreground-dim)] hover:text-[var(--accent)]'
+                ? 'text-white'
+                : 'text-[var(--foreground-dim)] hover:text-white'
             }`}
           >
-            {pathname === item.path && '> '}
             {item.name}
           </Link>
         ))}
       </div>
-    </motion.nav>
+    </nav>
   );
 }

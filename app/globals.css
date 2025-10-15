@@ -2,12 +2,12 @@
 
 :root {
   --background: #000000;
-  --foreground: #00ff00;
-  --foreground-dim: #00aa00;
-  --foreground-dimmer: #006600;
-  --accent: #00ffff;
-  --glass-white: rgba(0, 255, 0, 0.02);
-  --glass-border: rgba(0, 255, 0, 0.1);
+  --foreground: #ffffff;
+  --foreground-dim: #888888;
+  --foreground-dimmer: #555555;
+  --accent: #ffffff;
+  --glass-white: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 @theme inline {
@@ -17,11 +17,10 @@
   --font-mono: var(--font-jetbrains-mono);
   
   /* Custom colors */
-  --color-terminal-green: #00ff00;
-  --color-terminal-cyan: #00ffff;
-  --color-terminal-dim: #00aa00;
+  --color-white: #ffffff;
+  --color-gray: #888888;
+  --color-dark-gray: #555555;
   --color-black: #000000;
-  --color-glass-white: rgba(0, 255, 0, 0.02);
 }
 
 * {
@@ -40,64 +39,42 @@ body {
   font-family: var(--font-jetbrains-mono), 'Courier New', monospace;
   overflow-x: hidden;
   position: relative;
-  line-height: 1.6;
-  font-size: 14px;
+  line-height: 1.5;
+  font-size: 15px;
 }
 
-/* Subtle scan lines for CRT effect */
+/* No overlay - pure clean */
 body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.5;
+  display: none;
 }
 
-/* Minimal glass/terminal window */
+/* Minimal borders only */
 .glass {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0;
 }
 
 .glass-card {
   @apply glass;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 255, 0, 0.6);
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Terminal text effects */
-.terminal-green {
+/* Simple text colors - no effects */
+.terminal-white {
   color: var(--foreground);
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
-.terminal-cyan {
-  color: var(--accent);
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-}
-
-.terminal-dim {
+.terminal-gray {
   color: var(--foreground-dim);
 }
 
-.glow-green {
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+.terminal-dim {
+  color: var(--foreground-dimmer);
 }
 
 /* ASCII animation */
@@ -152,22 +129,22 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 255, 0, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 255, 0, 0.5);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Selection */
 ::selection {
-  background: var(--foreground);
+  background: #ffffff;
   color: #000000;
 }
 
 ::-moz-selection {
-  background: var(--foreground);
+  background: #ffffff;
   color: #000000;
 }
 
@@ -219,10 +196,9 @@ body::before {
   100% { transform: rotate(360deg); }
 }
 
-/* Utility for gradient text */
+/* Simple text - no gradients */
 .gradient-text {
   color: var(--foreground);
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 /* Floating animation */

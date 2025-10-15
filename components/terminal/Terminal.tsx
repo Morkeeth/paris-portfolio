@@ -106,9 +106,9 @@ export default function Terminal() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="border-b border-[var(--glass-border)] px-4 py-2 flex items-center gap-2">
-        <span className="font-mono text-xs text-[var(--foreground-dim)]">
-          paris@terminal:~$
+      <div className="border-b border-white/10 px-4 py-3 flex items-center gap-2">
+        <span className="font-mono text-sm text-white">
+          terminal
         </span>
       </div>
       
@@ -122,10 +122,10 @@ export default function Terminal() {
             key={index}
             className={`mb-1 ${
               line.type === 'input'
-                ? 'text-[var(--accent)]'
+                ? 'text-white'
                 : line.type === 'error'
                 ? 'text-[var(--foreground-dim)]'
-                : 'text-[var(--foreground)]'
+                : 'text-[var(--foreground-dim)]'
             }`}
           >
             <pre className="whitespace-pre-wrap break-words font-mono leading-relaxed">
@@ -135,14 +135,14 @@ export default function Terminal() {
         ))}
         
         <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
-          <span className="text-[var(--foreground-dim)]">$</span>
+          <span className="text-white">$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent outline-none text-[var(--foreground)]"
+            className="flex-1 bg-transparent outline-none text-white"
             autoFocus
             spellCheck={false}
           />
