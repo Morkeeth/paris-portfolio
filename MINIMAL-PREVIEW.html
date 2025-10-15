@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Portfolio - Minimal Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000000;
+            color: #00ff00;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Scan lines effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        
+        .dim {
+            color: #00aa00;
+        }
+        
+        .dimmer {
+            color: #006600;
+        }
+        
+        .accent {
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+        
+        .nav {
+            margin: 3rem 0;
+        }
+        
+        .nav a {
+            display: block;
+            margin: 0.5rem 0;
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav a:hover {
+            color: #00ffff;
+        }
+        
+        .nav a::before {
+            content: '$ ';
+            color: #00aa00;
+        }
+        
+        .nav a:hover::after {
+            content: ' →';
+        }
+        
+        .border {
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .border:hover {
+            border-color: rgba(0, 255, 0, 0.6);
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
+            margin: 2rem 0;
+        }
+        
+        .info-line {
+            display: flex;
+            margin: 0.5rem 0;
+        }
+        
+        .info-label {
+            width: 6rem;
+            color: #00aa00;
+        }
+        
+        ::selection {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 0.5rem;
+            height: 1rem;
+            background: #00ff00;
+            animation: blink 1s infinite;
+            margin-left: 0.25rem;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        section {
+            margin: 3rem 0;
+        }
+        
+        .section-title {
+            color: #00ffff;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 1px solid rgba(0, 255, 0, 0.3);
+            margin: 2rem 0;
+            padding-bottom: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Preview -->
+    <div class="container">
+        <div style="margin-bottom: 3rem;">
+            <div class="dim">> paris_portfolio.sh<span class="cursor"></span></div>
+        </div>
+        
+        <div class="fade-in">
+            <h1>PARIS</h1>
+            <div class="dim">Staff Product Manager @ Ledger</div>
+            <div class="dimmer" style="font-size: 0.875rem; margin-top: 0.25rem;">
+                Charging the tier-one roadmap
+            </div>
+            
+            <nav class="nav">
+                <a href="#about">about</a>
+                <a href="#projects">projects</a>
+                <a href="#experience">experience</a>
+                <a href="#contact">contact</a>
+            </nav>
+            
+            <section style="border-top: 1px solid rgba(0, 255, 0, 0.1); padding-top: 1.5rem; font-size: 0.875rem;">
+                <div class="info-line">
+                    <span class="info-label">location:</span>
+                    <span>Paris, France</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">role:</span>
+                    <span>Poetic Mover / Vision Maker</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">focus:</span>
+                    <span>Product Strategy / Roadmap / Innovation</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">status:</span>
+                    <span>open to opportunities</span>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- About Preview -->
+    <div class="container" id="about">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">$ about</h2>
+        <hr>
+        
+        <section>
+            <div class="section-title">WHO</div>
+            <div>
+                <p style="margin-bottom: 0.5rem;">Paris. Staff Product Manager at Ledger.</p>
+                <p style="margin-bottom: 0.5rem;">Based in the city that shares my name.</p>
+                <p>I own the tier-one roadmap and transform ambitious visions into shipped realities.</p>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-title">PHILOSOPHY</div>
+            <div class="dim">
+                <p>→ Every decision starts with the user</p>
+                <p>→ Vision without execution is hallucination</p>
+                <p>→ Best products are built by teams, not individuals</p>
+                <p>→ Continuous learning is non-negotiable</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Projects Preview -->
+    <div class="container" id="projects">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">$ projects</h2>
+        <hr>
+        
+        <div class="border">
+            <div style="display: flex; justify-between; margin-bottom: 0.75rem;">
+                <div style="font-weight: 500;">Ledger Tier-1 Roadmap</div>
+                <div class="dimmer" style="font-size: 0.75rem;">2023-Present</div>
+            </div>
+            <div class="accent" style="font-size: 0.875rem; margin-bottom: 0.75rem;">Staff Product Manager</div>
+            <div class="dim" style="font-size: 0.875rem; margin-bottom: 1rem;">
+                Leading strategic product vision for Ledger's core platform.
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <div class="dimmer" style="font-size: 0.75rem; margin-bottom: 0.5rem;">IMPACT:</div>
+                <div class="dim" style="font-size: 0.875rem;">
+                    <p>• 40% increase in engagement</p>
+                    <p>• 15+ team members</p>
+                    <p>• 5 major features in 2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Experience Preview -->
+    <div class="container" id="experience">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">$ experience</h2>
+        <hr>
+        
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div style="display: flex; justify-between; margin-bottom: 0.5rem;">
+                <div>
+                    <div style="font-weight: 500;">Staff Product Manager</div>
+                    <div class="accent" style="font-size: 0.875rem;">Ledger</div>
+                </div>
+                <div class="dimmer" style="font-size: 0.75rem;">2023 - Present</div>
+            </div>
+            <div class="dim" style="font-size: 0.875rem; margin-top: 0.75rem;">
+                <p>→ Own and execute tier-one product roadmap</p>
+                <p>→ Lead cross-functional teams of 15+ members</p>
+                <p>→ Shipped 5 major features with 40% engagement increase</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Preview -->
+    <div class="container" id="contact">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">$ contact</h2>
+        <hr>
+        
+        <section>
+            <div class="section-title">REACH OUT</div>
+            <div>
+                <a href="mailto:paris@example.com" style="display: block; margin: 0.5rem 0; color: #00ff00; text-decoration: none;">
+                    <span class="dim" style="display: inline-block; width: 6rem;">email:</span>
+                    paris@example.com
+                </a>
+                <a href="#" style="display: block; margin: 0.5rem 0; color: #00ff00; text-decoration: none;">
+                    <span class="dim" style="display: inline-block; width: 6rem;">linkedin:</span>
+                    /in/paris-portfolio
+                </a>
+                <a href="#" style="display: block; margin: 0.5rem 0; color: #00ff00; text-decoration: none;">
+                    <span class="dim" style="display: inline-block; width: 6rem;">github:</span>
+                    @paris-portfolio
+                </a>
+            </div>
+        </section>
+        
+        <div class="border" style="margin-top: 3rem;">
+            <div style="font-size: 0.875rem;">
+                <p style="margin-bottom: 1rem;">
+                    ✅ NEW MINIMAL DESIGN - The Way of Code inspired!
+                </p>
+                <p class="dim" style="margin-bottom: 0.5rem;">
+                    • Pure terminal aesthetic with scan lines
+                </p>
+                <p class="dim" style="margin-bottom: 0.5rem;">
+                    • Classic green monochrome color scheme
+                </p>
+                <p class="dim" style="margin-bottom: 0.5rem;">
+                    • Zero distractions, maximum focus
+                </p>
+                <p class="dim">
+                    • Minimalist navigation and interactions
+                </p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(0, 255, 0, 0.1);">
+            <p class="dimmer" style="font-size: 0.75rem;">© 2025 Paris • Built with Next.js</p>
+            <p class="dimmer" style="font-size: 0.75rem; margin-top: 0.25rem;">
+                To run locally: Update Node.js to 18.18.0+ then npm run dev
+            </p>
+            <p class="dimmer" style="font-size: 0.75rem; margin-top: 0.25rem;">
+                Or deploy to Vercel: vercel login && vercel
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
