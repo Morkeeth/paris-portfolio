@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris - The Way of Code Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .gray {
+            color: #888888;
+        }
+        
+        .dark-gray {
+            color: #555555;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #000000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 50;
+        }
+        
+        nav .inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: #888888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 48px;
+            background: #ffffff;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        
+        .links {
+            margin: 3rem 0;
+        }
+        
+        .links a {
+            display: block;
+            margin: 0.75rem 0;
+            color: #888888;
+            text-decoration: none;
+            font-size: 1.125rem;
+            transition: color 0.2s;
+        }
+        
+        .links a:hover {
+            color: #ffffff;
+        }
+        
+        section {
+            margin: 4rem 0;
+        }
+        
+        h2 {
+            font-size: 1.875rem;
+            margin-bottom: 3rem;
+        }
+        
+        .project {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .project:last-child {
+            border-bottom: none;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project h3 {
+            color: #ffffff;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+        
+        .year {
+            color: #555555;
+            font-size: 0.875rem;
+        }
+        
+        .role {
+            color: #888888;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .contact-link {
+            display: flex;
+            margin: 0.75rem 0;
+        }
+        
+        .contact-link .label {
+            width: 6rem;
+            color: #888888;
+        }
+        
+        .contact-link a {
+            color: #888888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .contact-link a:hover {
+            color: #ffffff;
+        }
+        
+        ::selection {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .banner {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin: 4rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .cursor {
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="inner">
+            <a href="#home" class="active">home</a>
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#experience">experience</a>
+            <a href="#contact">contact</a>
+        </div>
+    </nav>
+    
+    <!-- Home -->
+    <div class="container" id="home">
+        <h1>
+            paris<span class="cursor"></span>
+        </h1>
+        <p class="gray" style="font-size: 1.125rem; margin-bottom: 3rem;">
+            staff product manager @ ledger
+        </p>
+        
+        <div class="links">
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#experience">experience</a>
+            <a href="#contact">contact</a>
+        </div>
+        
+        <div style="margin-top: 4rem;" class="dark-gray">
+            <p>paris, france</p>
+            <p style="margin-top: 0.25rem;">poetic mover / vision maker</p>
+        </div>
+    </div>
+    
+    <!-- About -->
+    <div class="container" id="about">
+        <h2>about</h2>
+        
+        <div style="margin-bottom: 3rem;">
+            <p style="margin-bottom: 1rem;">
+                paris. staff product manager at ledger.
+            </p>
+            <p class="gray">
+                i own the tier-one roadmap and transform ambitious visions into shipped realities. 
+                based in the city that shares my name. every feature is a verse, every sprint is a stanza.
+            </p>
+        </div>
+        
+        <div style="margin-bottom: 3rem;">
+            <p style="margin-bottom: 0.75rem;">philosophy</p>
+            <div class="gray">
+                <p>every decision starts with the user</p>
+                <p>vision without execution is hallucination</p>
+                <p>best products are built by teams</p>
+                <p>continuous learning is essential</p>
+            </div>
+        </div>
+        
+        <div>
+            <p style="margin-bottom: 0.75rem;">skills</p>
+            <div class="gray">
+                <p>product strategy • roadmap planning</p>
+                <p>cross-functional leadership • user research</p>
+                <p>agile/scrum • data analysis</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Projects -->
+    <div class="container" id="projects">
+        <h2>projects</h2>
+        
+        <div class="project">
+            <div class="project-header">
+                <h3>ledger tier-1 roadmap</h3>
+                <span class="year">2023-present</span>
+            </div>
+            <div class="role">staff product manager</div>
+            <p class="gray">leading strategic product vision for ledger's core platform</p>
+        </div>
+        
+        <div class="project">
+            <div class="project-header">
+                <h3>product innovation lab</h3>
+                <span class="year">2023</span>
+            </div>
+            <div class="role">innovation lead</div>
+            <p class="gray">internal lab for emerging tech and next-gen features</p>
+        </div>
+        
+        <div class="project">
+            <div class="project-header">
+                <h3>cross-platform harmony</h3>
+                <span class="year">2022</span>
+            </div>
+            <div class="role">product lead</div>
+            <p class="gray">unified experience across web, mobile, and desktop</p>
+        </div>
+    </div>
+    
+    <!-- Experience -->
+    <div class="container" id="experience">
+        <h2>experience</h2>
+        
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <h3>staff product manager</h3>
+                    <div class="role">ledger</div>
+                </div>
+                <span class="year">2023 - present</span>
+            </div>
+        </div>
+        
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <h3>senior product manager</h3>
+                    <div class="role">ledger</div>
+                </div>
+                <span class="year">2022 - 2023</span>
+            </div>
+        </div>
+        
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <h3>product manager</h3>
+                    <div class="role">tech startup</div>
+                </div>
+                <span class="year">2020 - 2022</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact -->
+    <div class="container" id="contact">
+        <h2>contact</h2>
+        
+        <div style="margin-bottom: 4rem;">
+            <div class="contact-link">
+                <span class="label">email</span>
+                <a href="mailto:paris@example.com">paris@example.com</a>
+            </div>
+            <div class="contact-link">
+                <span class="label">linkedin</span>
+                <a href="https://linkedin.com/in/paris">linkedin.com/in/paris</a>
+            </div>
+            <div class="contact-link">
+                <span class="label">github</span>
+                <a href="https://github.com/paris">github.com/paris</a>
+            </div>
+            <div class="contact-link">
+                <span class="label">twitter</span>
+                <a href="https://twitter.com/paris">twitter.com/paris</a>
+            </div>
+        </div>
+        
+        <div class="gray">
+            <p>currently based in paris, france</p>
+            <p style="margin-top: 0.75rem;">open to product management opportunities</p>
+            <p style="margin-top: 0.75rem;">response time: usually within 24 hours</p>
+        </div>
+    </div>
+    
+    <!-- Banner -->
+    <div class="container">
+        <div class="banner">
+            <p style="margin-bottom: 1rem; font-weight: 500;">
+                ✅ PURE BLACK & WHITE - The Way of Code Exact Design
+            </p>
+            <div class="gray" style="font-size: 0.875rem;">
+                <p>• Pure monochrome: #000000 & #ffffff</p>
+                <p style="margin-top: 0.5rem;">• Zero effects, zero distractions</p>
+                <p style="margin-top: 0.5rem;">• JetBrains Mono font throughout</p>
+                <p style="margin-top: 0.5rem;">• Minimal borders & spacing</p>
+                <p style="margin-top: 0.5rem;">• Simple hover states only</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <p class="dark-gray" style="font-size: 0.875rem;">© 2025 paris</p>
+            <p class="dark-gray" style="font-size: 0.875rem; margin-top: 0.25rem;">
+                To deploy: cd paris-portfolio && vercel
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
