@@ -2,107 +2,115 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { asciiArt } from '@/lib/ascii-generator';
 
 export default function Home() {
-  const [showContent, setShowContent] = useState(false);
+  const [displayText, setDisplayText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
   
   useEffect(() => {
-    setTimeout(() => setShowContent(true), 1000);
+    const text = 'oscar';
+    let i = 0;
+    
+    const typing = setInterval(() => {
+      if (i <= text.length) {
+        setDisplayText(text.slice(0, i));
+        i++;
+      } else {
+        clearInterval(typing);
+      }
+    }, 150);
+    
+    const cursorBlink = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+    
+    return () => {
+      clearInterval(typing);
+      clearInterval(cursorBlink);
+    };
   }, []);
   
   return (
     <div className="min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-4xl w-full font-mono">
-        {/* Large ASCII Art */}
-        <pre className="text-white text-[10px] leading-tight mb-8 overflow-x-auto">
-{`
- ██████╗  █████╗ ██████╗ ██╗███████╗
- ██╔══██╗██╔══██╗██╔══██╗██║██╔════╝
- ██████╔╝███████║██████╔╝██║███████╗
- ██╔═══╝ ██╔══██║██╔══██╗██║╚════██║
- ██║     ██║  ██║██║  ██║██║███████║
- ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝
-                                      
-    ┌─────────────────────────────┐
-    │  staff pm @ ledger          │
-    │  poetic mover • visionary   │
-    │  paris, france • 2025       │
-    └─────────────────────────────┘
-`}
+      <div className="max-w-3xl w-full font-mono">
+        {/* ASCII Logo */}
+        <pre className="text-[var(--foreground)] text-xs md:text-sm mb-8 leading-tight opacity-80">
+          {asciiArt.logo}
         </pre>
         
-        {showContent && (
-          <>
-            {/* Poetic Intro */}
-            <div className="mb-12 text-[var(--foreground-dim)] leading-relaxed animate-fade-in">
-              <p className="mb-4">
-                in the city of lights, a builder of products dwells—<br/>
-                weaving code and vision into stories users tell.
-              </p>
-              <p className="text-white">
-                not just a manager, but a poet of the craft,<br/>
-                each roadmap a sonnet, each feature carefully graphed.
-              </p>
-            </div>
-            
-            {/* ASCII Divider */}
-            <pre className="text-white text-xs mb-12 opacity-20">
-{`╔═══════════════════════════════════════════════════════════╗
-║                    e n t e r   t h e   v i s i o n        ║
-╚═══════════════════════════════════════════════════════════╝`}
-            </pre>
-            
-            {/* Navigation with ASCII */}
-            <div className="space-y-6 text-lg mb-12">
-              <Link href="/about" className="block group">
-                <pre className="text-[var(--foreground-dim)] group-hover:text-white transition-colors text-xs leading-tight">
-{`  ╭──────────╮
-  │  about   │  ← the story of a product poet
-  ╰──────────╯`}
-                </pre>
-              </Link>
-              
-              <Link href="/projects" className="block group">
-                <pre className="text-[var(--foreground-dim)] group-hover:text-white transition-colors text-xs leading-tight">
-{`  ╭──────────╮
-  │ projects │  ← visions made real
-  ╰──────────╯`}
-                </pre>
-              </Link>
-              
-              <Link href="/experience" className="block group">
-                <pre className="text-[var(--foreground-dim)] group-hover:text-white transition-colors text-xs leading-tight">
-{`  ╭────────────╮
-  │ experience │  ← the journey through code
-  ╰────────────╯`}
-                </pre>
-              </Link>
-              
-              <Link href="/contact" className="block group">
-                <pre className="text-[var(--foreground-dim)] group-hover:text-white transition-colors text-xs leading-tight">
-{`  ╭─────────╮
-  │ contact │  ← let's build together
-  ╰─────────╯`}
-                </pre>
-              </Link>
-            </div>
-            
-            {/* Footer ASCII Art */}
-            <pre className="text-white text-xs opacity-30 mt-16">
-{`
-       *
-      /|\\           "vision without action is a daydream.
-     / | \\           action without vision is a nightmare."
-    /  |  \\
-   /   |   \\              — japanese proverb
-  /____|____\\              adapted by a product builder
-       |
-       |
-    ───┴───
-`}
-            </pre>
-          </>
-        )}
+        {/* Name with cursor */}
+        <div className="mb-12">
+          <h1 className="text-5xl md:text-6xl text-[var(--foreground)] mb-4">
+            {displayText}
+            {showCursor && <span className="inline-block w-3 h-12 bg-[var(--foreground)] ml-2 align-middle" />}
+          </h1>
+          <p className="text-[var(--foreground-dim)] text-lg mb-3">
+            staff product manager @ ledger
+          </p>
+          <p className="text-[var(--foreground-dimmer)] text-sm">
+            🎾 tennis enthusiast • 🎧 weekend dj • 🏀 bald & proud
+          </p>
+        </div>
+        
+        {/* ASCII Self Portrait */}
+        <pre className="text-[var(--foreground-dim)] text-xs mb-8 leading-tight">
+          {asciiArt.baldHead}
+        </pre>
+        
+        {/* Links */}
+        <div className="space-y-3 text-lg mb-12">
+          <div>
+            <Link
+              href="/about"
+              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
+            >
+              → about
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/projects"
+              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
+            >
+              → projects
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/experience"
+              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
+            >
+              → experience
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/contact"
+              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
+            >
+              → contact
+            </Link>
+          </div>
+        </div>
+        
+        {/* Fun Stats */}
+        <div className="border border-[var(--glass-border)] p-6 mb-8">
+          <p className="text-[var(--foreground)] text-sm mb-3">// quick stats</p>
+          <div className="text-[var(--foreground-dim)] text-sm space-y-1">
+            <p>☕ coffee consumed: ∞</p>
+            <p>🎾 tennis serve speed: classified</p>
+            <p>🎧 playlists curated: 47+</p>
+            <p>💡 products shipped: too many to count</p>
+            <p>💈 hair on head: 0 (by choice... mostly)</p>
+          </div>
+        </div>
+        
+        {/* Footer */}
+        <div className="text-[var(--foreground-dimmer)] text-sm">
+          <p>based in [location]</p>
+          <p className="mt-1">building products • serving aces • dropping beats</p>
+        </div>
       </div>
     </div>
   );

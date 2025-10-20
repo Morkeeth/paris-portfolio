@@ -8,33 +8,34 @@ export default function ProjectsPage() {
       <div className="max-w-4xl mx-auto">
         
         {/* ASCII Art Header */}
-        <pre className="text-white text-xs mb-12 leading-tight">
+        <pre className="text-[var(--foreground)] text-xs mb-12 leading-tight opacity-70">
 {`
     ╔════════════════════════════════════════════════════════╗
     ║                                                        ║
-    ║         V I S I O N S   M A D E   R E A L             ║
+    ║         P R O J E C T S  &  S H I P M E N T S         ║
     ║                                                        ║
-    ║     where strategy meets execution, dreams ship       ║
+    ║          stuff i built that actually works            ║
     ║                                                        ║
     ╚════════════════════════════════════════════════════════╝
 `}
         </pre>
         
-        <p className="text-[var(--foreground-dim)] mb-16 leading-relaxed italic">
-          each project is a chapter in a larger story. each feature a verse in an ongoing poem.
-          these are the products that bear my fingerprints—not in code, but in vision.
+        <p className="text-[var(--foreground-dim)] mb-16 leading-relaxed">
+          these are the products i've shipped. each one taught me something. 
+          each one made users' lives better. some even made me lose sleep. 
+          all worth it.
         </p>
         
         {/* Project 1 */}
         <div className="mb-20">
-          <pre className="text-white text-xs mb-6 opacity-50">
+          <pre className="text-[var(--foreground)] text-xs mb-6 opacity-50">
 {`  ┌──────────────────────────────────┐
   │  ledger tier-1 roadmap           │
   │  2023 - present                  │
   └──────────────────────────────────┘`}
           </pre>
           
-          <pre className="text-white text-[10px] mb-6 opacity-30 leading-tight">
+          <pre className="text-[var(--foreground-dim)] text-[10px] mb-6 opacity-40 leading-tight">
 {`       ┌─────────────────┐
        │   L E D G E R   │
        │  ═══════════════ │
@@ -46,134 +47,102 @@ export default function ProjectsPage() {
          empowering users`}
           </pre>
           
-          <p className="text-white mb-4">the magnum opus. the crown jewel.</p>
+          <p className="text-[var(--foreground)] mb-4">the main gig. the big kahuna.</p>
           
           <p className="text-[var(--foreground-dim)] mb-6 leading-relaxed">
-            imagine: millions of people trusting you with their financial future. one wrong decision
-            and fortunes vanish. one right decision and doors open to economic freedom. this is 
-            not just product management—this is responsibility incarnate.
+            leading product strategy for ledger's core platform. millions of users 
+            trusting us with their crypto. no pressure, right? (there's pressure.)
           </p>
           
           <div className="space-y-2 text-[var(--foreground-dim)] text-sm mb-6">
-            <p><span className="text-white">▸</span> led cross-functional team of 15+ brilliant minds</p>
-            <p><span className="text-white">▸</span> shipped 5 major features that users actually wanted</p>
-            <p><span className="text-white">▸</span> 40% increase in engagement (but who's counting?)</p>
-            <p><span className="text-white">▸</span> nps improved by 25 points (they're happier, we sleep better)</p>
+            <p><span className="text-[var(--foreground)]">▸</span> led cross-functional team of 15+ brilliant humans</p>
+            <p><span className="text-[var(--foreground)]">▸</span> shipped 5 major features users actually wanted</p>
+            <p><span className="text-[var(--foreground)]">▸</span> 40% increase in engagement</p>
+            <p><span className="text-[var(--foreground)]">▸</span> nps improved by 25 points (they like us!)</p>
           </div>
           
-          <blockquote className="border-l-2 border-white/20 pl-4 text-[var(--foreground-dim)] italic text-sm">
-            "before paris, we had features. after paris, we had a narrative."
+          <blockquote className="border-l-2 border-[var(--glass-border)] pl-4 text-[var(--foreground-dim)] italic text-sm">
+            "oscar makes roadmapping look easy. it's not. he's just that good."
             <span className="block text-xs mt-2 not-italic opacity-50">— engineering lead, ledger</span>
           </blockquote>
         </div>
         
-        <pre className="text-white text-xs mb-20 opacity-20">
+        <pre className="text-[var(--foreground-dim)] text-xs mb-20 opacity-20">
 {`    ═══════════════════════════════════════════════════════════`}
         </pre>
         
         {/* Project 2 */}
         <div className="mb-20">
-          <pre className="text-white text-xs mb-6 opacity-50">
+          <pre className="text-[var(--foreground)] text-xs mb-6 opacity-50">
 {`  ┌──────────────────────────────────┐
   │  product innovation lab          │
   │  2023                            │
   └──────────────────────────────────┘`}
           </pre>
           
-          <pre className="text-white text-[10px] mb-6 opacity-30 leading-tight">
-{`          ╔════════╗
-          ║  LAB   ║
-          ╚════════╝
-         ┌──┴──┴──┐
-         │ ◯  ◯  ◯│  experiments
-         │  ◯  ◯  │  prototypes
-         └────────┘  magic`}
-          </pre>
-          
-          <p className="text-white mb-4">permission to dream. permission to fail. permission to innovate.</p>
+          <p className="text-[var(--foreground)] mb-4">permission to experiment. permission to fail fast.</p>
           
           <p className="text-[var(--foreground-dim)] mb-6 leading-relaxed">
-            established an internal laboratory where wild ideas could breathe. no judgment,
-            no politics, just rapid prototyping and user validation. because the best products
-            often start as someone's "crazy idea" at 2am.
+            built an internal lab where wild ideas could breathe. rapid prototyping, 
+            real user testing, no politics. just making cool stuff and seeing if it sticks.
           </p>
           
-          <div className="space-y-2 text-[var(--foreground-dim)] text-sm mb-6">
-            <p><span className="text-white">▸</span> validated 10+ concepts through real user testing</p>
-            <p><span className="text-white">▸</span> 3 concepts graduated to full production</p>
-            <p><span className="text-white">▸</span> reduced time-to-market by 30%</p>
-            <p><span className="text-white">▸</span> created culture where innovation is celebrated, not feared</p>
+          <div className="space-y-2 text-[var(--foreground-dim)] text-sm">
+            <p><span className="text-[var(--foreground)]">▸</span> validated 10+ concepts through user testing</p>
+            <p><span className="text-[var(--foreground)]">▸</span> 3 concepts graduated to production</p>
+            <p><span className="text-[var(--foreground)]">▸</span> 30% faster time-to-market</p>
+            <p><span className="text-[var(--foreground)]">▸</span> created a culture of innovation (buzzword, but true)</p>
           </div>
         </div>
         
-        <pre className="text-white text-xs mb-20 opacity-20">
+        <pre className="text-[var(--foreground-dim)] text-xs mb-20 opacity-20">
 {`    ═══════════════════════════════════════════════════════════`}
         </pre>
         
         {/* Project 3 */}
         <div className="mb-20">
-          <pre className="text-white text-xs mb-6 opacity-50">
+          <pre className="text-[var(--foreground)] text-xs mb-6 opacity-50">
 {`  ┌──────────────────────────────────┐
   │  cross-platform harmony          │
   │  2022                            │
   └──────────────────────────────────┘`}
           </pre>
           
-          <pre className="text-white text-[10px] mb-6 opacity-30 leading-tight">
-{`      ╔═══╗  ╔═══╗  ╔═══╗
-      ║web║  ║mob║  ║des║
-      ╚═╤═╝  ╚═╤═╝  ╚═╤═╝
-        └──────┴──────┘
-           harmony`}
-          </pre>
-          
-          <p className="text-white mb-4">three platforms. one vision. unified experience.</p>
+          <p className="text-[var(--foreground)] mb-4">one product, three platforms, zero excuses.</p>
           
           <p className="text-[var(--foreground-dim)] mb-6 leading-relaxed">
-            users don't care about your technical debt or platform silos. they care about
-            their experience. so we tore down walls, unified design systems, and made
-            the experience seamless whether you're on chrome, ios, or windows.
+            unified web, mobile, and desktop into a coherent experience. 
+            because users don't care about your technical debt. 
+            they just want things to work.
           </p>
           
           <div className="space-y-2 text-[var(--foreground-dim)] text-sm">
-            <p><span className="text-white">▸</span> unified 3 disparate platforms into coherent whole</p>
-            <p><span className="text-white">▸</span> support tickets dropped 45% (users confused less)</p>
-            <p><span className="text-white">▸</span> cross-platform usage up 60% (seamless transitions)</p>
-            <p><span className="text-white">▸</span> dev velocity improved 35% (shared components)</p>
+            <p><span className="text-[var(--foreground)]">▸</span> unified 3 disparate platforms</p>
+            <p><span className="text-[var(--foreground)]">▸</span> support tickets dropped 45%</p>
+            <p><span className="text-[var(--foreground)]">▸</span> cross-platform usage up 60%</p>
+            <p><span className="text-[var(--foreground)]">▸</span> dev velocity improved 35%</p>
           </div>
         </div>
         
         {/* ASCII Footer */}
-        <pre className="text-white text-xs my-16 opacity-30">
+        <pre className="text-[var(--foreground)] text-xs my-16 opacity-30">
 {`
               ╔═══════════════════════════════════╗
               ║                                   ║
-              ║  "the best products tell stories. ║
-              ║   the best stories change lives." ║
-              ║                                   ║
-              ║        — a product builder        ║
+              ║  "ship products like you serve   ║
+              ║   aces—fast, accurate, and with  ║
+              ║   confidence."                    ║
               ║                                   ║
               ╚═══════════════════════════════════╝
 `}
         </pre>
         
         <div className="text-[var(--foreground-dim)] text-center">
-          <p className="mb-4">want to build the next chapter together?</p>
-          <Link href="/contact" className="text-white hover:underline">
-            let's create something meaningful →
+          <p className="mb-4">want to build something together?</p>
+          <Link href="/contact" className="text-[var(--foreground)] hover:underline">
+            let's talk →
           </Link>
         </div>
-        
-        <pre className="text-white text-xs mt-20 opacity-20">
-{`
-         *
-        /|\\
-       / | \\      more stories waiting to be written...
-      /  |  \\
-     /   |   \\
-    /____|____\\
-`}
-        </pre>
       </div>
     </div>
   );

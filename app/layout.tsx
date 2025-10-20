@@ -11,13 +11,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Paris // Staff PM @ Ledger",
-  description: "Poetic mover. Staff Product Manager at Ledger charging the tier one roadmap. A portfolio of visions, code, and creativity.",
-  keywords: ["Product Manager", "Ledger", "Portfolio", "Paris", "Web Development"],
-  authors: [{ name: "Paris" }],
+  title: "Oscar // Staff PM @ Ledger",
+  description: "Bald, bold, and building products. Staff Product Manager at Ledger. Tennis player. Weekend DJ. Claude-aesthetic portfolio.",
+  keywords: ["Product Manager", "Ledger", "Portfolio", "Oscar", "Tennis", "DJ", "Web Development"],
+  authors: [{ name: "Oscar" }],
   openGraph: {
-    title: "Paris // Staff PM @ Ledger",
-    description: "Poetic mover. Staff Product Manager at Ledger charging the tier one roadmap.",
+    title: "Oscar // Staff PM @ Ledger",
+    description: "Bald, bold, and building products. Staff Product Manager at Ledger. Tennis player. Weekend DJ.",
     type: "website",
   },
 };

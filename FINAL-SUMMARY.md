@@ -177,3 +177,4 @@ vercel --prod
 
 Your dope minimal portfolio is ready to ship! ✨
 
+

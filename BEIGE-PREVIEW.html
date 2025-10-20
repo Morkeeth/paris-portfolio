@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oscar - Claude Beige Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #F5E6D3;
+            color: #2C2416;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .gray {
+            color: #6B5D4F;
+        }
+        
+        .dark-gray {
+            color: #8B7D6F;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #F5E6D3;
+            border-bottom: 1px solid rgba(44, 36, 22, 0.15);
+            z-index: 50;
+        }
+        
+        nav .inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: #6B5D4F;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: #2C2416;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #2C2416;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 56px;
+            background: #2C2416;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        
+        pre {
+            white-space: pre;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            line-height: 1.2;
+        }
+        
+        .border-box {
+            border: 1px solid rgba(44, 36, 22, 0.15);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            margin: 0.5rem 0;
+        }
+        
+        ::selection {
+            background: #2C2416;
+            color: #F5E6D3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="inner">
+            <a href="#" class="active">home</a>
+            <a href="#">about</a>
+            <a href="#">projects</a>
+            <a href="#">experience</a>
+            <a href="#">contact</a>
+        </div>
+    </nav>
+    
+    <!-- Home -->
+    <div class="container">
+        <!-- ASCII Logo -->
+        <pre style="color: #2C2416; margin-bottom: 2rem; opacity: 0.8;">
+     ██████╗ ███████╗ ██████╗ █████╗ ██████╗ 
+    ██╔═══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗
+    ██║   ██║███████╗██║     ███████║██████╔╝
+    ██║   ██║╚════██║██║     ██╔══██║██╔══██╗
+    ╚██████╔╝███████║╚██████╗██║  ██║██║  ██║
+     ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝
+        </pre>
+        
+        <h1>
+            oscar<span class="cursor"></span>
+        </h1>
+        <p class="gray" style="font-size: 1.125rem; margin-bottom: 0.5rem;">
+            staff product manager @ ledger
+        </p>
+        <p class="dark-gray" style="font-size: 0.875rem; margin-bottom: 2rem;">
+            🎾 tennis enthusiast • 🎧 weekend dj • 🏀 bald & proud
+        </p>
+        
+        <!-- ASCII Self Portrait -->
+        <pre class="gray" style="margin: 2rem 0;">
+        ___
+       /   \
+      |  ☉☉ |   <- that's me, shiny & proud
+       \ ◡ /
+        ---
+        | |
+        </pre>
+        
+        <!-- Links -->
+        <div style="margin: 3rem 0;">
+            <p style="margin: 0.75rem 0;"><a href="#" class="gray" style="text-decoration: none;">→ about</a></p>
+            <p style="margin: 0.75rem 0;"><a href="#" class="gray" style="text-decoration: none;">→ projects</a></p>
+            <p style="margin: 0.75rem 0;"><a href="#" class="gray" style="text-decoration: none;">→ experience</a></p>
+            <p style="margin: 0.75rem 0;"><a href="#" class="gray" style="text-decoration: none;">→ contact</a></p>
+        </div>
+        
+        <!-- Fun Stats Box -->
+        <div class="border-box">
+            <p style="color: #2C2416; font-size: 0.875rem; margin-bottom: 1rem;">// quick stats</p>
+            <div class="gray" style="font-size: 0.875rem;">
+                <p class="stat-item">☕ coffee consumed: ∞</p>
+                <p class="stat-item">🎾 tennis serve speed: classified</p>
+                <p class="stat-item">🎧 playlists curated: 47+</p>
+                <p class="stat-item">💡 products shipped: too many to count</p>
+                <p class="stat-item">💈 hair on head: 0 (by choice... mostly)</p>
+            </div>
+        </div>
+        
+        <!-- DJ ASCII Art -->
+        <pre class="gray" style="margin: 3rem 0; opacity: 0.7;">
+    ┌──────────────────┐
+    │ ◉════◉    ◉════◉│
+    │   DJ OSCAR      │
+    │ ▓▓▓░░░ ░░░▓▓▓   │
+    │ [▶]  [■]  [●]   │
+    └──────────────────┘
+        ♫♪♫  ♪♫♪
+      dropping beats
+        </pre>
+        
+        <!-- Tennis ASCII Art -->
+        <pre class="gray" style="margin: 3rem 0; opacity: 0.7;">
+         O
+        /|\    🎾
+        / \
+     ╔═══════════╗
+     ║ GAME SET  ║
+     ║  MATCH    ║
+     ╚═══════════╝
+        </pre>
+        
+        <!-- Footer Quote -->
+        <pre style="color: #2C2416; margin: 4rem 0; opacity: 0.3; font-size: 0.7rem;">
+              ╔═══════════════════════════════════╗
+              ║                                   ║
+              ║  "serve aces, drop beats,         ║
+              ║   ship products."                 ║
+              ║                                   ║
+              ║          — oscar, 2025            ║
+              ║                                   ║
+              ╚═══════════════════════════════════╝
+        </pre>
+        
+        <!-- Design Info -->
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(44, 36, 22, 0.15);">
+            <p style="color: #2C2416; font-weight: 500; margin-bottom: 1rem;">
+                ✨ CLAUDE BEIGE AESTHETIC - Oscar's Portfolio
+            </p>
+            <div class="gray" style="font-size: 0.875rem;">
+                <p>• Warm beige background: #F5E6D3</p>
+                <p style="margin-top: 0.5rem;">• Dark brown text: #2C2416</p>
+                <p style="margin-top: 0.5rem;">• ASCII art everywhere</p>
+                <p style="margin-top: 0.5rem;">• Tennis & DJ references ✓</p>
+                <p style="margin-top: 0.5rem;">• Bald pride ✓</p>
+                <p style="margin-top: 0.5rem;">• Light mode, cozy vibes ✓</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <p class="dark-gray" style="font-size: 0.875rem;">based in [location]</p>
+            <p class="dark-gray" style="font-size: 0.875rem; margin-top: 0.25rem;">
+                building products • serving aces • dropping beats
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

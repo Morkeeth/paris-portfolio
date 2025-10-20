@@ -3,163 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paris - Poetic Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>The Way of Product</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background: #000000;
-            color: #ffffff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 15px;
-            line-height: 1.6;
+            background: #F0EEE6;
+            color: #333333;
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            line-height: 1.8;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 4rem 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        pre {
-            font-family: 'JetBrains Mono', monospace;
-            white-space: pre;
-            overflow-x: auto;
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
-        .gray { color: #888888; }
-        h1 { font-size: 2rem; margin: 2rem 0 1rem; }
-        p { margin-bottom: 1rem; }
-        .box { border: 1px solid rgba(255,255,255,0.2); padding: 2rem; margin: 2rem 0; }
+        
+        .container { 
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .number {
+            font-size: 48px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 3rem;
+            opacity: 0.3;
+            text-align: center;
+        }
+        
+        .verse {
+            font-size: 22px;
+            line-height: 2;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .verse p {
+            margin-bottom: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .title {
+            font-size: 18px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        
+        .subtitle {
+            font-size: 28px;
+            color: #333;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .author {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .spacer {
+            height: 6rem;
+        }
+        
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <pre style="font-size: 10px; line-height: 1.2;">
- ██████╗  █████╗ ██████╗ ██╗███████╗
- ██╔══██╗██╔══██╗██╔══██╗██║██╔════╝
- ██████╔╝███████║██████╔╝██║███████╗
- ██╔═══╝ ██╔══██║██╔══██╗██║╚════██║
- ██║     ██║  ██║██║  ██║██║███████║
- ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝
-                                      
-    ┌─────────────────────────────┐
-    │  staff pm @ ledger          │
-    │  poetic mover • visionary   │
-    │  paris, france • 2025       │
-    └─────────────────────────────┘
-        </pre>
-        
-        <div style="margin: 3rem 0;" class="gray">
-            <p>in the city of lights, a builder of products dwells—<br/>
-            weaving code and vision into stories users tell.</p>
-            <p style="color: #ffffff;">not just a manager, but a poet of the craft,<br/>
-            each roadmap a sonnet, each feature carefully graphed.</p>
+    <canvas id="canvas"></canvas>
+    
+    <!-- Title Section -->
+    <div class="section" style="animation-delay: 0s;">
+        <div class="container intro">
+            <div class="title">THE WAY OF PRODUCT</div>
+            <div class="subtitle">The Timeless Art of Building</div>
+            <div class="author">Paris, Staff PM @ Ledger</div>
         </div>
-        
-        <pre style="font-size: 10px; opacity: 0.2; margin: 3rem 0;">
-╔═══════════════════════════════════════════════════════════╗
-║                    e n t e r   t h e   v i s i o n        ║
-╚═══════════════════════════════════════════════════════════╝
-        </pre>
-        
-        <h1>The Story of a Builder</h1>
-        
-        <pre style="font-size: 10px; opacity: 0.5; margin: 1rem 0;">
-  ┌─ chapter i: origins ─┐
-        </pre>
-        
-        <p style="color: #ffffff;">
-            born in the shadow of the eiffel tower, where art and engineering dance eternal—
-        </p>
-        
-        <p class="gray">
-            paris learned early that the most beautiful things are both functional and profound.
-            a bridge must carry weight, yes, but why not also inspire? a product must solve 
-            problems, true, but why not also delight?
-        </p>
-        
-        <p class="gray">
-            in university, while others memorized frameworks, paris wrote poetry in the margins 
-            of business textbooks. "user stories," they whispered, "are just stories about users. 
-            and every story deserves to be told well."
-        </p>
-        
-        <pre style="font-size: 10px; opacity: 0.2; margin: 3rem 0;">
-    ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲
-        </pre>
-        
-        <pre style="font-size: 10px; opacity: 0.5; margin: 1rem 0;">
-  ┌─ chapter ii: the awakening ─┐
-        </pre>
-        
-        <p class="gray">
-            first job: associate product manager at a digital agency. they gave paris a desk,
-            a laptop, and a stack of user requirements that read like tax code. soul-crushing.
-        </p>
-        
-        <p style="color: #ffffff;">
-            but paris saw something others didn't—
-        </p>
-        
-        <p class="gray">
-            buried in those requirements were human beings. real people with real problems.
-            a parent trying to pay bills online at 2am because that's the only quiet hour.
-            a student searching for answers, desperate, hopeful.
-        </p>
-        
-        <p class="gray" style="font-style: italic;">
-            "if we're going to build for them," paris said at a meeting, "we should know their names.
-            their stories. their midnight fears."
-        </p>
-        
-        <pre style="font-size: 10px; opacity: 0.2; margin: 3rem 0;">
-    ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲
-        </pre>
-        
-        <pre style="font-size: 10px; opacity: 0.5; margin: 1rem 0;">
-  ┌─ chapter iv: ledger ─┐
-        </pre>
-        
-        <p style="color: #ffffff;">
-            then came ledger.
-        </p>
-        
-        <p class="gray">
-            crypto. security. the bleeding edge where technology meets trust.
-            millions of users storing their digital lives in hardware wallets.
-            one wrong move and fortunes disappear. one right move and financial freedom.
-        </p>
-        
-        <p style="color: #ffffff;">
-            they gave paris the tier-one roadmap.
-        </p>
-        
-        <p class="gray" style="font-style: italic;">
-            an empty page is not a burden. it's an invitation.
-        </p>
-        
-        <div class="box">
-            <p style="color: #ffffff; margin-bottom: 1rem;">✅ FULL ASCII MODE ACTIVATED</p>
-            <p class="gray" style="font-size: 0.875rem;">
-                • Poetic narrative story throughout<br/>
-                • Massive ASCII art on every page<br/>
-                • Box drawings, borders, dividers<br/>
-                • Story of Paris the Product Poet<br/>
-                • 6 chapters of narrative<br/>
-                • Beautiful typography & spacing<br/>
-                • Pure black & white aesthetic
-            </p>
-        </div>
-        
-        <pre style="font-size: 10px; opacity: 0.3; margin: 3rem 0;">
-              ╔═══════════════════════════════════╗
-              ║  "ship with purpose.              ║
-              ║   build with empathy.             ║
-              ║   lead with poetry."              ║
-              ║                                   ║
-              ║          — paris, 2025            ║
-              ╚═══════════════════════════════════╝
-        </pre>
-        
-        <p style="text-align: center; margin-top: 4rem;" class="gray">
-            ready to deploy with: <code style="color: #ffffff;">vercel</code>
-        </p>
     </div>
+
+    <!-- Verse 1 -->
+    <div class="section" style="animation-delay: 0.2s;">
+        <div class="container">
+            <div class="number">1</div>
+            <div class="verse">
+                <p>The roadmap that can be followed is not the eternal roadmap.<br/>
+                The feature that can be named is not the limitless feature.</p>
+                
+                <p>From nothing, the user's need arises.<br/>
+                From need, ten thousand solutions emerge.</p>
+                
+                <p>Free from attachment to metrics,<br/>
+                you see the essence.<br/>
+                Caught in vanity metrics,<br/>
+                you see only the surface.</p>
+                
+                <p>These two spring from the same source.<br/>
+                This mystery—the gateway to all understanding.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verse 2 -->
+    <div class="section" style="animation-delay: 0.4s;">
+        <div class="container">
+            <div class="number">2</div>
+            <div class="verse">
+                <p>When we call a feature brilliant,<br/>
+                other features become dull.<br/>
+                When we praise speed,<br/>
+                the notion of deliberation is born.</p>
+                
+                <p>Simplicity and complexity define each other.<br/>
+                User and builder create each other.<br/>
+                Problem and solution follow each other.</p>
+                
+                <p>Therefore the product manager acts<br/>
+                without forcing,<br/>
+                teaches without preaching.<br/>
+                Features arise and she observes them.<br/>
+                Features fade and she lets them go.</p>
+                
+                <p>She builds without claiming ownership.<br/>
+                Ships without seeking credit.<br/>
+                The work completes itself.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verse 3 -->
+    <div class="section" style="animation-delay: 0.6s;">
+        <div class="container">
+            <div class="number">3</div>
+            <div class="verse">
+                <p>Do not glorify the rockstar engineer<br/>
+                and teams will not compete destructively.</p>
+                
+                <p>Do not treasure viral growth<br/>
+                and users will not be exploited.</p>
+                
+                <p>Do not display what others desire<br/>
+                and their hearts will not be disturbed.</p>
+                
+                <p>The product manager leads by:<br/>
+                Emptying the backlog of noise.<br/>
+                Strengthening the team's foundation.<br/>
+                Releasing the need for certainty.<br/>
+                Embracing what emerges naturally.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verse 7 -->
+    <div class="section" style="animation-delay: 0.8s;">
+        <div class="container">
+            <div class="number">7</div>
+            <div class="verse">
+                <p>Great products endure.<br/>
+                Eternal, they transcend trends and hype.<br/>
+                They last because<br/>
+                they do not serve the ego of their makers.</p>
+                
+                <p>The product manager stays behind,<br/>
+                that is why she's ahead.<br/>
+                She is detached from the outcome,<br/>
+                thus at one with the user.</p>
+                
+                <p>Through selfless action,<br/>
+                she is perfectly fulfilled.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verse 11 -->
+    <div class="section" style="animation-delay: 1s;">
+        <div class="container">
+            <div class="number">11</div>
+            <div class="verse">
+                <p>Thirty features spoke together at the hub,<br/>
+                but it is the core use case<br/>
+                that makes the product useful.</p>
+                
+                <p>We shape screens and flows,<br/>
+                but it is the white space between<br/>
+                that holds attention.</p>
+                
+                <p>We work with code and pixels,<br/>
+                but the non-doing makes it work.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verse 15 -->
+    <div class="section" style="animation-delay: 1.2s;">
+        <div class="container">
+            <div class="number">15</div>
+            <div class="verse">
+                <p>The ancient product masters were subtle,<br/>
+                mysterious, profound, responsive.<p>
+                
+                <p>Because they are unfathomable,<br/>
+                we can only describe their manner:<br/>
+                Watchful, like crossing a winter stream.<br/>
+                Alert, like sensing danger.<br/>
+                Simple, like uncarved wood.<br/>
+                Open, like a valley.<br/>
+                Clear, like muddy water settling.</p>
+                
+                <p>Who can wait quietly<br/>
+                while the mud settles?<br/>
+                Who can remain still<br/>
+                until the moment of action?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verse 24 -->
+    <div class="section" style="animation-delay: 1.4s;">
+        <div class="container">
+            <div class="number">24</div>
+            <div class="verse">
+                <p>He who stands on tiptoe<br/>
+                doesn't stand firm.<br/>
+                He who ships hastily<br/>
+                doesn't ship far.</p>
+                
+                <p>He who markets his brilliance<br/>
+                doesn't illuminate.<br/>
+                He who justifies his decisions<br/>
+                is never right.<br/>
+                He who boasts of success<br/>
+                achieves nothing lasting.</p>
+                
+                <p>From the Tao's perspective,<br/>
+                these are like leftover food—<br/>
+                excess baggage.<br/>
+                They bring only disgust.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verse 81 -->
+    <div class="section" style="animation-delay: 1.6s;">
+        <div class="container">
+            <div class="number">81</div>
+            <div class="verse">
+                <p>True words are not eloquent.<br/>
+                Eloquent words are not true.<br/>
+                Good products are not complex.<br/>
+                Complex products are not good.</p>
+                
+                <p>The master knows without studying.<br/>
+                The master has without accumulating.</p>
+                
+                <p>The more she does for users,<br/>
+                the more she has.<br/>
+                The more she gives to the team,<br/>
+                the greater her abundance.</p>
+                
+                <p>The way of product is to build without harming.<br/>
+                The way of the product manager is to act<br/>
+                without contending.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="section" style="animation-delay: 1.8s;">
+        <div class="container" style="text-align: center; font-size: 16px; color: #999;">
+            <p>Paris, France • 2025</p>
+            <p style="margin-top: 1rem;">Staff Product Manager @ Ledger</p>
+            <div class="spacer"></div>
+        </div>
+    </div>
+
+    <script>
+        // Particle vessel animation - emptiness holding infinite potential
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        const particleCount = 800;
+        let time = 0;
+        
+        // Create particles defining the vessel through their movement
+        for (let i = 0; i < particleCount; i++) {
+            const t = i / particleCount;
+            const radius = Math.pow(t, 0.5);
+            const angle = t * Math.PI * 40;
+            
+            particles.push({
+                baseRadius: radius,
+                baseAngle: angle,
+                height: Math.sin(t * Math.PI) * 0.8,
+                size: (1.0 - Math.abs(Math.sin(t * Math.PI) * 0.5)) * 1.5 + 0.5,
+                opacity: 0.15 + Math.random() * 0.1,
+                speed: 0.8 + Math.random() * 0.4
+            });
+        }
+        
+        function drawParticles() {
+            ctx.fillStyle = '#F0EEE6';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const scale = Math.min(canvas.width, canvas.height) * 0.25;
+            
+            particles.forEach(p => {
+                // Calculate vessel form - stillness containing movement
+                const vessel = (1 - Math.abs(p.height)) * (1 - Math.abs(p.baseRadius - 0.6) * 2);
+                if (vessel <= 0) return;
+                
+                // Rotation over time
+                const angle = p.baseAngle + time * 0.02 * p.speed;
+                
+                // Breathing space - the emptiness within
+                const space = Math.sin(time * 0.1 + p.baseRadius * 3.0) * 0.03;
+                const radius = (p.baseRadius + space) * vessel;
+                
+                // Calculate position
+                const x = centerX + Math.cos(angle) * radius * scale;
+                const y = centerY + p.height * vessel * scale;
+                
+                // Draw particle
+                ctx.beginPath();
+                ctx.arc(x, y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(51, 51, 51, ${p.opacity * vessel})`;
+                ctx.fill();
+            });
+            
+            time += 0.3;
+            requestAnimationFrame(drawParticles);
+        }
+        
+        drawParticles();
+        
+        // Handle resize with debounce
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }, 100);
+        });
+        
+        // Smooth scroll
+        let isScrolling = false;
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (isScrolling) return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    isScrolling = true;
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => { isScrolling = false; }, 1000);
+                }
+            });
+        });
+        
+        // Fade in sections on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
+
+
 

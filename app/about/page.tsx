@@ -1,6 +1,7 @@
 'use client';
 
 import Terminal from '@/components/terminal/Terminal';
+import { asciiArt } from '@/lib/ascii-generator';
 
 export default function AboutPage() {
   return (
@@ -8,194 +9,156 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto">
         
         {/* ASCII Art Header */}
-        <pre className="text-white text-xs mb-12 leading-tight">
+        <pre className="text-[var(--foreground)] text-xs mb-12 leading-tight opacity-70">
 {`
     ╔════════════════════════════════════════════════════════╗
     ║                                                        ║
-    ║     T H E   S T O R Y   O F   A   B U I L D E R       ║
+    ║          H I ,  I ' M  O S C A R                      ║
     ║                                                        ║
-    ║        where poetry meets product management          ║
+    ║      product manager • tennis player • dj             ║
     ║                                                        ║
     ╚════════════════════════════════════════════════════════╝
 `}
         </pre>
         
-        {/* Poetic Story */}
+        {/* The Story */}
         <div className="space-y-8 text-base leading-relaxed mb-16">
           <section>
-            <pre className="text-white text-xs mb-4 opacity-50">
-{`  ┌─ chapter i: origins ─┐`}
+            <pre className="text-[var(--foreground)] text-xs mb-4 opacity-50">
+{`  ┌─ the origin story ─┐`}
             </pre>
-            <p className="text-white mb-4">
-              born in the shadow of the eiffel tower, where art and engineering dance eternal—
+            <p className="text-[var(--foreground)] mb-4">
+              somewhere between perfecting my serve and finding the perfect drop beat, 
+              i discovered my calling—
             </p>
             <p className="text-[var(--foreground-dim)] mb-4">
-              paris learned early that the most beautiful things are both functional and profound.
-              a bridge must carry weight, yes, but why not also inspire? a product must solve 
-              problems, true, but why not also delight?
+              building products that people actually want to use. not just tolerate. 
+              not just click through. but actually get excited about.
             </p>
             <p className="text-[var(--foreground-dim)]">
-              in university, while others memorized frameworks, paris wrote poetry in the margins 
-              of business textbooks. "user stories," they whispered, "are just stories about users. 
-              and every story deserves to be told well."
+              also, i'm bald. completely, unequivocally, magnificently bald. 
+              it's aerodynamic on the tennis court and makes me look distinguished 
+              behind the DJ decks. win-win.
             </p>
           </section>
           
-          <pre className="text-white text-xs opacity-20">
+          <pre className="text-[var(--foreground-dim)] text-xs opacity-20">
 {`    ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲`}
           </pre>
           
           <section>
-            <pre className="text-white text-xs mb-4 opacity-50">
-{`  ┌─ chapter ii: the awakening ─┐`}
+            <pre className="text-[var(--foreground)] text-xs mb-4 opacity-50">
+{`  ┌─ the day job ─┐`}
             </pre>
             <p className="text-[var(--foreground-dim)] mb-4">
-              first job: associate product manager at a digital agency. they gave paris a desk,
-              a laptop, and a stack of user requirements that read like tax code. soul-crushing.
+              by day, i'm a staff product manager at ledger, where we're building 
+              the future of digital asset security. crypto, blockchain, self-custody—
+              all the buzzwords, but actually meaningful.
             </p>
-            <p className="text-white mb-4">
-              but paris saw something others didn't—
+            <p className="text-[var(--foreground)] mb-4">
+              i own the tier-one roadmap. which is a fancy way of saying: 
+              "oscar, figure out what we should build next and don't mess it up."
             </p>
-            <p className="text-[var(--foreground-dim)] mb-4">
-              buried in those requirements were human beings. real people with real problems.
-              a parent trying to pay bills online at 2am because that's the only quiet hour.
-              a student searching for answers, desperate, hopeful.
-            </p>
-            <p className="text-[var(--foreground-dim)] italic">
-              "if we're going to build for them," paris said at a meeting, "we should know their names.
-              their stories. their midnight fears."
-            </p>
-            <p className="text-[var(--foreground-dim)] text-sm mt-4">
-              the room went quiet. then someone said, "that's... different."
+            <p className="text-[var(--foreground-dim)]">
+              15+ engineers, 4 designers, countless stakeholders, one roadmap. 
+              it's like conducting an orchestra, except everyone has opinions about 
+              what song we should play.
             </p>
           </section>
           
-          <pre className="text-white text-xs opacity-20">
+          {/* Tennis Section */}
+          <pre className="text-[var(--foreground-dim)] text-xs opacity-20">
 {`    ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲`}
           </pre>
           
           <section>
-            <pre className="text-white text-xs mb-4 opacity-50">
-{`  ┌─ chapter iii: the climb ─┐`}
+            <pre className="text-[var(--foreground)] text-xs mb-4 opacity-50">
+{`  ┌─ the tennis addiction ─┐`}
+            </pre>
+            <pre className="text-[var(--foreground-dim)] text-xs mb-6 leading-tight">
+              {asciiArt.tennisPlayer}
             </pre>
             <p className="text-[var(--foreground-dim)] mb-4">
-              years passed. paris moved through startups like a river through stone—
-              shaping, learning, growing. each failure a lesson. each success a milestone.
+              three times a week, you'll find me on the court. forehand, backhand, 
+              serve, volley—it's meditation in motion. also, i look great in shorts.
             </p>
-            <p className="text-white mb-4">
-              at a tiny startup with seven people and infinite dreams, paris learned to ship.
-              fast. messy. real. "perfect is the enemy of good," became the mantra.
-              but paris added a line: "and good is the enemy of meaningful."
+            <p className="text-[var(--foreground)] mb-4">
+              tennis taught me everything i know about product management:
             </p>
-            <p className="text-[var(--foreground-dim)] mb-4">
-              three products from zero to one. 100,000 users who had never heard of them.
-              nights spent poring over analytics, not for vanity metrics, but for understanding.
-              where did users struggle? where did they smile?
-            </p>
-            <p className="text-[var(--foreground-dim)] italic">
-              metrics tell you what. users tell you why. poetry tells you how.
-            </p>
+            <div className="text-[var(--foreground-dim)] space-y-2 ml-4">
+              <p>▸ stay focused under pressure</p>
+              <p>▸ adapt your strategy mid-game</p>
+              <p>▸ every point matters, but don't dwell on losses</p>
+              <p>▸ respect your opponents (competitors)</p>
+              <p>▸ practice makes perfect, but perfect is impossible</p>
+            </div>
           </section>
           
-          <pre className="text-white text-xs opacity-20">
+          {/* DJ Section */}
+          <pre className="text-[var(--foreground-dim)] text-xs opacity-20">
 {`    ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲`}
           </pre>
           
           <section>
-            <pre className="text-white text-xs mb-4 opacity-50">
-{`  ┌─ chapter iv: ledger ─┐`}
+            <pre className="text-[var(--foreground)] text-xs mb-4 opacity-50">
+{`  ┌─ the weekend alter ego ─┐`}
             </pre>
-            <p className="text-white mb-4">
-              then came ledger.
-            </p>
+            <pre className="text-[var(--foreground-dim)] text-xs mb-6 leading-tight">
+              {asciiArt.djSetup}
+            </pre>
             <p className="text-[var(--foreground-dim)] mb-4">
-              crypto. security. the bleeding edge where technology meets trust.
-              millions of users storing their digital lives in hardware wallets.
-              one wrong move and fortunes disappear. one right move and financial freedom.
+              friday nights, i trade my product roadmap for a DJ controller. 
+              house, techno, deep house—whatever makes people move.
             </p>
-            <p className="text-white mb-4">
-              they gave paris the tier-one roadmap.
+            <p className="text-[var(--foreground)] mb-4">
+              the bald head really works under the club lights. 
+              it's like a disco ball, but attached to my neck.
             </p>
-            <p className="text-[var(--foreground-dim)] mb-4">
-              "this," said the ceo, "is the future of the company."<br/>
-              paris looked at the empty document and smiled.
-            </p>
-            <p className="text-[var(--foreground-dim)] italic">
-              an empty page is not a burden. it's an invitation.
-            </p>
-            <p className="text-[var(--foreground-dim)] mt-4">
-              fifteen engineers. four designers. three marketers. one vision.
-              paris didn't manage them—paris conducted them. like a symphony.
-              each voice essential. each note deliberate.
+            <p className="text-[var(--foreground-dim)]">
+              DJing is all about reading the room, building energy, and knowing 
+              when to drop the bass. sound familiar? it's basically A/B testing, 
+              but with better music.
             </p>
           </section>
           
-          <pre className="text-white text-xs opacity-20">
+          <pre className="text-[var(--foreground-dim)] text-xs opacity-20">
 {`    ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲`}
           </pre>
           
           <section>
-            <pre className="text-white text-xs mb-4 opacity-50">
-{`  ┌─ chapter v: the philosophy ─┐`}
+            <pre className="text-[var(--foreground)] text-xs mb-4 opacity-50">
+{`  ┌─ the philosophy ─┐`}
             </pre>
             <div className="space-y-4 text-[var(--foreground-dim)]">
               <p>
-                <span className="text-white">▸</span> every feature is a promise to a user
+                <span className="text-[var(--foreground)]">▸</span> build for humans, not personas
               </p>
               <p>
-                <span className="text-white">▸</span> every bug is a broken trust
+                <span className="text-[var(--foreground)]">▸</span> ship fast, iterate faster
               </p>
               <p>
-                <span className="text-white">▸</span> every pixel is an opportunity to care
+                <span className="text-[var(--foreground)]">▸</span> data informs, intuition decides
               </p>
               <p>
-                <span className="text-white">▸</span> every sprint is a story in progress
+                <span className="text-[var(--foreground)]">▸</span> every feature is a promise
               </p>
               <p>
-                <span className="text-white">▸</span> every user is a human being with hopes
+                <span className="text-[var(--foreground)]">▸</span> be bald, be proud, be productive
               </p>
             </div>
-            <p className="text-white mt-6 italic">
-              this is not product management. this is stewardship of dreams.
-            </p>
-          </section>
-          
-          <pre className="text-white text-xs opacity-20">
-{`    ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲`}
-          </pre>
-          
-          <section>
-            <pre className="text-white text-xs mb-4 opacity-50">
-{`  ┌─ chapter vi: today ─┐`}
-            </pre>
-            <p className="text-[var(--foreground-dim)] mb-4">
-              paris sits in a café in the marais. laptop open. coffee cold.
-              a slack message pings: "users love the new feature."
-            </p>
-            <p className="text-white mb-4">
-              paris doesn't see metrics. paris sees faces.
-            </p>
-            <p className="text-[var(--foreground-dim)] mb-4">
-              the single parent who can now sleep at night knowing their crypto is safe.
-              the student who finally understands blockchain. the grandmother who sent
-              bitcoin to her grandson across the world.
-            </p>
-            <p className="text-[var(--foreground-dim)] italic">
-              this is why we build. not for vanity metrics or board presentations.
-              we build because somewhere, someone's life gets a little bit better.
-            </p>
           </section>
         </div>
         
         {/* ASCII Art Divider */}
-        <pre className="text-white text-xs my-16 opacity-30">
+        <pre className="text-[var(--foreground)] text-xs my-16 opacity-30">
 {`
               ╔═══════════════════════════════════╗
-              ║  "ship with purpose.              ║
-              ║   build with empathy.             ║
-              ║   lead with poetry."              ║
               ║                                   ║
-              ║          — paris, 2025            ║
+              ║  "serve aces, drop beats,         ║
+              ║   ship products."                 ║
+              ║                                   ║
+              ║          — oscar, 2025            ║
+              ║                                   ║
               ╚═══════════════════════════════════╝
 `}
         </pre>
@@ -211,15 +174,14 @@ export default function AboutPage() {
         </div>
         
         {/* Footer ASCII */}
-        <pre className="text-white text-xs mt-20 opacity-20">
+        <pre className="text-[var(--foreground)] text-xs mt-20 opacity-20">
 {`
          *
         /|\\
-       / | \\      end of chapter vi
-      /  |  \\     (but the story continues...)
+       / | \\      end of bio
+      /  |  \\     (now go check out my work)
      /   |   \\
     /____|____\\
-         |
 `}
         </pre>
       </div>

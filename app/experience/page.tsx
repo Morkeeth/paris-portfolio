@@ -1,133 +1,178 @@
 'use client';
 
-const experiences = [
-  {
-    title: 'staff product manager',
-    company: 'ledger',
-    location: 'paris, france',
-    period: '2023 – present',
-    description: 'leading tier-one product initiatives for the world\'s leading hardware wallet company.',
-    achievements: [
-      'own and execute strategic roadmap for core platform serving millions of users',
-      'lead cross-functional teams of 15+ across engineering, design, and marketing',
-      'shipped 5 major features resulting in 40% increase in user engagement',
-      'established product innovation lab for rapid prototyping',
-      'improved nps score by 25 points through user-centric improvements',
-    ],
-  },
-  {
-    title: 'senior product manager',
-    company: 'ledger',
-    location: 'paris, france',
-    period: '2022 – 2023',
-    description: 'drove product development for key platform features and cross-platform initiatives.',
-    achievements: [
-      'unified user experience across web, mobile (ios/android), and desktop',
-      'reduced support tickets by 45% through improved ux and documentation',
-      'launched community feedback pipeline connecting users to product team',
-      'increased cross-platform user adoption by 60%',
-      'built data-driven feature prioritization framework',
-    ],
-  },
-  {
-    title: 'product manager',
-    company: 'tech startup (stealth)',
-    location: 'paris, france',
-    period: '2020 – 2022',
-    description: 'led product initiatives from 0 to 1, building consumer-facing applications.',
-    achievements: [
-      'launched 3 products from concept to market',
-      'grew user base from 0 to 100k+ in 18 months',
-      'established product development processes and culture',
-      'managed product lifecycle from discovery through growth',
-      'mentored 2 junior product managers',
-    ],
-  },
-  {
-    title: 'associate product manager',
-    company: 'digital agency',
-    location: 'paris, france',
-    period: '2018 – 2020',
-    description: 'supported product development for client projects across fintech and e-commerce.',
-    achievements: [
-      'conducted 50+ user interviews and usability studies',
-      'created competitive analysis and market research reports',
-      'assisted in roadmap planning and sprint coordination',
-      'learned fundamentals of product management craft',
-    ],
-  },
-];
-
 export default function ExperiencePage() {
   return (
     <div className="min-h-screen px-8 py-32 font-mono">
-      <div className="max-w-2xl mx-auto">
-        {/* ASCII Art */}
-        <pre className="text-white text-xs mb-8 opacity-30">
-{`    ▸ experience.md`}
-        </pre>
+      <div className="max-w-4xl mx-auto">
         
-        {/* Header */}
-        <h1 className="text-3xl text-white mb-8">experience</h1>
-        <p className="text-[var(--foreground-dim)] mb-12 leading-relaxed">
-          7+ years building products. from associate to staff. from startups to 
-          scale-ups. always learning, always shipping.
-        </p>
+        {/* ASCII Art Header */}
+        <pre className="text-[var(--foreground)] text-xs mb-12 leading-tight opacity-70">
+{`
+    ╔════════════════════════════════════════════════════════╗
+    ║                                                        ║
+    ║      E X P E R I E N C E  &  A D V E N T U R E S      ║
+    ║                                                        ║
+    ║         the journey from junior to staff pm           ║
+    ║                                                        ║
+    ╚════════════════════════════════════════════════════════╝
+`}
+        </pre>
         
         {/* Timeline */}
-        <div className="space-y-12">
-          {experiences.map((exp, index) => (
-            <div key={index} className="border-b border-white/10 pb-12 last:border-b-0">
-              {/* Header */}
-              <div className="mb-3">
-                <div className="flex justify-between items-start mb-2">
-                  <h2 className="text-white text-lg">{exp.title}</h2>
-                  <span className="text-[var(--foreground-dimmer)] text-sm whitespace-nowrap ml-4">
-                    {exp.period}
-                  </span>
-                </div>
-                <div className="text-[var(--foreground-dim)] text-sm">
-                  {exp.company} • {exp.location}
-                </div>
+        <div className="space-y-12 mb-20">
+          {/* Current Role */}
+          <div className="border-l-2 border-[var(--glass-border)] pl-6">
+            <div className="flex justify-between items-start mb-2">
+              <div>
+                <h3 className="text-[var(--foreground)] text-xl font-medium">staff product manager</h3>
+                <p className="text-[var(--foreground-dim)]">ledger</p>
               </div>
-              
-              {/* Description */}
-              <p className="text-[var(--foreground-dim)] text-sm mb-4 leading-relaxed">
-                {exp.description}
-              </p>
-              
-              {/* Achievements */}
-              <div className="space-y-1 text-sm text-[var(--foreground-dim)]">
-                {exp.achievements.map((achievement, i) => (
-                  <p key={i}><span className="text-white">▸</span> {achievement}</p>
-                ))}
-              </div>
+              <span className="text-[var(--foreground-dimmer)] text-sm">2023 - present</span>
             </div>
-          ))}
-        </div>
-        
-        {/* ASCII Divider */}
-        <pre className="text-white text-xs my-16 opacity-20">
-{`~∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿~`}
-        </pre>
-        
-        {/* Stats */}
-        <div className="border border-white/10 p-8">
-          <p className="text-white mb-6 text-sm">by the numbers</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { label: 'years in pm', value: '7+' },
-              { label: 'products shipped', value: '15+' },
-              { label: 'teams led', value: '20+' },
-              { label: 'users impacted', value: '1m+' },
-            ].map((stat, i) => (
-              <div key={i}>
-                <div className="text-2xl text-white mb-1 font-mono">{stat.value}</div>
-                <div className="text-xs text-[var(--foreground-dim)]">{stat.label}</div>
+            <p className="text-[var(--foreground-dim)] text-sm mt-3">
+              leading tier-one roadmap. shipping features. herding cats (engineers, designers, stakeholders). 
+              occasionally playing tennis during lunch breaks.
+            </p>
+          </div>
+          
+          {/* Previous Role */}
+          <div className="border-l-2 border-[var(--glass-border)] pl-6 opacity-80">
+            <div className="flex justify-between items-start mb-2">
+              <div>
+                <h3 className="text-[var(--foreground)] text-xl font-medium">senior product manager</h3>
+                <p className="text-[var(--foreground-dim)]">ledger</p>
               </div>
-            ))}
+              <span className="text-[var(--foreground-dimmer)] text-sm">2022 - 2023</span>
+            </div>
+            <p className="text-[var(--foreground-dim)] text-sm mt-3">
+              the year i learned that "senior" just means you get invited to more meetings. 
+              also shipped some cool stuff.
+            </p>
+          </div>
+          
+          {/* Earlier Role */}
+          <div className="border-l-2 border-[var(--glass-border)] pl-6 opacity-60">
+            <div className="flex justify-between items-start mb-2">
+              <div>
+                <h3 className="text-[var(--foreground)] text-xl font-medium">product manager</h3>
+                <p className="text-[var(--foreground-dim)]">tech startup</p>
+              </div>
+              <span className="text-[var(--foreground-dimmer)] text-sm">2020 - 2022</span>
+            </div>
+            <p className="text-[var(--foreground-dim)] text-sm mt-3">
+              where i learned to ship fast, break things, and apologize later. 
+              also where my hair started falling out (correlation? causation?).
+            </p>
+          </div>
+          
+          {/* Early Days */}
+          <div className="border-l-2 border-[var(--glass-border)] pl-6 opacity-40">
+            <div className="flex justify-between items-start mb-2">
+              <div>
+                <h3 className="text-[var(--foreground)] text-xl font-medium">associate product manager</h3>
+                <p className="text-[var(--foreground-dim)]">digital agency</p>
+              </div>
+              <span className="text-[var(--foreground-dimmer)] text-sm">2018 - 2020</span>
+            </div>
+            <p className="text-[var(--foreground-dim)] text-sm mt-3">
+              fresh out of university. full head of hair. zero idea what i was doing. 
+              learned everything the hard way.
+            </p>
           </div>
         </div>
+        
+        <pre className="text-[var(--foreground-dim)] text-xs mb-12 opacity-20">
+{`    ═══════════════════════════════════════════════════════════`}
+        </pre>
+        
+        {/* Stats Grid */}
+        <div>
+          <h3 className="text-[var(--foreground)] text-xl mb-8">// by the numbers</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="border border-[var(--glass-border)] p-4">
+              <p className="text-[var(--foreground)] text-3xl font-bold mb-2">15+</p>
+              <p className="text-[var(--foreground-dim)] text-sm">products shipped</p>
+            </div>
+            <div className="border border-[var(--glass-border)] p-4">
+              <p className="text-[var(--foreground)] text-3xl font-bold mb-2">3M+</p>
+              <p className="text-[var(--foreground-dim)] text-sm">users impacted</p>
+            </div>
+            <div className="border border-[var(--glass-border)] p-4">
+              <p className="text-[var(--foreground)] text-3xl font-bold mb-2">50+</p>
+              <p className="text-[var(--foreground-dim)] text-sm">cross-functional team size</p>
+            </div>
+            <div className="border border-[var(--glass-border)] p-4">
+              <p className="text-[var(--foreground)] text-3xl font-bold mb-2">1000+</p>
+              <p className="text-[var(--foreground-dim)] text-sm">user interviews</p>
+            </div>
+            <div className="border border-[var(--glass-border)] p-4">
+              <p className="text-[var(--foreground)] text-3xl font-bold mb-2">0</p>
+              <p className="text-[var(--foreground-dim)] text-sm">hairs on head</p>
+            </div>
+            <div className="border border-[var(--glass-border)] p-4">
+              <p className="text-[var(--foreground)] text-3xl font-bold mb-2">∞</p>
+              <p className="text-[var(--foreground-dim)] text-sm">coffee cups consumed</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Skills */}
+        <div className="mt-20">
+          <h3 className="text-[var(--foreground)] text-xl mb-6">// skills & tools</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="text-[var(--foreground)] text-sm mb-3">product management</p>
+              <div className="text-[var(--foreground-dim)] text-sm space-y-1">
+                <p>• roadmap planning & strategy</p>
+                <p>• user research & validation</p>
+                <p>• agile/scrum/kanban</p>
+                <p>• stakeholder management</p>
+                <p>• data-driven decision making</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-[var(--foreground)] text-sm mb-3">technical</p>
+              <div className="text-[var(--foreground-dim)] text-sm space-y-1">
+                <p>• sql, python, javascript</p>
+                <p>• figma, miro, notion</p>
+                <p>• analytics (amplitude, mixpanel)</p>
+                <p>• api design & architecture</p>
+                <p>• blockchain & web3</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-[var(--foreground)] text-sm mb-3">tennis</p>
+              <div className="text-[var(--foreground-dim)] text-sm space-y-1">
+                <p>• forehand: deadly</p>
+                <p>• backhand: improving</p>
+                <p>• serve: work in progress</p>
+                <p>• trash talk: expert level</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-[var(--foreground)] text-sm mb-3">djing</p>
+              <div className="text-[var(--foreground-dim)] text-sm space-y-1">
+                <p>• house, techno, deep house</p>
+                <p>• beat matching: flawless</p>
+                <p>• reading the crowd: essential</p>
+                <p>• headphone hair: non-issue</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Footer */}
+        <pre className="text-[var(--foreground)] text-xs mt-20 opacity-30">
+{`
+              ╔═══════════════════════════════════╗
+              ║                                   ║
+              ║  "experience is just a fancy      ║
+              ║   word for mistakes you learned   ║
+              ║   from."                          ║
+              ║                                   ║
+              ╚═══════════════════════════════════╝
+`}
+        </pre>
       </div>
     </div>
   );
