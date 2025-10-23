@@ -59,11 +59,59 @@
         
         .verse p {
             margin-bottom: 2rem;
+            transition: all 0.4s ease;
+        }
+        
+        .verse p:hover {
+            transform: translateX(10px);
+            color: #000;
         }
         
         .intro {
             text-align: center;
             margin-bottom: 4rem;
+        }
+        
+        /* ASCII art animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.25; }
+            50% { transform: scale(1.05); opacity: 0.35; }
+        }
+        
+        .ascii-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .ascii-pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .ascii-breathe {
+            animation: breathe 5s ease-in-out infinite;
+        }
+        
+        .verse-number-animated {
+            transition: all 0.3s ease;
+        }
+        
+        .verse-number-animated:hover {
+            transform: scale(1.2);
+            opacity: 0.6;
         }
         
         .title {
@@ -179,7 +227,7 @@
     <!-- Title Section -->
     <div class="section visible" data-section="intro">
         <div class="container intro">
-            <pre style="color: #999; opacity: 0.25; font-size: 11px; line-height: 1.2; margin-bottom: 3rem;">
+            <pre class="ascii-float" style="color: #999; opacity: 0.25; font-size: 11px; line-height: 1.2; margin-bottom: 3rem;">
         ◇
        ╱ ╲
       ╱   ╲
@@ -191,8 +239,15 @@
             <div class="subtitle">The Timeless Art of Building</div>
             <div class="author">Paris, Staff PM @ Ledger</div>
             <pre style="color: #999; opacity: 0.2; font-size: 10px; line-height: 1.3; margin-top: 2rem;">
-    13 verses on building products
+    14 verses on building products
     with wisdom, not force
+            </pre>
+            <pre class="ascii-pulse" style="color: #999; opacity: 0.15; font-size: 9px; line-height: 1.2; margin-top: 3rem;">
+        ∴
+       ∴ ∴
+      ∴ ◎ ∴
+       ∴ ∴
+        ∴
             </pre>
         </div>
     </div>
@@ -200,7 +255,7 @@
     <!-- Verse 1 -->
     <div class="section" data-section="verse-1">
         <div class="container">
-            <div class="number">1</div>
+            <div class="number verse-number-animated">1</div>
             <div class="verse">
                 <p>The roadmap that can be followed is not the eternal roadmap.<br/>
                 The feature that can be named is not the limitless feature.</p>
@@ -218,11 +273,34 @@
             </div>
         </div>
     </div>
+    
+    <!-- Interlude: The Essence -->
+    <div class="section" data-section="interlude-1">
+        <div class="container" style="text-align: center;">
+            <pre class="ascii-breathe" style="color: #999; font-size: 10px; line-height: 1.3;">
+                                    
+                    ╭─────────────────────────╮
+                    │                         │
+                    │         ∘   ∘   ∘       │
+                    │                         │
+                    │    in the beginning     │
+                    │    there was need       │
+                    │                         │
+                    │    from need came       │
+                    │    a thousand paths     │
+                    │                         │
+                    │         ∘   ∘   ∘       │
+                    │                         │
+                    ╰─────────────────────────╯
+                    
+            </pre>
+        </div>
+    </div>
 
     <!-- Verse 2 -->
-    <div class="section" style="animation-delay: 0.4s;">
+    <div class="section" data-section="verse-2">
         <div class="container">
-            <div class="number">2</div>
+            <div class="number verse-number-animated">2</div>
             <div class="verse">
                 <p>When we call a feature brilliant,<br/>
                 other features become dull.<br/>
@@ -249,7 +327,7 @@
     <!-- Verse 3 -->
     <div class="section" style="animation-delay: 0.6s;">
         <div class="container">
-            <div class="number">3</div>
+            <div class="number verse-number-animated">3</div>
             <div class="verse">
                 <p>Do not glorify the rockstar engineer<br/>
                 and teams will not compete destructively.</p>
@@ -272,7 +350,7 @@
     <!-- Verse 7 -->
     <div class="section" style="animation-delay: 0.8s;">
         <div class="container">
-            <div class="number">7</div>
+            <div class="number verse-number-animated">7</div>
             <div class="verse">
                 <p>Great products endure.<br/>
                 Eternal, they transcend trends and hype.<br/>
@@ -291,9 +369,9 @@
     </div>
 
     <!-- ASCII Divider -->
-    <div class="section" style="animation-delay: 0.9s;">
+    <div class="section" data-section="divider-1">
         <div class="container" style="text-align: center;">
-            <pre style="color: #999; opacity: 0.3; font-size: 12px; line-height: 1.2;">
+            <pre class="ascii-pulse" style="color: #999; opacity: 0.3; font-size: 12px; line-height: 1.2;">
     ◇─────────────────────◇
            ∴  ∴  ∴
     ◇─────────────────────◇
@@ -304,7 +382,7 @@
     <!-- Verse 8 -->
     <div class="section" style="animation-delay: 0.95s;">
         <div class="container">
-            <div class="number">8</div>
+            <div class="number verse-number-animated">8</div>
             <div class="verse">
                 <p>The highest good is like water.<br/>
                 Water gives life to ten thousand features<br/>
@@ -329,7 +407,7 @@
     <!-- Verse 11 -->
     <div class="section" style="animation-delay: 1s;">
         <div class="container">
-            <div class="number">11</div>
+            <div class="number verse-number-animated">11</div>
             <div class="verse">
                 <p>Thirty features spoke together at the hub,<br/>
                 but it is the core use case<br/>
@@ -351,7 +429,7 @@
     <!-- Verse 15 -->
     <div class="section" style="animation-delay: 1.2s;">
         <div class="container">
-            <div class="number">15</div>
+            <div class="number verse-number-animated">15</div>
             <div class="verse">
                 <p>The ancient product masters were subtle,<br/>
                 mysterious, profound, responsive.<p>
@@ -372,18 +450,27 @@
         </div>
     </div>
 
-    <!-- ASCII Divider -->
-    <div class="section" style="animation-delay: 1.3s;">
+    <!-- Interlude: The Empty Vessel -->
+    <div class="section" data-section="interlude-vessel">
         <div class="container" style="text-align: center;">
-            <pre style="color: #999; opacity: 0.25; font-size: 11px; line-height: 1.2;">
-        ╭─────────────────╮
-        │    ∘  ∘  ∘      │
-        │                 │
-        │  the empty      │
-        │  vessel         │
-        │                 │
-        │    ∘  ∘  ∘      │
-        ╰─────────────────╯
+            <pre class="ascii-breathe" style="color: #999; opacity: 0.2; font-size: 11px; line-height: 1.3;">
+                                    
+                    ╭─────────────────────────╮
+                    │                         │
+                    │       ∘    ∘    ∘       │
+                    │     ╱             ╲     │
+                    │    ╱               ╲    │
+                    │   │    the empty    │   │
+                    │   │     vessel      │   │
+                    │    ╲               ╱    │
+                    │     ╲             ╱     │
+                    │       ∘    ∘    ∘       │
+                    │                         │
+                    │  what is held           │
+                    │  defines what holds it  │
+                    │                         │
+                    ╰─────────────────────────╯
+                    
             </pre>
         </div>
     </div>
@@ -391,7 +478,7 @@
     <!-- Verse 17 -->
     <div class="section" style="animation-delay: 1.35s;">
         <div class="container">
-            <div class="number">17</div>
+            <div class="number verse-number-animated">17</div>
             <div class="verse">
                 <p>The best product manager is barely known.<br/>
                 Next comes one whom users love and praise.<br/>
@@ -413,7 +500,7 @@
     <!-- Verse 24 -->
     <div class="section" style="animation-delay: 1.4s;">
         <div class="container">
-            <div class="number">24</div>
+            <div class="number verse-number-animated">24</div>
             <div class="verse">
                 <p>He who stands on tiptoe<br/>
                 doesn't stand firm.<br/>
@@ -435,15 +522,27 @@
         </div>
     </div>
 
-    <!-- ASCII Divider -->
-    <div class="section" style="animation-delay: 1.5s;">
+    <!-- Interlude: The Empty Center -->
+    <div class="section" data-section="interlude-stars">
         <div class="container" style="text-align: center;">
-            <pre style="color: #999; opacity: 0.3; font-size: 12px; line-height: 1.2;">
-          ⋆ · ⋆
-        ·       ·
-      ⋆    ◎    ⋆
-        ·       ·
-          ⋆ · ⋆
+            <pre class="ascii-pulse" style="color: #999; opacity: 0.25; font-size: 11px; line-height: 1.3;">
+                                    
+                    ╭─────────────────────────╮
+                    │                         │
+                    │          ⋆ · ⋆          │
+                    │        ·       ·        │
+                    │      ⋆    ◎    ⋆        │
+                    │        ·       ·        │
+                    │          ⋆ · ⋆          │
+                    │                         │
+                    │    all creation         │
+                    │    orbits the center    │
+                    │                         │
+                    │    yet the center       │
+                    │    is empty              │
+                    │                         │
+                    ╰─────────────────────────╯
+                    
             </pre>
         </div>
     </div>
@@ -451,7 +550,7 @@
     <!-- Verse 29 -->
     <div class="section" style="animation-delay: 1.55s;">
         <div class="container">
-            <div class="number">29</div>
+            <div class="number verse-number-animated">29</div>
             <div class="verse">
                 <p>Do you think you can improve the world?<br/>
                 I do not think it can be done.</p>
@@ -475,7 +574,7 @@
     <!-- Verse 43 -->
     <div class="section" style="animation-delay: 1.6s;">
     <div class="container">
-            <div class="number">43</div>
+            <div class="number verse-number-animated">43</div>
             <div class="verse">
                 <p>The softest thing in the universe<br/>
                 overcomes the hardest thing in the universe.</p>
@@ -490,20 +589,31 @@
         </div>
     </div>
 
-    <!-- ASCII Divider -->
-    <div class="section" style="animation-delay: 1.65s;">
+    <!-- Interlude: The Way of Water -->
+    <div class="section" data-section="interlude-water">
         <div class="container" style="text-align: center;">
-            <pre style="color: #999; opacity: 0.2; font-size: 10px; line-height: 1.3;">
-    ┌─────────────────────────────┐
-    │                             │
-    │   the way of product        │
-    │   is the way of water       │
-    │                             │
-    │   flowing, not forcing      │
-    │   filling, not claiming     │
-    │   serving, not dominating   │
-    │                             │
-    └─────────────────────────────┘
+            <pre class="ascii-float" style="color: #999; opacity: 0.22; font-size: 10px; line-height: 1.3;">
+                                    
+                    ┌───────────────────────────────┐
+                    │                               │
+                    │        ≋≋≋≋≋≋≋≋≋≋≋≋≋          │
+                    │      ≋≋             ≋≋        │
+                    │    ≋≋                 ≋≋      │
+                    │                               │
+                    │   the way of product          │
+                    │   is the way of water         │
+                    │                               │
+                    │   flowing, not forcing        │
+                    │   filling, not claiming       │
+                    │   serving, not dominating     │
+                    │   yielding, yet unstoppable   │
+                    │                               │
+                    │    ≋≋                 ≋≋      │
+                    │      ≋≋             ≋≋        │
+                    │        ≋≋≋≋≋≋≋≋≋≋≋≋≋          │
+                    │                               │
+                    └───────────────────────────────┘
+                    
         </pre>
         </div>
     </div>
@@ -511,7 +621,7 @@
     <!-- Verse 63 -->
     <div class="section" style="animation-delay: 1.7s;">
         <div class="container">
-            <div class="number">63</div>
+            <div class="number verse-number-animated">63</div>
             <div class="verse">
                 <p>Act without doing.<br/>
                 Work without effort.<br/>
@@ -529,10 +639,59 @@
         </div>
     </div>
 
-    <!-- Verse 81 -->
-    <div class="section" style="animation-delay: 1.75s;">
+    <!-- Verse 76 -->
+    <div class="section" data-section="verse-76">
         <div class="container">
-            <div class="number">81</div>
+            <div class="number verse-number-animated">76</div>
+            <div class="verse">
+                <p>At birth, users are soft and yielding.<br/>
+                At death, rigid and hard.<br/>
+                Products too—at launch they are flexible,<br/>
+                at end-of-life, brittle and unmaintainable.</p>
+                
+                <p>Thus the rigid and hard<br/>
+                are disciples of death.<br/>
+                The soft and yielding<br/>
+                are disciples of life.</p>
+                
+                <p>A brittle codebase cannot adapt.<br/>
+                A rigid process cannot flow.<br/>
+                A hardened opinion cannot learn.</p>
+                
+                <p>Hence the flexible endures,<br/>
+                while the inflexible breaks.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interlude: Flexibility -->
+    <div class="section" data-section="interlude-flex">
+        <div class="container" style="text-align: center;">
+            <pre class="ascii-pulse" style="color: #999; opacity: 0.25; font-size: 11px; line-height: 1.3;">
+                                    
+                    ╭─────────────────────────╮
+                    │                         │
+                    │      ╱╲    ╱╲    ╱╲     │
+                    │     ╱  ╲  ╱  ╲  ╱  ╲    │
+                    │    ╱    ╲╱    ╲╱    ╲   │
+                    │                         │
+                    │   the tree that bends   │
+                    │   survives the storm    │
+                    │                         │
+                    │   the product that      │
+                    │   adapts                │
+                    │   survives the market   │
+                    │                         │
+                    ╰─────────────────────────╯
+                    
+            </pre>
+        </div>
+    </div>
+
+    <!-- Verse 81 -->
+    <div class="section" data-section="verse-81">
+        <div class="container">
+            <div class="number verse-number-animated">81</div>
             <div class="verse">
                 <p>True words are not eloquent.<br/>
                 Eloquent words are not true.<br/>
@@ -555,9 +714,9 @@
         </div>
         
     <!-- ASCII Divider -->
-    <div class="section" style="animation-delay: 1.8s;">
+    <div class="section" data-section="divider-final">
         <div class="container" style="text-align: center;">
-            <pre style="color: #999; opacity: 0.25; font-size: 10px; line-height: 1.3;">
+            <pre class="ascii-breathe" style="color: #999; opacity: 0.25; font-size: 10px; line-height: 1.3;">
     ════════════════════════════════════════
         </pre>
         </div>
