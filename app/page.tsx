@@ -1,117 +1,82 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { asciiArt } from '@/lib/ascii-generator';
+import SelectedWork from '@/components/SelectedWork';
+import { hero, proofStrip, about, footer } from '@/content/content';
 
 export default function Home() {
-  const [displayText, setDisplayText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
-  
-  useEffect(() => {
-    const text = 'oscar';
-    let i = 0;
-    
-    const typing = setInterval(() => {
-      if (i <= text.length) {
-        setDisplayText(text.slice(0, i));
-        i++;
-      } else {
-        clearInterval(typing);
-      }
-    }, 150);
-    
-    const cursorBlink = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-    
-    return () => {
-      clearInterval(typing);
-      clearInterval(cursorBlink);
-    };
-  }, []);
+  const [showFullAbout, setShowFullAbout] = useState(false);
   
   return (
-    <div className="min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-3xl w-full font-mono">
-        {/* ASCII Logo */}
-        <pre className="text-[var(--foreground)] text-xs md:text-sm mb-8 leading-tight opacity-80">
-          {asciiArt.logo}
-        </pre>
-        
-        {/* Name with cursor */}
-        <div className="mb-12">
-          <h1 className="text-5xl md:text-6xl text-[var(--foreground)] mb-4">
-            {displayText}
-            {showCursor && <span className="inline-block w-3 h-12 bg-[var(--foreground)] ml-2 align-middle" />}
+    <div className="min-h-screen pt-20">
+      {/* Hero */}
+      <section className="py-24 px-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-medium mb-6 leading-tight">
+            {hero.title}
           </h1>
-          <p className="text-[var(--foreground-dim)] text-lg mb-3">
-            staff product manager @ ledger
+          <p className="text-[var(--foreground-dim)] text-lg md:text-xl mb-8 leading-relaxed max-w-3xl">
+            {hero.subtitle}
           </p>
-          <p className="text-[var(--foreground-dimmer)] text-sm">
-            🎾 tennis enthusiast • 🎧 weekend dj • 🏀 bald & proud
+          <div className="flex gap-4 flex-wrap">
+            <a
+              href={hero.primaryCta.href}
+              className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-white/90 transition-colors"
+            >
+              {hero.primaryCta.label}
+            </a>
+            <Link
+              href={hero.secondaryCta.href}
+              className="px-6 py-3 border border-white/20 font-medium rounded-lg hover:border-white/40 transition-colors"
+            >
+              {hero.secondaryCta.label}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Proof Strip */}
+      <section className="py-12 px-8 border-y border-white/10 bg-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap gap-4 md:gap-8 text-sm text-[var(--foreground-dim)]">
+            {proofStrip.map((item, index) => (
+              <div key={index} className="flex items-center gap-2">
+                {index > 0 && <span className="text-white/20">•</span>}
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Selected Work */}
+      <SelectedWork />
+
+      {/* About */}
+      <section className="py-24 px-8 bg-white/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-medium mb-8 lowercase">about</h2>
+          <p className="text-[var(--foreground-dim)] text-lg leading-relaxed mb-6">
+            {showFullAbout ? about.long : about.short}
+          </p>
+          <button
+            onClick={() => setShowFullAbout(!showFullAbout)}
+            className="text-[var(--foreground-dim)] hover:text-white transition-colors text-sm underline"
+          >
+            {showFullAbout ? 'Show less' : 'Read more'}
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-8 border-t border-white/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-[var(--foreground-dimmer)] text-sm lowercase">
+            {footer}
           </p>
         </div>
-        
-        {/* ASCII Self Portrait */}
-        <pre className="text-[var(--foreground-dim)] text-xs mb-8 leading-tight">
-          {asciiArt.baldHead}
-        </pre>
-        
-        {/* Links */}
-        <div className="space-y-3 text-lg mb-12">
-          <div>
-            <Link
-              href="/about"
-              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
-            >
-              → about
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/projects"
-              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
-            >
-              → projects
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/experience"
-              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
-            >
-              → experience
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/contact"
-              className="text-[var(--foreground-dim)] hover:text-[var(--foreground)] transition-colors inline-block"
-            >
-              → contact
-            </Link>
-          </div>
-        </div>
-        
-        {/* Fun Stats */}
-        <div className="border border-[var(--glass-border)] p-6 mb-8">
-          <p className="text-[var(--foreground)] text-sm mb-3">// quick stats</p>
-          <div className="text-[var(--foreground-dim)] text-sm space-y-1">
-            <p>☕ coffee consumed: ∞</p>
-            <p>🎾 tennis serve speed: classified</p>
-            <p>🎧 playlists curated: 47+</p>
-            <p>💡 products shipped: too many to count</p>
-            <p>💈 hair on head: 0 (by choice... mostly)</p>
-          </div>
-        </div>
-        
-        {/* Footer */}
-        <div className="text-[var(--foreground-dimmer)] text-sm">
-          <p>based in [location]</p>
-          <p className="mt-1">building products • serving aces • dropping beats</p>
-        </div>
-      </div>
+      </footer>
     </div>
   );
 }
