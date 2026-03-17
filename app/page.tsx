@@ -25,7 +25,7 @@ export default function Home() {
    ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝`}</pre>
 
           <h1 className="text-4xl md:text-6xl font-[family-name:var(--font-crimson)] text-[#333] mb-4">
-            Oscar Alexander Mörke
+            Oscar Morkeeth
           </h1>
 
           <p className="text-[#666] text-lg font-mono mb-1">

@@ -9,7 +9,7 @@
 - [x] ASCII art section headers throughout
 - [x] Interactive terminal with real commands
 - [x] "The Way of Product" as standalone /way page
-- [x] Identity — Oscar Alexander Mörke, @morkeeth on X
+- [x] Identity — Oscar Morkeeth, @morkeeth on X
 - [x] OG image — dynamic Next.js edge generation
 - [x] Favicon — custom SVG
 - [x] Twitter card meta for X sharing

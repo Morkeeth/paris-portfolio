@@ -1,6 +1,6 @@
 # Paris Portfolio
 
-**Owner:** Oscar Alexander Mörke
+**Owner:** Oscar Morkeeth
 **Live:** https://paris-portfolio-sigma.vercel.app
 **Repo:** github.com/Morkeeth/paris-portfolio
 

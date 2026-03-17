@@ -83,7 +83,7 @@ export default function WayPage() {
               The Timeless Art of Building
             </h1>
             <p className="text-[#999] text-sm font-mono mb-12">
-              Oscar Alexander Mörke
+              Oscar Morkeeth
             </p>
 
             <div className="text-lg leading-relaxed text-[#666] space-y-4 font-[family-name:var(--font-crimson)]">
@@ -148,7 +148,7 @@ export default function WayPage() {
               <p className="text-[#333]">This is the way.</p>
             </div>
 
-            <p className="text-[#999] text-sm mb-2 font-mono">Oscar Alexander Mörke · Paris · 2025</p>
+            <p className="text-[#999] text-sm mb-2 font-mono">Oscar Morkeeth · Paris · 2025</p>
             <p className="text-[#aaa] text-xs font-mono">Staff Product Manager @ Ledger</p>
           </div>
         </section>

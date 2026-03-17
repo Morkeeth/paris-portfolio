@@ -20,12 +20,12 @@ const crimsonText = Crimson_Text({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://paris-portfolio-sigma.vercel.app"),
-  title: "Oscar Alexander Mörke",
+  title: "Oscar Morkeeth",
   description: "Staff Product Manager at Ledger. Building calm products for wild markets.",
-  keywords: ["Product Manager", "Ledger", "Oscar Mörke", "Web3", "Crypto", "Paris"],
-  authors: [{ name: "Oscar Alexander Mörke" }],
+  keywords: ["Product Manager", "Ledger", "Oscar Morkeeth", "Web3", "Crypto", "Paris"],
+  authors: [{ name: "Oscar Morkeeth" }],
   openGraph: {
-    title: "Oscar Alexander Mörke",
+    title: "Oscar Morkeeth",
     description: "Staff Product Manager at Ledger. Building calm products for wild markets.",
     type: "website",
   },

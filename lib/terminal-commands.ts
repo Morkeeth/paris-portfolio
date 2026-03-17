@@ -47,7 +47,7 @@ export const commands: Record<string, Command> = {
     name: 'about',
     description: 'About Oscar',
     execute: () => ({
-      output: `Oscar Alexander Mörke
+      output: `Oscar Morkeeth
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Role:     Staff Product Manager @ Ledger
