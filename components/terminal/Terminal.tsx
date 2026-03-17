@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { executeCommand, getCommandSuggestions } from '@/lib/terminal-commands';
 
 interface TerminalLine {
@@ -13,7 +12,7 @@ export default function Terminal() {
   const [lines, setLines] = useState<TerminalLine[]>([
     { 
       type: 'output', 
-      content: 'Welcome to Paris Portfolio Terminal v1.0\nType "help" for available commands.\n' 
+      content: 'welcome to oscar terminal v1.0\ntype "help" for available commands.\n' 
     },
   ]);
   const [input, setInput] = useState('');
@@ -34,14 +33,10 @@ export default function Terminal() {
     
     if (!input.trim()) return;
     
-    // Add input to lines
     setLines(prev => [...prev, { type: 'input', content: `$ ${input}` }]);
-    
-    // Add to command history
     setCommandHistory(prev => [...prev, input]);
     setHistoryIndex(-1);
     
-    // Execute command
     if (input.toLowerCase() === 'clear') {
       setLines([]);
     } else {
@@ -100,61 +95,61 @@ export default function Terminal() {
   };
   
   return (
-    <motion.div
-      className="glass-card w-full max-w-4xl mx-auto"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="border-b border-white/10 px-4 py-3 flex items-center gap-2">
-        <span className="font-mono text-sm text-white">
+    <div className="w-full max-w-4xl mx-auto border border-[#333]/10 bg-[#F0EEE6] terminal-shell">
+      <div className="border-b border-[#333]/10 px-4 py-3 flex items-center gap-2 terminal-header">
+        <div className="flex gap-2">
+          <span className="w-3 h-3 rounded-full bg-[#333]/10"></span>
+          <span className="w-3 h-3 rounded-full bg-[#333]/10"></span>
+          <span className="w-3 h-3 rounded-full bg-[#333]/10"></span>
+        </div>
+        <span className="font-mono text-xs text-[#999] ml-4">
           terminal
+        </span>
+        <span className="ml-auto font-mono text-[10px] text-[#999] opacity-80">
+          hint: try <span className="text-[#666]">connect</span>
         </span>
       </div>
       
       <div
         ref={terminalRef}
-        className="p-4 font-mono text-xs h-96 overflow-y-auto custom-scrollbar"
+        className="p-4 font-mono text-xs h-80 overflow-y-auto terminal-body"
         onClick={() => inputRef.current?.focus()}
       >
         {lines.map((line, index) => (
           <div
             key={index}
-            className={`mb-1 ${
+            className={`mb-1 terminal-line ${
               line.type === 'input'
-                ? 'text-white'
+                ? 'text-[#333] terminal-line--input'
                 : line.type === 'error'
-                ? 'text-[var(--foreground-dim)]'
-                : 'text-[var(--foreground-dim)]'
+                ? 'text-[#999] terminal-line--error'
+                : 'text-[#666] terminal-line--output'
             }`}
           >
-            <pre className="whitespace-pre-wrap break-words font-mono leading-relaxed">
-              {line.content}
-            </pre>
+            <pre className="whitespace-pre-wrap break-words font-mono leading-relaxed">{line.content}</pre>
           </div>
         ))}
         
         <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
-          <span className="text-white">$</span>
+          <span className="text-[#666]">$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent outline-none text-white"
+            className="flex-1 bg-transparent outline-none text-[#333] caret-[#333] terminal-input"
             autoFocus
             spellCheck={false}
           />
         </form>
         
         {suggestions.length > 0 && (
-          <div className="mt-1 text-xs text-[var(--foreground-dimmer)]">
+          <div className="mt-1 text-xs text-[#999]">
             tab: {suggestions.join(', ')}
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
-

@@ -1,12 +1,29 @@
-export interface Command {
+export interface CommandResponse {
+  output: string;
+  type: 'success' | 'error' | 'info' | 'ascii';
+}
+
+interface Command {
   name: string;
   description: string;
   execute: () => CommandResponse;
 }
 
-export interface CommandResponse {
-  output: string;
-  type: 'success' | 'error' | 'info' | 'ascii';
+function formatSuggestions(input: string): string {
+  const normalized = input.trim().toLowerCase();
+  if (!normalized) return '';
+
+  const suggestions = Object.keys(commands)
+    .filter((cmd) => cmd !== 'clear')
+    .filter((cmd) => cmd.startsWith(normalized) || cmd.includes(normalized))
+    .slice(0, 4);
+
+  if (normalized.includes('conn') || normalized.includes('reach')) {
+    if (!suggestions.includes('contact')) suggestions.unshift('contact');
+  }
+
+  if (suggestions.length === 0) return '';
+  return `\nDid you mean: ${suggestions.map((s) => `'${s}'`).join(', ')}?`;
 }
 
 export const commands: Record<string, Command> = {
@@ -14,218 +31,135 @@ export const commands: Record<string, Command> = {
     name: 'help',
     description: 'List all available commands',
     execute: () => ({
-      output: `
-Available commands:
-  about      - Learn about Paris
-  projects   - View featured projects
-  experience - See work experience
+      output: `Available commands:
+  about      - About Oscar
+  work       - Selected work
+  skills     - Skills & expertise
   contact    - Get in touch
-  skills     - Display technical skills
   surprise   - Something special
   clear      - Clear terminal
-  help       - Show this message
-      `,
+  help       - Show this message`,
       type: 'info',
     }),
   },
-  
+
   about: {
     name: 'about',
-    description: 'Learn about Paris',
+    description: 'About Oscar',
     execute: () => ({
-      output: `
-╔════════════════════════════════════════════╗
-║            PARIS // PROFILE.md            ║
-╚════════════════════════════════════════════╝
+      output: `Oscar Alexander Mörke
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-> Role: Staff Product Manager @ Ledger
-> Location: Paris, France 🇫🇷
-> Vibe: Poetic mover, vision maker, roadmap owner
-> Mission: Charging the tier one roadmap with
-         innovation, strategy, and a touch of artistry
+Role:     Staff Product Manager @ Ledger
+Location: Paris, France
+Focus:    BTC / ETH / SOL wallet experience
 
-"Building products isn't just about features—
- it's about crafting experiences that resonate,
- products that move people, strategies that shift
- paradigms."
+Building calm products for wild markets.
+Systems that feel simple on the surface
+and powerful underneath.
 
-[Type 'experience' to learn more about my journey]
-      `,
+[type 'work' to see selected work]`,
       type: 'success',
     }),
   },
-  
-  projects: {
-    name: 'projects',
-    description: 'View featured projects',
+
+  work: {
+    name: 'work',
+    description: 'Selected work',
     execute: () => ({
-      output: `
-📦 Featured Projects
+      output: `Selected Work
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-1. Ledger Tier-1 Roadmap
-   └─ Strategic product vision & execution
-   └─ Cross-functional alignment
-   └─ Market-leading crypto solutions
+1. Ledger — Staff PM (2023–present)
+   Startup time 6s → 3s
+   ~$1M revenue recovered
+   BTC/ETH/SOL wallet roadmap
 
-2. Product Innovation Lab
-   └─ Research & prototype development
-   └─ User-centric design thinking
-   └─ Cutting-edge tech exploration
+2. anotherblock — Founding Product (2021–2023)
+   0 → 40k users, $2.1M volume
+   Coinbase partnership
+   Digital Vinyl (Rihanna, The Weeknd)
 
-3. [Your Amazing Project Here]
-   └─ Description coming soon...
-
-[Visit the Projects page for detailed case studies]
-      `,
+3. Contrib — Founder (2020)
+   ETH Lisbon winner
+   0 → 800 builder community`,
       type: 'info',
     }),
   },
-  
-  experience: {
-    name: 'experience',
-    description: 'See work experience',
-    execute: () => ({
-      output: `
-💼 Work Experience
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-▸ Staff Product Manager @ Ledger
-  └─ Leading tier-one roadmap initiatives
-  └─ Driving product strategy & vision
-  └─ Managing cross-functional teams
-  └─ Shipping impactful features
-
-▸ Previous Roles
-  └─ Product leadership positions
-  └─ Strategic planning & execution
-  └─ Innovation & growth initiatives
-
-🎯 Impact: Transforming vision into reality,
-          one product at a time.
-      `,
-      type: 'success',
-    }),
-  },
-  
   skills: {
     name: 'skills',
-    description: 'Display technical skills',
+    description: 'Skills & expertise',
     execute: () => ({
-      output: `
-⚡ Skills & Expertise
+      output: `Skills
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Product Management    ████████████ 100%
-Strategic Planning    ████████████ 100%
-Roadmap Development   ████████████ 100%
-Cross-functional Lead ███████████░  95%
-User Research         ██████████░░  90%
-Agile/Scrum          ██████████░░  90%
-Data Analysis        █████████░░░  85%
-Technical Knowledge  ████████░░░░  80%
+Product Strategy     ████████████
+Roadmap Ownership    ████████████
+Cross-functional     ███████████░
+User Research        ██████████░░
+Data Analysis        █████████░░░
 
-🧠 Specialties:
-  • Crypto/Web3 Products
-  • B2C & B2B Platforms
-  • Growth & Innovation
-  • Team Leadership
-      `,
+Domains: crypto, web3, fintech, music tech
+Tools:   Linear, Amplitude, Figma, SQL`,
       type: 'info',
     }),
   },
-  
+
   contact: {
     name: 'contact',
     description: 'Get in touch',
     execute: () => ({
-      output: `
-📬 Get In Touch
+      output: `Contact
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Email:    paris@example.com
-LinkedIn: /in/paris-portfolio
-GitHub:   @paris-portfolio
-Twitter:  @paris_builds
+X: x.com/morkeeth
 
-💡 Open to:
-  ✓ Product opportunities
-  ✓ Collaboration & partnerships
-  ✓ Speaking engagements
-  ✓ Consulting projects
-
-[Visit the Contact page to send a message]
-      `,
+Open to product roles, advisory,
+speaking, and coffee chats.`,
       type: 'success',
     }),
   },
-  
+
+  connect: {
+    name: 'connect',
+    description: 'Alias for contact',
+    execute: () => commands.contact.execute(),
+  },
+
   surprise: {
     name: 'surprise',
     description: 'Something special',
     execute: () => ({
       output: `
-          /\\
-         /  \\
-        |    |
-        | 🚀 |
-       /|    |\\
-      / |    | \\
-     |  ------  |
-     |   ||||   |
-     |   ||||   |
-      \\  ||||  /
-       \\ |||| /
-        \\||||/
-         \\||/
-          \\/
-
     "Stay hungry. Stay foolish.
-     Stay shipping." - Paris
+     Stay shipping."
 
-🎨 Brain rot mode: ACTIVATED
-🌟 Vibes: IMMACULATE
-🔥 Energy: INFINITE
-
-[You found the easter egg! 🥚]
-      `,
+     — Oscar, somewhere in Paris`,
       type: 'ascii',
     }),
   },
-  
+
   clear: {
     name: 'clear',
     description: 'Clear terminal',
-    execute: () => ({
-      output: '',
-      type: 'success',
-    }),
+    execute: () => ({ output: '', type: 'success' }),
   },
 };
 
 export function executeCommand(input: string): CommandResponse {
-  const trimmedInput = input.trim().toLowerCase();
-  
-  if (trimmedInput === '') {
-    return { output: '', type: 'info' };
-  }
-  
-  const command = commands[trimmedInput];
-  
-  if (command) {
-    return command.execute();
-  } else {
-    return {
-      output: `Command not found: ${input}\nType 'help' for available commands.`,
-      type: 'error',
-    };
-  }
+  const cmd = input.trim().toLowerCase();
+  if (!cmd) return { output: '', type: 'info' };
+
+  if (commands[cmd]) return commands[cmd].execute();
+
+  return {
+    output: `Command not found: ${input}\nType 'help' for available commands.${formatSuggestions(input)}`,
+    type: 'error',
+  };
 }
 
 export function getCommandSuggestions(input: string): string[] {
-  const lowercaseInput = input.toLowerCase();
-  return Object.keys(commands).filter((cmd) =>
-    cmd.startsWith(lowercaseInput)
-  );
+  const lower = input.toLowerCase();
+  return Object.keys(commands).filter((cmd) => cmd.startsWith(lower));
 }
-
