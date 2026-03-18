@@ -13,10 +13,10 @@ export default function Home() {
     <div className="min-h-screen bg-[#F0EEE6] text-[#333]">
       <canvas ref={canvasRef} aria-hidden="true" className="fixed top-0 left-0 w-full h-full opacity-[0.12] z-0" />
 
-      <div className="relative z-10 max-w-2xl mx-auto px-8 text-center">
+      <div className="relative z-10 w-full text-center">
 
         {/* ═══════════════════ HERO ═══════════════════ */}
-        <section data-index="0" className={sectionClass(0, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="0" className={sectionClass(0, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <pre aria-hidden="true" className="hidden md:block text-[#999] text-xs mb-10 leading-tight opacity-50">{`   ██████╗ ███████╗ ██████╗ █████╗ ██████╗
   ██╔═══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗
   ██║   ██║███████╗██║     ███████║██████╔╝
@@ -44,7 +44,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ INTRO ═══════════════════ */}
-        <section data-index="1" className={sectionClass(1, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="1" className={sectionClass(1, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <pre aria-hidden="true" className="text-[#bbb] text-xs mb-12 opacity-30">{`        ∘
        ∘ ∘
       ∘   ∘
@@ -69,7 +69,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ ETABLERA ═══════════════════ */}
-        <section data-index="2" className={sectionClass(2, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="2" className={sectionClass(2, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
             SWEDEN · 2017—2019
           </p>
@@ -109,7 +109,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ SILICON VALLEY ═══════════════════ */}
-        <section data-index="3" className={sectionClass(3, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="3" className={sectionClass(3, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
             SILICON VALLEY · 2019—2020
           </p>
@@ -137,7 +137,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ WEB3 ═══════════════════ */}
-        <section data-index="4" className={sectionClass(4, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="4" className={sectionClass(4, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
             WEB3 · 2020—2021
           </p>
@@ -169,7 +169,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ ANOTHERBLOCK ═══════════════════ */}
-        <section data-index="5" className={sectionClass(5, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="5" className={sectionClass(5, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
             STOCKHOLM → REMOTE · 2021—2023
           </p>
@@ -195,7 +195,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ LEDGER ═══════════════════ */}
-        <section data-index="6" className={sectionClass(6, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="6" className={sectionClass(6, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
             PARIS · 2023—NOW
           </p>
@@ -236,7 +236,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ NOW ═══════════════════ */}
-        <section data-index="7" className={sectionClass(7, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="7" className={sectionClass(7, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <pre aria-hidden="true" className="text-[#bbb] text-xs mb-12 opacity-30">{`        ∘
        ∘ ∘
       ∘   ∘
@@ -260,7 +260,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ THE WAY ═══════════════════ */}
-        <section data-index="8" className={sectionClass(8, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+        <section data-index="8" className={sectionClass(8, 'min-h-screen flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <pre aria-hidden="true" className="text-[#bbb] text-xs mb-12 opacity-40">{`        ◇
        ╱ ╲
       ╱   ╲
@@ -287,7 +287,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ TERMINAL ═══════════════════ */}
-        <section data-index="9" className={sectionClass(9, 'py-32 text-left')}>
+        <section data-index="9" className={sectionClass(9, 'py-32 text-left max-w-2xl mx-auto px-8 w-full')}>
           <p className="text-[#aaa] text-xs font-mono mb-6 text-center">
             terminal · type &apos;help&apos;
           </p>
@@ -295,7 +295,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ CONNECT ═══════════════════ */}
-        <section data-index="10" className={sectionClass(10, 'min-h-[60vh] flex flex-col items-center justify-center py-24')}>
+        <section data-index="10" className={sectionClass(10, 'min-h-[60vh] flex flex-col items-center justify-center py-24 max-w-2xl mx-auto px-8')}>
           <p className="text-lg font-[family-name:var(--font-crimson)] text-[#555] mb-10">
             open to conversations about<br />
             product, music, tennis, and life.
@@ -312,7 +312,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ FOOTER ═══════════════════ */}
-        <footer className="py-24">
+        <footer className="py-24 max-w-2xl mx-auto px-8">
           <pre aria-hidden="true" className="text-[#ccc] text-xs opacity-40">{`        ∘
        ∘ ∘
       ∘   ∘
