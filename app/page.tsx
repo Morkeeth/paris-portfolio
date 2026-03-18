@@ -13,10 +13,10 @@ export default function Home() {
     <div className="min-h-screen bg-[#F0EEE6] text-[#333]">
       <canvas ref={canvasRef} aria-hidden="true" className="fixed top-0 left-0 w-full h-full opacity-[0.12] z-0" />
 
-      <div className="relative z-10 max-w-2xl mx-auto px-8">
+      <div className="relative z-10 max-w-2xl mx-auto px-8 text-center">
 
         {/* ═══════════════════ HERO ═══════════════════ */}
-        <section data-index="0" className={sectionClass(0, 'min-h-screen flex flex-col justify-center py-24')}>
+        <section data-index="0" className={sectionClass(0, 'min-h-screen flex flex-col items-center justify-center py-24')}>
           <pre aria-hidden="true" className="hidden md:block text-[#999] text-xs mb-10 leading-tight opacity-50">{`   ██████╗ ███████╗ ██████╗ █████╗ ██████╗
   ██╔═══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗
   ██║   ██║███████╗██║     ███████║██████╔╝
@@ -24,193 +24,258 @@ export default function Home() {
   ╚██████╔╝███████║╚██████╗██║  ██║██║  ██║
    ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝`}</pre>
 
-          <h1 className="text-4xl md:text-6xl font-[family-name:var(--font-crimson)] text-[#333] mb-4">
-            Oscar Morkeeth
+          <h1 className="text-4xl md:text-6xl font-[family-name:var(--font-crimson)] text-[#333] mb-6">
+            oscar morkeeth
           </h1>
 
           <p className="text-[#666] text-lg font-mono mb-1">
             staff product manager @ ledger
           </p>
-          <p className="text-[#999] text-sm font-mono mb-10">
+          <p className="text-[#999] text-sm font-mono mb-12">
             paris, france
           </p>
 
-          <p className="text-[#555] text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
-            i build calm products for wild markets.
+          <p className="text-[#555] text-xl leading-relaxed font-[family-name:var(--font-crimson)] italic">
+            build calm products<br />
+            for wild markets.
           </p>
 
-          <p className="text-[#999] text-sm font-mono mt-16">↓ scroll</p>
+          <p className="text-[#bbb] text-sm font-mono mt-20">↓</p>
         </section>
 
         {/* ═══════════════════ INTRO ═══════════════════ */}
-        <section data-index="1" className={sectionClass(1, 'py-32')}>
-          <div className="space-y-8 text-lg leading-relaxed font-[family-name:var(--font-crimson)]">
+        <section data-index="1" className={sectionClass(1, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-12 opacity-30">{`        ∘
+       ∘ ∘
+      ∘   ∘
+       ∘ ∘
+        ∘`}</pre>
+
+          <div className="space-y-8 text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
             <p className="text-[#333]">
-              i studied industrial engineering in sweden. was supposed to
-              optimize factories. got obsessed with startups instead.
+              studied industrial engineering in sweden.<br />
+              was supposed to optimize factories.
             </p>
             <p className="text-[#555]">
-              spent my twenties building things — hackathons, agencies,
-              communities, products. some worked. most didn&apos;t. all of
-              them taught me something.
+              got obsessed with startups instead.
             </p>
             <p className="text-[#888]">
-              now i&apos;m in paris, running product at ledger,
-              playing tennis three times a week, and DJing on weekends.
+              spent the next decade building things —<br />
+              hackathons, agencies, communities, products.<br />
+              some worked. most didn&apos;t.<br />
+              all of them taught me something.
             </p>
           </div>
         </section>
 
         {/* ═══════════════════ ETABLERA ═══════════════════ */}
-        <section data-index="2" className={sectionClass(2, 'py-32')}>
-          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-10 opacity-50 overflow-x-auto">{`┌─────────────────────────────────────┐
-│  sweden, 2017—2019                  │
-└─────────────────────────────────────┘`}</pre>
+        <section data-index="2" className={sectionClass(2, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
+            SWEDEN · 2017—2019
+          </p>
 
-          <div className="space-y-8 text-lg leading-relaxed font-[family-name:var(--font-crimson)]">
+          <div className="space-y-8 text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
             <p className="text-[#333]">
-              co-founded <strong>Etablera</strong> — sweden&apos;s largest student
-              innovation consultancy. 30+ projects, 4 government contracts.
-              scaled the national hackathon from 200 to 8,000 participants.
+              co-founded <em>Etablera</em> —<br />
+              sweden&apos;s largest student innovation consultancy.
             </p>
             <p className="text-[#555]">
-              around the same time, ran <strong>Shiba Creative Collective</strong>.
-              12 hackathons. 120 short ads. 60,000 followers.
-              240 million impressions.
+              30+ projects. 4 government contracts.<br />
+              scaled the national hackathon<br />
+              from 200 to 8,000 participants.
             </p>
           </div>
 
-          <div className="mt-10 text-sm text-[#aaa] font-mono leading-relaxed">
-            Hack for Sweden · Dream for Sweden · SAS Hackathon ·
-            Hack the Crisis · OpenHack · Sana Labs · JIP
+          <pre aria-hidden="true" className="text-[#bbb] text-xs mt-12 mb-12 opacity-30">{`────────────`}</pre>
+
+          <p className="text-[#333] text-lg font-[family-name:var(--font-crimson)] mb-6">
+            Shiba Creative Collective
+          </p>
+
+          <div className="text-[#888] font-mono text-sm space-y-1">
+            <p>12 hackathons</p>
+            <p>120 short ads</p>
+            <p>60,000 followers</p>
+            <p>240,000,000 impressions</p>
           </div>
+
+          <pre aria-hidden="true" className="text-[#bbb] text-xs mt-12 opacity-30">{`────────────`}</pre>
+
+          <p className="text-[#aaa] text-xs font-mono mt-8 leading-relaxed">
+            Hack for Sweden · Dream for Sweden<br />
+            SAS Hackathon · Hack the Crisis<br />
+            OpenHack · Sana Labs · JIP
+          </p>
         </section>
 
         {/* ═══════════════════ SILICON VALLEY ═══════════════════ */}
-        <section data-index="3" className={sectionClass(3, 'py-32')}>
-          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-10 opacity-50 overflow-x-auto">{`┌─────────────────────────────────────┐
-│  silicon valley, 2019—2020          │
-└─────────────────────────────────────┘`}</pre>
+        <section data-index="3" className={sectionClass(3, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
+            SILICON VALLEY · 2019—2020
+          </p>
 
-          <div className="space-y-8 text-lg leading-relaxed font-[family-name:var(--font-crimson)]">
+          <div className="space-y-8 text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
             <p className="text-[#333]">
-              moved to san francisco as a fellow at <strong>Nordic Innovation
-              House</strong>. product lead for 180 companies. then covid hit
-              and everything went online.
+              moved to san francisco.<br />
+              fellow at <em>Nordic Innovation House</em>.
             </p>
             <p className="text-[#555]">
-              events went from 30 to 300+ average attendance.
-              stanford AI hackathon. 4 startup–investor matches.
+              product lead for 180 companies.<br />
+              then covid hit and everything went online.
+            </p>
+            <p className="text-[#888]">
+              events went from 30 to 300+.<br />
+              stanford AI hackathon.<br />
+              4 startup–investor matches.
             </p>
           </div>
 
-          <div className="mt-10 text-sm text-[#aaa] font-mono leading-relaxed">
-            VEX · Insure X · Style Seek · Dark Kitchen · Blind Date · Clubhouse
-          </div>
+          <p className="text-[#aaa] text-xs font-mono mt-12 leading-relaxed">
+            VEX · Insure X · Style Seek<br />
+            Dark Kitchen · Blind Date · Clubhouse
+          </p>
         </section>
 
         {/* ═══════════════════ WEB3 ═══════════════════ */}
-        <section data-index="4" className={sectionClass(4, 'py-32')}>
-          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-10 opacity-50 overflow-x-auto">{`┌─────────────────────────────────────┐
-│  web3, 2020—2021                    │
-└─────────────────────────────────────┘`}</pre>
+        <section data-index="4" className={sectionClass(4, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
+            WEB3 · 2020—2021
+          </p>
 
-          <div className="space-y-8 text-lg leading-relaxed font-[family-name:var(--font-crimson)]">
+          <div className="space-y-8 text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
             <p className="text-[#333]">
-              went down the rabbit hole. built <strong>Contrib</strong> — web3
-              contribution tracking. shipped the MVP in 3 days.
-              won ETH Lisbon. grew to 800 builders.
+              went down the rabbit hole.
             </p>
             <p className="text-[#555]">
-              got a $95k acquisition offer. turned it down.
-              learned what creating vs founding actually meant.
-              wasn&apos;t ready to be a founder yet.
+              built <em>Contrib</em> — web3 contribution tracking.<br />
+              shipped the MVP in 3 days.<br />
+              won ETH Lisbon. grew to 800 builders.
+            </p>
+            <p className="text-[#888]">
+              got a $95k acquisition offer.<br />
+              turned it down.
+            </p>
+            <p className="text-[#888] italic">
+              learned what creating vs founding<br />
+              actually meant.
             </p>
           </div>
 
-          <div className="mt-10 text-sm text-[#aaa] font-mono leading-relaxed">
-            MetaCartel · ShineDAO · ORK+Mate · Gates.wtf ·
-            FWB x Matos · Cryptobar · NFT Safe Launch @ ETH NYC ·
-            Dat Punk · Antler
-          </div>
+          <p className="text-[#aaa] text-xs font-mono mt-12 leading-relaxed">
+            MetaCartel · ShineDAO · ORK+Mate<br />
+            Gates.wtf · FWB x Matos · Cryptobar<br />
+            NFT Safe Launch @ ETH NYC · Dat Punk · Antler
+          </p>
         </section>
 
         {/* ═══════════════════ ANOTHERBLOCK ═══════════════════ */}
-        <section data-index="5" className={sectionClass(5, 'py-32')}>
-          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-10 opacity-50 overflow-x-auto">{`┌─────────────────────────────────────┐
-│  stockholm → remote, 2021—2023      │
-└─────────────────────────────────────┘`}</pre>
+        <section data-index="5" className={sectionClass(5, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
+            STOCKHOLM → REMOTE · 2021—2023
+          </p>
 
-          <div className="space-y-8 text-lg leading-relaxed font-[family-name:var(--font-crimson)]">
+          <div className="space-y-8 text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
             <p className="text-[#333]">
-              joined <strong>anotherblock</strong> as founding product.
-              fractional music ownership — Rihanna, The Weeknd,
-              Michael Jackson on-chain.
+              joined <em>anotherblock</em> as founding product.<br />
+              fractional music ownership on-chain.
             </p>
             <p className="text-[#333]">
-              0 → 40,000 users. $2.1M volume.
+              Rihanna. The Weeknd. Michael Jackson.
             </p>
             <p className="text-[#555]">
-              coinbase partnership. &ldquo;Digital Vinyl&rdquo; line.
-              68% credit card adoption. $320k+ in grants.
+              0 → 40,000 users.<br />
+              $2.1M volume.
+            </p>
+            <p className="text-[#888]">
+              coinbase partnership. &ldquo;Digital Vinyl&rdquo; line.<br />
+              68% credit card adoption. $320k+ in grants.<br />
               sales doubled after we made it easy to pay.
             </p>
           </div>
         </section>
 
         {/* ═══════════════════ LEDGER ═══════════════════ */}
-        <section data-index="6" className={sectionClass(6, 'py-32')}>
-          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-10 opacity-50 overflow-x-auto">{`┌─────────────────────────────────────┐
-│  paris, 2023—now                    │
-└─────────────────────────────────────┘`}</pre>
+        <section data-index="6" className={sectionClass(6, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <p className="text-[#bbb] text-xs font-mono mb-12 tracking-widest">
+            PARIS · 2023—NOW
+          </p>
 
-          <div className="space-y-8 text-lg leading-relaxed font-[family-name:var(--font-crimson)]">
+          <div className="space-y-8 text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
             <p className="text-[#333]">
-              staff product manager at <strong>Ledger</strong>.
-              own the tier-one roadmap — btc, eth, sol wallet
-              for millions of users.
+              staff product manager at <em>Ledger</em>.
             </p>
             <p className="text-[#555]">
-              15+ engineers, 4 designers, one roadmap.
-              cut startup time in half. recovered $1M from a
-              single bug. the kind of work where details compound.
+              own the tier-one roadmap.<br />
+              btc, eth, sol wallet<br />
+              for millions of users.
+            </p>
+            <p className="text-[#888]">
+              15+ engineers, 4 designers, one roadmap.<br />
+              cut startup time in half.<br />
+              recovered $1M from a single bug.<br />
+              the kind of work where details compound.
             </p>
           </div>
 
-          <pre aria-hidden="true" className="text-[#bbb] text-xs mt-12 mb-8 opacity-40">{`═══════════════════════════════════════`}</pre>
+          <pre aria-hidden="true" className="text-[#bbb] text-xs mt-16 mb-10 opacity-30">{`═══════════════════════════`}</pre>
 
-          <div className="grid grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-3 gap-8">
             <div>
-              <p className="text-3xl font-[family-name:var(--font-crimson)] text-[#333]">6s → 3s</p>
-              <p className="text-[#aaa] text-xs font-mono mt-1">startup time</p>
+              <p className="text-2xl md:text-3xl font-[family-name:var(--font-crimson)] text-[#333]">6s → 3s</p>
+              <p className="text-[#aaa] text-xs font-mono mt-2">startup time</p>
             </div>
             <div>
-              <p className="text-3xl font-[family-name:var(--font-crimson)] text-[#333]">$1M</p>
-              <p className="text-[#aaa] text-xs font-mono mt-1">recovered</p>
+              <p className="text-2xl md:text-3xl font-[family-name:var(--font-crimson)] text-[#333]">$1M</p>
+              <p className="text-[#aaa] text-xs font-mono mt-2">recovered</p>
             </div>
             <div>
-              <p className="text-3xl font-[family-name:var(--font-crimson)] text-[#333]">3M+</p>
-              <p className="text-[#aaa] text-xs font-mono mt-1">users</p>
+              <p className="text-2xl md:text-3xl font-[family-name:var(--font-crimson)] text-[#333]">3M+</p>
+              <p className="text-[#aaa] text-xs font-mono mt-2">users</p>
             </div>
           </div>
         </section>
 
+        {/* ═══════════════════ NOW ═══════════════════ */}
+        <section data-index="7" className={sectionClass(7, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-12 opacity-30">{`        ∘
+       ∘ ∘
+      ∘   ∘
+       ∘ ∘
+        ∘`}</pre>
+
+          <div className="space-y-8 text-xl leading-relaxed font-[family-name:var(--font-crimson)]">
+            <p className="text-[#333]">
+              now i&apos;m in paris.
+            </p>
+            <p className="text-[#555]">
+              running product at ledger.<br />
+              playing tennis three times a week.<br />
+              DJing on weekends.
+            </p>
+            <p className="text-[#888] italic">
+              house, techno, deep house —<br />
+              whatever makes people move.
+            </p>
+          </div>
+        </section>
+
         {/* ═══════════════════ THE WAY ═══════════════════ */}
-        <section data-index="7" className={sectionClass(7, 'py-32 text-center')}>
-          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-10 opacity-40">{`        ◇
+        <section data-index="8" className={sectionClass(8, 'min-h-screen flex flex-col items-center justify-center py-24')}>
+          <pre aria-hidden="true" className="text-[#bbb] text-xs mb-12 opacity-40">{`        ◇
        ╱ ╲
       ╱   ╲
      ╱  ✦  ╲
     ╱       ╲
    ◇─────────◇`}</pre>
 
-          <p className="text-xl font-[family-name:var(--font-crimson)] italic text-[#555] leading-relaxed mb-6">
+          <p className="text-xl font-[family-name:var(--font-crimson)] italic text-[#555] leading-relaxed mb-8">
             &ldquo;The roadmap that can be followed<br />
             is not the eternal roadmap.&rdquo;
           </p>
 
-          <p className="text-[#888] text-base font-[family-name:var(--font-crimson)] mb-8">
-            a short book on shipping with wisdom over force.
+          <p className="text-[#888] text-base font-[family-name:var(--font-crimson)] mb-10">
+            a short book on shipping<br />
+            with wisdom over force.
           </p>
 
           <Link
@@ -222,21 +287,18 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════ TERMINAL ═══════════════════ */}
-        <section data-index="8" className={sectionClass(8, 'py-32')}>
-          <p className="text-[#aaa] text-xs font-mono mb-6">
+        <section data-index="9" className={sectionClass(9, 'py-32 text-left')}>
+          <p className="text-[#aaa] text-xs font-mono mb-6 text-center">
             terminal · type &apos;help&apos;
           </p>
           <Terminal />
         </section>
 
         {/* ═══════════════════ CONNECT ═══════════════════ */}
-        <section data-index="9" className={sectionClass(9, 'py-32')}>
-          <pre className="text-[#bbb] text-xs mb-10 opacity-40">{`┌─────────────────────────────────────┐
-│  connect                            │
-└─────────────────────────────────────┘`}</pre>
-
-          <p className="text-lg font-[family-name:var(--font-crimson)] text-[#555] mb-8">
-            open to conversations about product, music, tennis, and life.
+        <section data-index="10" className={sectionClass(10, 'min-h-[60vh] flex flex-col items-center justify-center py-24')}>
+          <p className="text-lg font-[family-name:var(--font-crimson)] text-[#555] mb-10">
+            open to conversations about<br />
+            product, music, tennis, and life.
           </p>
 
           <a
@@ -247,21 +309,18 @@ export default function Home() {
           >
             → x.com/morkeeth
           </a>
-
-          <div className="mt-12 text-sm text-[#aaa] font-mono space-y-1">
-            <p>product roles · advisory · speaking · coffee</p>
-          </div>
         </section>
 
         {/* ═══════════════════ FOOTER ═══════════════════ */}
-        <footer className="py-24 text-center">
-          <pre aria-hidden="true" className="text-[#bbb] text-xs opacity-30">{`┌─────────────────────────────────────┐
-│                                     │
-│   built with intention              │
-│   deployed with purpose             │
-│   maintained with humility          │
-│                                     │
-└─────────────────────────────────────┘`}</pre>
+        <footer className="py-24">
+          <pre aria-hidden="true" className="text-[#ccc] text-xs opacity-40">{`        ∘
+       ∘ ∘
+      ∘   ∘
+       ∘ ∘
+        ∘`}</pre>
+          <p className="text-[#bbb] text-xs font-mono mt-8">
+            built with intention · deployed with purpose
+          </p>
         </footer>
       </div>
     </div>
