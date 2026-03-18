@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Crimson_Text } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/navigation/Navigation";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -20,12 +19,12 @@ const crimsonText = Crimson_Text({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://paris-portfolio-sigma.vercel.app"),
-  title: "Oscar Morkeeth",
+  title: "morkeeth",
   description: "Staff Product Manager at Ledger. Building calm products for wild markets.",
-  keywords: ["Product Manager", "Ledger", "Oscar Morkeeth", "Web3", "Crypto", "Paris"],
+  keywords: ["Product Manager", "Ledger", "Oscar Morkeeth", "Web3", "AI Agents", "Paris"],
   authors: [{ name: "Oscar Morkeeth" }],
   openGraph: {
-    title: "Oscar Morkeeth",
+    title: "morkeeth",
     description: "Staff Product Manager at Ledger. Building calm products for wild markets.",
     type: "website",
   },
@@ -41,9 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="smooth-scroll bg-[#F0EEE6]">
-      <body className={`${jetbrainsMono.variable} ${crimsonText.variable} antialiased bg-[#F0EEE6] text-[#333333]`}>
-        <Navigation />
+    <html lang="en" className="smooth-scroll bg-[#0a0a0a]">
+      <body className={`${jetbrainsMono.variable} ${crimsonText.variable} antialiased bg-[#0a0a0a] text-[#e0e0e0]`}>
         <main>{children}</main>
       </body>
     </html>

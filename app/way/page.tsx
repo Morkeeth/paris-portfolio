@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useParticles } from '@/lib/use-particles';
 import { useReveal } from '@/lib/use-reveal';
 
@@ -69,29 +70,36 @@ export default function WayPage() {
   const { sectionClass } = useReveal();
 
   return (
-    <div className="min-h-screen bg-[#F0EEE6] text-[#333]">
-      <canvas ref={canvasRef} aria-hidden="true" className="fixed top-0 left-0 w-full h-full opacity-[0.15] z-0" />
+    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0]">
+      <canvas ref={canvasRef} aria-hidden="true" className="fixed top-0 left-0 w-full h-full opacity-[0.05] z-0" />
 
-      <div className="relative z-10 pt-14">
+      <Link
+        href="/"
+        className="fixed top-6 left-6 text-[#444] hover:text-white text-xs z-50 transition-colors"
+      >
+        ← back
+      </Link>
+
+      <div className="relative z-10">
         {/* Preface */}
         <section data-index="0" className={sectionClass(0, 'min-h-screen flex items-center justify-center px-8 py-24')}>
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-sm tracking-[0.3em] uppercase text-[#666] mb-4 font-mono">
+            <p className="text-sm tracking-[0.3em] uppercase text-[#555] mb-4 font-mono">
               THE WAY OF PRODUCT
             </p>
-            <h1 className="text-3xl md:text-4xl italic text-[#333] mb-4 font-[family-name:var(--font-crimson)]">
+            <h1 className="text-3xl md:text-4xl italic text-[#e0e0e0] mb-4 font-[family-name:var(--font-crimson)]">
               The Timeless Art of Building
             </h1>
-            <p className="text-[#999] text-sm font-mono mb-12">
+            <p className="text-[#555] text-sm font-mono mb-12">
               Oscar Morkeeth
             </p>
 
-            <div className="text-lg leading-relaxed text-[#666] space-y-4 font-[family-name:var(--font-crimson)]">
+            <div className="text-lg leading-relaxed text-[#888] space-y-4 font-[family-name:var(--font-crimson)]">
               <p>
                 a short book of 7 verses<br />
                 on shipping with wisdom over force.
               </p>
-              <p className="italic text-[#999]">
+              <p className="italic text-[#555]">
                 eight-minute read. bring tea.
               </p>
             </div>
@@ -106,14 +114,14 @@ export default function WayPage() {
             className={sectionClass(idx + 1, 'min-h-screen flex items-center justify-center px-8 py-24')}
           >
             <div className="max-w-2xl mx-auto">
-              <div className="text-5xl md:text-6xl font-[family-name:var(--font-crimson)] text-[#333] opacity-30 text-center mb-12">
+              <div className="text-5xl md:text-6xl font-[family-name:var(--font-crimson)] text-white opacity-20 text-center mb-12">
                 {verse.num}
               </div>
               <div className="space-y-8">
                 {verse.lines.map((line, i) => (
                   <p
                     key={i}
-                    className="text-xl md:text-2xl leading-relaxed text-[#333] whitespace-pre-line font-[family-name:var(--font-crimson)] verse-text"
+                    className="text-xl md:text-2xl leading-relaxed text-[#ccc] whitespace-pre-line font-[family-name:var(--font-crimson)] verse-text"
                   >
                     {line}
                   </p>
@@ -129,11 +137,9 @@ export default function WayPage() {
           className={sectionClass(verses.length + 1, 'min-h-screen flex items-center justify-center px-8 py-24')}
         >
           <div className="max-w-2xl mx-auto text-center">
-            <pre className="text-[#999] opacity-15 text-xs mb-12 font-mono">
-{`    ════════════════════════════════════════`}
-            </pre>
+            <div className="border-t border-[#1a1a1a] w-48 mx-auto mb-12" />
 
-            <div className="text-xl italic text-[#666] leading-relaxed space-y-6 mb-12 font-[family-name:var(--font-crimson)]">
+            <div className="text-xl italic text-[#888] leading-relaxed space-y-6 mb-12 font-[family-name:var(--font-crimson)]">
               <p>
                 The product that can be shipped<br />
                 is already outdated.<br />
@@ -145,11 +151,11 @@ export default function WayPage() {
                 Ship from the place of humble uncertainty.<br />
                 Lead without needing to be seen.
               </p>
-              <p className="text-[#333]">This is the way.</p>
+              <p className="text-white">This is the way.</p>
             </div>
 
-            <p className="text-[#999] text-sm mb-2 font-mono">Oscar Morkeeth · Paris · 2025</p>
-            <p className="text-[#aaa] text-xs font-mono">Staff Product Manager @ Ledger</p>
+            <p className="text-[#555] text-sm mb-2 font-mono">Oscar Morkeeth · Paris · 2025</p>
+            <p className="text-[#444] text-xs font-mono">Staff Product Manager @ Ledger</p>
           </div>
         </section>
       </div>

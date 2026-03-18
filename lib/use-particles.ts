@@ -25,8 +25,8 @@ interface VesselParticle {
   speed: number;
 }
 
-const BG = '#F0EEE6';
-const FG = 'rgba(51, 51, 51,';
+const BG = '#0a0a0a';
+const FG = 'rgba(255, 255, 255,';
 
 export function useParticles(config: ParticleConfig = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);

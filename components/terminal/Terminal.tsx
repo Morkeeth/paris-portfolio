@@ -10,9 +10,9 @@ interface TerminalLine {
 
 export default function Terminal() {
   const [lines, setLines] = useState<TerminalLine[]>([
-    { 
-      type: 'output', 
-      content: 'welcome to oscar terminal v1.0\ntype "help" for available commands.\n' 
+    {
+      type: 'output',
+      content: 'welcome to morkeeth terminal v2.0\ntype "help" for available commands.\n'
     },
   ]);
   const [input, setInput] = useState('');
@@ -21,22 +21,22 @@ export default function Terminal() {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
   }, [lines]);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!input.trim()) return;
-    
+
     setLines(prev => [...prev, { type: 'input', content: `$ ${input}` }]);
     setCommandHistory(prev => [...prev, input]);
     setHistoryIndex(-1);
-    
+
     if (input.toLowerCase() === 'clear') {
       setLines([]);
     } else {
@@ -48,29 +48,29 @@ export default function Terminal() {
         ]);
       }
     }
-    
+
     setInput('');
     setSuggestions([]);
   };
-  
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
-    
+
     if (value) {
-      const suggestions = getCommandSuggestions(value);
-      setSuggestions(suggestions);
+      const s = getCommandSuggestions(value);
+      setSuggestions(s);
     } else {
       setSuggestions([]);
     }
   };
-  
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (commandHistory.length > 0) {
-        const newIndex = historyIndex === -1 
-          ? commandHistory.length - 1 
+        const newIndex = historyIndex === -1
+          ? commandHistory.length - 1
           : Math.max(0, historyIndex - 1);
         setHistoryIndex(newIndex);
         setInput(commandHistory[newIndex]);
@@ -93,26 +93,26 @@ export default function Terminal() {
       setSuggestions([]);
     }
   };
-  
+
   return (
-    <div className="w-full max-w-4xl mx-auto border border-[#333]/10 bg-[#F0EEE6] terminal-shell">
-      <div className="border-b border-[#333]/10 px-4 py-3 flex items-center gap-2 terminal-header">
-        <div className="flex gap-2">
-          <span className="w-3 h-3 rounded-full bg-[#333]/10"></span>
-          <span className="w-3 h-3 rounded-full bg-[#333]/10"></span>
-          <span className="w-3 h-3 rounded-full bg-[#333]/10"></span>
+    <div className="w-full border border-[#1a1a1a] rounded-lg bg-[#111] overflow-hidden">
+      <div className="border-b border-[#1a1a1a] px-4 py-2.5 flex items-center gap-2 bg-[#0c0c0c]">
+        <div className="flex gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-[#333]"></span>
+          <span className="w-2 h-2 rounded-full bg-[#333]"></span>
+          <span className="w-2 h-2 rounded-full bg-[#333]"></span>
         </div>
-        <span className="font-mono text-xs text-[#999] ml-4">
-          terminal
+        <span className="text-xs text-[#444] ml-3">
+          ~/morkeeth/terminal
         </span>
-        <span className="ml-auto font-mono text-[10px] text-[#999] opacity-80">
-          hint: try <span className="text-[#666]">connect</span>
+        <span className="ml-auto text-[10px] text-[#333]">
+          try <span className="text-[#555]">help</span>
         </span>
       </div>
-      
+
       <div
         ref={terminalRef}
-        className="p-4 font-mono text-xs h-80 overflow-y-auto terminal-body"
+        className="p-4 text-xs h-80 overflow-y-auto"
         onClick={() => inputRef.current?.focus()}
       >
         {lines.map((line, index) => (
@@ -120,32 +120,32 @@ export default function Terminal() {
             key={index}
             className={`mb-1 terminal-line ${
               line.type === 'input'
-                ? 'text-[#333] terminal-line--input'
+                ? 'text-[#e0e0e0]'
                 : line.type === 'error'
-                ? 'text-[#999] terminal-line--error'
-                : 'text-[#666] terminal-line--output'
+                ? 'text-[#666] terminal-line--error'
+                : 'text-[#888]'
             }`}
           >
-            <pre className="whitespace-pre-wrap break-words font-mono leading-relaxed">{line.content}</pre>
+            <pre className="whitespace-pre-wrap break-words leading-relaxed">{line.content}</pre>
           </div>
         ))}
-        
+
         <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
-          <span className="text-[#666]">$</span>
+          <span className="text-[#555]">$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent outline-none text-[#333] caret-[#333] terminal-input"
+            className="flex-1 bg-transparent outline-none text-[#e0e0e0] caret-[#e0e0e0]"
             autoFocus
             spellCheck={false}
           />
         </form>
-        
+
         {suggestions.length > 0 && (
-          <div className="mt-1 text-xs text-[#999]">
+          <div className="mt-1 text-xs text-[#555]">
             tab: {suggestions.join(', ')}
           </div>
         )}
