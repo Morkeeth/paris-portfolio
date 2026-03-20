@@ -2,9 +2,6 @@
 
 import Link from 'next/link';
 import Terminal from '@/components/terminal/Terminal';
-import Window from '@/components/Window';
-import Pane from '@/components/Pane';
-import Card from '@/components/Card';
 import { useParticles } from '@/lib/use-particles';
 import { useReveal } from '@/lib/use-reveal';
 
@@ -13,327 +10,283 @@ export default function Home() {
   const { sectionClass } = useReveal();
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#FAFAF8]">
       <canvas
         ref={canvasRef}
         aria-hidden="true"
-        className="fixed top-0 left-0 w-full h-full opacity-[0.06] z-0"
+        className="fixed top-0 left-0 w-full h-full opacity-[0.07] z-0"
       />
 
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-2xl mx-auto px-6 py-16">
+
+        {/* breadcrumb */}
+        <div className="text-[#bbb] text-xs mb-20">
+          morkeeth / README.md <span className="cursor-blink">█</span>
+        </div>
 
         {/* ═══════════ HERO ═══════════ */}
-        <section
-          data-index="0"
-          className={sectionClass(0, 'min-h-screen flex flex-col items-center justify-center px-6')}
-        >
-          <h1 className="text-6xl md:text-8xl text-white font-light tracking-tight mb-6">
-            morkeeth<span className="animate-pulse text-[#333]">_</span>
+        <section data-index="0" className={sectionClass(0, 'mb-16')}>
+          <h1 className="text-3xl md:text-4xl text-[#111] font-normal mb-6">
+            <span className="text-[#ccc] select-none syntax"># </span>morkeeth
           </h1>
-          <p className="text-[#666] text-sm mb-1">staff product manager @ ledger</p>
-          <p className="text-[#444] text-xs mb-16">paris · 2026</p>
-          <p className="text-[#333] text-xs">↓</p>
+
+          <div className="text-[#888] text-sm space-y-1 mb-6">
+            <p><span className="text-[#ccc] select-none">&gt; </span>staff product manager @ ledger</p>
+            <p><span className="text-[#ccc] select-none">&gt; </span>paris, 2026</p>
+          </div>
+
+          <p className="text-[#aaa] text-sm italic">
+            building calm products for wild markets.
+          </p>
         </section>
 
-        {/* ═══════════ README — Mac Window ═══════════ */}
-        <section
-          data-index="1"
-          className={sectionClass(1, 'px-6 py-24')}
-        >
-          <div className="max-w-2xl mx-auto">
-            <Window title="README.md">
-              <div className="space-y-4 text-sm leading-relaxed">
-                <p className="text-[#ccc]">
-                  this isn&apos;t a portfolio.<br />
-                  it&apos;s a workspace.
-                </p>
-                <p className="text-[#888]">
-                  3 claude code terminals. 3 cursor windows.<br />
-                  agents in telegram. everything is an .md file.
-                </p>
-                <div className="border-t border-[#222] my-6" />
-                <p className="text-[#666]">
-                  the process is the product.<br />
-                  the context window is the new office.<br />
-                  the agent is the new intern.
-                </p>
-              </div>
-            </Window>
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
+
+        {/* ═══════════ REPOSITORY ═══════════ */}
+        <section data-index="1" className={sectionClass(1, 'mb-16')}>
+          <h2 className="text-lg text-[#222] mb-6">
+            <span className="text-[#ccc] select-none syntax">## </span>repository
+          </h2>
+
+          <pre className="text-[#888] text-xs leading-relaxed overflow-x-auto">{`morkeeth/
+├── README.md
+├── CHANGELOG.md
+├── takes/
+│   ├── agents.md
+│   ├── calm.md
+│   ├── prompts.md
+│   ├── web3.md
+│   ├── md-files.md
+│   └── context.md
+├── writing/
+│   └── the-way-of-product.md
+└── contact.md`}</pre>
+        </section>
+
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
+
+        {/* ═══════════ NOW ═══════════ */}
+        <section data-index="2" className={sectionClass(2, 'mb-16')}>
+          <h2 className="text-lg text-[#222] mb-6">
+            <span className="text-[#ccc] select-none syntax">## </span>now
+          </h2>
+
+          <div className="text-[#555] text-sm space-y-4 leading-relaxed">
+            <p>
+              running product at ledger.<br />
+              btc, eth, sol wallet for 3M+ users.<br />
+              15 engineers. 4 designers. one roadmap.
+            </p>
+            <p>
+              playing tennis three times a week.<br />
+              DJing on weekends — house, techno, deep.
+            </p>
+            <p className="text-[#999]">
+              3 claude code terminals. 3 cursor windows.<br />
+              agents in telegram. everything is an .md file.
+            </p>
           </div>
         </section>
 
-        {/* ═══════════ NOW (Window) + SETUP (Terminal) ═══════════ */}
-        <section
-          data-index="2"
-          className={sectionClass(2, 'px-6 py-16')}
-        >
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-            <Window title="now.md">
-              <p className="text-white text-base mb-6">
-                <span className="text-[#444]">## </span>now
-              </p>
-              <div className="space-y-4 text-[#999] text-sm leading-relaxed">
-                <p>
-                  running product at ledger.<br />
-                  btc, eth, sol wallet for 3M+ users.<br />
-                  15 engineers. 4 designers. one roadmap.
-                </p>
-                <p>
-                  playing tennis three times a week.<br />
-                  DJing on weekends — house, techno, deep.
-                </p>
-                <p className="text-[#666]">
-                  living in paris.<br />
-                  building with agents after hours.
-                </p>
-              </div>
-            </Window>
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
 
-            <Pane path="~/morkeeth/setup.sh">
-              <div className="space-y-1 text-sm text-[#888]">
-                <p className="text-[#555] mb-4"># daily setup</p>
-                <p><span className="text-[#555]">$</span> open claude-code <span className="text-[#444]">--instances 3</span></p>
-                <p><span className="text-[#555]">$</span> open cursor <span className="text-[#444]">--windows 3</span></p>
-                <p><span className="text-[#555]">$</span> open telegram <span className="text-[#444]">--agents</span></p>
-                <p className="text-[#444] mt-2"># everything else is .md files</p>
-              </div>
-              <div className="border-t border-[#1a1a1a] my-6" />
-              <div className="text-[#555] text-xs leading-relaxed space-y-1.5">
-                <p>shipping loop, genow, and whatever&apos;s next.</p>
-                <p>the laptop is the office.</p>
-                <p>the .md is the meeting.</p>
-              </div>
-            </Pane>
+        {/* ═══════════ CHANGELOG ═══════════ */}
+        <section data-index="3" className={sectionClass(3, 'mb-16')}>
+          <h2 className="text-lg text-[#222] mb-8">
+            <span className="text-[#ccc] select-none syntax">## </span>changelog
+          </h2>
+
+          {/* Ledger */}
+          <div className="mb-8">
+            <h3 className="text-sm text-[#222] mb-3">
+              <span className="text-[#ccc] select-none syntax">### </span>2023—now · Ledger · Paris
+            </h3>
+            <div className="text-[#666] text-sm space-y-1 pl-0">
+              <p><span className="text-[#ccc] select-none">- </span>staff product manager</p>
+              <p><span className="text-[#ccc] select-none">- </span>tier-one wallet roadmap: btc, eth, sol</p>
+              <p><span className="text-[#ccc] select-none">- </span>cut startup time 6s → 3s</p>
+              <p><span className="text-[#ccc] select-none">- </span>recovered $1M from a single bug</p>
+              <p><span className="text-[#ccc] select-none">- </span>3M+ users</p>
+            </div>
+          </div>
+
+          {/* anotherblock */}
+          <div className="mb-8">
+            <h3 className="text-sm text-[#222] mb-3">
+              <span className="text-[#ccc] select-none syntax">### </span>2021—2023 · anotherblock · Stockholm
+            </h3>
+            <div className="text-[#666] text-sm space-y-1">
+              <p><span className="text-[#ccc] select-none">- </span>founding product, fractional music rights on-chain</p>
+              <p><span className="text-[#ccc] select-none">- </span>rihanna. the weeknd. michael jackson.</p>
+              <p><span className="text-[#ccc] select-none">- </span>0 → 40k users, $2.1M volume</p>
+              <p><span className="text-[#ccc] select-none">- </span>coinbase partnership, digital vinyl line</p>
+              <p><span className="text-[#ccc] select-none">- </span>68% credit card adoption, $320k+ in grants</p>
+            </div>
+          </div>
+
+          {/* Contrib */}
+          <div className="mb-8">
+            <h3 className="text-sm text-[#222] mb-3">
+              <span className="text-[#ccc] select-none syntax">### </span>2020—2021 · Contrib · Web3
+            </h3>
+            <div className="text-[#666] text-sm space-y-1">
+              <p><span className="text-[#ccc] select-none">- </span>web3 contribution tracking, shipped MVP in 3 days</p>
+              <p><span className="text-[#ccc] select-none">- </span>won ETH Lisbon, grew to 800 builders</p>
+              <p><span className="text-[#ccc] select-none">- </span>$95k acquisition offer — turned it down</p>
+            </div>
+            <p className="text-[#bbb] text-xs mt-2 pl-4">
+              MetaCartel · ShineDAO · Gates.wtf · FWB · ETH NYC · Antler
+            </p>
+          </div>
+
+          {/* NIH */}
+          <div className="mb-8">
+            <h3 className="text-sm text-[#222] mb-3">
+              <span className="text-[#ccc] select-none syntax">### </span>2019—2020 · Nordic Innovation House · SF
+            </h3>
+            <div className="text-[#666] text-sm space-y-1">
+              <p><span className="text-[#ccc] select-none">- </span>fellow, product lead for 180 companies</p>
+              <p><span className="text-[#ccc] select-none">- </span>events: 30 → 300+, stanford AI hackathon</p>
+              <p><span className="text-[#ccc] select-none">- </span>4 startup–investor matches</p>
+            </div>
+          </div>
+
+          {/* Etablera */}
+          <div className="mb-4">
+            <h3 className="text-sm text-[#222] mb-3">
+              <span className="text-[#ccc] select-none syntax">### </span>2017—2019 · Etablera · Sweden
+            </h3>
+            <div className="text-[#666] text-sm space-y-1">
+              <p><span className="text-[#ccc] select-none">- </span>sweden&apos;s largest student innovation consultancy</p>
+              <p><span className="text-[#ccc] select-none">- </span>30+ projects, 4 government contracts</p>
+              <p><span className="text-[#ccc] select-none">- </span>hackathon: 200 → 8,000 participants</p>
+            </div>
+            <p className="text-[#bbb] text-xs mt-2 pl-4">
+              shiba creative · 12 hackathons · 120 ads · 60k followers · 240M impressions
+            </p>
+            <p className="text-[#ccc] text-xs mt-1 pl-4">
+              Hack for Sweden · Dream for Sweden · SAS · Hack the Crisis · OpenHack
+            </p>
           </div>
         </section>
 
-        {/* ═══════════ CHANGELOG — Window + git-log ═══════════ */}
-        <section
-          data-index="3"
-          className={sectionClass(3, 'px-6 py-24')}
-        >
-          <div className="max-w-3xl mx-auto">
-            <Window title="CHANGELOG.md">
-              <h2 className="text-white text-lg mb-8 font-light">
-                <span className="text-[#444]"># </span>changelog
-              </h2>
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
 
-              <div className="relative pl-8">
-                {/* git log vertical line */}
-                <div className="absolute left-[7px] top-2 bottom-2 w-px bg-[#1a1a1a]" />
+        {/* ═══════════ AGENT TAKES ═══════════ */}
+        <section data-index="4" className={sectionClass(4, 'mb-16')}>
+          <p className="text-[#222] text-sm mb-2">
+            <span className="text-[#999]">$ </span>claude &quot;what are morkeeth&apos;s takes?&quot;
+          </p>
+          <p className="text-[#bbb] text-xs mb-8">
+            <span className="text-[#ccc] select-none">&gt; </span>analyzing takes/ ... found 6 files
+          </p>
 
-                {/* Ledger */}
-                <div className="relative mb-10">
-                  <div className="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-[#28C840] border-2 border-[#141414]" />
-                  <p className="text-[#555] text-xs mb-2">2023—now</p>
-                  <p className="text-white text-sm mb-3">Ledger · Paris</p>
-                  <div className="text-[#888] text-sm leading-relaxed space-y-1.5">
-                    <p>staff product manager. tier-one wallet roadmap.</p>
-                    <p>btc, eth, sol. 15 engineers, 4 designers, 3M+ users.</p>
-                    <p>cut startup time in half. recovered $1M from a single bug.</p>
-                    <p className="text-[#555]">the kind of work where details compound.</p>
-                  </div>
-                  <div className="flex gap-4 mt-3 text-[#444] text-xs">
-                    <span>6s → 3s</span>
-                    <span>$1M recovered</span>
-                    <span>3M+ users</span>
-                  </div>
-                </div>
+          <div className="space-y-6">
+            <div className="text-[#555] text-sm leading-relaxed">
+              <p><span className="text-[#ccc] select-none">&gt; </span>every PM will manage 10 agents</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>before they manage 10 people.</p>
+              <p className="text-[#ccc] text-xs mt-1 pl-4">— agents.md</p>
+            </div>
 
-                {/* anotherblock */}
-                <div className="relative mb-10">
-                  <div className="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-[#FEBC2E] border-2 border-[#141414]" />
-                  <p className="text-[#555] text-xs mb-2">2021—2023</p>
-                  <p className="text-white text-sm mb-3">anotherblock · Stockholm</p>
-                  <div className="text-[#888] text-sm leading-relaxed space-y-1.5">
-                    <p>founding product. fractional music ownership on-chain.</p>
-                    <p>rihanna. the weeknd. michael jackson.</p>
-                    <p>0 → 40k users. $2.1M volume. coinbase partnership.</p>
-                    <p>digital vinyl line. 68% credit card adoption.</p>
-                  </div>
-                </div>
+            <div className="text-[#555] text-sm leading-relaxed">
+              <p><span className="text-[#ccc] select-none">&gt; </span>the .md file is the new unit of thought.</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>not the slide deck. not the PRD.</p>
+              <p className="text-[#ccc] text-xs mt-1 pl-4">— md-files.md</p>
+            </div>
 
-                {/* Contrib */}
-                <div className="relative mb-10">
-                  <div className="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-[#FF5F57] border-2 border-[#141414]" />
-                  <p className="text-[#555] text-xs mb-2">2020—2021</p>
-                  <p className="text-white text-sm mb-3">Contrib · Web3</p>
-                  <div className="text-[#888] text-sm leading-relaxed space-y-1.5">
-                    <p>web3 contribution tracking. shipped MVP in 3 days.</p>
-                    <p>won ETH Lisbon. grew to 800 builders.</p>
-                    <p>$95k acquisition offer. turned it down.</p>
-                    <p className="text-[#555] italic">learned what creating vs founding actually meant.</p>
-                  </div>
-                  <p className="text-[#333] text-xs mt-3">
-                    MetaCartel · ShineDAO · Gates.wtf · FWB · ETH NYC · Antler
-                  </p>
-                </div>
+            <div className="text-[#555] text-sm leading-relaxed">
+              <p><span className="text-[#ccc] select-none">&gt; </span>web3&apos;s real legacy isn&apos;t tokens.</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>it&apos;s proving strangers can build together</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>without asking permission.</p>
+              <p className="text-[#ccc] text-xs mt-1 pl-4">— web3.md</p>
+            </div>
 
-                {/* NIH */}
-                <div className="relative mb-10">
-                  <div className="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-[#888] border-2 border-[#141414]" />
-                  <p className="text-[#555] text-xs mb-2">2019—2020</p>
-                  <p className="text-white text-sm mb-3">Nordic Innovation House · San Francisco</p>
-                  <div className="text-[#888] text-sm leading-relaxed space-y-1.5">
-                    <p>fellow. product lead for 180 companies.</p>
-                    <p>covid hit. events: 30 → 300+. stanford AI hackathon.</p>
-                  </div>
-                </div>
+            <div className="text-[#555] text-sm leading-relaxed">
+              <p><span className="text-[#ccc] select-none">&gt; </span>calm products, wild markets.</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>if your team is panicking,</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>your product will too.</p>
+              <p className="text-[#ccc] text-xs mt-1 pl-4">— calm.md</p>
+            </div>
 
-                {/* Etablera */}
-                <div className="relative">
-                  <div className="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-[#555] border-2 border-[#141414]" />
-                  <p className="text-[#555] text-xs mb-2">2017—2019</p>
-                  <p className="text-white text-sm mb-3">Etablera · Sweden</p>
-                  <div className="text-[#888] text-sm leading-relaxed space-y-1.5">
-                    <p>co-founded sweden&apos;s largest student innovation consultancy.</p>
-                    <p>30+ projects. 4 government contracts.</p>
-                    <p>200 → 8,000 hackathon participants.</p>
-                  </div>
-                  <p className="text-[#444] text-xs mt-3">
-                    shiba creative · 12 hackathons · 120 ads · 60k followers · 240M impressions
-                  </p>
-                  <p className="text-[#333] text-xs mt-2">
-                    Hack for Sweden · Dream for Sweden · SAS · Hack the Crisis · OpenHack
-                  </p>
-                </div>
-              </div>
-            </Window>
-          </div>
-        </section>
+            <div className="text-[#555] text-sm leading-relaxed">
+              <p><span className="text-[#ccc] select-none">&gt; </span>the best PMs in 2026 don&apos;t write specs.</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>they write prompts.</p>
+              <p className="text-[#ccc] text-xs mt-1 pl-4">— prompts.md</p>
+            </div>
 
-        {/* ═══════════ TAKES — Cards ═══════════ */}
-        <section
-          data-index="4"
-          className={sectionClass(4, 'px-6 py-24')}
-        >
-          <div className="max-w-5xl mx-auto">
-            <p className="text-[#333] text-xs mb-8 text-center tracking-wider">~/takes/</p>
-            <div className="grid md:grid-cols-3 gap-4">
-              <Card label="agents.md">
-                <div className="border-l-2 border-[#222] pl-4 text-[#999] text-sm leading-relaxed">
-                  <p>every PM will manage</p>
-                  <p>10 agents before they</p>
-                  <p>manage 10 people.</p>
-                </div>
-              </Card>
-
-              <Card label="md-files.md">
-                <div className="border-l-2 border-[#222] pl-4 text-[#999] text-sm leading-relaxed">
-                  <p>the .md file is the new</p>
-                  <p>unit of thought.</p>
-                  <p className="mt-3 text-[#555]">not the slide deck.</p>
-                  <p className="text-[#555]">not the PRD.</p>
-                </div>
-              </Card>
-
-              <Card label="web3.md">
-                <div className="border-l-2 border-[#222] pl-4 text-[#999] text-sm leading-relaxed">
-                  <p>web3&apos;s real legacy</p>
-                  <p>isn&apos;t tokens. it&apos;s proving</p>
-                  <p>strangers can build together</p>
-                  <p>without asking permission.</p>
-                </div>
-              </Card>
-
-              <Card label="calm.md">
-                <div className="border-l-2 border-[#222] pl-4 text-[#999] text-sm leading-relaxed">
-                  <p>calm products,</p>
-                  <p>wild markets.</p>
-                  <p className="mt-3 text-[#555]">if your team is panicking,</p>
-                  <p className="text-[#555]">your product will too.</p>
-                </div>
-              </Card>
-
-              <Card label="prompts.md">
-                <div className="border-l-2 border-[#222] pl-4 text-[#999] text-sm leading-relaxed">
-                  <p>the best PMs in 2026</p>
-                  <p>don&apos;t write specs.</p>
-                  <p>they write prompts.</p>
-                </div>
-              </Card>
-
-              <Card label="context.md">
-                <div className="border-l-2 border-[#222] pl-4 text-[#999] text-sm leading-relaxed">
-                  <p>the context window</p>
-                  <p>replaced the meeting room.</p>
-                  <p className="mt-3 text-[#555]">the terminal replaced</p>
-                  <p className="text-[#555]">the whiteboard.</p>
-                </div>
-              </Card>
+            <div className="text-[#555] text-sm leading-relaxed">
+              <p><span className="text-[#ccc] select-none">&gt; </span>the context window replaced the meeting room.</p>
+              <p><span className="text-[#ccc] select-none">&gt; </span>the terminal replaced the whiteboard.</p>
+              <p className="text-[#ccc] text-xs mt-1 pl-4">— context.md</p>
             </div>
           </div>
         </section>
 
-        {/* ═══════════ THE WAY — Mac Window ═══════════ */}
-        <section
-          data-index="5"
-          className={sectionClass(5, 'px-6 py-24')}
-        >
-          <div className="max-w-xl mx-auto">
-            <Window title="the-way-of-product.md">
-              <p className="text-white text-base mb-4">
-                <span className="text-[#444]">## </span>the way of product
-              </p>
-              <p className="text-[#999] text-sm italic leading-relaxed mb-6">
-                &ldquo;the roadmap that can be followed<br />
-                is not the eternal roadmap.&rdquo;
-              </p>
-              <p className="text-[#666] text-xs mb-6">
-                a short book on shipping with wisdom over force.<br />
-                7 verses. 8 minutes. bring tea.
-              </p>
-              <Link
-                href="/way"
-                className="text-[#888] hover:text-white text-xs transition-colors border-b border-[#333] hover:border-white pb-0.5"
-              >
-                read →
-              </Link>
-            </Window>
-          </div>
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
+
+        {/* ═══════════ THE WAY ═══════════ */}
+        <section data-index="5" className={sectionClass(5, 'mb-16')}>
+          <h2 className="text-lg text-[#222] mb-6">
+            <span className="text-[#ccc] select-none syntax">## </span>the way of product
+          </h2>
+
+          <p className="text-[#888] text-sm italic leading-relaxed mb-4">
+            &ldquo;the roadmap that can be followed<br />
+            is not the eternal roadmap.&rdquo;
+          </p>
+
+          <p className="text-[#aaa] text-xs mb-6">
+            a short book on shipping with wisdom over force.<br />
+            7 verses. 8 minutes. bring tea.
+          </p>
+
+          <Link
+            href="/way"
+            className="text-[#222] text-sm"
+          >
+            read →
+          </Link>
         </section>
+
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
 
         {/* ═══════════ TERMINAL ═══════════ */}
-        <section
-          data-index="6"
-          className={sectionClass(6, 'px-6 py-24')}
-        >
-          <div className="max-w-3xl mx-auto">
-            <p className="text-[#333] text-xs mb-4 text-center">type &apos;help&apos;</p>
-            <Terminal />
-          </div>
+        <section data-index="6" className={sectionClass(6, 'mb-16')}>
+          <p className="text-[#bbb] text-xs mb-4">type &apos;help&apos;</p>
+          <Terminal />
         </section>
 
-        {/* ═══════════ CONNECT — Card ═══════════ */}
-        <section
-          data-index="7"
-          className={sectionClass(7, 'px-6 py-24')}
-        >
-          <div className="max-w-md mx-auto">
-            <Card>
-              <p className="text-[#888] text-sm mb-6 leading-relaxed text-center">
-                open to conversations about<br />
-                product, music, tennis, and building.
-              </p>
-              <p className="text-center">
-                <a
-                  href="https://x.com/morkeeth"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-[#888] text-sm transition-colors"
-                >
-                  → x.com/morkeeth
-                </a>
-              </p>
-            </Card>
-          </div>
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
+
+        {/* ═══════════ CONNECT ═══════════ */}
+        <section data-index="7" className={sectionClass(7, 'mb-16')}>
+          <h2 className="text-lg text-[#222] mb-6">
+            <span className="text-[#ccc] select-none syntax">## </span>connect
+          </h2>
+
+          <p className="text-[#666] text-sm mb-4">
+            <span className="text-[#ccc] select-none">- </span>
+            x:{' '}
+            <a
+              href="https://x.com/morkeeth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#222]"
+            >
+              @morkeeth
+            </a>
+          </p>
+
+          <p className="text-[#aaa] text-xs">
+            open to product, music, tennis, and building.
+          </p>
         </section>
+
+        <div className="text-[#ddd] text-sm my-12 select-none">---</div>
 
         {/* ═══════════ FOOTER ═══════════ */}
-        <footer className="py-16 text-center">
-          <p className="text-[#1a1a1a] text-xs">
-            built with agents · deployed with purpose
-          </p>
+        <footer className="pb-16 text-[#ddd] text-xs">
+          built with agents · deployed with purpose
         </footer>
 
       </div>

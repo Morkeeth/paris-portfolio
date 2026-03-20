@@ -40,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="smooth-scroll bg-[#0a0a0a]">
-      <body className={`${jetbrainsMono.variable} ${crimsonText.variable} antialiased bg-[#0a0a0a] text-[#e0e0e0]`}>
+    <html lang="en" className="smooth-scroll bg-[#FAFAF8]">
+      <body className={`${jetbrainsMono.variable} ${crimsonText.variable} antialiased bg-[#FAFAF8] text-[#222]`}>
         <main>{children}</main>
       </body>
     </html>

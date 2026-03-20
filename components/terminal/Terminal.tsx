@@ -12,7 +12,7 @@ export default function Terminal() {
   const [lines, setLines] = useState<TerminalLine[]>([
     {
       type: 'output',
-      content: 'welcome to morkeeth terminal v2.0\ntype "help" for available commands.\n'
+      content: 'morkeeth terminal v2.0\ntype "help" for commands.\n'
     },
   ]);
   const [input, setInput] = useState('');
@@ -30,7 +30,6 @@ export default function Terminal() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!input.trim()) return;
 
     setLines(prev => [...prev, { type: 'input', content: `$ ${input}` }]);
@@ -56,13 +55,7 @@ export default function Terminal() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
-
-    if (value) {
-      const s = getCommandSuggestions(value);
-      setSuggestions(s);
-    } else {
-      setSuggestions([]);
-    }
+    setSuggestions(value ? getCommandSuggestions(value) : []);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -95,24 +88,14 @@ export default function Terminal() {
   };
 
   return (
-    <div className="w-full border border-[#1a1a1a] rounded-lg bg-[#111] overflow-hidden">
-      <div className="border-b border-[#1a1a1a] px-4 py-2.5 flex items-center gap-2 bg-[#0c0c0c]">
-        <div className="flex gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[#333]"></span>
-          <span className="w-2 h-2 rounded-full bg-[#333]"></span>
-          <span className="w-2 h-2 rounded-full bg-[#333]"></span>
-        </div>
-        <span className="text-xs text-[#444] ml-3">
-          ~/morkeeth/terminal
-        </span>
-        <span className="ml-auto text-[10px] text-[#333]">
-          try <span className="text-[#555]">help</span>
-        </span>
+    <div className="border border-[#ddd]">
+      <div className="border-b border-[#ddd] px-4 py-2 bg-[#f5f5f0]">
+        <span className="text-[#999] text-xs">terminal</span>
       </div>
 
       <div
         ref={terminalRef}
-        className="p-4 text-xs h-80 overflow-y-auto"
+        className="p-4 bg-[#f5f5f0] text-xs h-72 overflow-y-auto"
         onClick={() => inputRef.current?.focus()}
       >
         {lines.map((line, index) => (
@@ -120,10 +103,10 @@ export default function Terminal() {
             key={index}
             className={`mb-1 terminal-line ${
               line.type === 'input'
-                ? 'text-[#e0e0e0]'
+                ? 'text-[#222]'
                 : line.type === 'error'
-                ? 'text-[#666] terminal-line--error'
-                : 'text-[#888]'
+                ? 'text-[#999] terminal-line--error'
+                : 'text-[#666]'
             }`}
           >
             <pre className="whitespace-pre-wrap break-words leading-relaxed">{line.content}</pre>
@@ -131,21 +114,21 @@ export default function Terminal() {
         ))}
 
         <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
-          <span className="text-[#555]">$</span>
+          <span className="text-[#999]">$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent outline-none text-[#e0e0e0] caret-[#e0e0e0]"
+            className="flex-1 bg-transparent outline-none text-[#222] caret-[#222]"
             autoFocus
             spellCheck={false}
           />
         </form>
 
         {suggestions.length > 0 && (
-          <div className="mt-1 text-xs text-[#555]">
+          <div className="mt-1 text-xs text-[#aaa]">
             tab: {suggestions.join(', ')}
           </div>
         )}

@@ -70,39 +70,37 @@ export default function WayPage() {
   const { sectionClass } = useReveal();
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0]">
-      <canvas ref={canvasRef} aria-hidden="true" className="fixed top-0 left-0 w-full h-full opacity-[0.05] z-0" />
+    <div className="min-h-screen bg-[#FAFAF8] text-[#222]">
+      <canvas ref={canvasRef} aria-hidden="true" className="fixed top-0 left-0 w-full h-full opacity-[0.07] z-0" />
 
-      <Link
-        href="/"
-        className="fixed top-6 left-6 text-[#444] hover:text-white text-xs z-50 transition-colors"
-      >
-        ← back
-      </Link>
+      <div className="relative z-10 max-w-2xl mx-auto px-6 py-16">
+        <Link
+          href="/"
+          className="text-[#aaa] text-xs mb-16 inline-block"
+        >
+          ← back
+        </Link>
 
-      <div className="relative z-10">
         {/* Preface */}
-        <section data-index="0" className={sectionClass(0, 'min-h-screen flex items-center justify-center px-8 py-24')}>
-          <div className="max-w-2xl mx-auto text-center">
-            <p className="text-sm tracking-[0.3em] uppercase text-[#555] mb-4 font-mono">
-              THE WAY OF PRODUCT
-            </p>
-            <h1 className="text-3xl md:text-4xl italic text-[#e0e0e0] mb-4 font-[family-name:var(--font-crimson)]">
-              The Timeless Art of Building
-            </h1>
-            <p className="text-[#555] text-sm font-mono mb-12">
-              Oscar Morkeeth
-            </p>
+        <section data-index="0" className={sectionClass(0, 'min-h-[80vh] flex flex-col justify-center')}>
+          <p className="text-xs tracking-[0.3em] uppercase text-[#999] mb-4">
+            THE WAY OF PRODUCT
+          </p>
+          <h1 className="text-2xl md:text-3xl italic text-[#222] mb-4 font-[family-name:var(--font-crimson)]">
+            The Timeless Art of Building
+          </h1>
+          <p className="text-[#aaa] text-xs mb-12">
+            Oscar Morkeeth
+          </p>
 
-            <div className="text-lg leading-relaxed text-[#888] space-y-4 font-[family-name:var(--font-crimson)]">
-              <p>
-                a short book of 7 verses<br />
-                on shipping with wisdom over force.
-              </p>
-              <p className="italic text-[#555]">
-                eight-minute read. bring tea.
-              </p>
-            </div>
+          <div className="text-base leading-relaxed text-[#888] space-y-4 font-[family-name:var(--font-crimson)]">
+            <p>
+              a short book of 7 verses<br />
+              on shipping with wisdom over force.
+            </p>
+            <p className="italic text-[#aaa]">
+              eight-minute read. bring tea.
+            </p>
           </div>
         </section>
 
@@ -111,22 +109,20 @@ export default function WayPage() {
           <section
             key={verse.num}
             data-index={idx + 1}
-            className={sectionClass(idx + 1, 'min-h-screen flex items-center justify-center px-8 py-24')}
+            className={sectionClass(idx + 1, 'min-h-[80vh] flex flex-col justify-center py-24')}
           >
-            <div className="max-w-2xl mx-auto">
-              <div className="text-5xl md:text-6xl font-[family-name:var(--font-crimson)] text-white opacity-20 text-center mb-12">
-                {verse.num}
-              </div>
-              <div className="space-y-8">
-                {verse.lines.map((line, i) => (
-                  <p
-                    key={i}
-                    className="text-xl md:text-2xl leading-relaxed text-[#ccc] whitespace-pre-line font-[family-name:var(--font-crimson)] verse-text"
-                  >
-                    {line}
-                  </p>
-                ))}
-              </div>
+            <div className="text-4xl md:text-5xl font-[family-name:var(--font-crimson)] text-[#222] opacity-15 mb-12">
+              {verse.num}
+            </div>
+            <div className="space-y-8">
+              {verse.lines.map((line, i) => (
+                <p
+                  key={i}
+                  className="text-lg md:text-xl leading-relaxed text-[#444] whitespace-pre-line font-[family-name:var(--font-crimson)] verse-text"
+                >
+                  {line}
+                </p>
+              ))}
             </div>
           </section>
         ))}
@@ -134,29 +130,27 @@ export default function WayPage() {
         {/* Closing */}
         <section
           data-index={verses.length + 1}
-          className={sectionClass(verses.length + 1, 'min-h-screen flex items-center justify-center px-8 py-24')}
+          className={sectionClass(verses.length + 1, 'min-h-[60vh] flex flex-col justify-center py-24')}
         >
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="border-t border-[#1a1a1a] w-48 mx-auto mb-12" />
+          <div className="text-[#ddd] text-sm mb-12 select-none">---</div>
 
-            <div className="text-xl italic text-[#888] leading-relaxed space-y-6 mb-12 font-[family-name:var(--font-crimson)]">
-              <p>
-                The product that can be shipped<br />
-                is already outdated.<br />
-                The vision that can be articulated<br />
-                is already limited.
-              </p>
-              <p>
-                Build in the space between knowing and not-knowing.<br />
-                Ship from the place of humble uncertainty.<br />
-                Lead without needing to be seen.
-              </p>
-              <p className="text-white">This is the way.</p>
-            </div>
-
-            <p className="text-[#555] text-sm mb-2 font-mono">Oscar Morkeeth · Paris · 2025</p>
-            <p className="text-[#444] text-xs font-mono">Staff Product Manager @ Ledger</p>
+          <div className="text-lg italic text-[#888] leading-relaxed space-y-6 mb-12 font-[family-name:var(--font-crimson)]">
+            <p>
+              The product that can be shipped<br />
+              is already outdated.<br />
+              The vision that can be articulated<br />
+              is already limited.
+            </p>
+            <p>
+              Build in the space between knowing and not-knowing.<br />
+              Ship from the place of humble uncertainty.<br />
+              Lead without needing to be seen.
+            </p>
+            <p className="text-[#222]">This is the way.</p>
           </div>
+
+          <p className="text-[#aaa] text-xs mb-2">Oscar Morkeeth · Paris · 2025</p>
+          <p className="text-[#ccc] text-xs">Staff Product Manager @ Ledger</p>
         </section>
       </div>
     </div>

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #e0e0e0;
+  --background: #FAFAF8;
+  --foreground: #222;
 }
 
 @theme inline {
-  --color-background: #0a0a0a;
-  --color-foreground: #e0e0e0;
+  --color-background: #FAFAF8;
+  --color-foreground: #222222;
   --font-sans: var(--font-jetbrains-mono);
   --font-mono: var(--font-jetbrains-mono);
 }
@@ -28,67 +28,89 @@ body {
   color: var(--foreground);
   font-family: var(--font-jetbrains-mono), 'Courier New', monospace;
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 14px;
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(0, 0, 0, 0.08);
+  color: #000;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.12); }
+::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.08); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.15); }
 
 /* Typography */
 pre {
   font-family: var(--font-jetbrains-mono), 'Courier New', monospace;
   white-space: pre;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-a, button {
-  transition: all 0.3s ease;
+/* Links — 90s underline style */
+a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: #ccc;
+  transition: text-decoration-color 0.2s ease;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 1px solid rgba(255, 255, 255, 0.2);
+a:hover {
+  text-decoration-color: #222;
+}
+
+a:focus-visible {
+  outline: 1px solid rgba(0, 0, 0, 0.2);
   outline-offset: 4px;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 /* Terminal */
 @keyframes terminalIn {
-  from { opacity: 0; transform: translateY(4px); }
+  from { opacity: 0; transform: translateY(3px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .terminal-line {
-  animation: terminalIn 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: terminalIn 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .terminal-line--error {
   text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.08);
+  text-decoration-color: rgba(0, 0, 0, 0.1);
   text-underline-offset: 3px;
 }
 
 /* Verse text (Way page) */
-.verse-text { transition: all 0.4s ease; }
-.verse-text:hover { transform: translateX(8px); color: #fff; }
+.verse-text { transition: all 0.3s ease; }
+.verse-text:hover { transform: translateX(6px); color: #000; }
+
+/* Syntax chars pulse on reveal */
+.syntax {
+  transition: color 0.8s ease;
+}
 
 /* Smooth scroll */
 .smooth-scroll { scroll-behavior: smooth; }
@@ -96,11 +118,12 @@ button:focus-visible {
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .terminal-line,
-  .animate-fade-in {
+  .animate-fade-in,
+  .cursor-blink {
     animation: none !important;
   }
 
-  a, button, .verse-text {
+  a, .verse-text, .syntax {
     transition: none !important;
   }
 }

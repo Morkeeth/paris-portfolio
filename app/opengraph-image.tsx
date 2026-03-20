@@ -16,17 +16,16 @@ export default function OGImage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#0a0a0a',
+          backgroundColor: '#FAFAF8',
           fontFamily: 'monospace',
         }}
       >
         <div
           style={{
-            fontSize: 72,
-            fontWeight: 300,
-            color: '#e0e0e0',
-            marginBottom: 24,
-            letterSpacing: '-0.02em',
+            fontSize: 64,
+            fontWeight: 400,
+            color: '#222',
+            marginBottom: 20,
           }}
         >
           morkeeth
@@ -43,10 +42,10 @@ export default function OGImage() {
         <div
           style={{
             fontSize: 16,
-            color: '#555',
+            color: '#aaa',
           }}
         >
-          paris · 2026
+          paris, 2026
         </div>
       </div>
     ),
