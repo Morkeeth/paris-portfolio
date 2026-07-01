@@ -74,6 +74,7 @@ export const PROJECTS: Project[] = [
     year: '2025-26',
     track: 'work',
     color: '#4a8fd9',
+    image: '/projects/ledger.jpg',
     details: [
       'clear signing across BTC, ETH, SOL — if the screen can\'t explain the transaction, don\'t sign it',
       'blockaid integration: 800K transactions screened, $51M in losses prevented',
