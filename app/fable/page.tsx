@@ -1020,10 +1020,32 @@ export default function Home() {
                       '--pc': p.color,
                       '--tilt': `${(rnd(i * 13 + 3) * 3 - 1.5).toFixed(2)}deg`,
                       cursor: 'pointer',
+                      overflow: 'hidden',
                     } as React.CSSProperties}
                     onClick={(e) => burst(e.clientX, e.clientY, 14, p.color)}
                     title="click for confetti. every project deserves some."
                   >
+                    {p.image && (
+                      <div style={{ margin: '-26px -26px 20px', position: 'relative' }}>
+                        <motion.img
+                          src={p.image}
+                          alt={p.name}
+                          initial={{ scale: 1.08, opacity: 0 }}
+                          whileInView={{ scale: 1, opacity: 1 }}
+                          viewport={{ once: true, margin: '-10%' }}
+                          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                          style={{
+                            width: '100%', display: 'block', aspectRatio: '16 / 10', objectFit: 'cover',
+                            filter: maximalism ? 'saturate(1.06) contrast(1.02)' : 'grayscale(0.2) opacity(0.92)',
+                            transition: 'filter 0.8s ease',
+                          }}
+                        />
+                        <div style={{
+                          position: 'absolute', left: 0, right: 0, bottom: 0, height: 3,
+                          background: p.color, opacity: maximalism ? 1 : 0.5, transition: 'opacity 0.8s ease',
+                        }} />
+                      </div>
+                    )}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, gap: 12 }}>
                       <h3 className="serif" style={{ fontSize: 'clamp(1.3rem, 3vw, 1.8rem)', fontWeight: 400, color: maximalism ? p.color : 'inherit', transition: 'color 0.8s' }}>
                         {p.name.toLowerCase()}
