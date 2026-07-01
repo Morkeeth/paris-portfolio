@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { OSCAR, LINKS, STATS, PROJECTS, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
 
 const containerStyle: React.CSSProperties = {
   fontFamily: 'var(--font-jetbrains-mono)',
@@ -225,8 +225,8 @@ export default function HaikuPage() {
       >
         <h2 style={sectionTitleStyle}>$ tree --all</h2>
         <div style={projectTreeStyle}>
-          {PROJECTS.map((proj, idx) => {
-            const firstOfTrack = idx === 0 || PROJECTS[idx - 1].track !== proj.track;
+          {FEATURED.map((proj, idx) => {
+            const firstOfTrack = idx === 0 || FEATURED[idx - 1].track !== proj.track;
             return (
             <React.Fragment key={proj.slug}>
               {firstOfTrack && (

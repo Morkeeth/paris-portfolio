@@ -55,6 +55,7 @@ export type Project = {
   buildTime: string;
   year: string;
   track: Track;
+  featured?: boolean; // shown as a highlight card; non-featured live only in the timeline
   color: string;
   details?: string[];
   image?: string; // /projects/<slug>.png — real screenshot, optional
@@ -65,6 +66,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Ledger',
     slug: 'ledger',
+    featured: true,
     oneLiner: 'staff pm, trust & security. protecting 20M users',
     story: 'the work that decides whether someone loses everything signing a transaction. clear signing across btc/eth/sol so the screen actually explains what you\'re approving. blockaid integration ($51M in attacks prevented). chain assessment cut from 2 weeks to 2 hours.',
     result: 'protecting 20M users',
@@ -81,6 +83,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Anotherblock',
     slug: 'anotherblock',
+    featured: true,
     oneLiner: 'head of product at a music startup. fans investing in songs they loved',
     story: 'employee #4, founding team. real fans buying shares of their favorite songs. 0 to 40K users, $2.1M in sales. the product worked. distribution won.',
     result: '0 to 40K users',
@@ -104,6 +107,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Etablera',
     slug: 'etablera',
+    featured: true,
     oneLiner: 'sweden\'s largest hackathon series. 88 to 8,000 over four years',
     story: 'started with 88 people in a room in stockholm. designed the team formation system. four years later, 8,000 participants across the country and 200+ prototypes shipped.',
     result: '88 to 8,000',
@@ -127,6 +131,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'RELAY',
     slug: 'relay',
+    featured: true,
     oneLiner: 'ai agents hire verified humans for tasks they cannot do',
     story: '48h build at World Build 3. agents post tasks, humans accept, smart contracts escrow the money. coinfund noticed. world dev team reached out.',
     result: '2nd / 500 teams',
@@ -144,6 +149,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Yieldbound',
     slug: 'yieldbound',
+    featured: true,
     oneLiner: 'autonomous defi. spends yield, never principal',
     story: 'built at synthesis hackathon. gave an ai agent a treasury and one rule: spend the yield, never touch the principal. your money stays yours.',
     result: '2nd / 646',
@@ -156,6 +162,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'RECEIPT',
     slug: 'receipt',
+    featured: true,
     oneLiner: 'cryptographic proof agents did what they claimed',
     story: 'on-chain execution hashes. the problem: agents sound confident regardless of quality. you can\'t tell from the output. receipts are the only honest layer.',
     result: 'ethglobal finalist',
@@ -201,6 +208,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Loop',
     slug: 'loop',
+    featured: true,
     oneLiner: 'one magical event a week, picked for you',
     story: 'reads your calendar, builds a persona from the past few months, then searches the web for the one niche event you\'d never find on your own. with consent, drops it straight into your calendar. real-time, nothing stored.',
     result: 'live demo',
@@ -215,6 +223,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Gates',
     slug: 'gates',
+    featured: true,
     oneLiner: 'human authentication for world. 9 bounties at eth bogota',
     story: 'decentralized identity + custom conditions for dapps, metaverse, and NFT projects. proof-of-personhood gate using world id. the question: how do you let humans in and keep bots out.',
     result: '9 bounties',
@@ -309,6 +318,9 @@ export const PROJECTS: Project[] = [
     ],
   },
 ];
+
+// highlight reel — the cards shown on pages. the full range lives in HACKATHON_TIMELINE.
+export const FEATURED = PROJECTS.filter((p) => p.featured);
 
 export const HACKATHON_TIMELINE = [
   { date: '2021-10', name: 'ETH Lisbon', project: 'Contrib', prize: '$13,200', eth: '3.00', ethPrice: '$4,132', bounties: 'Tally + MetaCartel winner' },

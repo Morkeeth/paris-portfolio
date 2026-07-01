@@ -28,7 +28,7 @@ const colorMap: Record<string, string> = {
   [COLORS.ledger]: C.blue,
 };
 
-const PROJECTS = RAW_PROJECTS.map((p) => ({
+const PROJECTS = RAW_PROJECTS.filter((p) => p.featured).map((p) => ({
   name:    p.name.toLowerCase(),
   desc:    p.oneLiner,
   tag:     p.result,

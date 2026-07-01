@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS, THOUGHTS, JOURNEY, COLORS, type Track } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, COLORS, type Track } from '../shared/data';
 
 // ════════════════════════════════════════════════════════════
 //  data — single source of truth lives in ../shared/data
@@ -997,8 +997,8 @@ export default function Home() {
       </section>
 
       {/* ── projects, one per frame, grouped by era ── */}
-      {PROJECTS.map((p, i) => {
-        const newCategory = i === 0 || PROJECTS[i - 1].track !== p.track;
+      {FEATURED.map((p, i) => {
+        const newCategory = i === 0 || FEATURED[i - 1].track !== p.track;
         return (
           <section key={p.slug} className="frame frame-short">
             <div style={{ maxWidth: 520, width: '100%' }}>

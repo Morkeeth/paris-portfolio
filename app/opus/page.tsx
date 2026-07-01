@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS, TRACKS, THOUGHTS, JOURNEY, COLORS, type Project } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, COLORS, type Project } from '../shared/data';
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -246,8 +246,8 @@ export default function OpusPage() {
       </section>
 
       {/* Projects, grouped by track */}
-      {PROJECTS.map((p, i) => {
-        const tr = (i === 0 || PROJECTS[i - 1].track !== p.track) ? TRACKS.find(t => t.id === p.track) : null;
+      {FEATURED.map((p, i) => {
+        const tr = (i === 0 || FEATURED[i - 1].track !== p.track) ? TRACKS.find(t => t.id === p.track) : null;
         return (
           <Fragment key={p.slug}>
             {tr && (
