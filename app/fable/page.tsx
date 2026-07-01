@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS, THOUGHTS, JOURNEY, COLORS, type Project } from '../shared/data';
+import { OSCAR, LINKS, STATS, PROJECTS, THOUGHTS, JOURNEY, COLORS, type Track } from '../shared/data';
 
 // ════════════════════════════════════════════════════════════
 //  data — single source of truth lives in ../shared/data
@@ -26,12 +26,10 @@ const STAT_ITEMS = [
 const NOTES = THOUGHTS.filter(t => t !== OSCAR.philosophy);
 
 // interstitial labels when the project shelf changes era
-const CATEGORY_INTRO: Record<Project['category'], string> = {
+const CATEGORY_INTRO: Record<Track, string> = {
+  work: 'the work / paid, owned, real scope',
   agents: 'the agent era / nights and weekends',
-  music: 'the music years',
-  community: 'rooms full of strangers',
-  security: 'days at ledger',
-  hackathon: 'the hackathon circuit',
+  hackathons: 'the hackathon circuit',
 };
 
 const EGGS: Record<string, string> = {
@@ -1000,7 +998,7 @@ export default function Home() {
 
       {/* ── projects, one per frame, grouped by era ── */}
       {PROJECTS.map((p, i) => {
-        const newCategory = i === 0 || PROJECTS[i - 1].category !== p.category;
+        const newCategory = i === 0 || PROJECTS[i - 1].track !== p.track;
         return (
           <section key={p.slug} className="frame frame-short">
             <div style={{ maxWidth: 520, width: '100%' }}>
@@ -1009,7 +1007,7 @@ export default function Home() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 26 }}>
                     <span style={{ width: 8, height: 8, borderRadius: '50%', background: p.color, display: 'inline-block', flexShrink: 0 }} />
                     <span className="mono" style={{ fontSize: 9, letterSpacing: '0.18em', opacity: 0.4, textTransform: 'uppercase' }}>
-                      {CATEGORY_INTRO[p.category]}
+                      {CATEGORY_INTRO[p.track]}
                     </span>
                   </div>
                 </Reveal>

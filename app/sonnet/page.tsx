@@ -1,8 +1,8 @@
 'use client';
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS as RAW_PROJECTS, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
+import { useRef, useState, useEffect, Fragment } from 'react';
+import { OSCAR, LINKS, STATS, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
 
 // ─────────────────────────────────────────────────────────────
 //  palette — ink on paper, editorial cool
@@ -35,6 +35,7 @@ const PROJECTS = RAW_PROJECTS.map((p) => ({
   time:    p.buildTime,
   color:   colorMap[p.color] ?? C.gold,
   year:    p.year,
+  track:   p.track,
   details: p.details,
   story:   p.story,
 }));
@@ -740,7 +741,7 @@ export default function SonnetPage() {
             {/* ledger project details */}
             <Reveal delay={0.2}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 24 }}>
-                {['Blockaid', 'Chain Assessment', 'Clear Signing'].map((projName) => {
+                {['Ledger'].map((projName) => {
                   const proj = RAW_PROJECTS.find(p => p.name === projName);
                   if (!proj) return null;
                   return (
@@ -833,15 +834,29 @@ export default function SonnetPage() {
             <ColLabel>built in</ColLabel>
           </div>
         </Reveal>
-        {PROJECTS.map((p, i) => (
-          <div
-            key={p.name}
-            onMouseEnter={() => setHoveredProject(i)}
-            onMouseLeave={() => setHoveredProject(null)}
-          >
-            <ProjectRow p={p} i={i} />
-          </div>
-        ))}
+        {PROJECTS.map((p, i) => {
+          const tr = (i === 0 || PROJECTS[i - 1].track !== p.track) ? TRACKS.find(t => t.id === p.track) : null;
+          return (
+          <Fragment key={p.name}>
+            {tr && (
+              <div style={{
+                marginTop: 32, marginBottom: 10, paddingTop: 14,
+                borderTop: `1px solid ${C.rule}`,
+                fontFamily: 'var(--font-jetbrains-mono), monospace',
+                fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.subtle,
+              }}>
+                {tr.label} &nbsp;·&nbsp; {tr.blurb}
+              </div>
+            )}
+            <div
+              onMouseEnter={() => setHoveredProject(i)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              <ProjectRow p={p} i={i} />
+            </div>
+          </Fragment>
+          );
+        })}
         <Reveal delay={0.3}>
           <div style={{
             paddingTop: 18,

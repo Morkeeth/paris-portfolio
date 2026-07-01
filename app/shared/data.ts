@@ -37,6 +37,15 @@ export const STATS = {
   anotherblockVolume: '$2.1M',
 };
 
+export type Track = 'work' | 'agents' | 'hackathons';
+
+// track metadata — order + section labels for grouping the cases
+export const TRACKS: { id: Track; label: string; blurb: string }[] = [
+  { id: 'work', label: 'Work', blurb: 'paid, owned, real scope' },
+  { id: 'agents', label: 'Agents', blurb: '2026. five terminals, one brief, ship by morning' },
+  { id: 'hackathons', label: 'Hackathons', blurb: '16 events, proven under pressure' },
+];
+
 export type Project = {
   name: string;
   slug: string;
@@ -45,14 +54,75 @@ export type Project = {
   result: string;
   buildTime: string;
   year: string;
-  category: 'agents' | 'music' | 'community' | 'security' | 'hackathon';
+  track: Track;
   color: string;
   details?: string[];
   image?: string; // /projects/<slug>.png — real screenshot, optional
 };
 
 export const PROJECTS: Project[] = [
-  // ── 2026: agents era ──────────────────────────────────────
+  // ══ WORK — paid, owned, real scope ═══════════════════════════
+  {
+    name: 'Ledger',
+    slug: 'ledger',
+    oneLiner: 'staff pm, trust & security. protecting 20M users',
+    story: 'the work that decides whether someone loses everything signing a transaction. clear signing across btc/eth/sol so the screen actually explains what you\'re approving. blockaid integration ($51M in attacks prevented). chain assessment cut from 2 weeks to 2 hours.',
+    result: 'protecting 20M users',
+    buildTime: 'production',
+    year: '2025-26',
+    track: 'work',
+    color: '#4a8fd9',
+    details: [
+      'clear signing across BTC, ETH, SOL — if the screen can\'t explain the transaction, don\'t sign it',
+      'blockaid integration: 800K transactions screened, $51M in losses prevented',
+      'chain assessment: new-chain evaluation from 2 weeks to 2 hours, used weekly in production',
+    ],
+  },
+  {
+    name: 'Anotherblock',
+    slug: 'anotherblock',
+    oneLiner: 'head of product at a music startup. fans investing in songs they loved',
+    story: 'employee #4, founding team. real fans buying shares of their favorite songs. 0 to 40K users, $2.1M in sales. the product worked. distribution won.',
+    result: '0 to 40K users',
+    buildTime: '2.5 years',
+    year: '2022-24',
+    track: 'work',
+    color: '#f2a039',
+    image: '/projects/anotherblock.png',
+    details: [
+      'raised from J12, Swedish House Mafia, Inventure, Stride',
+      'drops: Rihanna, The Weeknd, Michael Jackson, R3hab & Laidback Luke, Alan Walker, Offset & Metro Boomin',
+      'official Coinbase Base launch partner (Onchain Summer + Art Basel)',
+      'Digital Vinyls: SEC-compliant collectibles, became largest revenue source',
+      '93K+ collectibles sold to 35K+ customers',
+      'Republic joint venture for compliance (SNFT)',
+      'grants: Superfluid + Optimism Foundation (15K OP)',
+      'partners: Stripe, Republic, Crossmint, Superfluid, Base, Fireblocks',
+      'pivoted entire product vision from OpenSea competitor to music rights',
+    ],
+  },
+  {
+    name: 'Etablera',
+    slug: 'etablera',
+    oneLiner: 'sweden\'s largest hackathon series. 88 to 8,000 over four years',
+    story: 'started with 88 people in a room in stockholm. designed the team formation system. four years later, 8,000 participants across the country and 200+ prototypes shipped.',
+    result: '88 to 8,000',
+    buildTime: '4 years',
+    year: '2017-20',
+    track: 'work',
+    color: '#3bb58f',
+    details: [
+      'co-founded creative/digital agency',
+      '30+ clients from startups to government agencies',
+      '4+ government contracts',
+      'worked with Sana Labs',
+      'team formation algorithm for strangers to build together',
+      '200+ prototypes shipped by participants',
+      'learned to shoot and edit video along the way',
+    ],
+  },
+
+  // ══ AGENTS — 2026 side builds ════════════════════════════════
   {
     name: 'RELAY',
     slug: 'relay',
@@ -61,7 +131,7 @@ export const PROJECTS: Project[] = [
     result: '2nd / 500 teams',
     buildTime: 'built in 48h',
     year: '2026',
-    category: 'agents',
+    track: 'agents',
     color: '#f2a039',
     image: '/projects/relay.png',
     details: [
@@ -78,7 +148,7 @@ export const PROJECTS: Project[] = [
     result: '2nd / 646',
     buildTime: 'built in 48h',
     year: '2026',
-    category: 'agents',
+    track: 'agents',
     color: '#2d5ff5',
     image: '/projects/yieldbound.png',
   },
@@ -90,7 +160,7 @@ export const PROJECTS: Project[] = [
     result: 'ethglobal finalist',
     buildTime: 'built in 36h',
     year: '2026',
-    category: 'agents',
+    track: 'agents',
     color: '#e84033',
     image: '/projects/receipt.png',
   },
@@ -102,7 +172,7 @@ export const PROJECTS: Project[] = [
     result: 'paris finalist',
     buildTime: 'built in 24h',
     year: '2026',
-    category: 'agents',
+    track: 'agents',
     color: '#9b6fc0',
   },
   {
@@ -113,7 +183,7 @@ export const PROJECTS: Project[] = [
     result: 'running daily',
     buildTime: 'nights',
     year: '2026',
-    category: 'agents',
+    track: 'agents',
     color: '#1db954',
   },
   {
@@ -124,7 +194,7 @@ export const PROJECTS: Project[] = [
     result: 'still alive',
     buildTime: 'weekends',
     year: '2026',
-    category: 'agents',
+    track: 'agents',
     color: '#ff5c8a',
   },
   {
@@ -135,119 +205,12 @@ export const PROJECTS: Project[] = [
     result: 'live demo',
     buildTime: 'nights',
     year: '2026',
-    category: 'agents',
+    track: 'agents',
     color: '#6a5cff',
     image: '/projects/loop.png',
   },
 
-  // ── 2025-26: ledger security ──────────────────────────────
-  {
-    name: 'Clear Signing',
-    slug: 'clear-signing',
-    oneLiner: 'human-readable transaction signing for ledger',
-    story: 'making sure users understand what they\'re signing before they sign it. clear signing across btc, eth, sol. if the screen can\'t explain the transaction, something is wrong.',
-    result: 'production',
-    buildTime: 'ongoing',
-    year: '2025-26',
-    category: 'security',
-    color: '#4a8fd9',
-    details: [
-      'TX check across BTC, ETH, SOL ecosystems',
-      'research parameters for security evaluation',
-      'if the screen can\'t explain the transaction, don\'t sign it',
-    ],
-  },
-  {
-    name: 'Blockaid',
-    slug: 'blockaid',
-    oneLiner: 'transaction screening at ledger. 800K screened, $51M prevented',
-    story: 'integrated blockaid into ledger live. the kind of work where getting it wrong costs real people real money.',
-    result: '$51M prevented losses',
-    buildTime: 'production',
-    year: '2025',
-    category: 'security',
-    color: '#4a8fd9',
-    details: [
-      '800K transactions screened',
-      'real-time threat detection for ledger live users',
-    ],
-  },
-  {
-    name: 'Chain Assessment',
-    slug: 'chain-assessment',
-    oneLiner: 'blockchain evaluation from 2 weeks to 2 hours',
-    story: 'automated the process of evaluating new chains for ledger support. what took a team two weeks now runs in two hours. used weekly in production.',
-    result: '2 weeks to 2 hours',
-    buildTime: 'production',
-    year: '2025',
-    category: 'security',
-    color: '#4a8fd9',
-  },
-
-  // ── 2022-24: anotherblock ────────────────────────────────
-  {
-    name: 'Anotherblock',
-    slug: 'anotherblock',
-    oneLiner: 'head of product at a music startup. fans investing in songs they loved',
-    story: 'employee #4, founding team. real fans buying shares of their favorite songs. 0 to 40K users, $2.1M in sales. the product worked. distribution won.',
-    result: '0 to 40K users',
-    buildTime: '2.5 years',
-    year: '2022-24',
-    category: 'music',
-    color: '#f2a039',
-    image: '/projects/anotherblock.png',
-    details: [
-      'raised from J12, Swedish House Mafia, Inventure, Stride',
-      'drops: Rihanna, The Weeknd, Michael Jackson, R3hab & Laidback Luke, Alan Walker, Offset & Metro Boomin',
-      'official Coinbase Base launch partner (Onchain Summer + Art Basel)',
-      'Digital Vinyls: SEC-compliant collectibles, became largest revenue source',
-      '93K+ collectibles sold to 35K+ customers',
-      'Republic joint venture for compliance (SNFT)',
-      'grants: Superfluid + Optimism Foundation (15K OP)',
-      'partners: Stripe, Republic, Crossmint, Superfluid, Base, Fireblocks',
-      'pivoted entire product vision from OpenSea competitor to music rights',
-    ],
-  },
-
-  // ── 2017-23: community + hackathons ──────────────────────
-  {
-    name: 'Etablera',
-    slug: 'etablera',
-    oneLiner: 'sweden\'s largest hackathon series. 88 to 8,000 over four years',
-    story: 'started with 88 people in a room in stockholm. designed the team formation system. four years later, 8,000 participants across the country and 200+ prototypes shipped.',
-    result: '88 to 8,000',
-    buildTime: '4 years',
-    year: '2017-20',
-    category: 'community',
-    color: '#3bb58f',
-    details: [
-      'co-founded creative/digital agency',
-      '30+ clients from startups to government agencies',
-      '4+ government contracts',
-      'worked with Sana Labs',
-      'team formation algorithm for strangers to build together',
-      '200+ prototypes shipped by participants',
-      'learned to shoot and edit video along the way',
-    ],
-  },
-  {
-    name: 'Contrib',
-    slug: 'contrib',
-    oneLiner: 'open source contribution rewards. bridging governance to action',
-    story: 'won eth lisbon with tally & metacartel. dao bounty board where members contribute and earn tokens, reputation, and achievements. antler offered $95K to build it full time. said no.',
-    result: 'eth lisbon winner',
-    buildTime: 'built in 48h',
-    year: '2021',
-    category: 'community',
-    color: '#2d5ff5',
-    details: [
-      'winner with Tally & MetaCartel',
-      'Antler program, $95K offer declined',
-      '800+ community members across Contrib + MatosDAO',
-      '42 crypto bar meetups in stockholm',
-      'integrated Snapshot subgraph for multi-tool governance',
-    ],
-  },
+  // ══ HACKATHONS — the competitive record ══════════════════════
   {
     name: 'Gates',
     slug: 'gates',
@@ -256,7 +219,7 @@ export const PROJECTS: Project[] = [
     result: '9 bounties',
     buildTime: 'built in 48h',
     year: '2022',
-    category: 'hackathon',
+    track: 'hackathons',
     color: '#9b6fc0',
     image: '/projects/gates.png',
     details: [
@@ -277,7 +240,7 @@ export const PROJECTS: Project[] = [
     result: '#1 winner',
     buildTime: 'built in 48h',
     year: '2022',
-    category: 'hackathon',
+    track: 'hackathons',
     color: '#2d5ff5',
     details: [
       'Livepeer + Chainlink integration',
@@ -292,7 +255,7 @@ export const PROJECTS: Project[] = [
     result: 'ethglobal finalist',
     buildTime: 'built in 48h',
     year: '2022',
-    category: 'hackathon',
+    track: 'hackathons',
     color: '#e84033',
     details: [
       'ETH NYC finalist',
@@ -308,7 +271,7 @@ export const PROJECTS: Project[] = [
     result: '$7K in prizes',
     buildTime: 'built in 48h',
     year: '2023',
-    category: 'hackathon',
+    track: 'hackathons',
     color: '#c8963a',
     details: [
       'Unlimit: 1st Place ($4K USDC)',
@@ -323,8 +286,26 @@ export const PROJECTS: Project[] = [
     result: 'scroll + lens prizes',
     buildTime: 'built in 48h',
     year: '2023',
-    category: 'hackathon',
+    track: 'hackathons',
     color: '#3bb58f',
+  },
+  {
+    name: 'Contrib',
+    slug: 'contrib',
+    oneLiner: 'open source contribution rewards. bridging governance to action',
+    story: 'won eth lisbon with tally & metacartel. dao bounty board where members contribute and earn tokens, reputation, and achievements. antler offered $95K to build it full time. said no.',
+    result: 'eth lisbon winner',
+    buildTime: 'built in 48h',
+    year: '2021',
+    track: 'hackathons',
+    color: '#2d5ff5',
+    details: [
+      'winner with Tally & MetaCartel',
+      'Antler program, $95K offer declined',
+      '800+ community members across Contrib + MatosDAO',
+      '42 crypto bar meetups in stockholm',
+      'integrated Snapshot subgraph for multi-tool governance',
+    ],
   },
 ];
 

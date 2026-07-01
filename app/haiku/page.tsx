@@ -225,9 +225,16 @@ export default function HaikuPage() {
       >
         <h2 style={sectionTitleStyle}>$ tree --all</h2>
         <div style={projectTreeStyle}>
-          {PROJECTS.map((proj, idx) => (
+          {PROJECTS.map((proj, idx) => {
+            const firstOfTrack = idx === 0 || PROJECTS[idx - 1].track !== proj.track;
+            return (
+            <React.Fragment key={proj.slug}>
+              {firstOfTrack && (
+                <div style={{ color: '#888888', fontSize: '11px', margin: '16px 0 6px', letterSpacing: '0.04em' }}>
+                  # {proj.track}/
+                </div>
+              )}
             <motion.div
-              key={proj.slug}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.2, delay: 0.03 * idx }}
@@ -270,7 +277,9 @@ export default function HaikuPage() {
                 </div>
               )}
             </motion.div>
-          ))}
+            </React.Fragment>
+            );
+          })}
         </div>
       </motion.div>
 

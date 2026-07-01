@@ -1,8 +1,8 @@
 'use client';
 
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS, THOUGHTS, JOURNEY, COLORS, type Project } from '../shared/data';
+import { useRef, useState, useEffect, Fragment } from 'react';
+import { OSCAR, LINKS, STATS, PROJECTS, TRACKS, THOUGHTS, JOURNEY, COLORS, type Project } from '../shared/data';
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -245,10 +245,25 @@ export default function OpusPage() {
         </Reveal>
       </section>
 
-      {/* Projects */}
-      {PROJECTS.map((p) => (
-        <ProjectCard key={p.slug} project={p} max={max} />
-      ))}
+      {/* Projects, grouped by track */}
+      {PROJECTS.map((p, i) => {
+        const tr = (i === 0 || PROJECTS[i - 1].track !== p.track) ? TRACKS.find(t => t.id === p.track) : null;
+        return (
+          <Fragment key={p.slug}>
+            {tr && (
+              <section style={{ ...frame, minHeight: '38vh' }}>
+                <Reveal>
+                  <div style={{ textAlign: 'center' }}>
+                    <h2 style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 400, opacity: 0.9 }}>{tr.label}</h2>
+                    <p style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.4, marginTop: 12, letterSpacing: '0.12em' }}>{tr.blurb}</p>
+                  </div>
+                </Reveal>
+              </section>
+            )}
+            <ProjectCard project={p} max={max} />
+          </Fragment>
+        );
+      })}
 
       {/* Thoughts */}
       <section style={{ ...frame, minHeight: '120vh' }}>
