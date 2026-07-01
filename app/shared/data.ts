@@ -63,6 +63,7 @@ export const PROJECTS: Project[] = [
     year: '2026',
     category: 'agents',
     color: '#f2a039',
+    image: '/projects/relay.png',
     details: [
       'smart contract escrow between agents and humans',
       'world id verification for task acceptance',
@@ -79,6 +80,7 @@ export const PROJECTS: Project[] = [
     year: '2026',
     category: 'agents',
     color: '#2d5ff5',
+    image: '/projects/yieldbound.png',
   },
   {
     name: 'RECEIPT',
@@ -90,6 +92,7 @@ export const PROJECTS: Project[] = [
     year: '2026',
     category: 'agents',
     color: '#e84033',
+    image: '/projects/receipt.png',
   },
   {
     name: 'BriefMCP',
@@ -123,6 +126,18 @@ export const PROJECTS: Project[] = [
     year: '2026',
     category: 'agents',
     color: '#ff5c8a',
+  },
+  {
+    name: 'Loop',
+    slug: 'loop',
+    oneLiner: 'one magical event a week, picked for you',
+    story: 'reads your calendar, builds a persona from the past few months, then searches the web for the one niche event you\'d never find on your own. with consent, drops it straight into your calendar. real-time, nothing stored.',
+    result: 'live demo',
+    buildTime: 'nights',
+    year: '2026',
+    category: 'agents',
+    color: '#6a5cff',
+    image: '/projects/loop.png',
   },
 
   // ── 2025-26: ledger security ──────────────────────────────
