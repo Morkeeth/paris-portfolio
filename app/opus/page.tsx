@@ -116,6 +116,14 @@ function ProjectCard({ project, max }: { project: Project; max: boolean }) {
               </span>
             </div>
             <p style={{ fontSize: 15, lineHeight: 1.6, opacity: 0.6, fontWeight: 300 }}>{project.oneLiner}</p>
+            {max && project.image && (
+              <motion.img
+                src={project.image} alt={project.name}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                style={{ width: '100%', marginTop: 16, borderRadius: 10, border: `1px solid ${project.color}33`, display: 'block' }}
+              />
+            )}
             {max && project.story && (
               <motion.p
                 initial={{ opacity: 0, height: 0 }} animate={{ opacity: 0.5, height: 'auto' }}

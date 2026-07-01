@@ -48,6 +48,7 @@ export type Project = {
   category: 'agents' | 'music' | 'community' | 'security' | 'hackathon';
   color: string;
   details?: string[];
+  image?: string; // /projects/<slug>.png — real screenshot, optional
 };
 
 export const PROJECTS: Project[] = [
@@ -179,6 +180,7 @@ export const PROJECTS: Project[] = [
     year: '2022-24',
     category: 'music',
     color: '#f2a039',
+    image: '/projects/anotherblock.png',
     details: [
       'raised from J12, Swedish House Mafia, Inventure, Stride',
       'drops: Rihanna, The Weeknd, Michael Jackson, R3hab & Laidback Luke, Alan Walker, Offset & Metro Boomin',
@@ -241,6 +243,7 @@ export const PROJECTS: Project[] = [
     year: '2022',
     category: 'hackathon',
     color: '#9b6fc0',
+    image: '/projects/gates.png',
     details: [
       'Optimism: Governance and Community Infrastructure',
       'Worldcoin: Best Social App',
