@@ -88,7 +88,7 @@ export const PROJECTS: Project[] = [
     year: '2022-24',
     track: 'work',
     color: '#f2a039',
-    image: '/projects/anotherblock.png',
+    image: '/projects/anotherblock.jpg',
     details: [
       'raised from J12, Swedish House Mafia, Inventure, Stride',
       'drops: Rihanna, The Weeknd, Michael Jackson, R3hab & Laidback Luke, Alan Walker, Offset & Metro Boomin',
@@ -111,6 +111,7 @@ export const PROJECTS: Project[] = [
     year: '2017-20',
     track: 'work',
     color: '#3bb58f',
+    image: '/projects/etablera.jpg',
     details: [
       'co-founded creative/digital agency',
       '30+ clients from startups to government agencies',
@@ -221,7 +222,7 @@ export const PROJECTS: Project[] = [
     year: '2022',
     track: 'hackathons',
     color: '#9b6fc0',
-    image: '/projects/gates.png',
+    image: '/projects/gates.jpg',
     details: [
       'Optimism: Governance and Community Infrastructure',
       'Worldcoin: Best Social App',

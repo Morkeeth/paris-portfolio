@@ -1201,6 +1201,11 @@ export default function Home() {
               </motion.a>
             ))}
           </div>
+          <div style={{ marginTop: 28 }}>
+            <a href="/compare" className="mono" style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.4 }}>
+              same brief, four models — compare →
+            </a>
+          </div>
           <div style={{ marginTop: 56 }}>
             <TypedText
               text="morkeeth@paris:~$ open to interesting problems"
