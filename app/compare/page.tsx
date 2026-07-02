@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 
-const MODELS = [
+const MODELS: { id: string; name: string; desc: string; color: string; badge: string; external?: string }[] = [
   {
     id: 'fable',
     name: 'Fable 5',
@@ -15,9 +15,9 @@ const MODELS = [
   {
     id: 'opus',
     name: 'Opus 4',
-    desc: 'the original concept. minimalism to maximalism in its purest form. one thing at a time, sketch underlines, then color floods in. the idea before the decorations.',
+    desc: 'the magnum opus. an overture, three movements, every work an op. number, and the only page with the complete record. starts restrained, blooms into color when asked.',
     color: '#9b6fc0',
-    badge: 'the thinker',
+    badge: 'the composer',
   },
   {
     id: 'sonnet',
@@ -32,6 +32,14 @@ const MODELS = [
     desc: 'the fast one. terminal ui, brutalist, monospace everything. like SSHing into someone\'s server and finding their life story in a README.',
     color: '#1db954',
     badge: 'the minimalist',
+  },
+  {
+    id: 'legacy',
+    name: '2024 edition',
+    desc: 'before the models: one text file and a typewriter effect, written by hand. minimal surface, not a lot to judge. kept exactly as it was — the artifact this whole thing grew out of.',
+    color: '#8a877f',
+    badge: 'human, unassisted',
+    external: 'https://morkeeth-portfolio.vercel.app',
   },
 ];
 
@@ -88,7 +96,12 @@ export default function Compare() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Link href={`/${model.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link
+              href={model.external ?? `/${model.id}`}
+              target={model.external ? '_blank' : undefined}
+              rel={model.external ? 'noopener' : undefined}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               <motion.div
                 onMouseEnter={() => setHoveredId(model.id)}
                 onMouseLeave={() => setHoveredId(null)}
@@ -175,9 +188,9 @@ export default function Compare() {
           letterSpacing: '0.08em',
           lineHeight: 1.8,
         }}>
-          all four portfolios are real. none were edited after generation.
+          all four started from the same 30-line brief, one model each.
           <br />
-          the brief was 30 lines. the rest is each model's interpretation.
+          fable and opus have since been worked on like any living site. sonnet and haiku stand as generated.
         </p>
       </motion.div>
 
