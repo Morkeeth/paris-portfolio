@@ -1,8 +1,9 @@
 # Paris Portfolio
 
 **Owner:** Oscar Morkeeth
-**Live:** https://paris-portfolio-sigma.vercel.app
+**Live:** https://morkeeth.vercel.app (project domain, tracks production) · legacy alias: https://paris-portfolio-sigma.vercel.app
 **Repo:** github.com/Morkeeth/paris-portfolio
+**Legacy site (separate, do not touch):** https://morkeeth-portfolio.vercel.app — the 2024 typewriter site, kept as an artifact
 
 ## Stack
 
@@ -10,48 +11,26 @@
 - Vercel (region: cdg1 / Paris)
 - Static site — no database, no auth
 
-## Architecture
+## Architecture (V4 — multi-model on shared data)
 
-Single-page scrolling portfolio + one standalone page (/way).
+Four design variants render the same content from one data layer. Root redirects to `/fable` (the hero variant); `/compare` is the hub.
 
 ```
 app/
-  page.tsx              → Single-page portfolio (hero → story → terminal → connect)
-  way/page.tsx          → "The Way of Product" (7 verses, standalone)
-  opengraph-image.tsx   → Dynamic OG image (edge runtime)
-  icon.svg              → Favicon (lowercase "o")
-  layout.tsx            → Root layout, fonts, meta
-  globals.css           → Base styles, terminal animations
-
-components/
-  navigation/Navigation.tsx  → Back nav (only shows on /way)
-  terminal/Terminal.tsx      → Interactive CLI embedded in main page
-
-lib/
-  use-particles.ts     → Canvas particle animation hook (drift + vessel modes)
-  use-reveal.ts        → Scroll-triggered fade-in hook
-  terminal-commands.ts → Terminal command definitions
+  page.tsx              → redirect to /fable
+  fable/                → HERO variant: dark (#060606), full-bleed hero images, matisse accents
+  opus/ sonnet/ haiku/  → alternate design variants (same data)
+  compare/              → variant comparison hub
+  shared/data.ts        → SINGLE SOURCE OF TRUTH: bio, stats, projects, timeline, journey
+  opengraph-image.tsx   → OG/link-preview card (fable aesthetic)
+  layout.tsx            → fonts (JetBrains Mono, DM Sans, DM Serif Display), meta
+  icon.svg              → favicon
 ```
 
-## Design
+## Content rules
 
-- Single page, text-first, no images
-- Cream (#F0EEE6) background, dark (#333) text
-- JetBrains Mono (mono/UI) + Crimson Text (serif/body)
-- ASCII box-drawing art as section headers
-- Canvas particle animation (vessel on home/way, drift elsewhere)
-- Scroll-reveal fade-in per section
-- Respects prefers-reduced-motion
-
-## Sections (main page)
-
-1. Hero — ASCII name, title, tagline
-2. Intro — personal origin story
-3. Sweden 2017-2019 — Etablera, Shiba Creative, hackathons
-4. Silicon Valley 2019-2020 — Nordic Innovation House
-5. Web3 2020-2021 — Contrib, MetaCartel, ETH NYC
-6. anotherblock 2021-2023 — founding product, music rights
-7. Ledger 2023-now — staff PM, impact metrics
-8. The Way of Product — teaser + link to /way
-9. Terminal — interactive CLI
-10. Connect — @morkeeth on X
+- All copy lives in `app/shared/data.ts` — edit there, every variant updates
+- Tracks: Work (paid, real scope) / Agents (2026 nights) / Hackathons (competitive record)
+- 8 featured cards with real screenshots; full record in HACKATHON_TIMELINE
+- Prize framing: $115K+ = 39.05 ETH at current prices (hero counter + journey agree)
+- Oscar's voice: lowercase, specific numbers, dinner-party test, no hype

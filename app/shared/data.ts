@@ -352,7 +352,7 @@ export const JOURNEY = [
   { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum #1. nft safe launch finalist. gates.wtf.' },
   { year: '2022-24', place: 'stockholm / paris', chapter: 'music', summary: 'anotherblock. employee #4. head of product. rihanna, weeknd, michael jackson on-chain. 40K users, $2.1M volume. coinbase base launch partner. moved to paris.' },
   { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($51M prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 20M users.' },
-  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. relay, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $62.6K in prizes. 39 ETH.' },
+  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. relay, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $115K+ in prizes. 39 ETH.' },
 ];
 
 export const COLORS = {
