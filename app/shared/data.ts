@@ -43,7 +43,7 @@ export type Track = 'work' | 'agents' | 'hackathons';
 export const TRACKS: { id: Track; label: string; blurb: string }[] = [
   { id: 'work', label: 'Work', blurb: 'paid, owned, real scope' },
   { id: 'agents', label: 'Agents', blurb: '2026. five terminals, one brief, ship by morning' },
-  { id: 'hackathons', label: 'Hackathons', blurb: '16 events, proven under pressure' },
+  { id: 'hackathons', label: 'Hackathons', blurb: '16 competed. organized for 8,000. judged at microsoft hq.' },
 ];
 
 export type Project = {
@@ -117,6 +117,8 @@ export const PROJECTS: Project[] = [
     image: '/projects/etablera.jpg',
     details: [
       'co-founded creative/digital agency',
+      'organized hack for sweden, hack the crisis, hack for earth',
+      'stage for 400 people',
       '30+ clients from startups to government agencies',
       '4+ government contracts',
       'worked with Sana Labs',
@@ -124,6 +126,17 @@ export const PROJECTS: Project[] = [
       '200+ prototypes shipped by participants',
       'learned to shoot and edit video along the way',
     ],
+  },
+  {
+    name: 'Wave Radio',
+    slug: 'wave-radio',
+    oneLiner: 'a podcast about ai and shipping, recorded with friends',
+    story: '29 episodes on ai, wearables, and the optimal stack for people who build. paused when life got loud. revived june 2026 because the conversations were too good to leave dead.',
+    result: '29 episodes',
+    buildTime: 'ongoing',
+    year: '2024-26',
+    track: 'work',
+    color: '#8e2b3b',
   },
 
   // ══ AGENTS — 2026 side builds ════════════════════════════════
@@ -203,6 +216,18 @@ export const PROJECTS: Project[] = [
     year: '2026',
     track: 'agents',
     color: '#ff5c8a',
+  },
+  {
+    name: 'The OS',
+    slug: 'the-os',
+    featured: true,
+    oneLiner: 'a personal operating system run by agents. obsidian is the brain, i am the taste',
+    story: 'everything i do flows into one vault. agents read my messages, score 1,200 contacts, curate drafts against my own taste filter, and ship while i sleep. bagel delivers the brief at 8am. the system remembers so i can think.',
+    result: 'compounding daily',
+    buildTime: '6 months of nights',
+    year: '2026',
+    track: 'agents',
+    color: '#3bb58f',
   },
   {
     name: 'Loop',
@@ -322,6 +347,8 @@ export const PROJECTS: Project[] = [
 export const FEATURED = PROJECTS.filter((p) => p.featured);
 
 export const HACKATHON_TIMELINE = [
+  { date: '2018', name: 'SAS Hack', project: 'intent-based travel', prize: '', eth: '', ethPrice: '', bounties: 'first hackathon ever' },
+  { date: '2019', name: 'Gotham DLT', project: 'Tech for Good (judge)', prize: '', eth: '', ethPrice: '', bounties: 'judge at microsoft hq ny — first blockchain event, judge before builder' },
   { date: '2021-10', name: 'ETH Lisbon', project: 'Contrib', prize: '$13,200', eth: '3.00', ethPrice: '$4,132', bounties: 'Tally + MetaCartel winner' },
   { date: '2022-06', name: 'ETH NYC', project: 'NFT Safe Launch', prize: '$10,392', eth: '8.71', ethPrice: '$1,193', bounties: 'Finalist, Valist Best Use, UMA Silver' },
   { date: '2022-10', name: 'ETH Bogota', project: 'Gates.wtf', prize: '$14,169', eth: '10.85', ethPrice: '$1,323', bounties: '9 bounties: Optimism, Worldcoin, Coinbase x2, ENS x2, The Graph, Ceramic, Quicknode' },
@@ -339,6 +366,7 @@ export const HACKATHON_TIMELINE = [
 export const THOUGHTS = [
   'every agent demo looks amazing. then you ask who uses it tomorrow and the room goes quiet.',
   'agents sound confident regardless of quality.',
+  'briefmcp, receipt, helicon: agents that stop re-explaining, lying, and forgetting.',
   'product was better. distribution won.',
   'the best hack is knowing when to stop hacking.',
   'minimalism is where i am from. maximalism is where i live.',
@@ -346,7 +374,7 @@ export const THOUGHTS = [
 ];
 
 export const JOURNEY = [
-  { year: '2017-20', place: 'stockholm', chapter: 'community', summary: 'co-founded etablera. 88 to 8,000 participants. 30+ clients. digital agency. sana labs. learned how strangers become teams.' },
+  { year: '2017-20', place: 'stockholm', chapter: 'community', summary: 'co-founded etablera. 88 to 8,000 participants. 30+ clients. digital agency. sana labs. learned how strangers become teams. judged gotham dlt at microsoft hq before ever competing.' },
   { year: '2019', place: 'silicon valley', chapter: 'wallenberg', summary: 'wallenberg fellow at nordic innovation house. helped 180 companies navigate the US market. learned what happens when scandinavian politeness meets SF hustle.' },
   { year: '2021', place: 'lisbon', chapter: 'crypto', summary: 'won eth lisbon (contrib). founded matos dao. 42 crypto bars. 800+ community. said no to $95K from antler.' },
   { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum #1. nft safe launch finalist. gates.wtf.' },
