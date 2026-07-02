@@ -178,7 +178,7 @@ function TheRecord({ max }: { max: boolean }) {
           </div>
           <h2 style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2rem, 6vw, 3.2rem)', fontWeight: 400, marginBottom: 8 }}>the record</h2>
           <p style={{ fontSize: 13, opacity: 0.45, fontWeight: 300, marginBottom: 40, lineHeight: 1.7 }}>
-            every event, from the first hackathon to the last. the other pages show the highlights; this is the ledger.
+            the other pages show the highlights. this is the longer ledger — from the first hackathon in 2018 to now.
           </p>
         </Reveal>
         {HACKATHON_TIMELINE.map((r, i) => (
