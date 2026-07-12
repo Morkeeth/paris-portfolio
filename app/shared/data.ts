@@ -13,7 +13,7 @@ export const OSCAR = {
   coding: 'i was always the pitch guy. 16 hackathons explaining why something matters while someone else built it. ai closed the gap. now the nights look like this: five terminals, one brief, ship by morning.',
   mantra: 'what if it works out?',
   email: 'omorke@gmail.com',
-  bio: 'born in stockholm. lived in seoul and silicon valley. wallenberg fellow. two master\'s degrees in industrial engineering and entrepreneurship. co-founded a digital agency, ran product at a music startup, now protecting 20M users at ledger. hackathons became a sport.',
+  bio: 'born in stockholm. lived in seoul and silicon valley. wallenberg fellow. two master\'s degrees in industrial engineering and entrepreneurship. co-founded a digital agency, ran product at a music startup, now protecting 8M+ devices at ledger. hackathons became a sport.',
   selfDescription: 'i\'m the person in the room who asks "but who uses this tomorrow?" and then stays up building the answer.',
 };
 
@@ -27,8 +27,8 @@ export const LINKS = {
 export const STATS = {
   hackathonCount: 16,
   hackathonWins: 9,
-  prizes: '$115K+',
-  totalEthWon: '39.05 ETH',
+  prizes: '$188K+',
+  totalEthWon: '42 ETH',
   users: '40K',
   prevented: '$51M',
   terminals: 5,
@@ -68,8 +68,8 @@ export const PROJECTS: Project[] = [
     slug: 'ledger',
     featured: true,
     oneLiner: 'staff pm, core experience. hardware for when software becomes a commodity',
-    story: 'the thesis: when software is a commodity, the hardware is what protects you — your agent, your crypto, your digital identity. i run the core experience across btc, eth and sol, coordinating transaction check, clear signing and security research across six engineering teams. 20M users on the other side of every call.',
-    result: 'protecting 20M users',
+    story: 'the thesis: when software is a commodity, the hardware is what protects you — your agent, your crypto, your digital identity. i run the core experience across btc, eth and sol, coordinating transaction check, clear signing and security research across six engineering teams. 8M+ devices on the other side of every call.',
+    result: 'protecting 8M+ devices',
     buildTime: 'production',
     year: '2025-26',
     track: 'work',
@@ -161,7 +161,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     oneLiner: 'autonomous defi. spends yield, never principal',
     story: 'built at synthesis hackathon. gave an ai agent a treasury and one rule: spend the yield, never touch the principal. your money stays yours.',
-    result: '2nd / 646',
+    result: '2nd / 687',
     buildTime: 'built in 48h',
     year: '2026',
     track: 'agents',
@@ -174,7 +174,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     oneLiner: 'cryptographic proof agents did what they claimed',
     story: 'on-chain execution hashes. the problem: agents sound confident regardless of quality. you can\'t tell from the output. receipts are the only honest layer.',
-    result: 'ethglobal finalist',
+    result: 'top 20 / 468',
     buildTime: 'built in 36h',
     year: '2026',
     track: 'agents',
@@ -266,9 +266,9 @@ export const PROJECTS: Project[] = [
   {
     name: 'ArbiGates',
     slug: 'arbigates',
-    oneLiner: 'won arbitrum\'s first-ever hackathon',
+    oneLiner: 'partner golds at arbitrum\'s first-ever hackathon',
     story: 'quality-gating via livepeer streams and automated minting via chainlink. when users pass custom conditions, unlock higher quality streams or trigger mints.',
-    result: '#1 winner',
+    result: 'partner golds (~3rd overall)',
     buildTime: 'built in 48h',
     year: '2022',
     track: 'hackathons',
@@ -349,15 +349,15 @@ export const HACKATHON_TIMELINE = [
   { date: '2021-10', name: 'ETH Lisbon', project: 'Contrib', prize: '$13,200', eth: '3.00', ethPrice: '$4,132', bounties: 'Tally + MetaCartel winner' },
   { date: '2022-06', name: 'ETH NYC', project: 'NFT Safe Launch', prize: '$10,392', eth: '8.71', ethPrice: '$1,193', bounties: 'Finalist, Valist Best Use, UMA Silver' },
   { date: '2022-10', name: 'ETH Bogota', project: 'Gates.wtf', prize: '$14,169', eth: '10.85', ethPrice: '$1,323', bounties: '9 bounties: Optimism, Worldcoin, Coinbase x2, ENS x2, The Graph, Ceramic, Quicknode' },
-  { date: '2022-10', name: 'Arbitrum #1', project: 'ArbiGates', prize: '$13,500', eth: '10.34', ethPrice: '$1,306', bounties: '#1 Winner' },
+  { date: '2022-10', name: 'Arbitrum', project: 'ArbiGates', prize: '$13,500', eth: '10.34', ethPrice: '$1,306', bounties: 'partner golds (~3rd overall)' },
   { date: '2023-03', name: 'ETH Denver', project: 'Swosh.cash', prize: '$3,500', eth: '2.24', ethPrice: '$1,561', bounties: 'Scroll + Lens' },
   { date: '2023-07', name: 'ETH Paris', project: 'Headstart', prize: '$800', eth: '0.48', ethPrice: '$1,652', bounties: '' },
   { date: '2023-11', name: 'ETH Istanbul', project: 'AAtomato', prize: '$7,056', eth: '3.43', ethPrice: '$2,022', bounties: 'Unlimit 1st, Aave DAO Best Tooling' },
   { date: '2025-11', name: 'Tech Europe', project: 'Loop', prize: '', eth: '', ethPrice: '', bounties: '' },
   { date: '2026-01', name: 'Paris Innov\'Hack', project: 'BriefMCP', prize: '', eth: '', ethPrice: '', bounties: 'Finalist / 50 teams' },
-  { date: '2026-03', name: 'Synthesis', project: 'Yieldbound', prize: '$1,000', eth: '', ethPrice: '', bounties: '2nd / 646' },
+  { date: '2026-03', name: 'Synthesis', project: 'Yieldbound', prize: '$1,000', eth: '', ethPrice: '', bounties: '2nd / 687' },
   { date: '2026-04', name: 'World Build 3', project: 'RELAY', prize: '$2,500', eth: '', ethPrice: '', bounties: '2nd / 500 teams' },
-  { date: '2026-05', name: 'ETH Open Agents', project: 'RECEIPT', prize: '', eth: '', ethPrice: '', bounties: 'ETHGlobal finalist' },
+  { date: '2026-05', name: 'ETH Open Agents', project: 'RECEIPT', prize: '', eth: '', ethPrice: '', bounties: 'top 20 / 468' },
 ];
 
 export const THOUGHTS = [
@@ -374,10 +374,10 @@ export const JOURNEY = [
   { year: '2017-20', place: 'stockholm', chapter: 'community', summary: 'co-founded etablera. 88 to 8,000 participants. 30+ clients. digital agency. sana labs. learned how strangers become teams. judged gotham dlt at microsoft hq before ever competing.' },
   { year: '2019', place: 'silicon valley', chapter: 'wallenberg', summary: 'wallenberg fellow at nordic innovation house. helped 180 companies navigate the US market. learned what happens when scandinavian politeness meets SF hustle.' },
   { year: '2021', place: 'lisbon', chapter: 'crypto', summary: 'won eth lisbon (contrib). founded matos dao. 42 crypto bars. 800+ community. said no to $95K from antler.' },
-  { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum #1. nft safe launch finalist. gates.wtf.' },
+  { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum partner golds. nft safe launch finalist. gates.wtf.' },
   { year: '2022-24', place: 'stockholm / paris', chapter: 'music', summary: 'anotherblock. employee #4. head of product. rihanna, weeknd, michael jackson on-chain. 40K users, $2.1M volume. coinbase base launch partner. moved to paris.' },
-  { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($51M prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 20M users.' },
-  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. relay, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $115K+ in prizes. 39 ETH.' },
+  { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($51M prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 8M+ devices.' },
+  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. relay, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $188K+ in prizes. 42 ETH.' },
 ];
 
 export const COLORS = {
