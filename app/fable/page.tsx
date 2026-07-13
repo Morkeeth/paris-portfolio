@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, COLORS, type Track } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS, type Track } from '../shared/data';
 
 // ════════════════════════════════════════════════════════════
 //  data — single source of truth lives in ../shared/data
@@ -996,6 +996,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── the stack: what i've become ── */}
+      <section className="frame">
+        <div style={{ maxWidth: 560, width: '100%' }}>
+          <Reveal>
+            <ChapterLabel text={`chapter 06 / the stack · present`} />
+            <h2 className="serif chapter-title">{STACK_INTRO.title}.</h2>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="body-text" style={{ marginTop: 22 }}>{STACK_INTRO.line}</p>
+          </Reveal>
+          <div style={{ marginTop: 38 }}>
+            {AGENTIC_STACK.map((s, i) => {
+              const accents = [COLORS.teal, COLORS.pink, COLORS.orange, COLORS.green];
+              const c = accents[i % accents.length];
+              return (
+                <Reveal key={s.key} delay={0.3 + i * 0.12}>
+                  <div style={{ display: 'flex', gap: 14, alignItems: 'baseline', padding: '15px 0', borderBottom: '1px solid rgba(0,0,0,0.08)', flexWrap: 'wrap' }}>
+                    <span style={{ width: 9, height: 9, borderRadius: '50%', background: c, flexShrink: 0, transform: 'translateY(-1px)' }} />
+                    <span className="serif" style={{ fontSize: 'clamp(1.15rem, 3vw, 1.7rem)', color: c }}>{s.layer}</span>
+                    <span className="mono" style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', opacity: 0.55 }}>{s.verb}</span>
+                    <span className="body-text" style={{ fontSize: 13.5, opacity: 0.62, flexBasis: '100%', marginLeft: 23 }}>{s.line}</span>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ── projects, one per frame, grouped by era ── */}
       {FEATURED.map((p, i) => {
         const newCategory = i === 0 || FEATURED[i - 1].track !== p.track;
@@ -1096,6 +1125,64 @@ export default function Home() {
               </p>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ── the winnings, drawn roughly ── */}
+      <section className="frame frame-short">
+        <div style={{ maxWidth: 640, width: '100%' }}>
+          <Reveal>
+            <ChapterLabel text="the winnings / drawn roughly" />
+            <h2 className="serif chapter-title">what the nights paid.</h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <svg viewBox="0 0 640 210" style={{ width: '100%', marginTop: 30, overflow: 'visible' }}>
+              {(() => {
+                const pts = RECORD_POINTS;
+                const maxUsd = Math.max(...pts.map((p) => p.usd));
+                const W = 640, H = 165, pad = 16;
+                const xy = pts.map((p, i) => ({
+                  x: pad + (i * (W - pad * 2)) / (pts.length - 1),
+                  y: p.usd ? H - (p.usd / maxUsd) * (H - 34) : H,
+                  p,
+                }));
+                const d = xy.map((q, i) => `${i === 0 ? 'M' : 'L'}${q.x.toFixed(1)} ${q.y.toFixed(1)}`).join(' ');
+                return (
+                  <>
+                    <line x1={pad} y1={H} x2={W - pad} y2={H} stroke="rgba(255,255,255,0.14)" strokeWidth="1.5" strokeLinecap="round" />
+                    <motion.path
+                      d={d} fill="none" stroke="rgba(240,237,232,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                      initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+                      transition={{ duration: 1.6, ease: 'easeInOut' }}
+                    />
+                    {xy.map((q, i) => {
+                      const c = PALETTE[i % PALETTE.length];
+                      const r = q.p.usd ? 3.5 + (q.p.usd / maxUsd) * 9 : 2.5;
+                      return (
+                        <motion.circle
+                          key={q.p.date} cx={q.x} cy={q.y} r={r}
+                          fill={q.p.usd ? c : 'none'} stroke={c} strokeWidth={q.p.usd ? 0 : 1.5}
+                          initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.5 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                          style={{ transformOrigin: `${q.x}px ${q.y}px` }}
+                        />
+                      );
+                    })}
+                    {xy.map((q) => (
+                      <text key={`t-${q.p.date}`} x={q.x} y={H + 16} fontSize="8" fill="rgba(240,237,232,0.35)" textAnchor="middle" fontFamily="var(--font-jetbrains-mono)">
+                        &apos;{q.p.year.slice(2)}
+                      </text>
+                    ))}
+                  </>
+                );
+              })()}
+            </svg>
+          </Reveal>
+          <Reveal delay={0.4}>
+            <p className="body-text" style={{ marginTop: 26, fontSize: 14, opacity: 0.6 }}>
+              the tall one is bogotá. the flat stretch after is on purpose — in 2026 i stopped counting purses and started shipping.
+            </p>
+          </Reveal>
         </div>
       </section>
 

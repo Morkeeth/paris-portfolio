@@ -215,6 +215,17 @@ export const PROJECTS: Project[] = [
     color: '#ff5c8a',
   },
   {
+    name: 'Hermes',
+    slug: 'hermes',
+    oneLiner: 'the delivery lane. bagel thinks, hermes ships',
+    story: 'grok-powered agent on the vps, sibling to bagel. takes what the system writes and gets it out the door — its own model, its own memory, its own spend.',
+    result: 'running on the vps',
+    buildTime: 'nights',
+    year: '2026',
+    track: 'agents',
+    color: '#c8963a',
+  },
+  {
     name: 'The OS',
     slug: 'the-os',
     featured: true,
@@ -360,6 +371,18 @@ export const HACKATHON_TIMELINE = [
   { date: '2026-05', name: 'ETH Open Agents', project: 'RECEIPT', prize: '', eth: '', ethPrice: '', bounties: 'top 20 / 468' },
 ];
 
+// derived: the competitive record as chartable points. one per event, 2018 → now.
+// zero-prize events (first hackathon, judge year, agentic era) are real and kept —
+// the shape IS the story: prize-hunting years → building years.
+export const RECORD_POINTS = HACKATHON_TIMELINE.map((r) => ({
+  year: r.date.slice(0, 4),
+  date: r.date,
+  name: r.name,
+  project: r.project,
+  usd: parseInt((r.prize || '').replace(/[^0-9]/g, ''), 10) || 0,
+  eth: parseFloat(r.eth || '0') || 0,
+}));
+
 export const THOUGHTS = [
   'every agent demo looks amazing. then you ask who uses it tomorrow and the room goes quiet.',
   'agents sound confident regardless of quality.',
@@ -372,12 +395,29 @@ export const THOUGHTS = [
 
 export const JOURNEY = [
   { year: '2017-20', place: 'stockholm', chapter: 'community', summary: 'co-founded etablera. 88 to 8,000 participants. 30+ clients. digital agency. sana labs. learned how strangers become teams. judged gotham dlt at microsoft hq before ever competing.' },
-  { year: '2019', place: 'silicon valley', chapter: 'wallenberg', summary: 'wallenberg fellow at nordic innovation house. helped 180 companies navigate the US market. learned what happens when scandinavian politeness meets SF hustle.' },
+  { year: '2019', place: 'silicon valley', chapter: 'wallenberg', summary: 'wallenberg fellow at nordic innovation house. nvidia-sponsored ai hackathon. helped 180 companies navigate the US market. learned what happens when scandinavian politeness meets SF hustle.' },
   { year: '2021', place: 'lisbon', chapter: 'crypto', summary: 'won eth lisbon (contrib). founded matos dao. 42 crypto bars. 800+ community. said no to $95K from antler.' },
   { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum partner golds. nft safe launch finalist. gates.wtf.' },
   { year: '2022-24', place: 'stockholm / paris', chapter: 'music', summary: 'anotherblock. employee #4. head of product. rihanna, weeknd, michael jackson on-chain. 40K users, $2.1M volume. coinbase base launch partner. moved to paris.' },
   { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($51M prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 8M+ devices.' },
   { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. relay, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $188K+ in prizes. 42 ETH.' },
+];
+
+// ════════════════════════════════════════════════════════════
+//  THE STACK — the living system. the "what i've become" crescendo.
+//  same four layers, one pipeline; rendered in each model's own voice.
+// ════════════════════════════════════════════════════════════
+export const STACK_INTRO = {
+  kicker: 'the stack',
+  title: 'what i\'ve become',
+  line: 'four agents, one system. it thinks, runs, ships, and remembers — while i sleep.',
+};
+
+export const AGENTIC_STACK = [
+  { key: 'brain',  layer: 'the second brain', sub: 'obsidian',        verb: 'thinks',    line: 'every message, note and decision flows into one vault. the memory, so i can think.' },
+  { key: 'claws',  layer: 'open claws / bagel', sub: 'hetzner',       verb: 'runs',      line: 'the infrastructure the agent lives on. a server in germany with its own cron jobs and its own opinions.' },
+  { key: 'hermes', layer: 'hermes',           sub: 'grok · vps',      verb: 'ships',     line: 'the delivery lane. takes what the system writes and gets it out the door.' },
+  { key: 'radar',  layer: 'people radar',     sub: 'local sqlite',    verb: 'remembers', line: 'scores 1,200+ contacts across every channel, every 6 hours. no api, no cloud.' },
 ];
 
 export const COLORS = {

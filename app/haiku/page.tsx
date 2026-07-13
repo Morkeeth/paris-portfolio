@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, COLORS, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS } from '../shared/data';
 
 const containerStyle: React.CSSProperties = {
   fontFamily: 'var(--font-jetbrains-mono)',
@@ -178,7 +178,14 @@ export default function HaikuPage() {
         transition={{ duration: 0.3 }}
         style={headerStyle}
       >
-        <h1 style={nameStyle}>{OSCAR.name}</h1>
+        <h1 style={nameStyle}>
+          {OSCAR.name}
+          <motion.span
+            animate={{ opacity: [1, 1, 0, 0] }}
+            transition={{ repeat: Infinity, duration: 1.06, ease: 'linear', times: [0, 0.5, 0.5, 1] }}
+            style={{ marginLeft: 5, color: '#000000' }}
+          >▋</motion.span>
+        </h1>
         <p style={taglineStyle}>{OSCAR.location}. {OSCAR.tagline}</p>
       </motion.div>
 
@@ -212,7 +219,7 @@ export default function HaikuPage() {
           </div>
           <div style={statBlockStyle}>
             <div style={statNumberStyle}>{STATS.etableraPeak}</div>
-            <div style={statLabelStyle}>estabelera peak</div>
+            <div style={statLabelStyle}>etablera peak</div>
           </div>
         </div>
       </motion.div>
@@ -286,6 +293,37 @@ export default function HaikuPage() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.25 }}
+        style={sectionStyle}
+      >
+        <h2 style={sectionTitleStyle}>$ stack --status</h2>
+        <div style={{ fontSize: '11px', color: '#888888', marginBottom: '14px', marginLeft: '10px' }}>
+          # {STACK_INTRO.title} — {AGENTIC_STACK.length} agents, one system
+        </div>
+        <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: '12px' }}>
+          {AGENTIC_STACK.map((s, idx) => (
+            <motion.div
+              key={s.key}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2, delay: 0.04 * idx }}
+              style={{ display: 'flex', alignItems: 'baseline', gap: '8px', padding: '7px 12px', marginBottom: '2px' }}
+            >
+              <span style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>{s.layer}</span>
+              <span style={{ color: '#999999', fontSize: '10px', whiteSpace: 'nowrap' }}>{s.sub}</span>
+              <span style={{ flex: 1, borderBottom: '1px dotted #cccccc', transform: 'translateY(-3px)', minWidth: '20px' }} />
+              <span style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>{s.verb}</span>
+            </motion.div>
+          ))}
+        </div>
+        <div style={{ fontSize: '11px', color: '#555555', marginTop: '12px', marginLeft: '12px', lineHeight: '1.5' }}>
+          // {STACK_INTRO.line}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
         style={sectionStyle}
       >
@@ -305,6 +343,36 @@ export default function HaikuPage() {
             </motion.li>
           ))}
         </ul>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.35 }}
+        style={sectionStyle}
+      >
+        <h2 style={sectionTitleStyle}>$ ./record --plot</h2>
+        <div style={{ fontSize: '11px', color: '#888888', marginBottom: '12px', marginLeft: '10px' }}>
+          # prize won per event, 2018 → now
+        </div>
+        <div style={{ overflowX: 'auto' }}>
+          <pre style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: '12px', lineHeight: '1.7', margin: 0, color: '#000000' }}>
+            {(() => {
+              const maxUsd = Math.max(...RECORD_POINTS.map((p) => p.usd));
+              return RECORD_POINTS.map((p) => {
+                const n = p.usd ? Math.max(1, Math.round((p.usd / maxUsd) * 22)) : 0;
+                const bar = n ? '█'.repeat(n) : '·';
+                const label = (`'${p.year.slice(2)} ${p.name.toLowerCase()}`).padEnd(17).slice(0, 17);
+                const amt = p.usd ? `$${p.usd.toLocaleString('en-US')}` : '—';
+                const peak = p.usd === maxUsd ? '  ← peak' : '';
+                return `${label} ${bar.padEnd(22)} ${amt}${peak}`;
+              }).join('\n');
+            })()}
+          </pre>
+        </div>
+        <div style={{ fontSize: '11px', color: '#555555', marginTop: '12px', marginLeft: '10px', lineHeight: '1.5' }}>
+          // · = ran, no purse. the bars stop in 2023; 2026 i stopped prize-hunting and started shipping.
+        </div>
       </motion.div>
 
       <motion.div

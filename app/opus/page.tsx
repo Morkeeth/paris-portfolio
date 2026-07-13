@@ -10,7 +10,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, HACKATHON_TIMELINE, COLORS, type Project } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, HACKATHON_TIMELINE, RECORD_POINTS, AGENTIC_STACK, STACK_INTRO, COLORS, type Project } from '../shared/data';
 
 const C = {
   bg: '#050505', fg: '#f0ede8', dim: '#706e68', faint: '#2a2a28',
@@ -45,6 +45,26 @@ function SketchLine({ width = 180, delay = 0.4 }: { width?: number; delay?: numb
       )}
     </svg>
   );
+}
+
+// ticking numbers — the hero stats count up when they enter view (crescendo).
+function Count({ to, prefix = '', suffix = '' }: { to: number; prefix?: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-10%' });
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let raf = 0; const start = performance.now(); const dur = 1400;
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setN(Math.round(eased * to));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, to]);
+  return <span ref={ref}>{prefix}{n}{suffix}</span>;
 }
 
 function Typed({ text, delay = 0 }: { text: string; delay?: number }) {
@@ -164,6 +184,52 @@ function WorkPlate({ project, op, max }: { project: Project; op: number; max: bo
   );
 }
 
+// the record, plotted — an engraved plate. prize $ per event, 2018 → now.
+// hollow ticks are the zero-prize events (first hackathon, judge year, the building years).
+function OpusPlot({ max }: { max: boolean }) {
+  const accent = max ? COLORS.orange : C.gold;
+  const pts = RECORD_POINTS;
+  const maxUsd = Math.max(...pts.map((p) => p.usd));
+  const W = 640, H = 150, pad = 10;
+  const bw = (W - pad * 2) / pts.length;
+  return (
+    <Reveal>
+      <div style={{ marginBottom: 30, overflowX: 'auto' }}>
+        <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: accent, opacity: 0.8, marginBottom: 12 }}>
+          plate i — prize won per event
+        </div>
+        <svg viewBox={`0 0 ${W} ${H + 30}`} style={{ width: '100%', minWidth: 500, display: 'block' }}>
+          <line x1={pad} y1={H} x2={W - pad} y2={H} stroke={C.faint} strokeWidth="1" />
+          {pts.map((p, i) => {
+            const bh = p.usd ? (p.usd / maxUsd) * (H - 18) : 0;
+            const x = pad + i * bw + bw * 0.26;
+            const w = bw * 0.48;
+            return (
+              <g key={p.date}>
+                {p.usd > 0 ? (
+                  <motion.rect
+                    x={x} width={w} rx={1.5} fill={accent} opacity={0.85}
+                    initial={{ height: 0, y: H }} whileInView={{ height: bh, y: H - bh }} viewport={{ once: true }}
+                    transition={{ duration: 0.9, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                ) : (
+                  <circle cx={x + w / 2} cy={H} r={2.5} fill="none" stroke={C.dim} strokeWidth="1" />
+                )}
+                <text x={x + w / 2} y={H + 13} fontSize="7" fill={C.dim} textAnchor="middle" fontFamily="var(--font-jetbrains-mono)">
+                  &apos;{p.year.slice(2)}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+        <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, opacity: 0.4, marginTop: 8, lineHeight: 1.6 }}>
+          bars = prize at award time · ○ = ran but no purse (2018 first-ever · 2019 judged · 2026 the building years)
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 // The appendix: the complete record, rendered ONLY here.
 function TheRecord({ max }: { max: boolean }) {
   const accent = max ? COLORS.orange : C.gold;
@@ -177,10 +243,11 @@ function TheRecord({ max }: { max: boolean }) {
             appendix
           </div>
           <h2 style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2rem, 6vw, 3.2rem)', fontWeight: 400, marginBottom: 8 }}>the record</h2>
-          <p style={{ fontSize: 13, opacity: 0.45, fontWeight: 300, marginBottom: 40, lineHeight: 1.7 }}>
-            the other pages show the highlights. this is the longer ledger — from the first hackathon in 2018 to now.
+          <p style={{ fontSize: 13, opacity: 0.45, fontWeight: 300, marginBottom: 34, lineHeight: 1.7 }}>
+            the other pages show the highlights. this is the longer record — from the first hackathon in 2018 to now.
           </p>
         </Reveal>
+        <OpusPlot max={max} />
         {HACKATHON_TIMELINE.map((r, i) => (
           <Reveal key={`${r.date}-${r.name}`} delay={Math.min(i * 0.05, 0.5)}>
             <div style={{ display: 'flex', gap: 18, padding: '14px 0', borderBottom: `1px solid ${C.faint}`, alignItems: 'baseline', flexWrap: 'wrap' }}>
@@ -203,6 +270,44 @@ function TheRecord({ max }: { max: boolean }) {
             ${Math.round(totalUsd / 1000)}K at award time · {STATS.totalEthWon} won · {STATS.prizes} at today&apos;s prices
           </div>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// the crescendo — the living system, rendered as an ensemble on a staff.
+function TheStack({ max }: { max: boolean }) {
+  const accent = max ? COLORS.orange : C.gold;
+  const voiceColors = [COLORS.teal, COLORS.pink, C.gold, COLORS.green];
+  return (
+    <section style={{ ...frame, minHeight: '100vh', alignItems: 'flex-start', paddingTop: '14vh' }}>
+      <div style={{ maxWidth: 640, width: '100%' }}>
+        <Reveal>
+          <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: accent, marginBottom: 10 }}>
+            crescendo — {STACK_INTRO.kicker}
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2rem, 6vw, 3.4rem)', fontWeight: 400, marginBottom: 8 }}>{STACK_INTRO.title}</h2>
+          <p style={{ fontSize: 14, opacity: 0.5, fontWeight: 300, marginBottom: 44, lineHeight: 1.7, maxWidth: 460 }}>{STACK_INTRO.line}</p>
+        </Reveal>
+        {/* the staff: a brace down the left, one voice per line */}
+        <div style={{ borderLeft: `1px solid ${max ? accent : C.faint}`, paddingLeft: 26 }}>
+          {AGENTIC_STACK.map((s, i) => {
+            const vc = max ? voiceColors[i % voiceColors.length] : C.gold;
+            return (
+              <Reveal key={s.key} delay={Math.min(i * 0.12, 0.5)}>
+                <div style={{ position: 'relative', paddingBottom: 30, marginBottom: 2 }}>
+                  <span style={{ position: 'absolute', left: -30, top: 9, width: 7, height: 7, borderRadius: '50%', background: vc, boxShadow: max ? `0 0 0 4px ${vc}22` : 'none', transition: 'all 0.8s' }} />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
+                    <span style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(1.3rem, 3.4vw, 1.9rem)', color: max ? vc : 'inherit', transition: 'color 0.8s' }}>{s.layer}</span>
+                    <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: vc, opacity: 0.9 }}>{s.verb}</span>
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, opacity: 0.4, letterSpacing: '0.08em', marginTop: 3 }}>{s.sub}</div>
+                  <p style={{ fontSize: 13.5, opacity: 0.55, fontWeight: 300, marginTop: 8, lineHeight: 1.7 }}>{s.line}</p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -284,11 +389,18 @@ export default function OpusPage() {
       <section style={frame}>
         <Reveal>
           <div style={{ display: 'flex', gap: 'clamp(36px, 7vw, 72px)', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {[[String(STATS.hackathonWins), 'wins'], [STATS.prizes, 'in prizes'], [STATS.users, 'users'], [STATS.prevented, 'protected']].map(([n, l], i) => (
-              <Reveal key={l} delay={i * 0.15}>
+            {([
+              { to: STATS.hackathonWins, prefix: '', suffix: '', l: 'wins' },
+              { to: 188, prefix: '$', suffix: 'K+', l: 'in prizes' },
+              { to: 40, prefix: '', suffix: 'K', l: 'users' },
+              { to: 51, prefix: '$', suffix: 'M', l: 'protected' },
+            ]).map((s, i) => (
+              <Reveal key={s.l} delay={i * 0.15}>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2.2rem, 7vw, 4rem)', lineHeight: 1 }}>{n}</div>
-                  <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.4, marginTop: 10, letterSpacing: '0.1em', textTransform: 'uppercase' as const }}>{l}</div>
+                  <div style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2.2rem, 7vw, 4rem)', lineHeight: 1 }}>
+                    <Count to={s.to} prefix={s.prefix} suffix={s.suffix} />
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.4, marginTop: 10, letterSpacing: '0.1em', textTransform: 'uppercase' as const }}>{s.l}</div>
                 </div>
               </Reveal>
             ))}
@@ -333,6 +445,9 @@ export default function OpusPage() {
           {m.works.map(p => { opCounter += 1; return <WorkPlate key={p.slug} project={p} op={opCounter} max={max} />; })}
         </Fragment>
       ))}
+
+      {/* crescendo: the living system */}
+      <TheStack max={max} />
 
       {/* appendix: the complete record */}
       <TheRecord max={max} />

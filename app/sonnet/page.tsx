@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
+import { OSCAR, LINKS, STATS, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, JOURNEY, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS } from '../shared/data';
 
 // ─────────────────────────────────────────────────────────────
 //  palette — ink on paper, editorial cool
@@ -42,7 +42,7 @@ const PROJECTS = RAW_PROJECTS.filter((p) => p.featured).map((p) => ({
 
 // ledger section stats derived from shared data
 const LEDGER_WORK = [
-  { kpi: `$${STATS.prevented}`, label: 'prevented losses',       sub: 'blockaid integration'   },
+  { kpi: STATS.prevented,        label: 'prevented losses',       sub: 'blockaid integration'   },
   { kpi: '2h',                   label: 'chain assessments',      sub: 'was two weeks'          },
   { kpi: STATS.users,            label: 'users at anotherblock',  sub: '0 to peak'              },
 ];
@@ -656,7 +656,7 @@ export default function SonnetPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1px', background: C.rule, border: `1px solid ${C.rule}` }}>
           {[
             { n: STATS.hackathonWins, pre: '',   suf: '',  label: 'hackathon wins'   },
-            { n: 115,                 pre: '$', suf: 'k', label: 'in prizes'         },
+            { n: 188,                 pre: '$', suf: 'k', label: 'in prizes'         },
             { n: Number(STATS.users.replace('K','')) || 40, pre: '', suf: 'k', label: 'users shipped to' },
             { n: 51,                  pre: '$', suf: 'm', label: 'losses prevented'  },
           ].map((m, i) => (
@@ -685,6 +685,62 @@ export default function SonnetPage() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      <div style={section}><RuleLight /></div>
+
+      {/* ── figure: the record over time ── */}
+      <section style={{ ...section, padding: 'clamp(32px,5vh,64px) 32px' }}>
+        <Reveal>
+          <div style={{ borderTop: `1px solid ${C.rule}`, borderBottom: `1px solid ${C.rule}`, padding: '8px 0', marginBottom: 24, display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: C.subtle }}>
+            <span>fig. 1 — the record, 2018–2026</span>
+            <span>prize $ / event</span>
+          </div>
+        </Reveal>
+        <Reveal>
+          <div style={{ overflowX: 'auto' }}>
+            <svg viewBox="0 0 640 172" style={{ width: '100%', minWidth: 520, display: 'block' }}>
+              {(() => {
+                const pts = RECORD_POINTS;
+                const maxUsd = Math.max(...pts.map((p) => p.usd));
+                const W = 640, H = 140, padX = 8;
+                const bw = (W - padX * 2) / pts.length;
+                return (
+                  <>
+                    <line x1={padX} y1={H} x2={W - padX} y2={H} stroke={C.subtle} strokeWidth="0.75" opacity={0.5} />
+                    {pts.map((p, i) => {
+                      const bh = p.usd ? (p.usd / maxUsd) * (H - 20) : 0;
+                      const x = padX + i * bw + bw * 0.34;
+                      const w = bw * 0.32;
+                      const cx = x + w / 2;
+                      return (
+                        <g key={p.date}>
+                          {p.usd > 0 ? (
+                            <motion.rect
+                              x={x} width={w} fill={C.accent}
+                              initial={{ height: 0, y: H }} whileInView={{ height: bh, y: H - bh }} viewport={{ once: true }}
+                              transition={{ duration: 0.8, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                            />
+                          ) : (
+                            <line x1={cx} y1={H - 5} x2={cx} y2={H} stroke={C.subtle} strokeWidth="0.75" />
+                          )}
+                          <text x={cx} y={H + 13} fontSize="7.5" fill={C.subtle} textAnchor="middle" fontFamily="var(--font-jetbrains-mono), monospace" opacity={0.7}>
+                            &apos;{p.year.slice(2)}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </>
+                );
+              })()}
+            </svg>
+          </div>
+        </Reveal>
+        <Reveal>
+          <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 12.5, color: C.subtle, opacity: 0.65, marginTop: 16, maxWidth: 540, lineHeight: 1.65 }}>
+            the purse peaked at eth bogotá, 2022. the short ticks are events with no prize — the first hackathon, the judging year, and 2026, when the work turned from winning to shipping.
+          </p>
+        </Reveal>
       </section>
 
       <div style={section}><RuleLight /></div>
@@ -884,6 +940,61 @@ export default function SonnetPage() {
       </section>
 
       <div style={section}><RuleLight /></div>
+
+      {/* ── the stack (feature) ── */}
+      <section id="stack" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
+        <Reveal>
+          <div style={{
+            borderTop: `2px solid ${C.fg}`,
+            borderBottom: `1px solid ${C.rule}`,
+            paddingTop: 18, paddingBottom: 6, marginBottom: 28,
+            display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 12,
+          }}>
+            <span style={{ fontFamily: 'var(--font-dm-serif), Georgia, serif', fontSize: 'clamp(1.4rem, 4vw, 2.2rem)', color: C.fg }}>
+              {STACK_INTRO.title}
+            </span>
+            <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.subtle }}>
+              feature — {STACK_INTRO.kicker}
+            </span>
+          </div>
+        </Reveal>
+        <Reveal>
+          <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 14, color: C.subtle, lineHeight: 1.7, maxWidth: 520, marginBottom: 34 }}>
+            {STACK_INTRO.line}
+          </p>
+        </Reveal>
+        {AGENTIC_STACK.map((s, i) => (
+          <Reveal key={s.key} delay={i * 0.06}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '0.5fr 3fr 5fr 1.5fr',
+              gap: '0 24px',
+              alignItems: 'baseline',
+              padding: '16px 0',
+              borderTop: `1px solid ${C.rule}`,
+            }}>
+              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10, color: C.subtle, opacity: 0.5 }}>
+                {pad(i + 1)}
+              </div>
+              <div>
+                <div style={{ fontFamily: 'var(--font-dm-serif), Georgia, serif', fontSize: 'clamp(1rem, 2.2vw, 1.3rem)', color: C.accent, letterSpacing: '-0.01em' }}>
+                  {s.layer}
+                </div>
+                <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, color: C.subtle, opacity: 0.55, letterSpacing: '0.08em', marginTop: 4 }}>
+                  {s.sub}
+                </div>
+              </div>
+              <div style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 13, color: C.subtle, lineHeight: 1.55 }}>
+                {s.line}
+              </div>
+              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 11, color: C.fg, letterSpacing: '0.1em', textAlign: 'right', textTransform: 'uppercase' }}>
+                {s.verb}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+        <div style={{ borderTop: `1px solid ${C.rule}` }} />
+      </section>
 
       {/* ── journey / timeline ── */}
       <section id="journey" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
