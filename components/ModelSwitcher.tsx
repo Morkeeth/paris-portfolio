@@ -12,9 +12,9 @@ import { usePathname } from 'next/navigation';
 
 const MODELS = [
   { slug: 'fable', label: 'fable' },
-  { slug: 'haiku', label: 'haiku' },
-  { slug: 'sonnet', label: 'sonnet' },
   { slug: 'opus', label: 'opus' },
+  { slug: 'sonnet', label: 'sonnet' },
+  { slug: 'haiku', label: 'haiku' },
 ];
 
 export default function ModelSwitcher() {

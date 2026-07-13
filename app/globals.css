@@ -42,3 +42,14 @@
   --font-serif: var(--font-dm-serif);
   --font-mono: var(--font-jetbrains-mono);
 }
+
+/* Portfolio mobile density (Oscar, Jul 13): the model pages use full-viewport
+   (100vh/90vh/…) sections for desktop drama, which means one screen of scroll
+   per section on mobile before the actual work. On small screens, collapse
+   those viewport-height sections to content height so the projects hit fast.
+   Desktop keeps the full-height cinematics untouched. */
+@media (max-width: 767px) {
+  main section[style*="vh"] {
+    min-height: auto !important;
+  }
+}
