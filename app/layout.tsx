@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
+import ModelSwitcher from "../components/ModelSwitcher";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -47,7 +48,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="smooth-scroll">
       <body className={`${jetbrainsMono.variable} ${dmSans.variable} ${dmSerif.variable} antialiased`}>
-        <main className="min-h-screen">{children}</main>
+        <ModelSwitcher />
+        <main className="min-h-screen pt-[52px] md:pt-0 md:pl-[196px]">{children}</main>
       </body>
     </html>
   );
