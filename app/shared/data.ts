@@ -41,8 +41,8 @@ export type Track = 'work' | 'agents' | 'hackathons';
 
 // track metadata — order + section labels for grouping the cases
 export const TRACKS: { id: Track; label: string; blurb: string }[] = [
-  { id: 'work', label: 'Work', blurb: 'paid, owned, real scope' },
-  { id: 'agents', label: 'Agents', blurb: '2026. five terminals, one brief, ship by morning' },
+  { id: 'work', label: 'Full-time', blurb: 'paid, owned, real scope' },
+  { id: 'agents', label: 'Agentic', blurb: '2026. five terminals, one brief, ship by morning' },
   { id: 'hackathons', label: 'Hackathons', blurb: '16 competed. organized for 8,000. judged at microsoft hq.' },
 ];
 

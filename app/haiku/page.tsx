@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, COLORS } from '../shared/data';
 
 const containerStyle: React.CSSProperties = {
   fontFamily: 'var(--font-jetbrains-mono)',
@@ -231,7 +231,7 @@ export default function HaikuPage() {
             <React.Fragment key={proj.slug}>
               {firstOfTrack && (
                 <div style={{ color: '#888888', fontSize: '11px', margin: '16px 0 6px', letterSpacing: '0.04em' }}>
-                  # {proj.track}/
+                  # {TRACKS.find((t) => t.id === proj.track)?.label.toLowerCase()}/
                 </div>
               )}
             <motion.div
