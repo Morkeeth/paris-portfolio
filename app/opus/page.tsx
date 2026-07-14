@@ -177,6 +177,12 @@ function WorkPlate({ project, op, max }: { project: Project; op: number; max: bo
               <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 9, opacity: 0.4, letterSpacing: '0.1em', textTransform: 'uppercase' as const }}>{project.buildTime}</span>
               <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 9, opacity: 0.4, letterSpacing: '0.1em' }}>{project.year}</span>
             </div>
+            {project.links && (
+              <div style={{ display: 'flex', gap: 16, marginTop: 10 }}>
+                {project.links.live && <a href={project.links.live} target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: project.color, textDecoration: 'none', opacity: 0.9 }}>live ↗</a>}
+                {project.links.repo && <a href={project.links.repo} target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, opacity: 0.4, textDecoration: 'none' }}>code ↗</a>}
+              </div>
+            )}
           </div>
         </div>
       </Reveal>

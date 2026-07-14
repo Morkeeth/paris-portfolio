@@ -59,6 +59,7 @@ export type Project = {
   color: string;
   details?: string[];
   image?: string; // /projects/<slug>.png — real screenshot, optional
+  links?: { live?: string; repo?: string }; // verified public URLs only
 };
 
 export const PROJECTS: Project[] = [
@@ -149,6 +150,7 @@ export const PROJECTS: Project[] = [
     track: 'agents',
     color: '#f2a039',
     image: '/projects/relay.png',
+    links: { live: 'https://world-relay.vercel.app', repo: 'https://github.com/MorkeethHQ/world-relay' },
     details: [
       'smart contract escrow between agents and humans',
       'world id verification for task acceptance',
@@ -167,6 +169,7 @@ export const PROJECTS: Project[] = [
     track: 'agents',
     color: '#2d5ff5',
     image: '/projects/yieldbound.png',
+    links: { live: 'https://yieldbound.vercel.app', repo: 'https://github.com/MorkeethHQ/delegated-agent-treasury' },
   },
   {
     name: 'RECEIPT',
@@ -180,6 +183,7 @@ export const PROJECTS: Project[] = [
     track: 'agents',
     color: '#e84033',
     image: '/projects/receipt.png',
+    links: { live: 'https://receipt-murex.vercel.app', repo: 'https://github.com/MorkeethHQ/receipt' },
   },
   {
     name: 'BriefMCP',
@@ -191,6 +195,7 @@ export const PROJECTS: Project[] = [
     year: '2026',
     track: 'agents',
     color: '#9b6fc0',
+    links: { repo: 'https://github.com/Morkeeth/BriefMCP' },
   },
   {
     name: 'People Radar',
@@ -249,6 +254,7 @@ export const PROJECTS: Project[] = [
     track: 'agents',
     color: '#6a5cff',
     image: '/projects/loop.png',
+    links: { live: 'https://loop-labs.vercel.app', repo: 'https://github.com/Morkeeth/Loop' },
   },
 
   // ══ HACKATHONS — the competitive record ══════════════════════

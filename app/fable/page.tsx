@@ -1097,6 +1097,12 @@ export default function Home() {
                         ))}
                       </ul>
                     )}
+                    {p.links && (
+                      <div style={{ display: 'flex', gap: 16, marginTop: 14 }}>
+                        {p.links.live && <a href={p.links.live} target="_blank" rel="noopener" className="mono" style={{ fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: maximalism ? p.color : 'inherit', opacity: maximalism ? 0.95 : 0.6, textDecoration: 'none', transition: 'color 0.8s' }}>live ↗</a>}
+                        {p.links.repo && <a href={p.links.repo} target="_blank" rel="noopener" className="mono" style={{ fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.45, textDecoration: 'none' }}>code ↗</a>}
+                      </div>
+                    )}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 12 }}>
                       <SketchUnderline width={140} delay={0.3} />
                       <span className="mono" style={{ fontSize: 10, opacity: 0.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: maximalism ? p.color : 'inherit', transition: 'color 0.8s', textAlign: 'right' }}>

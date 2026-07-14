@@ -281,6 +281,12 @@ export default function HaikuPage() {
                       ))}
                     </div>
                   )}
+                  {proj.links && (
+                    <div style={{ fontSize: '10px', marginTop: '6px', display: 'flex', gap: '14px' }}>
+                      {proj.links.live && <a href={proj.links.live} target="_blank" rel="noopener noreferrer" style={{ color: '#3bb58f', textDecoration: 'none' }}>[ live ↗ ]</a>}
+                      {proj.links.repo && <a href={proj.links.repo} target="_blank" rel="noopener noreferrer" style={{ color: '#888888', textDecoration: 'none' }}>[ code ↗ ]</a>}
+                    </div>
+                  )}
                 </div>
               )}
             </motion.div>

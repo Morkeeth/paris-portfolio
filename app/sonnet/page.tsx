@@ -38,6 +38,7 @@ const PROJECTS = RAW_PROJECTS.filter((p) => p.featured).map((p) => ({
   track:   p.track,
   details: p.details,
   story:   p.story,
+  links:   p.links,
 }));
 
 // ledger section stats derived from shared data
@@ -355,6 +356,12 @@ function ProjectRow({ p, i }: { p: typeof PROJECTS[0]; i: number }) {
       }}>
         {p.time}
       </div>
+      {p.links && (
+        <div style={{ gridColumn: '1 / -1', display: 'flex', gap: 14, marginTop: 4, fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>
+          {p.links.live && <a href={p.links.live} target="_blank" rel="noopener" style={{ color: p.color, textDecoration: 'none', borderBottom: `1px solid ${p.color}55`, paddingBottom: 1 }}>live ↗</a>}
+          {p.links.repo && <a href={p.links.repo} target="_blank" rel="noopener" style={{ color: C.subtle, opacity: 0.55, textDecoration: 'none', borderBottom: `1px solid ${C.rule}`, paddingBottom: 1 }}>code ↗</a>}
+        </div>
+      )}
     </motion.div>
   );
 }
