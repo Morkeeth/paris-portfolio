@@ -384,6 +384,27 @@ export default function OpusPage() {
         </div>
       </section>
 
+      {/* crescendo: the living system — lead with the machine you built */}
+      <TheStack max={max} />
+
+      {/* three movements — the work, up front */}
+      {movements.map((m, mi) => (
+        <Fragment key={m.track.id}>
+          <section style={{ ...frame, minHeight: 'auto', paddingBottom: 24 }}>
+            <Reveal>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2.6rem, 9vw, 5rem)', lineHeight: 1, color: max ? C.maxFg : C.gold, opacity: max ? 0.15 : 0.35 }}>
+                  {ROMAN[mi]}
+                </div>
+                <h2 style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 400, marginTop: -10 }}>{m.track.label.toLowerCase()}</h2>
+                <p style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.45, marginTop: 14, letterSpacing: '0.12em' }}>{m.track.blurb}</p>
+              </div>
+            </Reveal>
+          </section>
+          {m.works.map(p => { opCounter += 1; return <WorkPlate key={p.slug} project={p} op={opCounter} max={max} />; })}
+        </Fragment>
+      ))}
+
       {/* the theme */}
       <section style={frame}>
         <Reveal>
@@ -444,26 +465,7 @@ export default function OpusPage() {
         </Reveal>
       </section>
 
-      {/* three movements */}
-      {movements.map((m, mi) => (
-        <Fragment key={m.track.id}>
-          <section style={{ ...frame, minHeight: '55vh' }}>
-            <Reveal>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(3.5rem, 12vw, 7rem)', lineHeight: 1, color: max ? C.maxFg : C.gold, opacity: max ? 0.15 : 0.35 }}>
-                  {ROMAN[mi]}
-                </div>
-                <h2 style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 400, marginTop: -10 }}>{m.track.label.toLowerCase()}</h2>
-                <p style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.45, marginTop: 14, letterSpacing: '0.12em' }}>{m.track.blurb}</p>
-              </div>
-            </Reveal>
-          </section>
-          {m.works.map(p => { opCounter += 1; return <WorkPlate key={p.slug} project={p} op={opCounter} max={max} />; })}
-        </Fragment>
-      ))}
-
-      {/* crescendo: the living system */}
-      <TheStack max={max} />
+      {/* projects + the agent-OS stack now lead, relocated to right after the hero */}
 
       {/* appendix: the complete record */}
       <TheRecord max={max} />
@@ -503,7 +505,8 @@ export default function OpusPage() {
       {/* footer */}
       <section style={{ padding: '80px 32px', textAlign: 'center' }}>
         <Reveal>
-          <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.4, letterSpacing: '0.1em', textTransform: 'uppercase' as const, marginBottom: 24 }}>let&apos;s talk</div>
+          <div style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(1.8rem, 6vw, 3rem)', fontWeight: 400, marginBottom: 10 }}>{OSCAR.mantra}</div>
+          <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.4, letterSpacing: '0.1em', textTransform: 'uppercase' as const, marginBottom: 24 }}>open to the right team · let&apos;s talk</div>
           <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
             {Object.entries(LINKS).map(([label, url]) => (
               <a key={label} href={url} target={label === 'email' ? undefined : '_blank'} rel="noopener"
