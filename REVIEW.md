@@ -21,6 +21,22 @@ Build: `npm run build` green, 10/10 routes prerender. `git diff --stat`: 4 files
 
 ---
 
+## ✅ Also done — outbound links (gap #1, the biggest one)
+
+Every featured product card now links out to **verified, live, real** URLs (liveness + repo-visibility checked, no fabricated links). Rendered per-aesthetic in all 4 variants:
+
+| Project | live ↗ | code ↗ |
+|---|---|---|
+| FAVOUR | world-relay.vercel.app | MorkeethHQ/world-relay |
+| RECEIPT | receipt-murex.vercel.app | MorkeethHQ/receipt |
+| Yieldbound | yieldbound.vercel.app | MorkeethHQ/delegated-agent-treasury |
+| Loop | loop-labs.vercel.app | Morkeeth/Loop |
+| BriefMCP | — | Morkeeth/BriefMCP (repo only) |
+
+Notes: BriefMCP is **non-featured**, so its card (and link) does not render anywhere yet — it's in the data for when you feature it. Haiku shows links **on expand** (its cards are click-to-open), by design. **Intentionally skipped** (no verifiable public URL): Ledger, Anotherblock (site 404), Etablera, Wave Radio, Gates (gates.wtf down). See D6.
+
+---
+
 ## 🗣 NEEDS YOUR VOICE — the 3 stories (do NOT ship factual)
 
 These are the humanising stories. Still factual-only in the code. I did not write them — they need a real moment from you. 3-question interview each, I capture + draft in your voice, you approve.
@@ -42,6 +58,7 @@ These are the humanising stories. Still factual-only in the code. I did not writ
 - **D3 — Em dashes.** 47 across the site. They clash with your no-em-dash rule but read as intentional editorial typography here. I left them all (only dropped the one in the Hermes line I was already rewriting). Keep as design choice, or strip site-wide?
 - **D4 — `$176k+` vs `$176K`.** Fable's count-up shows "$176k+"; opus/haiku show "$176K". Cosmetic. Unify or leave the per-model voice?
 - **D5 — Missing card images.** Still none for Wave Radio, The OS, BriefMCP, Bagel, Hermes, People Radar. The OS is the hero of "the stack" and would benefit most. Accept text-only, or shoot/generate art?
+- **D6 — Link set.** Live+repo links added for FAVOUR / RECEIPT / Yieldbound / Loop, repo-only for BriefMCP. Ledger, Anotherblock, Etablera, Wave Radio, Gates have no verifiable public URL so they got none. Give me URLs for any of those and I'll add them, or confirm linkless is right. Also: want a "see it live" on the Ledger card pointing to ledger.com, or leave employer cards linkless?
 
 ---
 
