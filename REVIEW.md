@@ -99,6 +99,15 @@ Still available if you want them:
 
 ## 6. Open facts + renames  (Helicon flags dead names in live claims)
 
+### ✅ Decided + applied (Jul 13)
+- **RELAY → FAVOUR** — card now titled "RELAY → FAVOUR"; story reads "won as RELAY … ships today as FAVOUR". Timeline keeps the win credited as RELAY.
+- **NVIDIA** — kept "nvidia-sponsored ai hackathon" (sponsor context, no role claim). ✅ correct as-is.
+- **Model labels /compare** — now Opus 4.8 · Sonnet 5 · Haiku 4.5 · Fable 5.
+
+### ⛔ Still open
+- **Hermes** — you said "tweak it" but we didn't capture WHAT. Current copy: *"grok-powered agent on the vps, sibling to bagel. takes what the system writes and gets it out the door."* → tell me the fix tomorrow (model? role? the "ships" framing?).
+
+
 - **Hermes** wording — confirm: *"grok-powered agent on the vps, sibling to bagel — ships what the system writes."*
 - **NVIDIA** — *"nvidia-sponsored ai hackathon"* (2019). Your role: running / competing / attending?
 - **RELAY → FAVOUR** — live product is FAVOUR; the World Build win *was* as RELAY. Keep RELAY (historical) / rename to FAVOUR / show "RELAY → FAVOUR"?

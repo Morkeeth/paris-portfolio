@@ -138,11 +138,11 @@ export const PROJECTS: Project[] = [
 
   // ══ AGENTS — 2026 side builds ════════════════════════════════
   {
-    name: 'RELAY',
+    name: 'RELAY → FAVOUR',
     slug: 'relay',
     featured: true,
     oneLiner: 'ai agents hire verified humans for tasks they cannot do',
-    story: '48h build at World Build 3. agents post tasks, humans accept, smart contracts escrow the money. coinfund noticed. world dev team reached out.',
+    story: '48h build at World Build 3, won as RELAY. agents post tasks, humans accept, smart contracts escrow the money. coinfund noticed, world dev team reached out. it ships today as FAVOUR.',
     result: '2nd / 500 teams',
     buildTime: 'built in 48h',
     year: '2026',
