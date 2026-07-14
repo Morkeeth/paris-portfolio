@@ -17,7 +17,7 @@ const J = Object.fromEntries(JOURNEY.map(j => [j.chapter, j])) as Record<string,
 // numbers section, derived from shared stats
 const STAT_ITEMS = [
   { to: STATS.hackathonWins, prefix: '', suffix: '', label: 'hackathon wins' },
-  { to: parseInt(STATS.prizes.replace(/\D/g, ''), 10), prefix: '$', suffix: 'k+', label: 'in prizes' },
+  { to: parseInt(STATS.prizes.replace(/\D/g, ''), 10), prefix: '$', suffix: 'k', label: 'in prizes' },
   { to: parseInt(STATS.users.replace(/\D/g, ''), 10), prefix: '', suffix: 'k', label: 'users shipped to' },
   { to: parseInt(STATS.prevented.replace(/\D/g, ''), 10), prefix: '$', suffix: 'm', label: 'losses prevented' },
 ];

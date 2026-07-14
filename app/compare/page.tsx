@@ -15,7 +15,7 @@ const MODELS: { id: string; name: string; desc: string; color: string; badge: st
   {
     id: 'opus',
     name: 'Opus 4.8',
-    desc: 'the magnum opus. an overture, three movements, every work an op. number, and the only page with the complete record. starts restrained, blooms into color when asked.',
+    desc: 'the magnum opus. an overture, three movements, every work an op. number, and the only page with the longer record. starts restrained, blooms into color when asked.',
     color: '#9b6fc0',
     badge: 'the composer',
   },
