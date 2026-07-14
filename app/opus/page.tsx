@@ -125,7 +125,7 @@ function Particles({ active }: { active: boolean }) {
   ))}</>;
 }
 
-const frame: React.CSSProperties = { minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px 32px', position: 'relative', overflow: 'hidden' };
+const frame: React.CSSProperties = { minHeight: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '84px 32px', position: 'relative', overflow: 'hidden' };
 
 // One work in the catalog. `op` is its opus number.
 function WorkPlate({ project, op, max }: { project: Project; op: number; max: boolean }) {
@@ -352,7 +352,7 @@ export default function OpusPage() {
       </>}
 
       {/* overture */}
-      <section style={frame}>
+      <section style={{ ...frame, minHeight: '90vh' }}>
         <div style={{ textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.1 }}
             style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: max ? C.maxFg : C.gold, opacity: 0.8, marginBottom: 28 }}>
@@ -369,6 +369,16 @@ export default function OpusPage() {
             initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 1.8, duration: 1 }}>
             {OSCAR.title}. {OSCAR.location}. <span style={{ opacity: 0.7 }}>{OSCAR.tagline}</span>
           </motion.p>
+          <motion.p style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(1.15rem, 3vw, 1.55rem)', marginTop: 22, lineHeight: 1.42, fontWeight: 400, maxWidth: 640, marginLeft: 'auto', marginRight: 'auto', opacity: 0.9 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ delay: 2.1, duration: 1 }}>
+            {OSCAR.selfDescription}
+          </motion.p>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.4, duration: 1 }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginTop: 26 }}>
+            {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, '5-agent OS · ships by morning', 'FAVOUR · live'].map((c) => (
+              <span key={c} style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, letterSpacing: '0.04em', padding: '6px 13px', borderRadius: 999, border: `1px solid ${max ? C.maxFg : C.gold}44`, color: max ? C.maxFg : C.gold, opacity: 0.9 }}>{c}</span>
+            ))}
+          </motion.div>
           <motion.p style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 12, letterSpacing: '0.15em', marginTop: 40, opacity: 0.35, textTransform: 'uppercase' as const }}
             initial={{ opacity: 0 }} animate={{ opacity: 0.35 }} transition={{ delay: 2.6, duration: 1 }}>scroll</motion.p>
         </div>
@@ -415,7 +425,7 @@ export default function OpusPage() {
       </section>
 
       {/* the path */}
-      <section style={{ ...frame, minHeight: '85vh' }}>
+      <section style={{ ...frame, minHeight: 'auto' }}>
         <Reveal>
           <div style={{ maxWidth: 460 }}>
             <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase' as const, opacity: 0.3, marginBottom: 32 }}>the path</div>
