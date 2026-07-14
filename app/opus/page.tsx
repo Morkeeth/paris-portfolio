@@ -397,7 +397,7 @@ export default function OpusPage() {
           <div style={{ display: 'flex', gap: 'clamp(36px, 7vw, 72px)', flexWrap: 'wrap', justifyContent: 'center' }}>
             {([
               { to: STATS.hackathonWins, prefix: '', suffix: '', l: 'wins' },
-              { to: 176, prefix: '$', suffix: 'K', l: 'in prizes' },
+              { to: 188, prefix: '$', suffix: 'K', l: 'in prizes' },
               { to: 40, prefix: '', suffix: 'K', l: 'users' },
               { to: 51, prefix: '$', suffix: 'M', l: 'protected' },
             ]).map((s, i) => (
