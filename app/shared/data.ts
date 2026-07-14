@@ -218,7 +218,7 @@ export const PROJECTS: Project[] = [
     name: 'Hermes',
     slug: 'hermes',
     oneLiner: 'the delivery lane. bagel thinks, hermes ships',
-    story: 'grok-powered agent on the vps, sibling to bagel. takes what the system writes and gets it out the door — its own model, its own memory, its own spend.',
+    story: 'grok-powered agent on the vps, sibling to bagel. ships what the system writes, with its own model, memory, and spend.',
     result: 'running on the vps',
     buildTime: 'nights',
     year: '2026',
@@ -400,7 +400,7 @@ export const JOURNEY = [
   { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum partner golds. nft safe launch finalist. gates.wtf.' },
   { year: '2022-24', place: 'stockholm / paris', chapter: 'music', summary: 'anotherblock. employee #4. head of product. rihanna, weeknd, michael jackson on-chain. 40K users, $2.1M volume. coinbase base launch partner. moved to paris.' },
   { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($51M prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 8M+ devices.' },
-  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. relay, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $176K in prizes. 39.05 ETH.' },
+  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. favour, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $176K in prizes. 39.05 ETH.' },
 ];
 
 // ════════════════════════════════════════════════════════════

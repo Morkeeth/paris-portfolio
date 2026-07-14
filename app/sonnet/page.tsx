@@ -656,7 +656,7 @@ export default function SonnetPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1px', background: C.rule, border: `1px solid ${C.rule}` }}>
           {[
             { n: STATS.hackathonWins, pre: '',   suf: '',  label: 'hackathon wins'   },
-            { n: 188,                 pre: '$', suf: 'k', label: 'in prizes'         },
+            { n: 176,                 pre: '$', suf: 'k', label: 'in prizes'         },
             { n: Number(STATS.users.replace('K','')) || 40, pre: '', suf: 'k', label: 'users shipped to' },
             { n: 51,                  pre: '$', suf: 'm', label: 'losses prevented'  },
           ].map((m, i) => (

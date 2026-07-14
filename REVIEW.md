@@ -1,129 +1,48 @@
-# Portfolio — Pre-Deploy Review Phase (2026-07-13)
+# Portfolio — Review handoff (2026-07-14)
 
-The gate before `oscarmorke.com`. Review each item on **localhost:3001** (toggle fable · opus · sonnet · haiku).
-Mark each line: ✅ good · ✏️ change (say what) · ❌ cut. Nothing deploys until §0 is all ✅.
-
-Goal reminder: **same context, same stories — the model is the differentiator.** Content is the constant; design voice is the variable.
+Non-voice hygiene pass done on `nightrun/portfolio-hygiene-2026-07-13` (unpushed). Build green.
+Everything below the line **needs your voice** — nothing here was fabricated or guessed.
 
 ---
 
-## 0. Deploy gates (all must be ✅)
-- [ ] Images reviewed + gaps filled/accepted
-- [ ] Copy reviewed
-- [ ] Stories in your voice (§3)
-- [ ] Useful graph added + reviewed (§4)
-- [ ] Micro-animation pass (§5)
-- [ ] Open facts + renames resolved (§6)
-- [ ] Cohesion pass — name-the-model-from-any-screenshot (§7)
-- [ ] Branch pushed → merged
-- [ ] Live on oscarmorke.com (your gate)
+## ✅ Done this pass (non-voice, applied)
 
----
-
-## 1. Images  (8 on disk · 11 missing)
-
-| Project | Track | Image | Note / action |
+| # | Change | File | Verified |
 |---|---|---|---|
-| Ledger | work | ✅ ledger.jpg | ok |
-| Anotherblock | work | ✅ anotherblock.jpg | ok |
-| Etablera | work | ✅ etablera.jpg | ⚠️ 770KB — compress |
-| Wave Radio | work | ❌ none | add cover art? |
-| RELAY | agents | ⚠️ relay.png | 22KB, low-res — **replace** (+ RELAY→FAVOUR, §6) |
-| Yieldbound | agents | ✅ yieldbound.png | ok |
-| RECEIPT | agents | ✅ receipt.png | ok |
-| Loop | agents | ✅ loop.png | ok |
-| The OS | agents | ❌ none | terminal screenshot? (it's the hero of "the stack") |
-| Bagel / Hermes / People Radar / BriefMCP | agents | ❌ none | text-only by design in "the stack" — accept? |
-| Gates | hack | ✅ gates.jpg | ok |
-| ArbiGates / NFT Safe / AAtomato / Swosh / Contrib | hack | ❌ none | timeline-only (no card) — accept? |
+| 1 | Swapped low-res `relay.png` (showed dead name **RELAY**, "Continue", "TASKS·POLLS·CAMPAIGNS") for a clean current shot of the live app (**FAVOUR**, "Get started", "FAVOURS·POLLS·USDC") | `public/projects/relay.png` | real screenshot of world-relay.vercel.app, 1440×900 |
+| 2 | Hermes copy tightened + em dash removed | `data.ts` (Hermes.story) | see decision D1 |
+| 3 | Hero count-up **$188K+ → $176K** (was hardcoded, not reading STATS) | `opus/page.tsx:394` | `188` gone from build, `176` present |
+| 4 | Key-metric **$188k → $176k** (same hardcoded-drift bug) | `sonnet/page.tsx:659` | ✅ |
+| 5 | Dead name in 2026 "building now" list: **relay → favour** | `data.ts:403` (JOURNEY) | ✅ |
 
-**Decisions:** (a) replace `relay.png`; (b) add an image for The OS? (c) accept text-only for the rest?
+**Copy pass result:** no typos found. Model labels current (Fable 5 · Opus 4.8 · Sonnet 5 · Haiku 4.5). Only stale numbers on the whole site were the two hardcoded `188`s above (fable/haiku/opengraph/opus-record all correctly read `STATS`). `40.77 ETH`, `$115K`, `$188K` fully purged.
+
+Build: `npm run build` green, 10/10 routes prerender. `git diff --stat`: 4 files, unpushed.
 
 ---
 
-## 2. Copy
+## 🗣 NEEDS YOUR VOICE — the 3 stories (do NOT ship factual)
 
-Strong already — the voice is there: *"wine and cheese between deploys"*, *"smultronställe"*, *"what if it works out?"*, *"the system remembers so i can think."*
-Review for: anything that reads generic, any claim you want softened/sharpened.
-- Hero taglines per model — ✅/✏️?
-- `THOUGHTS` (the coda/notes lines) — ✅/✏️?
-- Track blurbs (full-time / agentic / hackathons) — ✅/✏️?
+These are the humanising stories. Still factual-only in the code. I did not write them — they need a real moment from you. 3-question interview each, I capture + draft in your voice, you approve.
 
----
-
-## 3. Stories — the human voice  (the original objective)
-
-Project `story` fields are mostly **factual**, and decent. But the three you picked to *humanize* aren't captured yet:
-
-| Category | Anchor | Status | Needs |
+| # | Category | Anchor | What's missing |
 |---|---|---|---|
-| Full-time | **the arc** (Etablera → rocky road → PM: Matos, Antler, grants, DeFi) | ❌ not written | 3-Q interview |
-| Agentic | **The OS / 5 terminals** | factual only | the *feel* of a 3am night |
-| Hackathons | **Gates / Bogotá** | factual only | the scene + why it grabs you |
-
-**Decision:** do the 3-question interview per category now (I capture, draft in your voice, you approve) — or ship factual?
+| S1 | Full-time | **the arc** — Etablera → the rocky road → Matos DAO, Antler $95K declined, grants, DeFi → Ledger PM | the throughline. why each turn. what the "no" to Antler cost / bought |
+| S2 | Agentic | **The OS / 5 terminals** | the *feel* of a 3am night. not the spec — the scene |
+| S3 | Hackathons | **Gates / Bogotá** | the scene + why proof-of-personhood grabbed you |
 
 ---
 
-## 4. Useful graph  ✅ BUILT — 4 ways (review on localhost)
+## 🗣 NEEDS YOUR VOICE — decisions
 
-**"The record over time" — prize $ per event, 2018 → 2026**, from real `HACKATHON_TIMELINE`. Rendered 4 ways (same data, four voices):
-- **Haiku** — `$ ./record --plot`, ascii block bars, `$14,169 ← peak`
-- **Opus** — "PLATE I", engraved gold bars, hollow ticks for no-purse years, above the record list
-- **Sonnet** — "Fig. 1", thin ruled bars, editorial caption
-- **Fable** — hand-drawn line + colored dots sized by prize, draws in on scroll
-
-Story it tells: prize-hunting years (2021–23, Bogotá peak) → 2026 the bars flatten *on purpose* (stopped counting purses, started shipping). Draw-in animation on all four.
-**Your call:** keep 4-ways (recommended, on-theme) or also add a shared one on `/compare`?
-
-### Fixed this pass (number hygiene)
-- `$$51M` → `$51M` (sonnet ledger KPI, double-dollar bug)
-- prizes KPI `$115k` → `$188k` (sonnet had the pre-hygiene number hardcoded)
-- swept all 4 pages: no other stale numbers / double-dollars
+- **D1 — Hermes copy.** Applied your REVIEW draft wording, minus the em dash:
+  *"grok-powered agent on the vps, sibling to bagel. ships what the system writes, with its own model, memory, and spend."*
+  Veto / tweak the model/role/"ships" framing?
+- **D2 — "complete record" vs "longer record".** `/compare` calls Opus "the only page with the complete record"; the Opus page itself says "the longer record". 14 rows shown vs 16 competed. Pick one word. (Prior commit deliberately moved away from completeness language → I'd align compare to "longer", but it's your call.)
+- **D3 — Em dashes.** 47 across the site. They clash with your no-em-dash rule but read as intentional editorial typography here. I left them all (only dropped the one in the Hermes line I was already rewriting). Keep as design choice, or strip site-wide?
+- **D4 — `$176k+` vs `$176K`.** Fable's count-up shows "$176k+"; opus/haiku show "$176K". Cosmetic. Unify or leave the per-model voice?
+- **D5 — Missing card images.** Still none for Wave Radio, The OS, BriefMCP, Bagel, Hermes, People Radar. The OS is the hero of "the stack" and would benefit most. Accept text-only, or shoot/generate art?
 
 ---
 
-## 5. Micro-animations  🟡 in progress (within taste rules: no bounce/spring/parallax/twinkle)
-
-Done this pass:
-- ✅ Graph **draw-in** on all 4 charts (bars grow / line draws on scroll)
-- ✅ Opus hero numbers **count up** (9 · $188K+ · 40K · $51M) — the crescendo reveal
-- ✅ Haiku terminal **cursor** blink (signature)
-- ✅ Stack reveals staggered (all 4)
-
-Still available if you want them:
-- Count-ups on sonnet/fable already exist; haiku left static (correct for terminal)
-- Hover: project accent **underline draw** (unify the language) — needs your taste call
-
----
-
-## 6. Open facts + renames  (Helicon flags dead names in live claims)
-
-### ✅ Decided + applied (Jul 13)
-- **RELAY → FAVOUR** — card now titled "RELAY → FAVOUR"; story reads "won as RELAY … ships today as FAVOUR". Timeline keeps the win credited as RELAY.
-- **NVIDIA** — kept "nvidia-sponsored ai hackathon" (sponsor context, no role claim). ✅ correct as-is.
-- **Model labels /compare** — now Opus 4.8 · Sonnet 5 · Haiku 4.5 · Fable 5.
-
-### ⛔ Still open
-- **Hermes** — you said "tweak it" but we didn't capture WHAT. Current copy: *"grok-powered agent on the vps, sibling to bagel. takes what the system writes and gets it out the door."* → tell me the fix tomorrow (model? role? the "ships" framing?).
-
-
-- **Hermes** wording — confirm: *"grok-powered agent on the vps, sibling to bagel — ships what the system writes."*
-- **NVIDIA** — *"nvidia-sponsored ai hackathon"* (2019). Your role: running / competing / attending?
-- **RELAY → FAVOUR** — live product is FAVOUR; the World Build win *was* as RELAY. Keep RELAY (historical) / rename to FAVOUR / show "RELAY → FAVOUR"?
-- **Model version labels on `/compare`** — currently "Opus 4 · Sonnet 4 · Haiku 4 · Fable 5". Stale: current families are **Opus 4.8 · Sonnet 5 · Haiku 4.5 · Fable 5**. Which version built each page? (I won't guess — tell me and I'll set them.)
-
----
-
-## 7. Cohesion pass  (last, after content locks)
-
-Each page commits fully to its archetype so a stranger names the model from *any* screenshot:
-- **Haiku** — all-terminal, kill stray serif
-- **Opus** — lean harder into the score/movement metaphor
-- **Sonnet** — full editorial grid discipline
-- **Fable** — the paint/story world all the way through
-
----
-
-### How do you want to run it?
-Top-down together, or I start on the highest-leverage build (**the graph, 4 ways**) while you review images + copy on localhost?
+*Gate reminder: nothing pushes/deploys until you clear S1–S3 + D1–D5.*
