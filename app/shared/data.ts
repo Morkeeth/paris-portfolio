@@ -436,3 +436,14 @@ export const COLORS = {
   teal: '#3bb58f',
   ledger: '#4a8fd9',
 };
+
+// the arc — one instinct, three waves. scaffold from Oscar's own facts + phrases; he revoices.
+export const ARC = {
+  kicker: 'the arc',
+  thesis: 'art and science, all together. built on becoming: leaping before ready, and it keeps working out.',
+  waves: [
+    { tag: 'open data', years: '2017-21', title: 'the hackathon builder', line: 'it started in open-data hackathons. built sweden\'s largest series, 88 to 8,000. intent-based travel with SAS. the instinct: ship the thing, learn in public.' },
+    { tag: 'web3', years: '2021-24', title: 'anotherblock', line: 'rode it into crypto. employee #4, 0 to 40K users, coinbase\'s first launch partner, rihanna and michael jackson on-chain. then it died by distribution. the product was better. distribution won. still the lesson that runs everything.' },
+    { tag: 'ai', years: '2025-', title: 'the one-person team', line: 'now channeling it into ai. a five-agent os that thinks, ships and remembers while i sleep. one person, full stack, by morning.' },
+  ],
+};

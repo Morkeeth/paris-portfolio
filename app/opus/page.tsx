@@ -10,7 +10,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, HACKATHON_TIMELINE, RECORD_POINTS, AGENTIC_STACK, STACK_INTRO, COLORS, type Project } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, ARC, HACKATHON_TIMELINE, RECORD_POINTS, AGENTIC_STACK, STACK_INTRO, COLORS, type Project } from '../shared/data';
 
 const C = {
   bg: '#050505', fg: '#f0ede8', dim: '#706e68', faint: '#2a2a28',
@@ -445,18 +445,19 @@ export default function OpusPage() {
         </Reveal>
       </section>
 
-      {/* the path */}
+      {/* the arc — one instinct, three waves */}
       <section style={{ ...frame, minHeight: 'auto' }}>
         <Reveal>
-          <div style={{ maxWidth: 460 }}>
-            <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase' as const, opacity: 0.3, marginBottom: 32 }}>the path</div>
-            {JOURNEY.map((j, i) => (
-              <Reveal key={j.year} delay={i * 0.08}>
-                <div style={{ display: 'flex', gap: 20, marginBottom: 28, alignItems: 'baseline' }}>
-                  <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, opacity: 0.3, flexShrink: 0, width: 60 }}>{j.year}</span>
+          <div style={{ maxWidth: 640, width: '100%' }}>
+            <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase' as const, opacity: 0.3, marginBottom: 20 }}>{ARC.kicker}</div>
+            <p style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(1.3rem, 3.5vw, 1.9rem)', lineHeight: 1.4, marginBottom: 48, fontWeight: 400 }}>{ARC.thesis}</p>
+            {ARC.waves.map((w, i) => (
+              <Reveal key={w.tag} delay={i * 0.1}>
+                <div style={{ display: 'flex', gap: 22, marginBottom: 34, alignItems: 'baseline' }}>
+                  <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, opacity: 0.55, flexShrink: 0, width: 72, color: max ? C.maxFg : C.gold, letterSpacing: '0.05em', lineHeight: 1.5 }}>{w.years}<br />{w.tag}</span>
                   <div>
-                    <span style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 16, opacity: 0.75 }}>{j.place}</span>
-                    <p style={{ fontSize: 13, opacity: 0.42, marginTop: 4, lineHeight: 1.65, fontWeight: 300 }}>{j.summary}</p>
+                    <h3 style={{ fontFamily: 'var(--font-dm-serif)', fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 400, marginBottom: 7 }}>{w.title}</h3>
+                    <p style={{ fontSize: 13.5, opacity: 0.5, lineHeight: 1.7, fontWeight: 300 }}>{w.line}</p>
                   </div>
                 </div>
               </Reveal>
