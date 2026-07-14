@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, JOURNEY, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS } from '../shared/data';
+import { OSCAR, LINKS, STATS, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS } from '../shared/data';
 
 // ─────────────────────────────────────────────────────────────
 //  palette — ink on paper, editorial cool
@@ -58,12 +58,13 @@ const EGGS: Record<string, string> = {
 // table of contents anchors
 const TOC = [
   { label: '§1 intro',    href: '#intro'    },
-  { label: '§2 numbers',  href: '#numbers'  },
-  { label: '§3 ledger',   href: '#work'     },
-  { label: '§4 projects', href: '#projects' },
-  { label: '§5 journey',  href: '#journey'  },
-  { label: '§6 notes',    href: '#notes'    },
-  { label: '§7 contact',  href: '#contact'  },
+  { label: '§2 the system', href: '#stack'  },
+  { label: '§3 projects', href: '#projects' },
+  { label: '§4 numbers',  href: '#numbers'  },
+  { label: '§5 ledger',   href: '#work'     },
+  { label: '§6 the arc',  href: '#arc'      },
+  { label: '§7 notes',    href: '#notes'    },
+  { label: '§8 contact',  href: '#contact'  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -532,6 +533,52 @@ export default function SonnetPage() {
           </Reveal>
 
           <Rule />
+
+          {/* strengths line + proof chips — who / what, in the first screen */}
+          <Reveal delay={0.7}>
+            <div style={{ paddingTop: 22, paddingBottom: 22 }}>
+              <div style={{
+                fontFamily: 'var(--font-jetbrains-mono), monospace',
+                fontSize: 8,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: C.subtle,
+                opacity: 0.55,
+                marginBottom: 12,
+              }}>
+                the brief
+              </div>
+              <p style={{
+                fontFamily: 'var(--font-dm-serif), Georgia, serif',
+                fontSize: 'clamp(1.05rem, 2.4vw, 1.45rem)',
+                lineHeight: 1.5,
+                letterSpacing: '-0.01em',
+                color: C.fg,
+                maxWidth: 640,
+              }}>
+                {OSCAR.selfDescription}
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 20 }}>
+                {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, '5-agent OS · ships by morning', 'FAVOUR · live'].map((chip) => (
+                  <span key={chip} style={{
+                    fontFamily: 'var(--font-jetbrains-mono), monospace',
+                    fontSize: 9,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: C.subtle,
+                    padding: '7px 11px',
+                    border: `1px solid ${C.rule}`,
+                    background: `${C.fg}04`,
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Rule />
         </div>
       </section>
 
@@ -646,6 +693,141 @@ export default function SonnetPage() {
 
       <div style={section}><RuleLight /></div>
 
+      {/* ── the system / stack (feature) — surfaced early ── */}
+      <section id="stack" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
+        <Reveal>
+          <div style={{
+            borderTop: `2px solid ${C.fg}`,
+            borderBottom: `1px solid ${C.rule}`,
+            paddingTop: 18, paddingBottom: 6, marginBottom: 28,
+            display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 12,
+          }}>
+            <span style={{ fontFamily: 'var(--font-dm-serif), Georgia, serif', fontSize: 'clamp(1.4rem, 4vw, 2.2rem)', color: C.fg }}>
+              {STACK_INTRO.title}
+            </span>
+            <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.subtle }}>
+              §2 · {STACK_INTRO.kicker}
+            </span>
+          </div>
+        </Reveal>
+        <Reveal>
+          <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 14, color: C.subtle, lineHeight: 1.7, maxWidth: 520, marginBottom: 34 }}>
+            {STACK_INTRO.line}
+          </p>
+        </Reveal>
+        {AGENTIC_STACK.map((s, i) => (
+          <Reveal key={s.key} delay={i * 0.06}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '0.5fr 3fr 5fr 1.5fr',
+              gap: '0 24px',
+              alignItems: 'baseline',
+              padding: '16px 0',
+              borderTop: `1px solid ${C.rule}`,
+            }}>
+              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10, color: C.subtle, opacity: 0.5 }}>
+                {pad(i + 1)}
+              </div>
+              <div>
+                <div style={{ fontFamily: 'var(--font-dm-serif), Georgia, serif', fontSize: 'clamp(1rem, 2.2vw, 1.3rem)', color: C.accent, letterSpacing: '-0.01em' }}>
+                  {s.layer}
+                </div>
+                <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, color: C.subtle, opacity: 0.55, letterSpacing: '0.08em', marginTop: 4 }}>
+                  {s.sub}
+                </div>
+              </div>
+              <div style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 13, color: C.subtle, lineHeight: 1.55 }}>
+                {s.line}
+              </div>
+              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 11, color: C.fg, letterSpacing: '0.1em', textAlign: 'right', textTransform: 'uppercase' }}>
+                {s.verb}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+        <div style={{ borderTop: `1px solid ${C.rule}` }} />
+      </section>
+
+      <div style={section}><RuleLight /></div>
+
+      {/* ── projects ── */}
+      <section id="projects" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
+        <Reveal>
+          <div style={{
+            fontFamily: 'var(--font-jetbrains-mono), monospace',
+            fontSize: 8,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: C.subtle,
+            marginBottom: 20,
+          }}>
+            §3 &nbsp;&nbsp; projects
+          </div>
+        </Reveal>
+        <Reveal>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '3fr 5fr 2fr 1.5fr',
+            gap: '0 24px',
+            marginBottom: 2,
+          }}>
+            <ColLabel>project</ColLabel>
+            <ColLabel>about</ColLabel>
+            <ColLabel>result</ColLabel>
+            <ColLabel>built in</ColLabel>
+          </div>
+        </Reveal>
+        {PROJECTS.map((p, i) => {
+          const tr = (i === 0 || PROJECTS[i - 1].track !== p.track) ? TRACKS.find(t => t.id === p.track) : null;
+          return (
+          <Fragment key={p.name}>
+            {tr && (
+              <div style={{
+                marginTop: 32, marginBottom: 10, paddingTop: 14,
+                borderTop: `1px solid ${C.rule}`,
+                fontFamily: 'var(--font-jetbrains-mono), monospace',
+                fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.subtle,
+              }}>
+                {tr.label} &nbsp;·&nbsp; {tr.blurb}
+              </div>
+            )}
+            <div
+              onMouseEnter={() => setHoveredProject(i)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              <ProjectRow p={p} i={i} />
+            </div>
+          </Fragment>
+          );
+        })}
+        <Reveal delay={0.3}>
+          <div style={{
+            paddingTop: 18,
+            fontFamily: 'var(--font-jetbrains-mono), monospace',
+            fontSize: 9,
+            color: C.subtle,
+            opacity: 0.45,
+            letterSpacing: '0.1em',
+          }}>
+            <span className="s-footnote-num" style={{ fontSize: 8, verticalAlign: 'super', marginRight: 4 }}>1</span>
+            all built on nights and weekends. the day job is at ledger.
+          </div>
+        </Reveal>
+
+        {/* project color accent line - thin bar showing hovered project color */}
+        <motion.div
+          style={{
+            height: 2,
+            background: hoveredProject !== null ? PROJECTS[hoveredProject].color : 'transparent',
+            marginTop: 8,
+            borderRadius: 1,
+            transition: 'background 0.3s',
+          }}
+        />
+      </section>
+
+      <div style={section}><RuleLight /></div>
+
       {/* ── numbers ── */}
       <section id="numbers" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
         <Reveal>
@@ -657,7 +839,7 @@ export default function SonnetPage() {
             color: C.subtle,
             marginBottom: 32,
           }}>
-            §2 &nbsp;&nbsp; key metrics
+            §4 &nbsp;&nbsp; key metrics
           </div>
         </Reveal>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1px', background: C.rule, border: `1px solid ${C.rule}` }}>
@@ -756,7 +938,7 @@ export default function SonnetPage() {
       <section id="work" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '0 48px' }}>
           <Reveal>
-            <SectionLabel num="§3" label={`ledger\nparis\n2023—`} />
+            <SectionLabel num="§5" label={`ledger\nparis\n2023`} />
           </Reveal>
           <div>
             <Reveal>
@@ -870,201 +1052,96 @@ export default function SonnetPage() {
 
       <div style={section}><RuleLight /></div>
 
-      {/* ── projects ── */}
-      <section id="projects" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
-        <Reveal>
-          <div style={{
-            fontFamily: 'var(--font-jetbrains-mono), monospace',
-            fontSize: 8,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: C.subtle,
-            marginBottom: 20,
-          }}>
-            §4 &nbsp;&nbsp; projects
-          </div>
-        </Reveal>
-        <Reveal>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '3fr 5fr 2fr 1.5fr',
-            gap: '0 24px',
-            marginBottom: 2,
-          }}>
-            <ColLabel>project</ColLabel>
-            <ColLabel>about</ColLabel>
-            <ColLabel>result</ColLabel>
-            <ColLabel>built in</ColLabel>
-          </div>
-        </Reveal>
-        {PROJECTS.map((p, i) => {
-          const tr = (i === 0 || PROJECTS[i - 1].track !== p.track) ? TRACKS.find(t => t.id === p.track) : null;
-          return (
-          <Fragment key={p.name}>
-            {tr && (
-              <div style={{
-                marginTop: 32, marginBottom: 10, paddingTop: 14,
-                borderTop: `1px solid ${C.rule}`,
-                fontFamily: 'var(--font-jetbrains-mono), monospace',
-                fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.subtle,
-              }}>
-                {tr.label} &nbsp;·&nbsp; {tr.blurb}
-              </div>
-            )}
-            <div
-              onMouseEnter={() => setHoveredProject(i)}
-              onMouseLeave={() => setHoveredProject(null)}
-            >
-              <ProjectRow p={p} i={i} />
-            </div>
-          </Fragment>
-          );
-        })}
-        <Reveal delay={0.3}>
-          <div style={{
-            paddingTop: 18,
-            fontFamily: 'var(--font-jetbrains-mono), monospace',
-            fontSize: 9,
-            color: C.subtle,
-            opacity: 0.45,
-            letterSpacing: '0.1em',
-          }}>
-            <span className="s-footnote-num" style={{ fontSize: 8, verticalAlign: 'super', marginRight: 4 }}>1</span>
-            all built on nights and weekends. the day job is at ledger.
-          </div>
-        </Reveal>
-
-        {/* project color accent line - thin bar showing hovered project color */}
-        <motion.div
-          style={{
-            height: 2,
-            background: hoveredProject !== null ? PROJECTS[hoveredProject].color : 'transparent',
-            marginTop: 8,
-            borderRadius: 1,
-            transition: 'background 0.3s',
-          }}
-        />
-      </section>
-
-      <div style={section}><RuleLight /></div>
-
-      {/* ── the stack (feature) ── */}
-      <section id="stack" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
-        <Reveal>
-          <div style={{
-            borderTop: `2px solid ${C.fg}`,
-            borderBottom: `1px solid ${C.rule}`,
-            paddingTop: 18, paddingBottom: 6, marginBottom: 28,
-            display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 12,
-          }}>
-            <span style={{ fontFamily: 'var(--font-dm-serif), Georgia, serif', fontSize: 'clamp(1.4rem, 4vw, 2.2rem)', color: C.fg }}>
-              {STACK_INTRO.title}
-            </span>
-            <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.subtle }}>
-              feature — {STACK_INTRO.kicker}
-            </span>
-          </div>
-        </Reveal>
-        <Reveal>
-          <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 14, color: C.subtle, lineHeight: 1.7, maxWidth: 520, marginBottom: 34 }}>
-            {STACK_INTRO.line}
-          </p>
-        </Reveal>
-        {AGENTIC_STACK.map((s, i) => (
-          <Reveal key={s.key} delay={i * 0.06}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '0.5fr 3fr 5fr 1.5fr',
-              gap: '0 24px',
-              alignItems: 'baseline',
-              padding: '16px 0',
-              borderTop: `1px solid ${C.rule}`,
-            }}>
-              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10, color: C.subtle, opacity: 0.5 }}>
-                {pad(i + 1)}
-              </div>
-              <div>
-                <div style={{ fontFamily: 'var(--font-dm-serif), Georgia, serif', fontSize: 'clamp(1rem, 2.2vw, 1.3rem)', color: C.accent, letterSpacing: '-0.01em' }}>
-                  {s.layer}
-                </div>
-                <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, color: C.subtle, opacity: 0.55, letterSpacing: '0.08em', marginTop: 4 }}>
-                  {s.sub}
-                </div>
-              </div>
-              <div style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 13, color: C.subtle, lineHeight: 1.55 }}>
-                {s.line}
-              </div>
-              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 11, color: C.fg, letterSpacing: '0.1em', textAlign: 'right', textTransform: 'uppercase' }}>
-                {s.verb}
-              </div>
-            </div>
-          </Reveal>
-        ))}
-        <div style={{ borderTop: `1px solid ${C.rule}` }} />
-      </section>
-
-      {/* ── journey / timeline ── */}
-      <section id="journey" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
+      {/* ── the arc / story ── */}
+      <section id="arc" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '0 48px', alignItems: 'start' }}>
           <Reveal>
-            <SectionLabel num="§5" label="journey" />
+            <SectionLabel num="§6" label="the arc" />
           </Reveal>
           <div>
             <Reveal>
               <div style={{
-                display: 'grid',
-                gridTemplateColumns: '80px 80px 1fr 2fr',
-                gap: '0 20px',
-                paddingBottom: 10,
+                fontFamily: 'var(--font-jetbrains-mono), monospace',
+                fontSize: 8,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: C.subtle,
+                opacity: 0.5,
+                marginBottom: 16,
               }}>
-                <ColLabel>year</ColLabel>
-                <ColLabel>place</ColLabel>
-                <ColLabel>chapter</ColLabel>
-                <ColLabel>what happened</ColLabel>
+                {ARC.kicker}
               </div>
             </Reveal>
-            {JOURNEY.map((j, i) => (
-              <FadeIn key={j.year} delay={i * 0.1}>
-                <div className="s-journey-row">
-                  <div style={{
-                    fontFamily: 'var(--font-jetbrains-mono), monospace',
-                    fontSize: 9,
-                    color: C.subtle,
-                    opacity: 0.5,
-                    letterSpacing: '0.08em',
-                  }}>
-                    {j.year}
+            <Reveal delay={0.05}>
+              <p style={{
+                fontFamily: 'var(--font-dm-serif), Georgia, serif',
+                fontSize: 'clamp(1.3rem, 3.2vw, 1.95rem)',
+                lineHeight: 1.4,
+                letterSpacing: '-0.01em',
+                color: C.fg,
+                marginBottom: 40,
+                maxWidth: 620,
+              }}>
+                {ARC.thesis}
+              </p>
+            </Reveal>
+            {ARC.waves.map((w, i) => (
+              <FadeIn key={w.tag} delay={i * 0.1}>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '112px 1fr',
+                  gap: '0 24px',
+                  alignItems: 'baseline',
+                  padding: '20px 0',
+                  borderTop: `1px solid ${C.rule}`,
+                }}>
+                  <div>
+                    <div style={{
+                      fontFamily: 'var(--font-jetbrains-mono), monospace',
+                      fontSize: 9,
+                      color: C.subtle,
+                      opacity: 0.6,
+                      letterSpacing: '0.08em',
+                    }}>
+                      {w.years}
+                    </div>
+                    <div style={{
+                      fontFamily: 'var(--font-jetbrains-mono), monospace',
+                      fontSize: 9,
+                      color: ACCENT_COLORS[i % ACCENT_COLORS.length],
+                      opacity: 0.85,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      marginTop: 5,
+                    }}>
+                      {w.tag}
+                    </div>
                   </div>
-                  <div className="s-journey-place" style={{
-                    fontFamily: 'var(--font-jetbrains-mono), monospace',
-                    fontSize: 9,
-                    color: C.subtle,
-                    opacity: 0.4,
-                    letterSpacing: '0.08em',
-                  }}>
-                    {j.place}
-                  </div>
-                  <div className="s-journey-chapter" style={{
-                    fontFamily: 'var(--font-jetbrains-mono), monospace',
-                    fontSize: 9,
-                    color: ACCENT_COLORS[i % ACCENT_COLORS.length],
-                    opacity: 0.7,
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}>
-                    {j.chapter}
-                  </div>
-                  <div style={{
-                    fontFamily: 'var(--font-dm-sans), sans-serif',
-                    fontSize: 13,
-                    color: C.subtle,
-                    lineHeight: 1.5,
-                  }}>
-                    {j.summary}
+                  <div>
+                    <h3 style={{
+                      fontFamily: 'var(--font-dm-serif), Georgia, serif',
+                      fontSize: 'clamp(1.15rem, 2.6vw, 1.55rem)',
+                      fontWeight: 400,
+                      letterSpacing: '-0.01em',
+                      color: C.fg,
+                      marginBottom: 7,
+                    }}>
+                      {w.title}
+                    </h3>
+                    <p style={{
+                      fontFamily: 'var(--font-dm-sans), sans-serif',
+                      fontSize: 13,
+                      color: C.subtle,
+                      lineHeight: 1.6,
+                      maxWidth: 470,
+                    }}>
+                      {w.line}
+                    </p>
                   </div>
                 </div>
               </FadeIn>
             ))}
+            <div style={{ borderTop: `1px solid ${C.rule}` }} />
           </div>
         </div>
       </section>
@@ -1130,7 +1207,7 @@ export default function SonnetPage() {
       <section id="notes" style={{ ...section, padding: 'clamp(48px,8vh,90px) 32px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '0 48px' }}>
           <Reveal>
-            <SectionLabel num="§6" label="notes" />
+            <SectionLabel num="§7" label="notes" />
           </Reveal>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
             {THOUGHTS.map((thought, i) => (

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, JOURNEY, COLORS, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, ARC, COLORS, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS } from '../shared/data';
 
 const containerStyle: React.CSSProperties = {
   fontFamily: 'var(--font-jetbrains-mono)',
@@ -187,6 +187,27 @@ export default function HaikuPage() {
           >▋</motion.span>
         </h1>
         <p style={taglineStyle}>{OSCAR.location}. {OSCAR.tagline}</p>
+        <p style={{ ...taglineStyle, color: '#333333', marginTop: '10px', maxWidth: '640px' }}>
+          {OSCAR.selfDescription}
+        </p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '14px' }}>
+          {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, '5-agent OS · ships by morning', 'FAVOUR · live'].map((chip) => (
+            <span
+              key={chip}
+              style={{
+                fontSize: '10px',
+                fontFamily: 'var(--font-jetbrains-mono)',
+                color: '#000000',
+                border: '1px solid #000000',
+                padding: '4px 9px',
+                letterSpacing: '0.02em',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              [ {chip} ]
+            </span>
+          ))}
+        </div>
       </motion.div>
 
       <motion.div
@@ -333,19 +354,23 @@ export default function HaikuPage() {
         transition={{ duration: 0.5, delay: 0.3 }}
         style={sectionStyle}
       >
-        <h2 style={sectionTitleStyle}>$ cat journey.log</h2>
+        <h2 style={sectionTitleStyle}>$ cat arc.log</h2>
+        <div style={{ fontSize: '12px', color: '#333333', marginBottom: '18px', marginLeft: '10px', lineHeight: '1.6', maxWidth: '640px' }}>
+          # {ARC.thesis}
+        </div>
         <ul style={{ listStyle: 'none', padding: '0', margin: '0' }}>
-          {JOURNEY.map((entry, idx) => (
+          {ARC.waves.map((wave, idx) => (
             <motion.li
-              key={entry.year}
+              key={wave.tag}
               style={treeItemStyle}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2, delay: 0.03 * idx }}
             >
-              <span style={{ fontWeight: 600 }}>{entry.year}</span>
-              <span style={{ color: '#888888', marginLeft: '8px' }}>({entry.place})</span>
-              <span style={treeIndentStyle}>{entry.summary}</span>
+              <span style={{ fontWeight: 600 }}>{wave.years}</span>
+              <span style={{ color: '#888888', marginLeft: '8px' }}>[{wave.tag}]</span>
+              <span style={{ marginLeft: '8px' }}>{wave.title}</span>
+              <span style={treeIndentStyle}>{wave.line}</span>
             </motion.li>
           ))}
         </ul>

@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS, type Track } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS, type Track } from '../shared/data';
 
 // ════════════════════════════════════════════════════════════
 //  data — single source of truth lives in ../shared/data
@@ -792,14 +792,62 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', maxWidth: 720 }}>
           <ScatterName text={OSCAR.name.toLowerCase()} />
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 1 }} style={{ marginTop: 14, display: 'flex', justifyContent: 'center' }}>
             <SketchUnderline width={280} delay={1.6} />
           </motion.div>
           <motion.p
+            style={{ fontSize: 'clamp(1rem, 2.6vw, 1.32rem)', marginTop: 28, fontWeight: 300, opacity: 0.72 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.72 }}
+            transition={{ delay: 1.6, duration: 1 }}
+          >
+            {OSCAR.title}. {OSCAR.location}. <span style={{ opacity: 0.6 }}>{OSCAR.tagline}</span>
+          </motion.p>
+          {/* strengths, said plainly */}
+          <motion.p
+            className="serif"
+            style={{ fontSize: 'clamp(1.2rem, 3.3vw, 1.85rem)', lineHeight: 1.45, marginTop: 20, fontWeight: 400, maxWidth: 620, marginLeft: 'auto', marginRight: 'auto', opacity: 0.92 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.92 }}
+            transition={{ delay: 1.9, duration: 1 }}
+          >
+            {OSCAR.selfDescription}
+          </motion.p>
+          {/* proof chips, hand-painted and warm */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.2, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginTop: 26 }}
+          >
+            {([
+              { t: 'Staff PM · Ledger', c: COLORS.ledger },
+              { t: `${STATS.hackathonWins}× hackathon winner`, c: COLORS.orange },
+              { t: '5-agent OS · ships by morning', c: COLORS.teal },
+              { t: 'FAVOUR · live', c: COLORS.green },
+            ] as const).map((chip) => (
+              <span
+                key={chip.t}
+                className="mono"
+                style={{
+                  fontSize: 11,
+                  letterSpacing: '0.04em',
+                  padding: '7px 14px',
+                  borderRadius: 999,
+                  border: `1.5px solid color-mix(in srgb, ${chip.c} 55%, transparent)`,
+                  background: `color-mix(in srgb, ${chip.c} 13%, transparent)`,
+                  color: chip.c,
+                }}
+              >
+                {chip.t}
+              </span>
+            ))}
+          </motion.div>
+          <motion.p
             className="mono"
-            style={{ fontSize: 11, letterSpacing: '0.18em', marginTop: 40, textTransform: 'uppercase' }}
+            style={{ fontSize: 11, letterSpacing: '0.18em', marginTop: 38, textTransform: 'uppercase' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.35 }}
             transition={{ delay: 2.6, duration: 1 }}
@@ -815,192 +863,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── one line ── */}
-      <section className="frame">
-        <Reveal>
-          <p style={{ fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', maxWidth: 480, lineHeight: 1.7, textAlign: 'center', fontWeight: 300 }}>
-            {OSCAR.title}. {OSCAR.location}.
-            <br />
-            <span style={{ opacity: 0.4 }}>{OSCAR.tagline}</span>
-          </p>
-        </Reveal>
-      </section>
-
-      {/* ── the prompt ── */}
-      <section className="frame">
-        <Reveal>
-          <div style={{ maxWidth: 520 }}>
-            <TypedText text="> tell me about yourself" delay={0.3} keepCursor style={{ fontSize: 13, opacity: 0.5, letterSpacing: '0.02em' }} />
-            <motion.p
-              className="serif"
-              style={{ fontSize: 'clamp(1.3rem, 3.5vw, 2rem)', lineHeight: 1.5, marginTop: 26, fontWeight: 400 }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 1.6, duration: 1 }}
-            >
-              {OSCAR.philosophy}
-            </motion.p>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* ── numbers ── */}
-      <section className="frame">
-        <div style={{ display: 'flex', gap: 'clamp(36px, 7vw, 72px)', flexWrap: 'wrap', justifyContent: 'center' }}>
-          {STAT_ITEMS.map((n, i) => (
-            <Reveal key={n.label} delay={i * 0.15}>
-              <div style={{ textAlign: 'center' }}>
-                <div className="serif" style={{ fontSize: 'clamp(2rem, 6vw, 3.4rem)', lineHeight: 1 }}>
-                  <Counter to={n.to} prefix={n.prefix} suffix={n.suffix} />
-                </div>
-                <div className="mono" style={{ fontSize: 10, opacity: 0.4, marginTop: 10, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                  {n.label}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── chapter 01: stockholm ── */}
+      {/* ── the stack: what i've become. lead with the machine you built ── */}
       <section className="frame">
         <div style={{ maxWidth: 560, width: '100%' }}>
           <Reveal>
-            <ChapterLabel text={`chapter 01 / ${J.community.place} · ${J.community.year}`} />
-            <h2 className="serif chapter-title">it started with other people{'’'}s hackathons.</h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="body-text" style={{ marginTop: 22 }}>
-              {J.community.summary} sweden{'’'}s largest, peaking at {STATS.etableraPeak} participants.
-              the best products come out of rooms with deadlines and pizza.
-            </p>
-          </Reveal>
-          <Reveal delay={0.35}>
-            <div style={{ marginTop: 40, display: 'flex', alignItems: 'flex-end', gap: 28, flexWrap: 'wrap' }}>
-              <NordicSun />
-              <div className="mono" style={{ fontSize: 10, opacity: 0.35, letterSpacing: '0.12em', lineHeight: 2, textTransform: 'uppercase' }}>
-                stockholm, 59°N
-                <br />
-                <span style={{ opacity: 0.7, textTransform: 'none', letterSpacing: '0.04em' }}>(swedish words are hidden here. try typing {'“'}hej{'”'})</span>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── interlude: california ── */}
-      <section className="frame frame-short">
-        <Reveal>
-          <div style={{ maxWidth: 520, textAlign: 'center' }}>
-            <ChapterLabel text={`interlude / ${J.wallenberg.place} · ${J.wallenberg.year}`} />
-            <p className="serif" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.7rem)', lineHeight: 1.55, fontWeight: 400 }}>
-              {J.wallenberg.summary}
-            </p>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* ── chapter 02: the crypto years ── */}
-      <section className="frame">
-        <div style={{ maxWidth: 560, width: '100%' }}>
-          <Reveal>
-            <ChapterLabel text={`chapter 02 / ${J.crypto.place} · ${J.crypto.year}`} />
-            <h2 className="serif chapter-title">the passport got stamps. so did the github.</h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="body-text" style={{ marginTop: 22 }}>
-              {J.crypto.summary} sometimes knowing what you don{'’'}t want is the move.
-            </p>
-          </Reveal>
-          <Reveal delay={0.35}>
-            <div style={{ marginTop: 40 }}>
-              <PassportStamps />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── chapter 03: the music years ── */}
-      <section className="frame">
-        <div style={{ maxWidth: 560, width: '100%' }}>
-          <Reveal>
-            <ChapterLabel text={`chapter 03 / ${J.music.place} · ${J.music.year}`} />
-            <h2 className="serif chapter-title">head of product at a music startup.</h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="body-text" style={{ marginTop: 22 }}>
-              {J.music.summary} kept the lesson, kept the records.
-            </p>
-          </Reveal>
-          <Reveal delay={0.35}>
-            <div style={{ marginTop: 40 }}>
-              <Equalizer />
-              <div className="mono" style={{ fontSize: 9, opacity: 0.3, marginTop: 12, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                hover to turn it up
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── chapter 04: paris ── */}
-      <section className="frame frame-tall">
-        <div style={{ maxWidth: 620, width: '100%' }}>
-          <Reveal>
-            <ChapterLabel text={`chapter 04 / ${J.security.place} · ${J.security.year}`} />
-            <h2 className="serif chapter-title">moved alone at 30. learned the métro before the language.</h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="body-text" style={{ marginTop: 22 }}>
-              {OSCAR.origin}
-            </p>
-            <p className="body-text" style={{ marginTop: 14, opacity: 0.7 }}>
-              {J.security.summary}
-            </p>
-          </Reveal>
-          <Reveal delay={0.35}>
-            <div style={{ marginTop: 52, display: 'flex', alignItems: 'flex-end', gap: 'clamp(24px, 5vw, 48px)', flexWrap: 'wrap' }}>
-              <EiffelTower />
-              <MetroSign />
-              <WineGlass />
-              <Baguette />
-            </div>
-          </Reveal>
-          <Reveal delay={0.5}>
-            <div style={{ marginTop: 56 }}>
-              <Seine maximalism={maximalism} />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── chapter 05: the agents ── */}
-      <section className="frame">
-        <div style={{ maxWidth: 560, width: '100%' }}>
-          <Reveal>
-            <ChapterLabel text={`chapter 05 / ${J.agents.place} · ${J.agents.year}`} />
-            <h2 className="serif chapter-title">3am. five terminals. snus and wine.</h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="body-text" style={{ marginTop: 22 }}>
-              {OSCAR.coding} now the nights and weekends look like this:
-            </p>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <div className="mono" style={{ marginTop: 40, fontSize: 11, opacity: 0.5, letterSpacing: '0.08em', display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' }}>
-              <span style={{ textTransform: 'uppercase', letterSpacing: '0.16em', fontSize: 9, opacity: 0.7 }}>next build window resets in</span>
-              <Countdown48 />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── the stack: what i've become ── */}
-      <section className="frame">
-        <div style={{ maxWidth: 560, width: '100%' }}>
-          <Reveal>
-            <ChapterLabel text={`chapter 06 / the stack · present`} />
+            <ChapterLabel text={`the stack · present`} />
             <h2 className="serif chapter-title">{STACK_INTRO.title}.</h2>
           </Reveal>
           <Reveal delay={0.15}>
@@ -1012,7 +879,7 @@ export default function Home() {
               const c = accents[i % accents.length];
               return (
                 <Reveal key={s.key} delay={0.3 + i * 0.12}>
-                  <div style={{ display: 'flex', gap: 14, alignItems: 'baseline', padding: '15px 0', borderBottom: '1px solid rgba(0,0,0,0.08)', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: 14, alignItems: 'baseline', padding: '15px 0', borderBottom: '1px solid color-mix(in srgb, currentColor 8%, transparent)', flexWrap: 'wrap' }}>
                     <span style={{ width: 9, height: 9, borderRadius: '50%', background: c, flexShrink: 0, transform: 'translateY(-1px)' }} />
                     <span className="serif" style={{ fontSize: 'clamp(1.15rem, 3vw, 1.7rem)', color: c }}>{s.layer}</span>
                     <span className="mono" style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', opacity: 0.55 }}>{s.verb}</span>
@@ -1025,11 +892,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── projects, one per frame, grouped by era ── */}
+      {/* ── projects, up front. the strongest proof, one per frame ── */}
       {FEATURED.map((p, i) => {
         const newCategory = i === 0 || FEATURED[i - 1].track !== p.track;
         return (
-          <section key={p.slug} className="frame frame-short">
+          <section key={p.slug} className="frame frame-short" style={{ minHeight: 'auto', paddingTop: 40, paddingBottom: 40 }}>
             <div style={{ maxWidth: 520, width: '100%' }}>
               {newCategory && (
                 <Reveal>
@@ -1118,6 +985,176 @@ export default function Home() {
         );
       })}
 
+      {/* ── the prompt ── */}
+      <section className="frame frame-short">
+        <Reveal>
+          <div style={{ maxWidth: 520 }}>
+            <TypedText text="> tell me about yourself" delay={0.3} keepCursor style={{ fontSize: 13, opacity: 0.5, letterSpacing: '0.02em' }} />
+            <motion.p
+              className="serif"
+              style={{ fontSize: 'clamp(1.3rem, 3.5vw, 2rem)', lineHeight: 1.5, marginTop: 26, fontWeight: 400 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1.6, duration: 1 }}
+            >
+              {OSCAR.philosophy}
+            </motion.p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── numbers ── */}
+      <section className="frame frame-short">
+        <div style={{ display: 'flex', gap: 'clamp(36px, 7vw, 72px)', flexWrap: 'wrap', justifyContent: 'center' }}>
+          {STAT_ITEMS.map((n, i) => (
+            <Reveal key={n.label} delay={i * 0.15}>
+              <div style={{ textAlign: 'center' }}>
+                <div className="serif" style={{ fontSize: 'clamp(2rem, 6vw, 3.4rem)', lineHeight: 1 }}>
+                  <Counter to={n.to} prefix={n.prefix} suffix={n.suffix} />
+                </div>
+                <div className="mono" style={{ fontSize: 10, opacity: 0.4, marginTop: 10, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                  {n.label}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── chapter 01: stockholm ── */}
+      <section className="frame frame-short">
+        <div style={{ maxWidth: 560, width: '100%' }}>
+          <Reveal>
+            <ChapterLabel text={`chapter 01 / ${J.community.place} · ${J.community.year}`} />
+            <h2 className="serif chapter-title">it started with other people{'’'}s hackathons.</h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="body-text" style={{ marginTop: 22 }}>
+              {J.community.summary} sweden{'’'}s largest, peaking at {STATS.etableraPeak} participants.
+              the best products come out of rooms with deadlines and pizza.
+            </p>
+          </Reveal>
+          <Reveal delay={0.35}>
+            <div style={{ marginTop: 40, display: 'flex', alignItems: 'flex-end', gap: 28, flexWrap: 'wrap' }}>
+              <NordicSun />
+              <div className="mono" style={{ fontSize: 10, opacity: 0.35, letterSpacing: '0.12em', lineHeight: 2, textTransform: 'uppercase' }}>
+                stockholm, 59°N
+                <br />
+                <span style={{ opacity: 0.7, textTransform: 'none', letterSpacing: '0.04em' }}>(swedish words are hidden here. try typing {'“'}hej{'”'})</span>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── interlude: california ── */}
+      <section className="frame frame-short">
+        <Reveal>
+          <div style={{ maxWidth: 520, textAlign: 'center' }}>
+            <ChapterLabel text={`interlude / ${J.wallenberg.place} · ${J.wallenberg.year}`} />
+            <p className="serif" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.7rem)', lineHeight: 1.55, fontWeight: 400 }}>
+              {J.wallenberg.summary}
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── chapter 02: the crypto years ── */}
+      <section className="frame frame-short">
+        <div style={{ maxWidth: 560, width: '100%' }}>
+          <Reveal>
+            <ChapterLabel text={`chapter 02 / ${J.crypto.place} · ${J.crypto.year}`} />
+            <h2 className="serif chapter-title">the passport got stamps. so did the github.</h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="body-text" style={{ marginTop: 22 }}>
+              {J.crypto.summary} sometimes knowing what you don{'’'}t want is the move.
+            </p>
+          </Reveal>
+          <Reveal delay={0.35}>
+            <div style={{ marginTop: 40 }}>
+              <PassportStamps />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── chapter 03: the music years ── */}
+      <section className="frame frame-short">
+        <div style={{ maxWidth: 560, width: '100%' }}>
+          <Reveal>
+            <ChapterLabel text={`chapter 03 / ${J.music.place} · ${J.music.year}`} />
+            <h2 className="serif chapter-title">head of product at a music startup.</h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="body-text" style={{ marginTop: 22 }}>
+              {J.music.summary} kept the lesson, kept the records.
+            </p>
+          </Reveal>
+          <Reveal delay={0.35}>
+            <div style={{ marginTop: 40 }}>
+              <Equalizer />
+              <div className="mono" style={{ fontSize: 9, opacity: 0.3, marginTop: 12, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+                hover to turn it up
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── chapter 04: paris ── */}
+      <section className="frame frame-short">
+        <div style={{ maxWidth: 620, width: '100%' }}>
+          <Reveal>
+            <ChapterLabel text={`chapter 04 / ${J.security.place} · ${J.security.year}`} />
+            <h2 className="serif chapter-title">moved alone at 30. learned the métro before the language.</h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="body-text" style={{ marginTop: 22 }}>
+              {OSCAR.origin}
+            </p>
+            <p className="body-text" style={{ marginTop: 14, opacity: 0.7 }}>
+              {J.security.summary}
+            </p>
+          </Reveal>
+          <Reveal delay={0.35}>
+            <div style={{ marginTop: 52, display: 'flex', alignItems: 'flex-end', gap: 'clamp(24px, 5vw, 48px)', flexWrap: 'wrap' }}>
+              <EiffelTower />
+              <MetroSign />
+              <WineGlass />
+              <Baguette />
+            </div>
+          </Reveal>
+          <Reveal delay={0.5}>
+            <div style={{ marginTop: 56 }}>
+              <Seine maximalism={maximalism} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── chapter 05: the agents ── */}
+      <section className="frame frame-short">
+        <div style={{ maxWidth: 560, width: '100%' }}>
+          <Reveal>
+            <ChapterLabel text={`chapter 05 / ${J.agents.place} · ${J.agents.year}`} />
+            <h2 className="serif chapter-title">3am. five terminals. snus and wine.</h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="body-text" style={{ marginTop: 22 }}>
+              {OSCAR.coding} now the nights and weekends look like this:
+            </p>
+          </Reveal>
+          <Reveal delay={0.4}>
+            <div className="mono" style={{ marginTop: 40, fontSize: 11, opacity: 0.5, letterSpacing: '0.08em', display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' }}>
+              <span style={{ textTransform: 'uppercase', letterSpacing: '0.16em', fontSize: 9, opacity: 0.7 }}>next build window resets in</span>
+              <Countdown48 />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── thoughts ── */}
       <section className="frame frame-tall">
         <div style={{ maxWidth: 480 }}>
@@ -1192,48 +1229,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── the route, recapped ── */}
+      {/* ── the arc — one instinct, three waves ── */}
       <section className="frame">
-        <div style={{ maxWidth: 560, width: '100%' }}>
+        <div style={{ maxWidth: 620, width: '100%' }}>
           <Reveal>
-            <ChapterLabel text="the route so far" />
+            <ChapterLabel text={ARC.kicker} />
+            <p className="serif" style={{ fontSize: 'clamp(1.35rem, 3.6vw, 2rem)', lineHeight: 1.4, marginTop: 14, fontWeight: 400 }}>
+              {ARC.thesis}
+            </p>
           </Reveal>
-          {JOURNEY.map((j, i) => (
-            <Reveal key={j.year} delay={0.1 + i * 0.1}>
-              <motion.div
-                style={{
-                  display: 'flex',
-                  gap: 'clamp(14px, 3vw, 24px)',
-                  alignItems: 'baseline',
-                  padding: '16px 0',
-                  borderBottom: '1px solid color-mix(in srgb, currentColor 10%, transparent)',
-                }}
-                whileHover={{ x: 8 }}
-                transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-              >
-                <span
+          <div style={{ marginTop: 48 }}>
+            {ARC.waves.map((w, i) => (
+              <Reveal key={w.tag} delay={0.1 + i * 0.12}>
+                <motion.div
                   style={{
-                    width: 9, height: 9, borderRadius: '50%', flexShrink: 0,
-                    background: PALETTE[i % PALETTE.length],
-                    opacity: maximalism ? 1 : 0.55,
-                    transition: 'opacity 0.8s',
-                    alignSelf: 'center',
+                    display: 'flex',
+                    gap: 'clamp(16px, 3vw, 26px)',
+                    alignItems: 'baseline',
+                    padding: '20px 0',
+                    borderBottom: '1px solid color-mix(in srgb, currentColor 10%, transparent)',
                   }}
-                />
-                <span className="mono" style={{ fontSize: 11, opacity: 0.5, letterSpacing: '0.06em', minWidth: 64, fontVariantNumeric: 'tabular-nums' }}>
-                  {j.year}
-                </span>
-                <div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: '0.16em', opacity: 0.4, textTransform: 'uppercase', marginBottom: 4 }}>
-                    {j.place} · {j.chapter}
+                  whileHover={{ x: 8 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                >
+                  <span
+                    style={{
+                      width: 10, height: 10, borderRadius: '50%', flexShrink: 0,
+                      background: PALETTE[i % PALETTE.length],
+                      opacity: maximalism ? 1 : 0.6,
+                      transition: 'opacity 0.8s',
+                      alignSelf: 'flex-start',
+                      marginTop: 8,
+                    }}
+                  />
+                  <div style={{ minWidth: 74, flexShrink: 0 }}>
+                    <div className="mono" style={{ fontSize: 11, opacity: 0.5, letterSpacing: '0.06em', fontVariantNumeric: 'tabular-nums' }}>{w.years}</div>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: '0.16em', opacity: 0.4, textTransform: 'uppercase', marginTop: 4 }}>{w.tag}</div>
                   </div>
-                  <div style={{ fontSize: 13.5, fontWeight: 300, lineHeight: 1.6, opacity: 0.6 }}>
-                    {j.summary}
+                  <div>
+                    <h3 className="serif" style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 400, marginBottom: 7 }}>{w.title}</h3>
+                    <p style={{ fontSize: 13.5, fontWeight: 300, lineHeight: 1.7, opacity: 0.6 }}>{w.line}</p>
                   </div>
-                </div>
-              </motion.div>
-            </Reveal>
-          ))}
+                </motion.div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
