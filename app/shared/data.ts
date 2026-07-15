@@ -3,31 +3,15 @@
 //  update here, all model versions reflect the change
 // ════════════════════════════════════════════════════════════
 
-export const OSCAR = {
-  name: 'Oscar Morke',
-  title: 'staff pm at ledger',
-  location: 'paris, from stockholm',
-  tagline: 'wine and cheese between deploys.',
-  philosophy: 'i\'m just tending my own little smultronställe.',
-  origin: 'moved to paris alone at 30. sat at a cafe thinking this was either the bravest or stupidest thing. now it\'s home.',
-  coding: 'i was always the pitch guy. 16 hackathons explaining why something matters while someone else built it. ai closed the gap. now the nights look like this: five terminals, one brief, ship by morning.',
-  mantra: 'what if it works out?',
-  email: 'omorke@gmail.com',
-  bio: 'born in stockholm. lived in seoul and silicon valley. wallenberg fellow. two master\'s degrees in industrial engineering and entrepreneurship. co-founded a digital agency, ran product at a music startup, now protecting 8M+ devices at ledger. hackathons became a sport.',
-  selfDescription: 'i\'m the person in the room who asks "but who uses this tomorrow?" and then stays up building the answer.',
-};
-
-export const LINKS = {
-  github: 'https://github.com/morkeeth',
-  x: 'https://x.com/morkeeth',
-  linkedin: 'https://linkedin.com/in/morkeeth',
-  email: 'mailto:omorke@gmail.com',
-};
-
+// STATS is declared FIRST so prose below can interpolate it rather than restate
+// it. Canonical source is the compass (mindmap §13); every number here is ruled
+// there, and a number written twice is a number drifting. Prose that mentions a
+// canonical figure must read it from here — see OSCAR.bio / PROJECTS stories.
 export const STATS = {
   hackathonCount: 16,
   hackathonWins: 9,
   prizes: '$188K',
+  contacts: '1,200+',
   // 3.43 + 0.48 + 2.24 + 10.34 + 10.85 + 11.36 + 3 = 41.7 (Oscar, ruled 2026-07-15).
   // This is the team total and it must equal the sum of HACKATHON_TIMELINE's eth
   // column. If those two ever disagree again, the table is the thing to check.
@@ -37,8 +21,39 @@ export const STATS = {
   prevented: '$52M+',
   terminals: 5,
   etableraPeak: '8,000',
+  // Etablera's client count. Deliberately NOT the same field as `bounties` below:
+  // both read '30+' today, which is a coincidence, not a relationship. Binding one
+  // to the other would make a change to the bounty count silently rewrite Etablera.
+  etableraClients: '30+',
   bounties: '30+',
   anotherblockVolume: '$2.1M',
+};
+
+// Spell a count for prose. Oscar's copy writes "five terminals", not "5 terminals",
+// so a spelled-out number is still a restatement of STATS and still drifts. Derive
+// the word instead of typing it: `${numWord(STATS.terminals)} terminals`.
+const NUM_WORD = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+export const numWord = (n: number) => NUM_WORD[n] ?? String(n);
+
+export const OSCAR = {
+  name: 'Oscar Morke',
+  title: 'staff pm at ledger',
+  location: 'paris, from stockholm',
+  tagline: 'wine and cheese between deploys.',
+  philosophy: 'i\'m just tending my own little smultronställe.',
+  origin: 'moved to paris alone at 30. sat at a cafe thinking this was either the bravest or stupidest thing. now it\'s home.',
+  coding: `i was always the pitch guy. ${STATS.hackathonCount} hackathons explaining why something matters while someone else built it. ai closed the gap. now the nights look like this: ${numWord(STATS.terminals)} terminals, one brief, ship by morning.`,
+  mantra: 'what if it works out?',
+  email: 'omorke@gmail.com',
+  bio: `born in stockholm. lived in seoul and silicon valley. wallenberg fellow. two master's degrees in industrial engineering and entrepreneurship. co-founded a digital agency, ran product at a music startup, now protecting ${STATS.devices} devices at ledger. hackathons became a sport.`,
+  selfDescription: 'i\'m the person in the room who asks "but who uses this tomorrow?" and then stays up building the answer.',
+};
+
+export const LINKS = {
+  github: 'https://github.com/morkeeth',
+  x: 'https://x.com/morkeeth',
+  linkedin: 'https://linkedin.com/in/morkeeth',
+  email: 'mailto:omorke@gmail.com',
 };
 
 // Split a STATS string into the part a count-up animates and the part it can't.
@@ -51,8 +66,12 @@ export const statSuffix = (s: string) => s.replace(/^[^\d]*[\d.,]+/, '');
 // Each model's identity — the ONE place its name, blurb and accent live.
 // Read by /compare, by each route's metadata, and by each route's OG card,
 // so a model's description can never say two different things.
+// The four-model eval is the actual artifact here: one brief, one data layer, one
+// person's record, and the model as the only deliberate variable. `control` marks the
+// pre-model baseline — the same record, hand-built, no model in the loop. It is the
+// condition the other four are read against, not a fifth model.
 export const MODEL_META: {
-  id: string; name: string; desc: string; color: string; badge: string; external?: string;
+  id: string; name: string; desc: string; color: string; badge: string; external?: string; control?: boolean;
 }[] = [
   {
     id: 'fable',
@@ -89,10 +108,65 @@ export const MODEL_META: {
     color: '#8a877f',
     badge: 'human, unassisted',
     external: 'https://morkeeth-portfolio.vercel.app',
+    control: true,
   },
 ];
 
 export const modelBySlug = (id: string) => MODEL_META.find((m) => m.id === id)!;
+
+// The models actually under eval, and the one baseline they're read against.
+// ONE definition of "the four" — there were briefly two (`!m.control` and
+// `!m.external`), which agreed only because the legacy entry happens to carry both
+// flags. Give any model an external URL, or add a second control, and the two
+// silently disagree about how many models this site is comparing. The eval arms are
+// defined by NOT being the control; where a page is hosted has nothing to do with it.
+// Derived, never retyped: the rail, the OG card and every "four models" string count
+// this, so adding a fifth model can't leave a stale "four" behind.
+export const EVAL_MODELS = MODEL_META.filter((m) => !m.control);
+export const MODEL_CONTROL = MODEL_META.find((m) => m.control)!;
+
+// The eval frame, stated plainly. Written down because a reader who doesn't know it's
+// a controlled comparison just sees four portfolio skins and files it as a gimmick.
+// `confound` is not a disclaimer to bury: two arms kept being edited after generation,
+// which means this stopped being a clean A/B the day the site became a living site.
+// Saying so is the difference between an eval and a demo.
+export const EVAL_FRAME = {
+  kicker: 'the method',
+  constant: {
+    label: 'held constant',
+    value: `one 30-line brief · one data layer · one person's record`,
+  },
+  variable: {
+    label: 'the variable',
+    value: 'the model. nothing else.',
+  },
+  // Oscar's own wording, kept verbatim — it was already the most honest line on the
+  // page, it was just set at 0.4 opacity in a footer. Names derive from EVAL_MODELS so
+  // reordering the arms can't leave this sentence pointing at the wrong models.
+  confound: {
+    label: 'not controlled',
+    value: `${EVAL_MODELS[0].name.toLowerCase()} and ${EVAL_MODELS[1].name.toLowerCase()} have since been worked on like any living site. ${EVAL_MODELS[2].name.toLowerCase()} and ${EVAL_MODELS[3].name.toLowerCase()} stand as generated.`,
+  },
+  control: {
+    label: 'the control',
+    value: 'the same record before any model touched it.',
+  },
+};
+
+// Join names the way a sentence does: "a, b, c and d".
+const nameList = (names: string[]) =>
+  names.length < 2 ? (names[0] ?? '') : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+
+// The compare page's own framing, in ONE place. /compare's metadata and its OG card
+// both read this, so the page and the card it unfurls as can never disagree.
+export const COMPARE_META = {
+  title: `${OSCAR.name.toLowerCase()} · ${numWord(EVAL_MODELS.length)} models, one brief`,
+  description:
+    `the same brief handed to ${nameList(EVAL_MODELS.map((m) => m.name.toLowerCase()))}. ` +
+    `same context, same stories, the model is the only variable. a live eval of taste.`,
+  // The thesis, said short enough to read at thumbnail size.
+  cardLine: 'same brief. same context. the model is the variable.',
+};
 
 export type Track = 'work' | 'agents' | 'hackathons';
 
@@ -100,7 +174,7 @@ export type Track = 'work' | 'agents' | 'hackathons';
 export const TRACKS: { id: Track; label: string; blurb: string }[] = [
   { id: 'work', label: 'Full-time', blurb: 'paid, owned, real scope' },
   { id: 'agents', label: 'Agentic', blurb: 'every hackathon before this was handmade artisanal code' },
-  { id: 'hackathons', label: 'Hackathons', blurb: '16 competed. organized for 8,000. judged at microsoft hq.' },
+  { id: 'hackathons', label: 'Hackathons', blurb: `${STATS.hackathonCount} competed. organized for ${STATS.etableraPeak}. judged at microsoft hq.` },
 ];
 
 export type Project = {
@@ -126,8 +200,8 @@ export const PROJECTS: Project[] = [
     slug: 'ledger',
     featured: true,
     oneLiner: 'staff pm, core experience. hardware for when software becomes a commodity',
-    story: 'the thesis: when software is a commodity, the hardware is what protects you — your agent, your crypto, your digital identity. i run the core experience across btc, eth and sol, coordinating transaction check, clear signing and security research across six engineering teams. 8M+ devices on the other side of every call.',
-    result: 'protecting 8M+ devices',
+    story: `the thesis: when software is a commodity, the hardware is what protects you — your agent, your crypto, your digital identity. i run the core experience across btc, eth and sol, coordinating transaction check, clear signing and security research across six engineering teams. ${STATS.devices} devices on the other side of every call.`,
+    result: `protecting ${STATS.devices} devices`,
     buildTime: 'production',
     year: '2025-26',
     track: 'work',
@@ -136,7 +210,7 @@ export const PROJECTS: Project[] = [
     details: [
       'staff pm, core experience — BTC / ETH / SOL, across 6 engineering teams',
       'transaction check + clear signing: if the screen can\'t explain it, don\'t sign it',
-      'security research + blockaid integration: 800K tx screened, $52M+ in attacks prevented',
+      `security research + blockaid integration: 800K tx screened, ${STATS.prevented} in attacks prevented`,
       'chain assessment: new-chain evaluation from 2 weeks to 2 hours, weekly in production',
       'the bet: hardware secures what commoditized software can\'t — agent, crypto, identity',
     ],
@@ -146,8 +220,8 @@ export const PROJECTS: Project[] = [
     slug: 'anotherblock',
     featured: true,
     oneLiner: 'head of product. from fan-owned songs to an ai tool that prices them',
-    story: 'employee #4, founding team. built the platform where real fans bought shares of the songs they loved — rihanna, michael jackson, the weeknd, on-chain. 0 to 40K users, $2.1M in sales, official coinbase base launch partner. then chapter two: pivoted the whole thing into an ai evaluation tool that values music catalogs for record labels and institutional investors.',
-    result: '0 to 40K users',
+    story: `employee #4, founding team. built the platform where real fans bought shares of the songs they loved — rihanna, michael jackson, the weeknd, on-chain. 0 to ${STATS.users} users, ${STATS.anotherblockVolume} in sales, official coinbase base launch partner. then chapter two: pivoted the whole thing into an ai evaluation tool that values music catalogs for record labels and institutional investors.`,
+    result: `0 to ${STATS.users} users`,
     buildTime: '2.5 years',
     year: '2022-24',
     track: 'work',
@@ -155,7 +229,7 @@ export const PROJECTS: Project[] = [
     image: '/projects/anotherblock.jpg',
     details: [
       'drops: Rihanna, Michael Jackson, The Weeknd, Offset & Metro Boomin, Alan Walker',
-      '0 to 40K users, $2.1M in sales, 93K+ collectibles to 35K+ customers',
+      `0 to ${STATS.users} users, ${STATS.anotherblockVolume} in sales, 93K+ collectibles to 35K+ customers`,
       'official Coinbase Base launch partner (Onchain Summer + Art Basel)',
       'raised from J12, Swedish House Mafia, Inventure, Stride',
       'chapter two: pivoted to an AI evaluation tool pricing catalogs for record labels + institutional investors',
@@ -165,9 +239,9 @@ export const PROJECTS: Project[] = [
     name: 'Etablera',
     slug: 'etablera',
     featured: true,
-    oneLiner: 'sweden\'s largest hackathon series. 88 to 8,000 over four years',
-    story: 'started with 88 people in a room in stockholm. designed the team formation system. four years later, 8,000 participants across the country and 200+ prototypes shipped.',
-    result: '88 to 8,000',
+    oneLiner: `sweden's largest hackathon series. 88 to ${STATS.etableraPeak} over four years`,
+    story: `started with 88 people in a room in stockholm. designed the team formation system. four years later, ${STATS.etableraPeak} participants across the country and 200+ prototypes shipped.`,
+    result: `88 to ${STATS.etableraPeak}`,
     buildTime: '4 years',
     year: '2017-20',
     track: 'work',
@@ -176,7 +250,7 @@ export const PROJECTS: Project[] = [
     details: [
       'organized hack for sweden, hack the crisis, hack for earth',
       'stage for 400 people',
-      '30+ clients from startups to government agencies',
+      `${STATS.etableraClients} clients from startups to government agencies`,
       'team formation algorithm for strangers to build together',
       '200+ prototypes shipped by participants',
     ],
@@ -258,7 +332,7 @@ export const PROJECTS: Project[] = [
     name: 'People Radar',
     slug: 'people-radar',
     oneLiner: 'a crm that reads my actual messages instead of asking me to fill forms',
-    story: 'scores 1,200+ contacts across imessage, whatsapp, instagram, facebook, linkedin. runs every 6 hours via cron. no api, no cloud. all local sqlite.',
+    story: `scores ${STATS.contacts} contacts across imessage, whatsapp, instagram, facebook, linkedin. runs every 6 hours via cron. no api, no cloud. all local sqlite.`,
     result: 'running daily',
     buildTime: 'nights',
     year: '2026',
@@ -292,7 +366,7 @@ export const PROJECTS: Project[] = [
     slug: 'the-os',
     featured: true,
     oneLiner: 'a personal operating system run by agents. obsidian is the brain, i am the taste',
-    story: 'i was 9 when i rekt my own computer writing scripts in the terminal. the dream never changed, it\'s all over 15 years of journals: cli based, the machine does the work. now it\'s five terminals at 3am. everything i do flows into one vault. agents read my messages, score 1,200 contacts, curate drafts against my own taste, and one of them wakes up on a server in germany to leave a brief for me at 8am. the system remembers so i can think. a beautiful happening, finally having the software i always dreamed of.',
+    story: `i was 9 when i rekt my own computer writing scripts in the terminal. the dream never changed, it's all over 15 years of journals: cli based, the machine does the work. now it's ${numWord(STATS.terminals)} terminals at 3am. everything i do flows into one vault. agents read my messages, score ${STATS.contacts} contacts, curate drafts against my own taste, and one of them wakes up on a server in germany to leave a brief for me at 8am. the system remembers so i can think. a beautiful happening, finally having the software i always dreamed of.`,
     result: 'compounding daily',
     buildTime: '6 months of nights',
     year: '2026',
@@ -493,31 +567,40 @@ export const THOUGHTS = [
 ];
 
 export const JOURNEY = [
-  { year: '2017-20', place: 'stockholm', chapter: 'community', summary: 'co-founded etablera. 88 to 8,000 participants. 30+ clients. digital agency. sana labs. learned how strangers become teams. judged gotham dlt at microsoft hq before ever competing.' },
+  { year: '2017-20', place: 'stockholm', chapter: 'community', summary: `co-founded etablera. 88 to ${STATS.etableraPeak} participants. ${STATS.etableraClients} clients. digital agency. sana labs. learned how strangers become teams. judged gotham dlt at microsoft hq before ever competing.` },
   { year: '2019', place: 'silicon valley', chapter: 'wallenberg', summary: 'wallenberg fellow at nordic innovation house. nvidia-sponsored ai hackathon. helped 180 companies navigate the US market. learned what happens when scandinavian politeness meets SF hustle.' },
   { year: '2021', place: 'lisbon', chapter: 'crypto', summary: 'won eth lisbon (contrib). founded matos dao. 42 crypto bars. 800+ community. said no to $95K from antler.' },
   { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum partner golds. nft safe launch finalist. gates.wtf.' },
-  { year: '2022-24', place: 'stockholm / paris', chapter: 'music', summary: 'anotherblock. employee #4. head of product. rihanna, weeknd, michael jackson on-chain. 40K users, $2.1M volume. coinbase base launch partner. moved to paris.' },
-  { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($52M+ prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 8M+ devices.' },
-  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. favour, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $188K in prizes. 41.7 ETH.' },
+  { year: '2022-24', place: 'stockholm / paris', chapter: 'music', summary: `anotherblock. employee #4. head of product. rihanna, weeknd, michael jackson on-chain. ${STATS.users} users, ${STATS.anotherblockVolume} volume. coinbase base launch partner. moved to paris.` },
+  { year: '2025', place: 'paris', chapter: 'security', summary: `staff pm at ledger. blockaid (${STATS.prevented} prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting ${STATS.devices} devices.` },
+  { year: '2026', place: 'paris', chapter: 'agents', summary: `${STATS.terminals} terminals at 3am. favour, receipt, yieldbound, briefmcp, people radar, bagel. ${STATS.hackathonCount} hackathons. ${STATS.prizes} in prizes. ${STATS.totalEthWon}.` },
 ];
 
 // ════════════════════════════════════════════════════════════
 //  THE STACK — the living system. the "what i've become" crescendo.
 //  same four layers, one pipeline; rendered in each model's own voice.
 // ════════════════════════════════════════════════════════════
-export const STACK_INTRO = {
-  kicker: 'the stack',
-  title: 'what i\'ve become',
-  line: 'four agents, one system. it thinks, runs, ships, and remembers — while i sleep.',
-};
-
 export const AGENTIC_STACK = [
   { key: 'brain',  layer: 'the second brain', sub: 'obsidian',        verb: 'thinks',    line: 'every message, note and decision flows into one vault. the memory, so i can think.' },
   { key: 'claws',  layer: 'the machine',      sub: 'open claws · hetzner', verb: 'runs',  line: 'the infrastructure the agent lives on. a server in germany with its own cron jobs and its own opinions.' },
   { key: 'hermes', layer: 'the courier',      sub: 'hermes · grok',   verb: 'ships',     line: 'the delivery lane. takes what the system writes and gets it out the door.' },
-  { key: 'radar',  layer: 'people radar',     sub: 'local sqlite',    verb: 'remembers', line: 'scores 1,200+ contacts across every channel, every 6 hours. no api, no cloud.' },
+  { key: 'radar',  layer: 'people radar',     sub: 'local sqlite',    verb: 'remembers', line: `scores ${STATS.contacts} contacts across every channel, every 6 hours. no api, no cloud.` },
 ];
+
+// The agent count IS the array's length, never a number typed beside it — same rule
+// as the ETH headline and the event count. This one had already drifted and shipped:
+// the hero chip said "5-agent OS", STACK_INTRO said "four agents", ARC said
+// "five-agent os", and /haiku rendered all three within one scroll. The 5 leaked in
+// from STATS.terminals, which counts terminals, not agents — a different axis.
+// Add a fifth layer here and every surface follows. Type a 5 anywhere else and it lies.
+export const AGENT_COUNT = AGENTIC_STACK.length;
+export const AGENT_WORD = numWord(AGENT_COUNT);
+
+export const STACK_INTRO = {
+  kicker: 'the stack',
+  title: 'what i\'ve become',
+  line: `${AGENT_WORD} agents, one system. it thinks, runs, ships, and remembers — while i sleep.`,
+};
 
 export const COLORS = {
   orange: '#f2a039',
@@ -535,8 +618,8 @@ export const ARC = {
   kicker: 'the arc',
   thesis: 'art and science, all together. built on becoming: leaping before ready, and it keeps working out.',
   waves: [
-    { tag: 'open data', years: '2017-21', title: 'the hackathon builder', line: 'it started in open-data hackathons. built sweden\'s largest series, 88 to 8,000. intent-based travel with SAS. the instinct: ship the thing, learn in public.' },
-    { tag: 'web3', years: '2021-24', title: 'anotherblock', line: 'rode it into crypto. employee #4, 0 to 40K users, coinbase\'s first launch partner, rihanna and michael jackson on-chain. then it died by distribution. the product was better. distribution won. still the lesson that runs everything.' },
-    { tag: 'ai', years: '2025-', title: 'the one-person team', line: 'now channeling it into ai. a five-agent os that thinks, ships and remembers while i sleep. one person, full stack, by morning.' },
+    { tag: 'open data', years: '2017-21', title: 'the hackathon builder', line: `it started in open-data hackathons. built sweden's largest series, 88 to ${STATS.etableraPeak}. intent-based travel with SAS. the instinct: ship the thing, learn in public.` },
+    { tag: 'web3', years: '2021-24', title: 'anotherblock', line: `rode it into crypto. employee #4, 0 to ${STATS.users} users, coinbase's first launch partner, rihanna and michael jackson on-chain. then it died by distribution. the product was better. distribution won. still the lesson that runs everything.` },
+    { tag: 'ai', years: '2025-', title: 'the one-person team', line: `now channeling it into ai. a ${AGENT_WORD}-agent os that thinks, ships and remembers while i sleep. one person, full stack, by morning.` },
   ],
 };
