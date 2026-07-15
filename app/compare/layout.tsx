@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
+import { COMPARE_META } from '../shared/data';
 
-const title = 'oscar morke · four models, one brief';
-const description =
-  'the same brief handed to fable 5, opus 4.8, sonnet 5 and haiku 4.5. same context, same stories, the model is the only variable. a live eval of taste.';
+// Title/description read from COMPARE_META so this page and its OG card cannot
+// drift apart — the same rule MODEL_META already enforces for the four skins.
+const { title, description } = COMPARE_META;
 
 export const metadata: Metadata = {
   title,
