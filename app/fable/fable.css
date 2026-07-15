@@ -414,6 +414,12 @@
     .statusbar { display: none; }
   }
 
+  /* Clear the ModelSwitcher rail (196px) once it becomes a left rail at md,
+     so the status line never sits on top of "compare all →". */
+  @media (min-width: 768px) {
+    .statusbar { left: 214px; }
+  }
+
   .egg-toast {
     position: fixed;
     bottom: 44px;

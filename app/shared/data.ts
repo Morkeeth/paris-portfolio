@@ -30,12 +30,17 @@ export const STATS = {
   prizes: '$188K',
   totalEthWon: '42 ETH',
   users: '40K',
+  devices: '8M+',
   prevented: '$51M',
   terminals: 5,
   etableraPeak: '8,000',
   bounties: '30+',
   anotherblockVolume: '$2.1M',
 };
+
+// Strips formatting off a STATS string so count-ups can animate to it.
+// '$188K' -> 188. Use this instead of retyping the digits in a page.
+export const statNum = (s: string) => parseInt(s.replace(/\D/g, ''), 10);
 
 export type Track = 'work' | 'agents' | 'hackathons';
 

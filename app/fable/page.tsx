@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import { OSCAR, LINKS, STATS, FEATURED, THOUGHTS, JOURNEY, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS, type Track } from '../shared/data';
+import { OSCAR, LINKS, STATS, statNum, FEATURED, THOUGHTS, JOURNEY, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS, type Track } from '../shared/data';
 
 // ════════════════════════════════════════════════════════════
 //  data — single source of truth lives in ../shared/data
@@ -17,9 +17,9 @@ const J = Object.fromEntries(JOURNEY.map(j => [j.chapter, j])) as Record<string,
 // numbers section, derived from shared stats
 const STAT_ITEMS = [
   { to: STATS.hackathonWins, prefix: '', suffix: '', label: 'hackathon wins' },
-  { to: parseInt(STATS.prizes.replace(/\D/g, ''), 10), prefix: '$', suffix: 'k', label: 'in prizes' },
-  { to: parseInt(STATS.users.replace(/\D/g, ''), 10), prefix: '', suffix: 'k', label: 'users shipped to' },
-  { to: parseInt(STATS.prevented.replace(/\D/g, ''), 10), prefix: '$', suffix: 'm', label: 'losses prevented' },
+  { to: statNum(STATS.prizes), prefix: '$', suffix: 'k', label: 'in prizes' },
+  { to: statNum(STATS.users), prefix: '', suffix: 'k', label: 'users shipped to' },
+  { to: statNum(STATS.prevented), prefix: '$', suffix: 'm', label: 'losses prevented' },
 ];
 
 // keep the philosophy for the prompt section, don't repeat it in notes

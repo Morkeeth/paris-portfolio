@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS } from '../shared/data';
+import { OSCAR, LINKS, STATS, statNum, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS } from '../shared/data';
 
 // ─────────────────────────────────────────────────────────────
 //  palette — ink on paper, editorial cool
@@ -70,13 +70,22 @@ const TOC = [
 // ─────────────────────────────────────────────────────────────
 //  global styles (injected once)
 // ─────────────────────────────────────────────────────────────
+// Every rule here must stay scoped to sonnet (.s-* or html/body). A bare `*` reset in
+// this tag is unlayered, so it outranks Tailwind's layered utilities and strips the
+// padding off the shared ModelSwitcher. globals.css already resets in @layer base.
 const GLOBAL_STYLES = `
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:${C.bg};color:${C.fg}}
   ::selection{background:${C.accent}22}
   .s-scroll-bar{position:fixed;top:0;left:0;right:0;height:2px;z-index:100;background:${C.rule};transform-origin:left}
   .s-scroll-bar-fill{position:absolute;inset:0;background:${C.accent}}
+  .s-topbar{position:fixed;top:0;left:0;right:0;z-index:50}
+  /* Fixed chrome escapes <main>'s md:pl-[196px], so offset it past the
+     ModelSwitcher rail by hand once the rail goes vertical at md. */
+  @media(min-width:768px){
+    .s-scroll-bar{left:196px}
+    .s-topbar{left:196px}
+  }
   .s-rule{width:100%;height:1px;background:${C.rule}}
   .s-rule-light{width:100%;height:1px;background:${C.fg}18}
   @keyframes s-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
@@ -405,15 +414,11 @@ export default function SonnetPage() {
 
       {/* ── top nav bar ── */}
       <motion.header
+        className="s-topbar"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
           padding: '18px 32px',
           display: 'flex',
           justifyContent: 'space-between',
@@ -844,10 +849,10 @@ export default function SonnetPage() {
         </Reveal>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1px', background: C.rule, border: `1px solid ${C.rule}` }}>
           {[
-            { n: STATS.hackathonWins, pre: '',   suf: '',  label: 'hackathon wins'   },
-            { n: 188,                 pre: '$', suf: 'k', label: 'in prizes'         },
-            { n: Number(STATS.users.replace('K','')) || 40, pre: '', suf: 'k', label: 'users shipped to' },
-            { n: 51,                  pre: '$', suf: 'm', label: 'losses prevented'  },
+            { n: STATS.hackathonWins,      pre: '',  suf: '',  label: 'hackathon wins'   },
+            { n: statNum(STATS.prizes),    pre: '$', suf: 'k', label: 'in prizes'         },
+            { n: statNum(STATS.users),     pre: '',  suf: 'k', label: 'users shipped to' },
+            { n: statNum(STATS.prevented), pre: '$', suf: 'm', label: 'losses prevented'  },
           ].map((m, i) => (
             <Reveal key={m.label} delay={i * 0.1}>
               <div style={{ background: C.bg, padding: '28px 24px' }}>
@@ -952,7 +957,7 @@ export default function SonnetPage() {
               }}>
                 days building the security layer
                 <br />
-                for 6m hardware wallets.
+                for {STATS.devices} hardware wallets.
               </h2>
             </Reveal>
             <Reveal delay={0.15}>

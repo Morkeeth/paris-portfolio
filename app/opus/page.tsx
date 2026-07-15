@@ -10,7 +10,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, ARC, HACKATHON_TIMELINE, RECORD_POINTS, AGENTIC_STACK, STACK_INTRO, COLORS, type Project } from '../shared/data';
+import { OSCAR, LINKS, STATS, statNum, FEATURED, TRACKS, THOUGHTS, ARC, HACKATHON_TIMELINE, RECORD_POINTS, AGENTIC_STACK, STACK_INTRO, COLORS, type Project } from '../shared/data';
 
 const C = {
   bg: '#050505', fg: '#f0ede8', dim: '#706e68', faint: '#2a2a28',
@@ -428,9 +428,9 @@ export default function OpusPage() {
           <div style={{ display: 'flex', gap: 'clamp(36px, 7vw, 72px)', flexWrap: 'wrap', justifyContent: 'center' }}>
             {([
               { to: STATS.hackathonWins, prefix: '', suffix: '', l: 'wins' },
-              { to: 188, prefix: '$', suffix: 'K', l: 'in prizes' },
-              { to: 40, prefix: '', suffix: 'K', l: 'users' },
-              { to: 51, prefix: '$', suffix: 'M', l: 'protected' },
+              { to: statNum(STATS.prizes), prefix: '$', suffix: 'K', l: 'in prizes' },
+              { to: statNum(STATS.users), prefix: '', suffix: 'K', l: 'users' },
+              { to: statNum(STATS.prevented), prefix: '$', suffix: 'M', l: 'protected' },
             ]).map((s, i) => (
               <Reveal key={s.l} delay={i * 0.15}>
                 <div style={{ textAlign: 'center' }}>
