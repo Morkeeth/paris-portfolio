@@ -135,8 +135,38 @@ These are the humanising stories. Still factual-only in the code. I did not writ
 | # | Category | Anchor | What's missing |
 |---|---|---|---|
 | S1 | Full-time | **the arc** — Etablera → the rocky road → Matos DAO, Antler $95K declined, grants, DeFi → Ledger PM | the throughline. why each turn. what the "no" to Antler cost / bought |
-| S2 | Agentic | **The OS / 5 terminals** | the *feel* of a 3am night. not the spec — the scene |
+| ~~S2~~ | ~~Agentic~~ | **DONE 2026-07-15** — see below | ✅ |
 | S3 | Hackathons | **Gates / Bogotá** | the scene + why proof-of-personhood grabbed you |
+
+### ✅ S2 — captured from Oscar, applied 2026-07-15
+
+The anchor turned out not to be a 3am night at all. It's **"i rekt my computer at 9 writing
+scripts in the terminal"** — the failure beat is thirty years before the payoff, and "finally
+having the software i always dreamed of" is the nine-year-old's dream landing. That's the
+throughline the site was missing; it now opens The OS's story.
+
+Also captured: at **Synthesis** (Pavillon Henri IV), two agents Oscar built were competing and
+**one caught the other about to push a private key**. Demo key, and it never leaked *because*
+the other caught it. Filed as a THOUGHT, phrased honestly: the first draft said "caught the
+other leaking a private key", which asserts a leak that never happened. On a page whose author
+does security at Ledger, that would have been a false claim.
+
+**Oscar's rule, applied site-wide: "no one knows what bagel is, cater it to the audience."**
+He'd already solved this once (`the second brain / obsidian` leads with the role) and not
+applied it elsewhere. Now consistent, names demoted to the detail line:
+
+| was | now |
+|---|---|
+| `open claws / bagel` · hetzner | `the machine` · open claws · hetzner |
+| `hermes` · grok · vps | `the courier` · hermes · grok |
+
+Also killed: THOUGHTS said *"briefmcp, receipt, helicon: agents that stop re-explaining, lying,
+and forgetting."* Of those three, only RECEIPT has a visible card, BriefMCP isn't featured, and
+**helicon appears nowhere else on the site** — a stranger meets three names and can look up one.
+Now: *"three things i keep rebuilding: agents that stop re-explaining, stop lying, stop forgetting."*
+
+Verified rendered: `bagel`, `helicon`, `odawg` appear **nowhere** in the rendered text of any
+route. `hermes` / `open claws` survive only in the demoted sub-line, which is the intent.
 
 ---
 

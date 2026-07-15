@@ -99,7 +99,7 @@ export type Track = 'work' | 'agents' | 'hackathons';
 // track metadata — order + section labels for grouping the cases
 export const TRACKS: { id: Track; label: string; blurb: string }[] = [
   { id: 'work', label: 'Full-time', blurb: 'paid, owned, real scope' },
-  { id: 'agents', label: 'Agentic', blurb: '2026. five terminals, one brief, ship by morning' },
+  { id: 'agents', label: 'Agentic', blurb: 'every hackathon before this was handmade artisanal code' },
   { id: 'hackathons', label: 'Hackathons', blurb: '16 competed. organized for 8,000. judged at microsoft hq.' },
 ];
 
@@ -292,7 +292,7 @@ export const PROJECTS: Project[] = [
     slug: 'the-os',
     featured: true,
     oneLiner: 'a personal operating system run by agents. obsidian is the brain, i am the taste',
-    story: 'everything i do flows into one vault. agents read my messages, score 1,200 contacts, curate drafts against my own taste filter, and ship while i sleep. bagel delivers the brief at 8am. the system remembers so i can think.',
+    story: 'i was 9 when i rekt my own computer writing scripts in the terminal. the dream never changed, it\'s all over 15 years of journals: cli based, the machine does the work. now it\'s five terminals at 3am. everything i do flows into one vault. agents read my messages, score 1,200 contacts, curate drafts against my own taste, and one of them wakes up on a server in germany to leave a brief for me at 8am. the system remembers so i can think. a beautiful happening, finally having the software i always dreamed of.',
     result: 'compounding daily',
     buildTime: '6 months of nights',
     year: '2026',
@@ -484,7 +484,8 @@ export const RECORD_POINTS = HACKATHON_TIMELINE.map((r) => ({
 export const THOUGHTS = [
   'every agent demo looks amazing. then you ask who uses it tomorrow and the room goes quiet.',
   'agents sound confident regardless of quality.',
-  'briefmcp, receipt, helicon: agents that stop re-explaining, lying, and forgetting.',
+  'two agents i built, competing at the same hackathon. one caught the other about to push a private key. only a demo key, and it never leaked, because the other one caught it.',
+  'three things i keep rebuilding: agents that stop re-explaining, stop lying, stop forgetting.',
   'product was better. distribution won.',
   'the best hack is knowing when to stop hacking.',
   'minimalism is where i am from. maximalism is where i live.',
@@ -513,8 +514,8 @@ export const STACK_INTRO = {
 
 export const AGENTIC_STACK = [
   { key: 'brain',  layer: 'the second brain', sub: 'obsidian',        verb: 'thinks',    line: 'every message, note and decision flows into one vault. the memory, so i can think.' },
-  { key: 'claws',  layer: 'open claws / bagel', sub: 'hetzner',       verb: 'runs',      line: 'the infrastructure the agent lives on. a server in germany with its own cron jobs and its own opinions.' },
-  { key: 'hermes', layer: 'hermes',           sub: 'grok · vps',      verb: 'ships',     line: 'the delivery lane. takes what the system writes and gets it out the door.' },
+  { key: 'claws',  layer: 'the machine',      sub: 'open claws · hetzner', verb: 'runs',  line: 'the infrastructure the agent lives on. a server in germany with its own cron jobs and its own opinions.' },
+  { key: 'hermes', layer: 'the courier',      sub: 'hermes · grok',   verb: 'ships',     line: 'the delivery lane. takes what the system writes and gets it out the door.' },
   { key: 'radar',  layer: 'people radar',     sub: 'local sqlite',    verb: 'remembers', line: 'scores 1,200+ contacts across every channel, every 6 hours. no api, no cloud.' },
 ];
 
