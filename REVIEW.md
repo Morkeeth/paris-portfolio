@@ -149,6 +149,52 @@ container is the correct pattern, and the body does not scroll.
 
 ---
 
+## 🎯 THE NEXT MOONSHOT — publish the brief
+
+**The eval is missing its input, and that's the only thing standing between "a clever
+portfolio" and a reproducible artifact.**
+
+`/compare` now states the method: what's held constant, what varied, the control, the
+confound. Four arms, one baseline, one honest disclosure. The one thing it does *not* have
+is **the brief itself** — the actual input to the experiment. An eval that doesn't publish
+its prompt can't be re-run by anyone, which means it's a demonstration, not an eval.
+
+**Found while checking this (and it's the reason it's urgent):** the site claimed *"the same
+**30-line** brief"*. That number is **unsourced** — the brief exists in **no commit** (never
+tracked) and in **no vault doc** (`01 Projects/Portfolio/` has creative-direction,
+inspiration, build-plan, stories-source; none contain it; the archive says only "Same brief,
+4 Claude models" with no count). It was harmless as a dim footer aside. It stopped being
+harmless when I promoted it into the row labelled **"held constant"**, which reads as a
+stated experimental parameter. **I dropped the "30-line"** — the claim is true without it,
+and a number nobody can check is the exact fake-precision tell this whole pass is about.
+That was my error to make and to unmake.
+
+**The moonshot, and it needs you because only you have the artifact:**
+
+1. **Find the original brief** (a chat prompt from ~June, before `portfolio-creative-direction.md`
+   on Jun 12 — the multi-model comparison already existed by then). If it's gone, say so on
+   the page; "the brief is lost" is a more honest line than a reconstructed one.
+2. **Publish it verbatim** on `/compare`, next to the arms. Then the page reads: *here is the
+   exact input, here are four outputs, the model was the only variable, the control is the
+   pre-model site, two arms kept evolving — run it yourself.* That is a research artifact.
+   Nobody can argue with it because everything needed to check it is on the page.
+3. **Then the "30-line" earns its way back**, because a reader can count the lines.
+
+Why this over the other open items: it's the only one that changes what the site **is**. The
+domain, the FAVOUR screenshot and the login wall are all things that make the site *work*.
+This is the one that makes the four-model thing legible as the thing you actually did —
+which, per your own framing, is the sharpest work on here and the part you keep filing as a
+gimmick. It's also cheap: the brief is text, and the page already has a slot shaped like it.
+
+**Second candidate, deliberately NOT recommended:** instrumenting the four routes to measure
+which skin visitors prefer, so the "live eval of taste" reports a real number. I'd push back
+on this. Your traffic won't produce an n that means anything, a vote counter reading 9 is
+worse than no counter, and it needs a backend and a third party on a static site whose whole
+ethic is local-and-no-cloud. The eval's judge is you. That's legitimate — but then the
+outcome is your ranking and your reasons, which is voice work, and yours.
+
+---
+
 ## 🔴 NEEDS YOU — still open
 
 1. **`oscarmorke.com` is not registered.** `whois` → *"No match for domain OSCARMORKE.COM"*. You said you don't want your full name in the domain, so `metadataBase` no longer hardcodes it: it now reads `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → localhost. **Pick a domain, set `NEXT_PUBLIC_SITE_URL`, done** — no code change needed.

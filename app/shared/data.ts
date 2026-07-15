@@ -132,9 +132,16 @@ export const MODEL_CONTROL = MODEL_META.find((m) => m.control)!;
 // Saying so is the difference between an eval and a demo.
 export const EVAL_FRAME = {
   kicker: 'the method',
+  // "one 30-line brief" was the old footer's wording and it is NOT sourced: the brief
+  // exists in no commit and in no vault doc, so nothing backs the line count. Fine as a
+  // throwaway footer aside; not fine in a row labelled "held constant", which reads as a
+  // stated experimental parameter. A number nobody can check is worse than no number —
+  // it's the fake-precision tell on a page whose whole argument is honesty. Dropped the
+  // count, kept the claim, which is true and needs no receipt. If the original brief
+  // turns up, publish it and the precision earns its place back.
   constant: {
     label: 'held constant',
-    value: `one 30-line brief · one data layer · one person's record`,
+    value: `one brief · one data layer · one person's record`,
   },
   variable: {
     label: 'the variable',
