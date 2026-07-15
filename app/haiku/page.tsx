@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, ARC, COLORS, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS } from '../shared/data';
+import { OSCAR, LINKS, STATS, FEATURED, TRACKS, THOUGHTS, ARC, COLORS, AGENTIC_STACK, AGENT_COUNT, STACK_INTRO, RECORD_POINTS } from '../shared/data';
 
 const containerStyle: React.CSSProperties = {
   fontFamily: 'var(--font-jetbrains-mono)',
@@ -15,14 +15,19 @@ const containerStyle: React.CSSProperties = {
   letterSpacing: '-0.3px',
 };
 
+// The banner is ASCII box-drawing: its rules are ~72 chars and only read as rules if
+// they stay on one line. `pre-wrap` + `break-word` let them reflow, which at 390px
+// shredded the top of the page into three ragged fragments of ═ (desktop was fine, so
+// it survived every 1440-only review). `pre` keeps each rule intact and the container
+// scrolls it — wide content scrolling in its own box, same pattern as the record chart.
 const bannerStyle: React.CSSProperties = {
   maxWidth: '900px',
   margin: '0 auto 40px',
   fontSize: '11px',
   fontWeight: 400,
   color: '#333333',
-  whiteSpace: 'pre-wrap',
-  wordBreak: 'break-word',
+  whiteSpace: 'pre',
+  overflowX: 'auto',
   lineHeight: '1.4',
 };
 
@@ -191,7 +196,7 @@ export default function HaikuPage() {
           {OSCAR.selfDescription}
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '14px' }}>
-          {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, '5-agent OS · ships by morning', 'FAVOUR · live'].map((chip) => (
+          {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, `${AGENT_COUNT}-agent OS · ships by morning`, 'FAVOUR · live'].map((chip) => (
             <span
               key={chip}
               style={{
@@ -325,7 +330,7 @@ export default function HaikuPage() {
       >
         <h2 style={sectionTitleStyle}>$ stack --status</h2>
         <div style={{ fontSize: '11px', color: '#888888', marginBottom: '14px', marginLeft: '10px' }}>
-          # {STACK_INTRO.title} — {AGENTIC_STACK.length} agents, one system
+          # {STACK_INTRO.title} — {AGENT_COUNT} agents, one system
         </div>
         <div style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: '12px' }}>
           {AGENTIC_STACK.map((s, idx) => (

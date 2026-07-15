@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, statNum, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS } from '../shared/data';
+import { OSCAR, LINKS, STATS, statNum, PROJECTS as RAW_PROJECTS, TRACKS, THOUGHTS, ARC, AGENTIC_STACK, AGENT_COUNT, STACK_INTRO, RECORD_POINTS, COLORS } from '../shared/data';
 
 // ─────────────────────────────────────────────────────────────
 //  palette — ink on paper, editorial cool
@@ -122,6 +122,13 @@ const GLOBAL_STYLES = `
   .s-journey-row{display:grid;grid-template-columns:80px 80px 1fr 2fr;gap:0 20px;align-items:baseline;padding:16px 0;border-bottom:1px solid ${C.rule}}
   .s-journey-row:first-of-type{border-top:1px solid ${C.rule}}
   @media(max-width:600px){.s-journey-row{grid-template-columns:60px 1fr;grid-template-rows:auto auto}.s-journey-place{display:none}.s-journey-chapter{display:none}}
+
+  /* Hero stats sit at the right end of a flex-wrap row, so right-alignment is correct
+     only while they're actually on the right. Once the row wraps they stack at the left
+     edge and a right-aligned block reads as a misalignment (ragged left: "$188K in
+     prizes" hanging a space off its neighbours). Align to the edge they're actually on. */
+  .s-hero-stats{text-align:left}
+  @media(min-width:768px){.s-hero-stats{text-align:right}}
 `;
 
 const GlobalStyles = () => <style dangerouslySetInnerHTML={{ __html: GLOBAL_STYLES }} />;
@@ -525,12 +532,11 @@ export default function SonnetPage() {
                 <br />
                 i make things on nights and weekends. some of them win prizes.
               </p>
-              <div style={{
+              <div className="s-hero-stats" style={{
                 fontFamily: 'var(--font-jetbrains-mono), monospace',
                 fontSize: 10,
                 color: C.subtle,
                 opacity: 0.6,
-                textAlign: 'right',
                 lineHeight: 2,
               }}>
                 <div>{STATS.hackathonWins} hackathon wins</div>
@@ -567,7 +573,7 @@ export default function SonnetPage() {
                 {OSCAR.selfDescription}
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 20 }}>
-                {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, '5-agent OS · ships by morning', 'FAVOUR · live'].map((chip) => (
+                {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, `${AGENT_COUNT}-agent OS · ships by morning`, 'FAVOUR · live'].map((chip) => (
                   <span key={chip} style={{
                     fontFamily: 'var(--font-jetbrains-mono), monospace',
                     fontSize: 9,
@@ -911,7 +917,7 @@ export default function SonnetPage() {
                       const w = bw * 0.32;
                       const cx = x + w / 2;
                       return (
-                        <g key={p.date}>
+                        <g key={`${p.date}-${p.name}`}>
                           {p.usd > 0 ? (
                             <motion.rect
                               x={x} width={w} fill={C.accent}

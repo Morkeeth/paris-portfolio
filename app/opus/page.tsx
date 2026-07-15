@@ -10,7 +10,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect, Fragment } from 'react';
-import { OSCAR, LINKS, STATS, statNum, FEATURED, TRACKS, THOUGHTS, ARC, HACKATHON_TIMELINE, RECORD_POINTS, AGENTIC_STACK, STACK_INTRO, COLORS, type Project } from '../shared/data';
+import { OSCAR, LINKS, STATS, statNum, FEATURED, TRACKS, THOUGHTS, ARC, HACKATHON_TIMELINE, RECORD_POINTS, AGENTIC_STACK, AGENT_COUNT, STACK_INTRO, COLORS, type Project } from '../shared/data';
 
 const C = {
   bg: '#050505', fg: '#f0ede8', dim: '#706e68', faint: '#2a2a28',
@@ -210,8 +210,12 @@ function OpusPlot({ max }: { max: boolean }) {
             const bh = p.usd ? (p.usd / maxUsd) * (H - 18) : 0;
             const x = pad + i * bw + bw * 0.26;
             const w = bw * 0.48;
+            // Composite key: two events can share a date (2018 and 2022-10 each have
+            // two), and a bare p.date silently collided — React warned that children
+            // "may be duplicated and/or omitted", on the chart of the record itself.
+            // The row list at :258 already keys date+name.
             return (
-              <g key={p.date}>
+              <g key={`${p.date}-${p.name}-${i}`}>
                 {p.usd > 0 ? (
                   <motion.rect
                     x={x} width={w} rx={1.5} fill={accent} opacity={0.85}
@@ -375,7 +379,7 @@ export default function OpusPage() {
           </motion.p>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.4, duration: 1 }}
             style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginTop: 26 }}>
-            {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, '5-agent OS · ships by morning', 'FAVOUR · live'].map((c) => (
+            {['Staff PM · Ledger', `${STATS.hackathonWins}× hackathon winner`, `${AGENT_COUNT}-agent OS · ships by morning`, 'FAVOUR · live'].map((c) => (
               <span key={c} style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, letterSpacing: '0.04em', padding: '6px 13px', borderRadius: 999, border: `1px solid ${max ? C.maxFg : C.gold}44`, color: max ? C.maxFg : C.gold, opacity: 0.9 }}>{c}</span>
             ))}
           </motion.div>

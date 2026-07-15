@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import { OSCAR, LINKS, STATS, statNum, FEATURED, THOUGHTS, JOURNEY, ARC, AGENTIC_STACK, STACK_INTRO, RECORD_POINTS, COLORS, type Track } from '../shared/data';
+import { OSCAR, LINKS, STATS, statNum, FEATURED, THOUGHTS, JOURNEY, ARC, AGENTIC_STACK, AGENT_COUNT, STACK_INTRO, RECORD_POINTS, COLORS, type Track } from '../shared/data';
 
 // ════════════════════════════════════════════════════════════
 //  data — single source of truth lives in ../shared/data
@@ -45,9 +45,16 @@ const EGGS: Record<string, string> = {
 };
 
 // deterministic pseudo-random (no hydration mismatch)
+// Deterministic per-seed pseudo-random. The rounding is load-bearing, not cosmetic:
+// Math.sin is implementation-defined in the last bits (the spec permits it), so Node
+// and the browser disagree around the 10th decimal. Feeding that straight into a
+// style string made the SSR'd HTML differ from the client render and React threw a
+// hydration mismatch on /fable (--ad: -0.7752093506969686s server vs
+// -0.7752093507078825s client). Rounding here fixes the whole class at the source:
+// everything downstream is +-*/ only, which is IEEE-exact and identical everywhere.
 function rnd(seed: number) {
   const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
-  return x - Math.floor(x);
+  return Math.round((x - Math.floor(x)) * 1e6) / 1e6;
 }
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -825,7 +832,7 @@ export default function Home() {
             {([
               { t: 'Staff PM · Ledger', c: COLORS.ledger },
               { t: `${STATS.hackathonWins}× hackathon winner`, c: COLORS.orange },
-              { t: '5-agent OS · ships by morning', c: COLORS.teal },
+              { t: `${AGENT_COUNT}-agent OS · ships by morning`, c: COLORS.teal },
               { t: 'FAVOUR · live', c: COLORS.green },
             ] as const).map((chip) => (
               <span
@@ -1203,7 +1210,7 @@ export default function Home() {
                       const r = q.p.usd ? 3.5 + (q.p.usd / maxUsd) * 9 : 2.5;
                       return (
                         <motion.circle
-                          key={q.p.date} cx={q.x} cy={q.y} r={r}
+                          key={`${q.p.date}-${q.p.name}`} cx={q.x} cy={q.y} r={r}
                           fill={q.p.usd ? c : 'none'} stroke={c} strokeWidth={q.p.usd ? 0 : 1.5}
                           initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }}
                           transition={{ duration: 0.5, delay: 0.5 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
@@ -1212,7 +1219,7 @@ export default function Home() {
                       );
                     })}
                     {xy.map((q) => (
-                      <text key={`t-${q.p.date}`} x={q.x} y={H + 16} fontSize="8" fill="rgba(240,237,232,0.35)" textAnchor="middle" fontFamily="var(--font-jetbrains-mono)">
+                      <text key={`t-${q.p.date}-${q.p.name}`} x={q.x} y={H + 16} fontSize="8" fill="rgba(240,237,232,0.35)" textAnchor="middle" fontFamily="var(--font-jetbrains-mono)">
                         &apos;{q.p.year.slice(2)}
                       </text>
                     ))}
