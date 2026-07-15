@@ -28,19 +28,25 @@ export const STATS = {
   hackathonCount: 16,
   hackathonWins: 9,
   prizes: '$188K',
-  totalEthWon: '42 ETH',
+  // 3.43 + 0.48 + 2.24 + 10.34 + 10.85 + 11.36 + 3 = 41.7 (Oscar, ruled 2026-07-15).
+  // This is the team total and it must equal the sum of HACKATHON_TIMELINE's eth
+  // column. If those two ever disagree again, the table is the thing to check.
+  totalEthWon: '41.7 ETH',
   users: '40K',
   devices: '8M+',
-  prevented: '$51M',
+  prevented: '$52M+',
   terminals: 5,
   etableraPeak: '8,000',
   bounties: '30+',
   anotherblockVolume: '$2.1M',
 };
 
-// Strips formatting off a STATS string so count-ups can animate to it.
-// '$188K' -> 188. Use this instead of retyping the digits in a page.
+// Split a STATS string into the part a count-up animates and the part it can't.
+// '$188K' -> 188 + 'K'.  '$52M+' -> 52 + 'M+'  (the '+' is load-bearing: it means
+// "at least"). Derive both instead of retyping either, or the two drift apart.
+// Pages that render lowercase can .toLowerCase() the suffix; casing is per-skin.
 export const statNum = (s: string) => parseInt(s.replace(/\D/g, ''), 10);
+export const statSuffix = (s: string) => s.replace(/^[^\d]*[\d.,]+/, '');
 
 // Each model's identity — the ONE place its name, blurb and accent live.
 // Read by /compare, by each route's metadata, and by each route's OG card,
@@ -130,7 +136,7 @@ export const PROJECTS: Project[] = [
     details: [
       'staff pm, core experience — BTC / ETH / SOL, across 6 engineering teams',
       'transaction check + clear signing: if the screen can\'t explain it, don\'t sign it',
-      'security research + blockaid integration: 800K tx screened, $51M in attacks prevented',
+      'security research + blockaid integration: 800K tx screened, $52M+ in attacks prevented',
       'chain assessment: new-chain evaluation from 2 weeks to 2 hours, weekly in production',
       'the bet: hardware secures what commoditized software can\'t — agent, crypto, identity',
     ],
@@ -411,14 +417,23 @@ export const PROJECTS: Project[] = [
 // highlight reel — the cards shown on pages. the full range lives in HACKATHON_TIMELINE.
 export const FEATURED = PROJECTS.filter((p) => p.featured);
 
-export const HACKATHON_TIMELINE = [
+// The record, from Oscar's sheet (reconciled 2026-07-15). The eth column is the
+// team total per event and is canonical; `competed: false` marks an event he was
+// at but did not compete in, so it renders but never counts toward hackathonCount.
+export const HACKATHON_TIMELINE: {
+  date: string; name: string; project: string; prize: string;
+  eth: string; ethPrice: string; bounties: string; competed?: boolean;
+}[] = [
   { date: '2018', name: 'SAS Hack', project: 'intent-based travel', prize: '', eth: '', ethPrice: '', bounties: 'first hackathon ever' },
-  { date: '2019', name: 'Gotham DLT', project: 'Tech for Good (judge)', prize: '', eth: '', ethPrice: '', bounties: 'judge at microsoft hq ny — first blockchain event, judge before builder' },
+  { date: '2018', name: 'Vinnova Innovation', project: 'VEX', prize: '', eth: '', ethPrice: '', bounties: '' },
+  { date: '2019', name: 'Gotham DLT', project: 'Tech for Good (judge)', prize: '', eth: '', ethPrice: '', competed: false, bounties: 'judge at microsoft hq ny — first blockchain event, judge before builder' },
   { date: '2021-10', name: 'ETH Lisbon', project: 'Contrib', prize: '$13,200', eth: '3.00', ethPrice: '$4,132', bounties: 'Tally + MetaCartel winner' },
-  { date: '2022-06', name: 'ETH NYC', project: 'NFT Safe Launch', prize: '$10,392', eth: '8.71', ethPrice: '$1,193', bounties: 'Finalist, Valist Best Use, UMA Silver' },
+  { date: '2022-06', name: 'ETH NYC', project: 'NFT Safe Launch', prize: '$10,392', eth: '11.36', ethPrice: '$1,193', bounties: 'Finalist, Valist Best Use, UMA Silver' },
   { date: '2022-10', name: 'ETH Bogota', project: 'Gates.wtf', prize: '$14,169', eth: '10.85', ethPrice: '$1,323', bounties: '9 bounties: Optimism, Worldcoin, Coinbase x2, ENS x2, The Graph, Ceramic, Quicknode' },
   { date: '2022-10', name: 'Arbitrum', project: 'ArbiGates', prize: '$13,500', eth: '10.34', ethPrice: '$1,306', bounties: 'partner golds (~3rd overall)' },
+  { date: '2022-11', name: 'Chainlink Hackathon', project: '', prize: '', eth: '', ethPrice: '', bounties: '' },
   { date: '2023-03', name: 'ETH Denver', project: 'Swosh.cash', prize: '$3,500', eth: '2.24', ethPrice: '$1,561', bounties: 'Scroll + Lens' },
+  { date: '2023-05', name: 'ETH Lisbon', project: 'Nouns ML', prize: '', eth: '', ethPrice: '', bounties: '' },
   { date: '2023-07', name: 'ETH Paris', project: 'Headstart', prize: '$800', eth: '0.48', ethPrice: '$1,652', bounties: '' },
   { date: '2023-11', name: 'ETH Istanbul', project: 'AAtomato', prize: '$7,056', eth: '3.43', ethPrice: '$2,022', bounties: 'Unlimit 1st, Aave DAO Best Tooling' },
   { date: '2025-11', name: 'Tech Europe', project: 'Loop', prize: '', eth: '', ethPrice: '', bounties: '' },
@@ -431,6 +446,32 @@ export const HACKATHON_TIMELINE = [
 // derived: the competitive record as chartable points. one per event, 2018 → now.
 // zero-prize events (first hackathon, judge year, agentic era) are real and kept —
 // the shape IS the story: prize-hunting years → building years.
+// The ETH headline IS the table's sum, never a number typed beside it.
+// This drifted once and shipped: the table summed to 39.05 while the headline
+// said 42, rendered on the same screen, and no build or grep caught it because
+// both numbers were individually "valid". Fail loudly instead.
+const _ethTableSum = +HACKATHON_TIMELINE
+  .reduce((a, r) => a + (parseFloat(r.eth || '0') || 0), 0)
+  .toFixed(2);
+if (_ethTableSum !== parseFloat(STATS.totalEthWon)) {
+  throw new Error(
+    `[data.ts] ETH drift: HACKATHON_TIMELINE sums to ${_ethTableSum} but ` +
+      `STATS.totalEthWon says "${STATS.totalEthWon}". One of them is wrong. ` +
+      `Canonical team total is 41.7 (Oscar, 2026-07-15). Fix the table or the headline.`
+  );
+}
+
+// Same rule for the count: "16 hackathons" must BE the table, not a number
+// asserted beside it. The table was short by 3 until the sheet reconciled it.
+const _competed = HACKATHON_TIMELINE.filter((r) => r.competed !== false).length;
+if (_competed !== STATS.hackathonCount) {
+  throw new Error(
+    `[data.ts] count drift: HACKATHON_TIMELINE lists ${_competed} competed events ` +
+      `but STATS.hackathonCount says ${STATS.hackathonCount}. Add the missing rows ` +
+      `or fix the count (mark judge-only events \`competed: false\`).`
+  );
+}
+
 export const RECORD_POINTS = HACKATHON_TIMELINE.map((r) => ({
   year: r.date.slice(0, 4),
   date: r.date,
@@ -456,8 +497,8 @@ export const JOURNEY = [
   { year: '2021', place: 'lisbon', chapter: 'crypto', summary: 'won eth lisbon (contrib). founded matos dao. 42 crypto bars. 800+ community. said no to $95K from antler.' },
   { year: '2022', place: 'nyc / bogota', chapter: 'hackathon', summary: '4 wins in one year. 9 bounties at eth bogota. arbitrum partner golds. nft safe launch finalist. gates.wtf.' },
   { year: '2022-24', place: 'stockholm / paris', chapter: 'music', summary: 'anotherblock. employee #4. head of product. rihanna, weeknd, michael jackson on-chain. 40K users, $2.1M volume. coinbase base launch partner. moved to paris.' },
-  { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($51M prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 8M+ devices.' },
-  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. favour, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $188K in prizes. 42 ETH.' },
+  { year: '2025', place: 'paris', chapter: 'security', summary: 'staff pm at ledger. blockaid ($52M+ prevented), chain assessment (2 weeks to 2 hours), clear signing BTC/ETH/SOL. protecting 8M+ devices.' },
+  { year: '2026', place: 'paris', chapter: 'agents', summary: '5 terminals at 3am. favour, receipt, yieldbound, briefmcp, people radar, bagel. 16 hackathons. $188K in prizes. 41.7 ETH.' },
 ];
 
 // ════════════════════════════════════════════════════════════

@@ -40,16 +40,48 @@ Build green, 10/10 prerender, `tsc --noEmit` clean.
 
 ---
 
-## 🔴 NEEDS YOU — blockers found this pass (cannot fix from a terminal)
+## ✅ Resolved from Oscar's sheet (2026-07-15)
 
-1. **`oscarmorke.com` is not registered.** `whois` → *"No match for domain OSCARMORKE.COM"*; NXDOMAIN on 1.1.1.1 and 8.8.8.8. It is also `metadataBase` (`layout.tsx:27`), so every OG URL points at a host that does not exist and no link preview can unfurl. Register/point DNS before deploy.
+You pasted the sheet, so the record is now reconciled against it and **guarded** (see below).
+
+- **ETH NYC was the one wrong row.** `8.71 → 11.36`. The table now sums to **exactly 41.7**,
+  which is your ruled team total. `STATS.totalEthWon: '42 ETH' → '41.7 ETH'`, so `/opus` reads
+  *"$66K at award time · 41.7 ETH won · $188K at today's prices"* — consistent for the first time.
+  Independent corroboration: 41.7 × $4,500/ETH = $187,650 ≈ the $188K headline, so **$188K was
+  always derived from 41.7**. The 39.05 was the typo, not the headline.
+- **The 16 was right; the table was short by 3.** Your sheet lists exactly 16 competed events
+  (Gotham 2019 = judge, excluded; the 3 in-flight July 2026 hacks not yet counted). Added the
+  missing rows: **Vinnova Innovation (2018, VEX)**, **Chainlink Hackathon (2022-11)**,
+  **ETH Lisbon (2023-05, Nouns ML)**. Gotham is now marked `competed: false` so it renders
+  without counting.
+- **`$51M → $52M+`** across STATS + both prose restatements, matching mindmap §13.
+
+**Two invariants now fail the build rather than drift silently** (`data.ts`) — the exact bug
+class that shipped last time, where both numbers were individually "valid" so nothing caught it:
+
+| Guard | Fires when |
+|---|---|
+| ETH total | `HACKATHON_TIMELINE`'s eth column doesn't sum to `STATS.totalEthWon` |
+| Event count | competed rows ≠ `STATS.hackathonCount` |
+
+Verified by reintroducing the old `8.71`: build failed with
+*"ETH drift: HACKATHON_TIMELINE sums to 39.05 but STATS.totalEthWon says 41.7 ETH"*.
+
+---
+
+## 🔴 NEEDS YOU — still open
+
+1. **`oscarmorke.com` is not registered.** `whois` → *"No match for domain OSCARMORKE.COM"*. You said you don't want your full name in the domain, so `metadataBase` no longer hardcodes it: it now reads `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → localhost. It already works on `paris-portfolio.vercel.app` (live, 200). **Pick a domain, set `NEXT_PUBLIC_SITE_URL`, done** — no code change needed.
 2. **Yieldbound's "live ↗" lands on a Vercel login wall.** Anonymous `curl` → `302 → vercel.com/login`, title `Login – Vercel`. The earlier "liveness verified" check passed because it ran in an authenticated browser. Fix: Vercel → Settings → Deployment Protection → off. The other 4 live links and all 5 repos are genuinely public (verified anonymously).
-3. **The ETH table disproves the ETH headline, and it is one row.** `HACKATHON_TIMELINE` sums to **39.05 ETH**; `STATS.totalEthWon` says **42 ETH**, rendered adjacent on `/opus`. The gap is exactly **2.65** = the ETH NYC row: site says `8.71`, your sheet (mindmap §13) says `11.36`. Every other row matches. I did not touch it — numbers come from your sheet, not from me. Correct the row and the table reconciles to the canonical ~41.7/42.
-4. **4 agents or 5?** `STATS.terminals: 5` + "5-agent OS" chip on all four pages, but `AGENTIC_STACK` has **4** entries and `STACK_INTRO` says *"four agents, one system"*. `/haiku` renders "4 agents, one system" a few lines under its own "5-agent OS" chip. Pick one.
-5. **16 hackathons, 14 rows.** `STATS.hackathonCount: 16` vs `HACKATHON_TIMELINE`'s 14 entries — on the page billed as "the longer record". Two events missing, or the count is the wrong frame.
-6. **`$51M` vs `$52M+`.** Site says `$51M` prevented; mindmap §13 (canonical) says `$52M+`. One is stale.
-7. **Every "2026 = no purse" caption is wrong.** All four pages say the bars stop before 2026 (haiku: *"the bars stop in 2023"*; fable: *"in 2026 i stopped counting purses"*), but 2026 has two prize rows that render as bars ($1,000 Synthesis, $2,500 World Build 3). All four also omit 2025-11 Tech Europe, which *is* a real no-purse tick. Copy, so yours.
-8. **Zero per-route metadata.** All 9 routes inherit one title/description, so `/opus` and `/haiku` produce byte-identical link previews — on the site whose entire premise is four rival interpretations. Blocked structurally: every page is `'use client'`, which forbids a `metadata` export, so each needs a `layout.tsx` wrapper. The copy is yours; say the word and I'll wire the plumbing.
+3. **4 agents or 5?** (asked, not answered) `STATS.terminals: 5` + "5-agent OS" chip on all four pages, but `AGENTIC_STACK` has **4** entries and `STACK_INTRO` says *"four agents, one system"*. `/haiku` renders "4 agents, one system" a few lines under its own "5-agent OS" chip. The 5 looks like it leaked in from the terminal count, which is a different axis. My read: chip should say **4-agent OS**, leaving "5 terminals at 3am" alone. Say the word.
+4. **The "no purse" captions are now further off.** Adding 3 rows means the no-purse events are 2018 SAS, 2018 Vinnova, 2019 Gotham, 2022-11 Chainlink, 2023-05 ETH Lisbon, 2025-11 Tech Europe, 2026-05 ETH Open Agents. Opus's caption still says *"(2018 first-ever · 2019 judged · 2026 the building years)"*; haiku still says *"the bars stop in 2023"*; fable still says *"in 2026 i stopped counting purses"* (2026 has two prize bars). Copy, so yours.
+5. **Sheet vs mindmap disagree on Paris Innov'Hack.** Sheet says **200 euro**; mindmap §13 says **"50 teams, no prize"**. Site currently shows no prize. Left alone — it's €, and adding it moves the "$66K at award time" figure.
+6. **"$3.5k regular cash of agent hack"** — I couldn't place this. Your sheet shows ETH Open Agents (Receipt) = **0**, and the only $3,500 on it is ETH Denver, which already has 2.24 ETH against it. Not applied. Which event?
+7. **`ethPrice` is dead data.** Never rendered anywhere. NYC's `$1,193` no longer reconciles with 11.36 ETH ($10,392 ÷ 11.36 = $915), but since nothing reads the field I left it rather than assert an ETH price you didn't give me. Worth deleting the field entirely.
+
+Lower severity: the `world-relay` GitHub repo *description* still presents RELAY as current, so "code ↗" lands on a page saying RELAY — fix in GitHub settings, not this repo. `app/shared/data/helicon.db` (192KB SQLite) is untracked but sitting in the app dir; worth deleting per the personal-data boundary — I didn't touch it since I didn't create it.
+
+**Structural note:** `data.ts:2` calls STATS "single source of truth". Closer now — but `bounties` and `anotherblockVolume` are still declared and never read, and `data.ts` still restates its own STATS values as prose (`JOURNEY`'s 2026 line hardcodes four of them in one sentence). The pages are clean; the duplication lives in the data file, where it reads like copy instead of state.
 
 Lower severity: `public/projects/relay.png` ships the dead name in the DOM (contents are correctly FAVOUR — verified by opening it); one `git mv` to `favour.png`. The `world-relay` GitHub repo *description* still presents RELAY as current, so "code ↗" lands on a page saying RELAY — fix in GitHub settings, not this repo. `app/shared/data/helicon.db` (192KB SQLite) is untracked but sitting in the app dir; worth deleting per the personal-data boundary.
 
