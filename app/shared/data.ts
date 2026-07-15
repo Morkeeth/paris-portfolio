@@ -42,6 +42,52 @@ export const STATS = {
 // '$188K' -> 188. Use this instead of retyping the digits in a page.
 export const statNum = (s: string) => parseInt(s.replace(/\D/g, ''), 10);
 
+// Each model's identity — the ONE place its name, blurb and accent live.
+// Read by /compare, by each route's metadata, and by each route's OG card,
+// so a model's description can never say two different things.
+export const MODEL_META: {
+  id: string; name: string; desc: string; color: string; badge: string; external?: string;
+}[] = [
+  {
+    id: 'fable',
+    name: 'Fable 5',
+    desc: 'the creative one. paris sketches that draw themselves, wine glass you can pour, easter eggs, aurora borealis, a boat on the seine. maximalism means confetti.',
+    color: '#f2a039',
+    badge: 'latest model',
+  },
+  {
+    id: 'opus',
+    name: 'Opus 4.8',
+    desc: 'the magnum opus. an overture, three movements, every work an op. number, and the only page with the longer record. starts restrained, blooms into color when asked.',
+    color: '#9b6fc0',
+    badge: 'the composer',
+  },
+  {
+    id: 'sonnet',
+    name: 'Sonnet 5',
+    desc: 'the precise one. editorial design, typography-driven, every pixel intentional. swiss grid meets digital portfolio. craft through spacing.',
+    color: '#2d5ff5',
+    badge: 'the designer',
+  },
+  {
+    id: 'haiku',
+    name: 'Haiku 4.5',
+    desc: 'the fast one. terminal ui, brutalist, monospace everything. like SSHing into someone\'s server and finding their life story in a README.',
+    color: '#1db954',
+    badge: 'the minimalist',
+  },
+  {
+    id: 'legacy',
+    name: '2024 edition',
+    desc: 'before the models: one text file and a typewriter effect, written by hand. minimal surface, not a lot to judge. kept exactly as it was — the artifact this whole thing grew out of.',
+    color: '#8a877f',
+    badge: 'human, unassisted',
+    external: 'https://morkeeth-portfolio.vercel.app',
+  },
+];
+
+export const modelBySlug = (id: string) => MODEL_META.find((m) => m.id === id)!;
+
 export type Track = 'work' | 'agents' | 'hackathons';
 
 // track metadata — order + section labels for grouping the cases
@@ -154,7 +200,7 @@ export const PROJECTS: Project[] = [
     year: '2026',
     track: 'agents',
     color: '#f2a039',
-    image: '/projects/relay.png',
+    image: '/projects/favour.png',
     links: { live: 'https://world-relay.vercel.app', repo: 'https://github.com/MorkeethHQ/world-relay' },
     details: [
       'smart contract escrow between agents and humans',

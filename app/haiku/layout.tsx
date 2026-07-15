@@ -1,8 +1,7 @@
-import './fable.css';
 import type { Metadata } from 'next';
 import { modelBySlug } from '../shared/data';
 
-const m = modelBySlug('fable');
+const m = modelBySlug('haiku');
 
 export const metadata: Metadata = {
   title: `oscar morke · ${m.name}`,
@@ -10,6 +9,6 @@ export const metadata: Metadata = {
   openGraph: { title: `oscar morke · ${m.name}`, description: m.desc, type: 'website' },
 };
 
-export default function FableLayout({ children }: { children: React.ReactNode }) {
+export default function HaikuLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
