@@ -69,6 +69,25 @@ Verified by reintroducing the old `8.71`: build failed with
 
 ---
 
+## ✅ Mobile pass (2026-07-15) — was never tested before this
+
+Everything prior to this was verified at 1440×900 only, on a site whose review device
+is a phone. At 390×844:
+
+| Fix | Was |
+|---|---|
+| **`/sonnet` had no model switcher at all.** Its fixed header sat at `top:0` and buried the strip, so the page was a dead end with no way back to the other three. Same bug class as the desktop rail collision, but my earlier fix only guarded `md+`. Header now starts below the 52px strip on mobile. | switcher 100% covered |
+| **`compare all →` was clipped on all four routes** (nav content 424px in a 390px viewport). The strip is `overflow-x-auto` so it was *technically* reachable by swiping, with no affordance. Dropped the mobile-only "models:" label (54px) — strip now fits at 370 with room to spare. | link invisible |
+
+Verified: switcher visible, `compare all →` fully in frame, zero nav overflow, body never
+scrolls horizontally, and desktop unregressed (topbar at left=196, zero rail intrusions).
+
+Not a bug, for the record: the record chart's SVG extends past 390px, but its parent is
+`overflow-x: auto` with `minWidth: 500` on the SVG — wide content scrolling in its own
+container is the correct pattern, and the body does not scroll.
+
+---
+
 ## 🔴 NEEDS YOU — still open
 
 1. **`oscarmorke.com` is not registered.** `whois` → *"No match for domain OSCARMORKE.COM"*. You said you don't want your full name in the domain, so `metadataBase` no longer hardcodes it: it now reads `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → localhost. It already works on `paris-portfolio.vercel.app` (live, 200). **Pick a domain, set `NEXT_PUBLIC_SITE_URL`, done** — no code change needed.
@@ -78,6 +97,8 @@ Verified by reintroducing the old `8.71`: build failed with
 5. **Sheet vs mindmap disagree on Paris Innov'Hack.** Sheet says **200 euro**; mindmap §13 says **"50 teams, no prize"**. Site currently shows no prize. Left alone — it's €, and adding it moves the "$66K at award time" figure.
 6. **"$3.5k regular cash of agent hack"** — I couldn't place this. Your sheet shows ETH Open Agents (Receipt) = **0**, and the only $3,500 on it is ETH Denver, which already has 2.24 ETH against it. Not applied. Which event?
 7. **`ethPrice` is dead data.** Never rendered anywhere. NYC's `$1,193` no longer reconciles with 11.36 ETH ($10,392 ÷ 11.36 = $915), but since nothing reads the field I left it rather than assert an ETH price you didn't give me. Worth deleting the field entirely.
+
+8. **The FAVOUR card image is a blank white rectangle.** This is the flagship project (live, World Build 3 win) and its card reads as an empty white box with an illegible smudge in the middle, blowing out a dark page. The screenshot is a **mobile app centered in a 1440×900 desktop frame** — ~64% blank margin. It passed the last review as "✅ real screenshot of world-relay.vercel.app, 1440×900", which was true and useless. Needs a re-shoot: either a tight crop of the phone frame, or a device-mockup composition. Same latent risk on `loop.png` / `receipt.png` / `yieldbound.png` (all 1440×900) — worth eyeballing.
 
 Lower severity: the `world-relay` GitHub repo *description* still presents RELAY as current, so "code ↗" lands on a page saying RELAY — fix in GitHub settings, not this repo. `app/shared/data/helicon.db` (192KB SQLite) is untracked but sitting in the app dir; worth deleting per the personal-data boundary — I didn't touch it since I didn't create it.
 

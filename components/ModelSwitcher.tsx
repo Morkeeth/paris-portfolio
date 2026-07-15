@@ -37,8 +37,9 @@ export default function ModelSwitcher() {
         </div>
       </div>
 
-      <span className="shrink-0 pr-1 text-[11px] text-[#706e68] lowercase md:hidden">models:</span>
-
+      {/* No "models:" label on mobile: at 390px it cost 54px and pushed
+          "compare all →" off the right edge, hiding the one link to the
+          thesis. The four names plus the gold active marker say it anyway. */}
       {MODELS.map((m) => (
         <Link
           key={m.slug}

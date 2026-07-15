@@ -79,12 +79,15 @@ const GLOBAL_STYLES = `
   ::selection{background:${C.accent}22}
   .s-scroll-bar{position:fixed;top:0;left:0;right:0;height:2px;z-index:100;background:${C.rule};transform-origin:left}
   .s-scroll-bar-fill{position:absolute;inset:0;background:${C.accent}}
-  .s-topbar{position:fixed;top:0;left:0;right:0;z-index:50}
-  /* Fixed chrome escapes <main>'s md:pl-[196px], so offset it past the
-     ModelSwitcher rail by hand once the rail goes vertical at md. */
+  /* Fixed chrome escapes <main>'s pt-[52px] / md:pl-[196px], so it has to clear the
+     ModelSwitcher by hand: below the 52px strip on mobile, right of the 196px rail
+     at md. Without this, sonnet's header buries the switcher and the page becomes a
+     dead end with no way back to the other models. */
+  .s-scroll-bar{top:52px}
+  .s-topbar{position:fixed;top:52px;left:0;right:0;z-index:50}
   @media(min-width:768px){
-    .s-scroll-bar{left:196px}
-    .s-topbar{left:196px}
+    .s-scroll-bar{top:0;left:196px}
+    .s-topbar{top:0;left:196px}
   }
   .s-rule{width:100%;height:1px;background:${C.rule}}
   .s-rule-light{width:100%;height:1px;background:${C.fg}18}
