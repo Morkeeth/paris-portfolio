@@ -32,5 +32,8 @@ app/
 - All copy lives in `app/shared/data.ts` — edit there, every variant updates
 - Tracks: Work (paid, real scope) / Agents (2026 nights) / Hackathons (competitive record)
 - 8 featured cards with real screenshots; full record in HACKATHON_TIMELINE
-- Prize framing: $188K+ = ~42 ETH team prizes (hero counter + journey agree)
+- Prize framing lives in `STATS` (`data.ts`), never in this file. Two build-time guards
+  enforce it: the ETH headline must equal `HACKATHON_TIMELINE`'s eth column, and the
+  event count must equal the competed rows. Restating a number here is how it drifts —
+  this line said "~42 ETH" for a day after 41.7 was ruled canonical (Oscar, Jul 15).
 - Oscar's voice: lowercase, specific numbers, dinner-party test, no hype

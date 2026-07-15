@@ -1,9 +1,19 @@
-# Portfolio — Review handoff (2026-07-14)
+# Portfolio — Review handoff (2026-07-15)
 
-Non-voice hygiene pass done on `nightrun/portfolio-hygiene-2026-07-13`. **Pushed** to
-`origin/nightrun/portfolio-hygiene-2026-07-13` (0 unpushed commits). Build green.
-Not deployed: awaiting deploy + the voice items below.
+Non-voice hygiene pass on `nightrun/portfolio-hygiene-2026-07-13`. **Pushed** to
+`origin/nightrun/portfolio-hygiene-2026-07-13` (re-verified 2026-07-15: 0 commits ahead
+of origin, remote head `83dda86`). Build green, **14 static routes** prerendered,
+`tsc --noEmit` clean (exit code read directly, not through a pipe).
+Not deployed: your gate.
 Everything below the line **needs your voice** — nothing here was fabricated or guessed.
+
+> **WHAT THIS SITE IS (2026-07-15).** Earlier passes justified the deploy as unblocking
+> the Eric→Cursor intro. That chain is dead: the Ashby API lists 113 live roles at Cursor,
+> **zero** titled Product Manager, and no Product department on the org chart. There is no
+> role to apply to, so this site is not an application to anyone — it's your record, and
+> the four-model eval is its sharpest artifact. Nothing in this repo ever encoded the
+> Cursor framing (grepped: no hits), so no in-repo copy needed correcting; what changes is
+> the gate. Ship it because the record is worth having up, not to hit someone's inbox.
 
 ---
 
@@ -36,7 +46,58 @@ Re-verified the claims above against source, build output and a live browser. Ap
 | 3 | **Self-contradiction on `/sonnet`:** it rendered *"security layer for 6m hardware wallets"* directly above *"protecting 8M+ devices"*. `8M+` is the ruled canonical (GOLDEN_RULES, Jul 13); `6m` matched nothing. Now `STATS.devices`. | `sonnet/page.tsx:957` | `6m` gone from build |
 | 4 | **Fixed chrome was colliding with the switcher rail.** `position:fixed` escapes `<main>`'s `md:pl-[196px]`, so sonnet's top bar covered the rail's "oscar morke" brand line and fable's status bar sat on top of "compare all →". Both offset past the rail at `md`. | `sonnet/page.tsx`, `fable/fable.css` | 0 rail intrusions on all 4 routes |
 
-Build green, 10/10 prerender, `tsc --noEmit` clean.
+Build green, `tsc --noEmit` clean. (Route count was 10 at the time of this pass; it's
+**14** now — the four model OG routes plus `/compare`'s. Any "10/10" reference below is
+that stale count, not a regression.)
+
+---
+
+## ✅ Done — number hygiene end-to-end (2026-07-15, second pass)
+
+Re-grepped the **build output**, not the table. The two count-ups the earlier pass claimed
+(`opus:394`, `sonnet:659`) are genuinely clean, and `40.77 / $115K / $176K / 39.05` are
+absent from source and build. But the pass answered "are the two known instances fixed?"
+when the question was "what else is typed twice?" — and the answer was **24 restatements**.
+
+| # | Fix | Why it's a drift bug | Proof |
+|---|---|---|---|
+| 1 | **Agent count derives from `AGENTIC_STACK.length`.** Was 4 assertions / 2 values, all four on `/haiku`. | `ARC` said "five-agent os" — a third surface no pass caught. The 5 leaked from `STATS.terminals`, a different axis. | added a 5th stack entry → all 4 routes flipped to five; removed → back to four |
+| 2 | **24 prose restatements of STATS now interpolate it** (`OSCAR.bio`, `JOURNEY`, `ARC`, `TRACKS`, project stories). `JOURNEY`'s 2026 line alone restated four canonical numbers in one sentence. | `data.ts:2` calls STATS "single source of truth"; the pages obeyed and the data file didn't. | rendered text byte-identical vs baseline on all 5 routes except the intended count fix |
+| 3 | **`numWord()` helper.** Spelled counts ("five terminals") are restatements too. | `STATS.terminals: 5` + prose "five" would drift silently. | `${numWord(STATS.terminals)} terminals` |
+| 4 | **ONE definition of "the four models".** There were two — `!m.control` and `!m.external` — agreeing only because the legacy entry carries both flags. | Give any model an external URL, or add a second control, and the site disagrees with itself about how many models it compares. | `MODEL_ARMS` deleted; `EVAL_MODELS` is the only definition |
+| 5 | **`COMPARE_META` derives its count + model names.** Its comment claimed "derived, never retyped" while the title hardcoded "four models" and the description hardcoded all four names. | A fifth model would leave a stale "four" in the page title and OG card. | `numWord(EVAL_MODELS.length)` + `nameList(...)` |
+| 6 | **`/compare` had no OG image at all** — the hub, the most shareable page, unfurled as a bare link. Its layout declared `openGraph`, which replaces the root object wholesale, and no file put an image back. | Every other route had one; nobody checked the hub. | `curl /compare/opengraph-image` → 1200×630 PNG |
+
+**Deliberately NOT coupled:** `STATS.bounties` and Etablera's client count both read `30+`.
+That's a coincidence, not a relationship — binding them would make a bounty-count change
+silently rewrite Etablera's history. Added `etableraClients` instead. (I nearly shipped
+this one; caught it in review.)
+
+**One rendered-copy change beyond the count, flag for veto:** The OS's story said "score
+**1,200** contacts" while two other surfaces said "1,200+". All three now read
+`STATS.contacts` → "1,200+". The `+` is load-bearing (it means "at least") and it's in
+your captured S2 voice line, so if you want the bare 1,200 back, say so.
+
+---
+
+## ✅ Done — links, OG + dead names across all routes (2026-07-15)
+
+All 12 local routes 200 with correct content-type. All 5 GitHub repos public, verified
+anonymously. **Yieldbound is still behind the Vercel login wall** (blocker #2, re-confirmed
+today: anonymous curl → `vercel.com/login`, title `Login – Vercel`).
+
+**Dead names — clean in this repo.** `relay.png` → `favour.png` is already done. Every
+surviving `RELAY` is *historical* ("won as RELAY… it ships today as FAVOUR", the 2026-04
+timeline row), which is what GOLDEN_RULES asks for: dead name in a current claim is rot,
+in history it's history. `world-relay.vercel.app` renders `<title>FAVOUR</title>`. ✅
+
+**The one live dead name is outside this repo** and I left it for you — it's an
+outward-facing change to a public repo, not mine to make:
+```
+gh repo edit MorkeethHQ/world-relay \
+  --description "FAVOUR — The first errand network where both sides are provably human. Built as RELAY at World Build 3."
+```
+Today it reads *"RELAY — The first errand network…"*, so "code ↗" lands on the dead name.
 
 ---
 
@@ -93,7 +154,7 @@ container is the correct pattern, and the body does not scroll.
 1. **`oscarmorke.com` is not registered.** `whois` → *"No match for domain OSCARMORKE.COM"*. You said you don't want your full name in the domain, so `metadataBase` no longer hardcodes it: it now reads `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → localhost. **Pick a domain, set `NEXT_PUBLIC_SITE_URL`, done** — no code change needed.
    > **CORRECTION 2026-07-15:** an earlier note here said this "already works on paris-portfolio.vercel.app (live, 200)". Wrong. That subdomain belongs to **someone else's app** (`<title>Vite + React</title>`) — a name collision, and the 200 was a false positive. The real production alias is **`morkeeth.vercel.app`**.
 2. **Yieldbound's "live ↗" lands on a Vercel login wall.** Anonymous `curl` → `302 → vercel.com/login`, title `Login – Vercel`. The earlier "liveness verified" check passed because it ran in an authenticated browser. Fix: Vercel → Settings → Deployment Protection → off. The other 4 live links and all 5 repos are genuinely public (verified anonymously).
-3. **4 agents or 5?** (asked, not answered) `STATS.terminals: 5` + "5-agent OS" chip on all four pages, but `AGENTIC_STACK` has **4** entries and `STACK_INTRO` says *"four agents, one system"*. `/haiku` renders "4 agents, one system" a few lines under its own "5-agent OS" chip. The 5 looks like it leaked in from the terminal count, which is a different axis. My read: chip should say **4-agent OS**, leaving "5 terminals at 3am" alone. Say the word.
+3. ~~**4 agents or 5?**~~ **STRUCTURALLY RESOLVED 2026-07-15 — one call left for you.** It was worse than this row said: the site made **four** count assertions across **two** values, and `/haiku` rendered all four in one scroll (`5-agent OS` chip · `4 agents, one system` · `four agents, one system` · `a five-agent os`). `ARC.waves[2]` was the third surface and no prior pass caught it. The count now derives from `AGENTIC_STACK.length` everywhere (`AGENT_COUNT` / `AGENT_WORD`), so all six surfaces move together and **the 5 is unsayable**. Proved it: temporarily added a 5th stack entry → every route flipped to `5-agent`/`five-agent`; removed it → back to 4. **Your call:** it now renders **4** because the array has 4 layers. If the true answer is 5, don't retype a 5 — add the missing layer to `AGENTIC_STACK` and every surface follows. (`5 terminals at 3am` is untouched — different axis, as this row correctly said.)
 4. **The "no purse" captions are now further off.** Adding 3 rows means the no-purse events are 2018 SAS, 2018 Vinnova, 2019 Gotham, 2022-11 Chainlink, 2023-05 ETH Lisbon, 2025-11 Tech Europe, 2026-05 ETH Open Agents. Opus's caption still says *"(2018 first-ever · 2019 judged · 2026 the building years)"*; haiku still says *"the bars stop in 2023"*; fable still says *"in 2026 i stopped counting purses"* (2026 has two prize bars). Copy, so yours.
 5. **Sheet vs mindmap disagree on Paris Innov'Hack.** Sheet says **200 euro**; mindmap §13 says **"50 teams, no prize"**. Site currently shows no prize. Left alone — it's €, and adding it moves the "$66K at award time" figure.
 6. **"$3.5k regular cash of agent hack"** — I couldn't place this. Your sheet shows ETH Open Agents (Receipt) = **0**, and the only $3,500 on it is ETH Denver, which already has 2.24 ETH against it. Not applied. Which event?
