@@ -229,7 +229,9 @@ export default function HaikuPage() {
           </div>
           <div style={statBlockStyle}>
             <div style={statNumberStyle}>{STATS.prizes}</div>
-            <div style={statLabelStyle}>prize pool</div>
+            {/* "prize pool" is the pot on offer, not what he won. Every other skin says
+                "in prizes"; haiku was the only one misstating his own record. */}
+            <div style={statLabelStyle}>in prizes</div>
           </div>
           <div style={statBlockStyle}>
             <div style={statNumberStyle}>{STATS.users}</div>

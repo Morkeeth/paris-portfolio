@@ -10,7 +10,17 @@
 export const STATS = {
   hackathonCount: 16,
   hackathonWins: 9,
+  // A PRICE is fast data and cannot be a bare literal. $188K is 41.7 ETH marked at
+  // ~$4,500/ETH (Oct 2025) — the compass (mindmap §13) carries that basis and this file
+  // used to drop it, so /opus rendered "$188K at today's prices". At Jul 2026 spot
+  // (~$1,830) that sentence claims $188K where the arithmetic gives $76K: a reader with
+  // a calculator refutes the headline in ten seconds, on the one page whose argument is
+  // method. The mark is not wrong; the missing as_of was. It now travels WITH the number,
+  // so no surface can render the figure and invent its own basis.
+  // (Oscar also converted much of this to USDC at various times, so marking it at spot
+  // is meaningless in both directions — he does not hold 41.7 ETH.)
   prizes: '$188K',
+  prizesAsOf: 'oct 2025',
   contacts: '1,200+',
   // 3.43 + 0.48 + 2.24 + 10.34 + 10.85 + 11.36 + 3 = 41.7 (Oscar, ruled 2026-07-15).
   // This is the team total and it must equal the sum of HACKATHON_TIMELINE's eth

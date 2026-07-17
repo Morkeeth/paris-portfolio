@@ -277,7 +277,7 @@ function TheRecord({ max }: { max: boolean }) {
         ))}
         <Reveal delay={0.3}>
           <div style={{ marginTop: 28, fontFamily: 'var(--font-jetbrains-mono)', fontSize: 12, lineHeight: 2, color: accent }}>
-            ${Math.round(totalUsd / 1000)}K at award time · {STATS.totalEthWon} won · {STATS.prizes} at today&apos;s prices
+            ${Math.round(totalUsd / 1000)}K at award time · {STATS.totalEthWon} won · {STATS.prizes} at {STATS.prizesAsOf} prices
           </div>
         </Reveal>
       </div>
