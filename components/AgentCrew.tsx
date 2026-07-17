@@ -168,3 +168,51 @@ export function TerminalWall({
     </div>
   );
 }
+
+/* ── the roster ──────────────────────────────────────────────────────────────── */
+
+/*
+ * CrewRoster — the crew as what they ARE, from AGENTIC_STACK.
+ *
+ * This exists because AgentChat is empty and honestly should be. The chat needs words the
+ * agents actually said; Bagel's CLI would not answer today (gateway healthy, `agent` never
+ * returns), so the question is queued and the bubbles wait.
+ *
+ * The roster is not a substitute pretending to be the chat. It renders lines Oscar already
+ * wrote about his own system: real, sourced, and not a quote attributed to a machine that
+ * never said it. Roles lead, names follow.
+ */
+export function CrewRoster({
+  layers, tone,
+}: {
+  layers: { key: string; layer: string; sub: string; verb: string; line: string }[];
+  tone: Tone;
+}) {
+  const mono = tone.mono ?? MONO;
+  return (
+    <div style={{ display: 'grid', gap: 0 }}>
+      {layers.map((l) => (
+        <div
+          key={l.key}
+          style={{
+            display: 'grid', gridTemplateColumns: '132px 1fr', gap: 16,
+            borderTop: `1px solid ${tone.rule}`, padding: '14px 0', alignItems: 'baseline',
+          }}
+          className="cr-row"
+        >
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '-0.02em' }}>{l.layer}</div>
+            <div style={{ fontFamily: mono, fontSize: 9.5, color: tone.dim, marginTop: 3 }}>{l.sub}</div>
+          </div>
+          <div>
+            <span style={{ fontFamily: mono, fontSize: 9, color: tone.accent, letterSpacing: '0.1em' }}>
+              {l.verb.toUpperCase()}
+            </span>
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: tone.dim, marginTop: 5 }}>{l.line}</p>
+          </div>
+        </div>
+      ))}
+      <style>{`@media (max-width: 560px) { .cr-row { grid-template-columns: 1fr !important; gap: 6px !important; } }`}</style>
+    </div>
+  );
+}

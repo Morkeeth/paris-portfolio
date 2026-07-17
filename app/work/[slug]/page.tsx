@@ -15,10 +15,11 @@
 import { use } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { AgentChat, TerminalWall } from '@/components/AgentCrew';
+import { AgentChat, TerminalWall, CrewRoster } from '@/components/AgentCrew';
 import type { Tone } from '@/components/ProjectIndex';
 import {
   PROJECT_INDEX, PROJECTS, HACKATHON_TIMELINE, TERMINAL_WALL, ETH_CURVE, STATS, AGENT_CREW,
+  AGENTIC_STACK,
 } from '../../shared/data';
 
 const T: Tone = {
@@ -101,6 +102,15 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
                   / A ONE-PERSON TEAM, RUN BY AGENTS
                 </div>
                 <TerminalWall panes={TERMINAL_WALL} tone={T} caption={`${TERMINAL_WALL.length} terminals · one brief · ship by morning`} />
+                <div style={{ marginTop: 34 }}>
+                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: T.dim, marginBottom: 4 }}>
+                    / THE CREW · {AGENTIC_STACK.length} LAYERS
+                  </div>
+                  <CrewRoster layers={AGENTIC_STACK} tone={T} />
+                </div>
+
+                {/* Renders only when the agents have actually said something. Empty today,
+                    and that is the honest state, not a gap to paper over. */}
                 {AGENT_CREW.length > 0 && (
                   <div style={{ marginTop: 30 }}>
                     <AgentChat crew={AGENT_CREW} tone={T} />
