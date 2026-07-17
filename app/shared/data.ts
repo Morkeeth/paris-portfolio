@@ -3,41 +3,22 @@
 //  update here, all model versions reflect the change
 // ════════════════════════════════════════════════════════════
 
-// STATS is declared FIRST so prose below can interpolate it rather than restate
-// it. Canonical source is the compass (mindmap §13); every number here is ruled
-// there, and a number written twice is a number drifting. Prose that mentions a
-// canonical figure must read it from here — see OSCAR.bio / PROJECTS stories.
-export const STATS = {
-  hackathonCount: 16,
-  hackathonWins: 9,
-  // A PRICE is fast data and cannot be a bare literal. $188K is 41.7 ETH marked at
-  // ~$4,500/ETH (Oct 2025) — the compass (mindmap §13) carries that basis and this file
-  // used to drop it, so /opus rendered "$188K at today's prices". At Jul 2026 spot
-  // (~$1,830) that sentence claims $188K where the arithmetic gives $76K: a reader with
-  // a calculator refutes the headline in ten seconds, on the one page whose argument is
-  // method. The mark is not wrong; the missing as_of was. It now travels WITH the number,
-  // so no surface can render the figure and invent its own basis.
-  // (Oscar also converted much of this to USDC at various times, so marking it at spot
-  // is meaningless in both directions — he does not hold 41.7 ETH.)
-  prizes: '$188K',
-  prizesAsOf: 'oct 2025',
-  contacts: '1,200+',
-  // 3.43 + 0.48 + 2.24 + 10.34 + 10.85 + 11.36 + 3 = 41.7 (Oscar, ruled 2026-07-15).
-  // This is the team total and it must equal the sum of HACKATHON_TIMELINE's eth
-  // column. If those two ever disagree again, the table is the thing to check.
-  totalEthWon: '41.7 ETH',
-  users: '40K',
-  devices: '8M+',
-  prevented: '$52M+',
-  terminals: 5,
-  etableraPeak: '8,000',
-  // Etablera's client count. Deliberately NOT the same field as `bounties` below:
-  // both read '30+' today, which is a coincidence, not a relationship. Binding one
-  // to the other would make a change to the bounty count silently rewrite Etablera.
-  etableraClients: '30+',
-  bounties: '30+',
-  anotherblockVolume: '$2.1M',
-};
+// ── THE RECORD ──────────────────────────────────────────────────────────────
+// STATS and the timeline are NOT declared here any more. They are FETCHED, at build,
+// from the one published record (oscar-record/record.json), which is generated from the
+// vault (00 Dashboard/record.md). That file is the source of truth.
+//
+// Why: this file used to CALL ITSELF "single source of truth" while being hand-typed,
+// and rubin-summer-camp forked it. The registry listed 38 initiatives; this file listed
+// 20 and none of the three shipped that week. The record was single-source; every
+// rendering was a fork. Facts now arrive; only form lives here.
+//
+// Prose below still interpolates STATS. That stays: prose that restates a number drifts,
+// and flattening prose into the record would bake the values back in.
+import record from './record.json';
+
+export const STATS = record.stats;
+
 
 // Spell a count for prose. Oscar's copy writes "five terminals", not "5 terminals",
 // so a spelled-out number is still a restatement of STATS and still drifts. Derive
@@ -514,28 +495,7 @@ export const FEATURED = PROJECTS.filter((p) => p.featured);
 // The record, from Oscar's sheet (reconciled 2026-07-15). The eth column is the
 // team total per event and is canonical; `competed: false` marks an event he was
 // at but did not compete in, so it renders but never counts toward hackathonCount.
-export const HACKATHON_TIMELINE: {
-  date: string; name: string; project: string; prize: string;
-  eth: string; ethPrice: string; bounties: string; competed?: boolean;
-}[] = [
-  { date: '2018', name: 'SAS Hack', project: 'intent-based travel', prize: '', eth: '', ethPrice: '', bounties: 'first hackathon ever' },
-  { date: '2018', name: 'Vinnova Innovation', project: 'VEX', prize: '', eth: '', ethPrice: '', bounties: '' },
-  { date: '2019', name: 'Gotham DLT', project: 'Tech for Good (judge)', prize: '', eth: '', ethPrice: '', competed: false, bounties: 'judge at microsoft hq ny — first blockchain event, judge before builder' },
-  { date: '2021-10', name: 'ETH Lisbon', project: 'Contrib', prize: '$13,200', eth: '3.00', ethPrice: '$4,132', bounties: 'Tally + MetaCartel winner' },
-  { date: '2022-06', name: 'ETH NYC', project: 'NFT Safe Launch', prize: '$10,392', eth: '11.36', ethPrice: '$1,193', bounties: 'Finalist, Valist Best Use, UMA Silver' },
-  { date: '2022-10', name: 'ETH Bogota', project: 'Gates.wtf', prize: '$14,169', eth: '10.85', ethPrice: '$1,323', bounties: '9 bounties: Optimism, Worldcoin, Coinbase x2, ENS x2, The Graph, Ceramic, Quicknode' },
-  { date: '2022-10', name: 'Arbitrum', project: 'ArbiGates', prize: '$13,500', eth: '10.34', ethPrice: '$1,306', bounties: 'partner golds (~3rd overall)' },
-  { date: '2022-11', name: 'Chainlink Hackathon', project: '', prize: '', eth: '', ethPrice: '', bounties: '' },
-  { date: '2023-03', name: 'ETH Denver', project: 'Swosh.cash', prize: '$3,500', eth: '2.24', ethPrice: '$1,561', bounties: 'Scroll + Lens' },
-  { date: '2023-05', name: 'ETH Lisbon', project: 'Nouns ML', prize: '', eth: '', ethPrice: '', bounties: '' },
-  { date: '2023-07', name: 'ETH Paris', project: 'Headstart', prize: '$800', eth: '0.48', ethPrice: '$1,652', bounties: '' },
-  { date: '2023-11', name: 'ETH Istanbul', project: 'AAtomato', prize: '$7,056', eth: '3.43', ethPrice: '$2,022', bounties: 'Unlimit 1st, Aave DAO Best Tooling' },
-  { date: '2025-11', name: 'Tech Europe', project: 'Loop', prize: '', eth: '', ethPrice: '', bounties: '' },
-  { date: '2026-01', name: 'Paris Innov\'Hack', project: 'BriefMCP', prize: '', eth: '', ethPrice: '', bounties: 'Finalist / 50 teams' },
-  { date: '2026-03', name: 'Synthesis', project: 'Yieldbound', prize: '$1,000', eth: '', ethPrice: '', bounties: '2nd / 687' },
-  { date: '2026-04', name: 'World Build 3', project: 'RELAY', prize: '$2,500', eth: '', ethPrice: '', bounties: '2nd / 500 teams' },
-  { date: '2026-05', name: 'ETH Open Agents', project: 'RECEIPT', prize: '', eth: '', ethPrice: '', bounties: 'top 20 / 468' },
-];
+export const HACKATHON_TIMELINE = record.timeline;
 
 // derived: the competitive record as chartable points. one per event, 2018 → now.
 // zero-prize events (first hackathon, judge year, agentic era) are real and kept —

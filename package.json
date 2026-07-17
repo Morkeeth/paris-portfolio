@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "prebuild": "node scripts/fetch-record.mjs",
+    "record:fetch": "node scripts/fetch-record.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

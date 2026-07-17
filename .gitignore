@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local helicon db artifact (not part of the build)
 app/shared/data/
+
+# fetched at build from oscar-record. never hand-edit, never commit: the vault is the source.
+app/shared/record.json
