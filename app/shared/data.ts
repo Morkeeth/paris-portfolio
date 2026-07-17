@@ -603,3 +603,9 @@ export const ARC = {
     { tag: 'ai', years: '2025-', title: 'the one-person team', line: `now channeling it into ai. a ${AGENT_WORD}-agent os that thinks, ships and remembers while i sleep. one person, full stack, by morning.` },
   ],
 };
+
+// The index's rows, straight off the record. Deliberately NOT PROJECTS: that array carries
+// per-skin prose and form, and the library only wants facts. A project appears here the
+// moment it exists in the vault, with no story written yet, which is the point: the record
+// is the source and the voice can follow later.
+export const PROJECT_INDEX = record.projects;
