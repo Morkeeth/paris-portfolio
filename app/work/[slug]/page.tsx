@@ -16,10 +16,12 @@ import { use } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { AgentChat, TerminalWall, CrewRoster } from '@/components/AgentCrew';
+import StackedDeck from '@/components/StackedDeck';
+import LitmusScore from '@/components/LitmusScore';
 import type { Tone } from '@/components/ProjectIndex';
 import {
   PROJECT_INDEX, PROJECTS, HACKATHON_TIMELINE, TERMINAL_WALL, ETH_CURVE, STATS, AGENT_CREW,
-  AGENTIC_STACK,
+  AGENTIC_STACK, ANOTHERBLOCK_DROPS, LITMUS,
 } from '../../shared/data';
 
 const T: Tone = {
@@ -39,7 +41,15 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
   // A hackathon project earns the record curve; the OS earns the wall; the agents earn the
   // chat. Furniture appears where it MEANS something, never as page filler.
   const rows = HACKATHON_TIMELINE.filter((r: any) => r.project === prose?.name || r.name === fact.name);
-  const isOS = slug === 'the-os'; // NOT 'os': the record's slug is 'the-os', and the wrong
+  // Furniture appears where it MEANS something. A deck on the Ledger page would be
+  // decoration; on Anotherblock it IS the catalogue. Gate per slug, never render for filler.
+  const isDeck = slug === 'anotherblock';
+  const isLitmus = slug === 'litmus';
+  const isOS = slug === 'the-os';
+  // NOTE: the per-slug furniture below renders OUTSIDE the `written` gate. Litmus has no
+  // story, so nesting its placeholder inside "has a story" made it dead code behind a green
+  // build — the same shape as the `slug === 'os'` miss. A placeholder that only appears once
+  // the case study exists is worthless, since the placeholder IS the missing case study. // NOT 'os': the record's slug is 'the-os', and the wrong
                                   // guess silently rendered nothing at all. Dead feature, green build.
 
   const meta = [fact.year, (fact.track ?? '').toUpperCase(), fact.buildTime?.toUpperCase(), fact.id && `MRK-${fact.id}`]
@@ -95,6 +105,8 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
               </section>
             )}
 
+
+
             {/* the wall belongs to the OS and nowhere else */}
             {isOS && (
               <section style={{ marginTop: 44 }}>
@@ -127,6 +139,30 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
               {fact.oneLinerSource ? ' The line above is the repo description, not the written version.' : ''}
             </p>
           </div>
+        )}
+
+
+        {/* the catalogue, riffled. NEWYORKOVER's gesture, Oscar's records. */}
+        {isDeck && (
+          <section style={{ marginTop: 44 }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: T.dim, borderBottom: `1px solid ${T.rule}`, paddingBottom: 7, marginBottom: 16 }}>
+              / THE CATALOGUE · {ANOTHERBLOCK_DROPS.length} DROPS
+            </div>
+            <StackedDeck
+              drops={ANOTHERBLOCK_DROPS}
+              tone={T}
+              caption={`fans bought shares of the songs. ${STATS.users} users, ${STATS.anotherblockVolume} in volume. no album art here: it was never ours to ship.`}
+            />
+          </section>
+        )}
+
+        {isLitmus && (
+          <section style={{ marginTop: 44 }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: T.dim, borderBottom: `1px solid ${T.rule}`, paddingBottom: 7, marginBottom: 16 }}>
+              / THE SCAN
+            </div>
+            <LitmusScore scouted={LITMUS.scouted} hits={LITMUS.hits} tone={T} />
+          </section>
         )}
 
         {fact.links && (

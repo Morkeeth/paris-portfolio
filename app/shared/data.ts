@@ -26,6 +26,16 @@ export const STATS = record.stats;
 const NUM_WORD = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 export const numWord = (n: number) => NUM_WORD[n] ?? String(n);
 
+// Anotherblock's real drops, in Oscar's own order. The StackedDeck renders THESE and the
+// prose detail interpolates them, so the deck and the sentence can never disagree about
+// what he actually shipped. Same rule as every count here: one source, derived twice.
+export const ANOTHERBLOCK_DROPS = ['Rihanna', 'Michael Jackson', 'The Weeknd', 'Offset & Metro Boomin', 'Alan Walker'];
+
+// Litmus lives in the registry (MRK-030, Station F) but had no card. It gets the scan
+// placeholder, not a story: the product is real, the case study isn't written.
+export const LITMUS = { scouted: '8,432', hits: 2 };
+
+
 export const OSCAR = {
   name: 'Oscar Morke',
   title: 'staff pm at ledger',
@@ -226,7 +236,7 @@ export const PROJECTS: Project[] = [
     color: '#f2a039',
     image: '/projects/anotherblock.jpg',
     details: [
-      'drops: Rihanna, Michael Jackson, The Weeknd, Offset & Metro Boomin, Alan Walker',
+      `drops: ${ANOTHERBLOCK_DROPS.join(', ')}`,
       `0 to ${STATS.users} users, ${STATS.anotherblockVolume} in sales, 93K+ collectibles to 35K+ customers`,
       'official Coinbase Base launch partner (Onchain Summer + Art Basel)',
       'raised from J12, Swedish House Mafia, Inventure, Stride',
