@@ -336,9 +336,16 @@ export default function OpusPage() {
     <div style={{ background: bg, color: fg, transition: 'all 1.2s ease', position: 'relative' }}>
       <Particles active={max} />
 
-      {/* sticky conductor's switch — always in reach */}
-      <button onClick={() => setMax(m => !m)} style={{
-        position: 'fixed', top: 18, right: 18, zIndex: 1000,
+      {/* sticky conductor's switch — always in reach.
+          Position lives in classes, NOT inline: an inline style is unbeatable by a class,
+          and at 390px `top:18` put this button inside the ModelSwitcher's 0-52px strip,
+          on top of "compare all →". It out-stacked the rail (z-1000 vs z-50), so 2 of 3
+          tap points hit the toggle instead of the only link off this page. Same element
+          the last mobile pass fixed, re-broken by occlusion instead of clipping.
+          Below the strip on mobile; unchanged on desktop, where the rail is a left column. */}
+      <button onClick={() => setMax(m => !m)}
+        className="fixed right-[18px] z-[1000] top-[70px] md:top-[18px]"
+        style={{
         fontFamily: 'var(--font-jetbrains-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase' as const,
         padding: '9px 16px', border: `1px solid ${max ? C.maxFg : C.gold}66`,
         background: max ? C.maxBg : 'rgba(5,5,5,0.7)', backdropFilter: 'blur(8px)',

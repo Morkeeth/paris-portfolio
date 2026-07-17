@@ -307,7 +307,10 @@ export const PROJECTS: Project[] = [
     track: 'agents',
     color: '#2d5ff5',
     image: '/projects/yieldbound.png',
-    links: { live: 'https://yieldbound.vercel.app', repo: 'https://github.com/MorkeethHQ/delegated-agent-treasury' },
+    // yieldbound.com is the real product domain (200, "Bagel Yieldbound").
+    // yieldbound.vercel.app is a DIFFERENT url sitting behind Vercel's login wall, so
+    // every anonymous visitor who clicked "live" landed on a Vercel signup page.
+    links: { live: 'https://yieldbound.com', repo: 'https://github.com/MorkeethHQ/delegated-agent-treasury' },
   },
   {
     name: 'RECEIPT',
