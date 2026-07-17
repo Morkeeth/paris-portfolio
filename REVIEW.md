@@ -1,5 +1,39 @@
 # Portfolio — Review handoff (2026-07-15)
 
+> **🚢 SHIPPED 2026-07-17. The gate at the bottom of this doc is spent, and four rows
+> below are stale.** Oscar cleared the deploy. `nightrun/portfolio-hygiene-2026-07-13`
+> was fast-forwarded into `main` (head `009fd68`), pushed, and deployed to production.
+> **Live: https://morkeeth.vercel.app** (root 307s to `/fable` by design).
+>
+> Verified against the live site, not the build:
+> - `eval of taste` = **0 hits** on `/compare` and `/fable`. It was **7** on `/compare`
+>   before this deploy, including the meta description.
+> - `favour.png` 200, `relay.png` **404**, FAVOUR named live, RELAY survives only as
+>   history ("won as RELAY").
+> - The three surfaces stay **distinct** (Oscar's call, Jul 17): morkeeth.vercel.app
+>   (this, the record) · morkeeth-portfolio.vercel.app (the 2024 control, untouched) ·
+>   oscarintuscany.com (the campaign, untouched). All 200, all different titles.
+>
+> **Corrections to this doc, found while shipping:**
+> 1. **Blocker #8 (FAVOUR card is "a blank white rectangle") was already fixed and never
+>    closed.** `favour.png` was replaced Jul 15 14:18, *after* this doc flagged it. It is a
+>    3-phone device mockup on black, current name, legible. The row describes the old
+>    `relay.png`. I nearly re-shot a screenshot that was fine.
+> 2. **"ONE definition of the four models / EVAL_MODELS is the only definition" was false.**
+>    `components/ModelSwitcher.tsx` carried a *second* hardcoded model array and a *third*
+>    typed count ("four models"), plus the real rendered `eval of taste` claim on every
+>    model route. It survived every prior pass because it lives outside `app/` and every
+>    grep was scoped to `app/`. Both now derive from `EVAL_MODELS`; proved with the flip
+>    test (5th arm in → rail reads "five" and grows a link; out → back to four).
+> 3. **Blocker #1 (domain) is resolved by decision, not purchase.** Oscar chose to ship on
+>    the existing `morkeeth.vercel.app` alias. `oscarmorke.com` and `morkeeth.com` are both
+>    genuinely available if he ever wants one. (Note for future checks: bare `whois` on this
+>    machine returns the IANA TLD record for COM, not the domain, so it reports every domain
+>    as taken. Use `whois -h whois.verisign-grs.com`.)
+> 4. **Still genuinely open and NOT shipped:** stories **S1** (the arc) and **S3**
+>    (Gates/Bogotá) need Oscar's real memories and were not fabricated. **D1–D6** are
+>    unresolved. The site is live without them; that was a deliberate call, not an oversight.
+
 Non-voice hygiene pass on `nightrun/portfolio-hygiene-2026-07-13`. **Pushed** to
 `origin/nightrun/portfolio-hygiene-2026-07-13` (re-verified 2026-07-15: 0 commits ahead
 of origin, remote head `83dda86`). Build green, **14 static routes** prerendered,
