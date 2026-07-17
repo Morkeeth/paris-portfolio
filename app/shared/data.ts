@@ -634,15 +634,37 @@ export const ETH_CURVE = HACKATHON_TIMELINE
   .filter((r) => String(r.eth ?? '').trim())
   .map((r) => ({ label: r.date, value: parseFloat(String(r.eth)) }));
 
-// The crew, as a real exchange. EMPTY ON PURPOSE.
+// The crew, as a real exchange. THESE WORDS ARE REAL.
 //
-// The Tuscany cards land because Oscar actually asked bagel and hermes and pasted what
-// they said back. Writing agent dialogue here would be fabricating a quote from a system
-// that exists and can simply be asked. AgentChat renders nothing while this is empty, so
-// the component ships today and the words arrive the moment Oscar runs the question.
+// Oscar asked both agents "how would you describe me?" in Telegram on 2026-07-17 (12:52
+// and 12:53) and pasted what came back. Nothing here is written by me. That is the entire
+// reason the Tuscany version of this component works and the reason this one sits on the
+// page at all: a portfolio that argues for method cannot fabricate a quote from a machine
+// that can simply be asked.
+//
+// Verbatim, including Hermes' em dash. Trimming punctuation out of someone else's sentence
+// to satisfy a house style would make it not a quote. Bagel's reply is its closing block,
+// contiguous and unedited; the preamble is cut for length, nothing is spliced.
 export const AGENT_CREW: {
   role: string; name: string; detail: string; accent: string; q: string; a: string;
-}[] = [];
+}[] = [
+  {
+    role: 'the machine',
+    name: 'bagel',
+    detail: 'open claws · hetzner',
+    accent: '#c2691f',
+    q: 'how would you describe me?',
+    a: `i'd describe you as: a high-agency product mind trying to build things that are both strategically important and actually alive. and the tension in you, i think, is: you don't just want success. you want signal-rich, taste-rich, reality-tested success. which is harder, but better.`,
+  },
+  {
+    role: 'the courier',
+    name: 'hermes',
+    detail: 'pretzel · grok',
+    accent: '#8a6a1f',
+    q: 'how would you describe me?',
+    a: `full-stack builder who actually ships. obsessed with agent identity, reputation, and autonomy as the real primitives — not just tools. demands tangible POCs that run, hates narration, wants genuine opinions backed by evidence, and values being shocked with output over process.`,
+  },
+];
 
 // Events after the last ETH purse that paid cash instead. Derived, not typed: the ETH curve
 // literally cannot render these, and without them a reader concludes the winning stopped in
