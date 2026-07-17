@@ -1,21 +1,19 @@
 'use client';
 
 /*
- * ModelSwitcher — the neutral "eval frame" around the four model designs.
- * Deliberately NOT a fifth design: dark consistent chrome, mono labels (eval-label
- * voice), one gold accent for the active model. It frames the taste eval; the four
- * designs are the stars. Left rail on desktop, top strip on mobile.
+ * ModelSwitcher — the neutral frame around the model designs.
+ * Deliberately NOT a fifth design: dark consistent chrome, mono labels, one gold
+ * accent for the active model. It frames the record; the designs are the stars.
+ * Left rail on desktop, top strip on mobile.
+ *
+ * The arms and the count both derive from EVAL_MODELS. This file used to carry its
+ * own hardcoded list plus the word "four", which made it a second definition of the
+ * model set and a third place the count was typed.
  */
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-const MODELS = [
-  { slug: 'fable', label: 'fable' },
-  { slug: 'opus', label: 'opus' },
-  { slug: 'sonnet', label: 'sonnet' },
-  { slug: 'haiku', label: 'haiku' },
-];
+import { EVAL_MODELS, numWord } from '@/app/shared/data';
 
 export default function ModelSwitcher() {
   const pathname = usePathname();
@@ -33,28 +31,28 @@ export default function ModelSwitcher() {
       <div className="hidden md:block px-6 pb-7">
         <div className="text-[13px] lowercase tracking-tight">oscar morke</div>
         <div className="mt-2 text-[11px] leading-relaxed text-[#706e68] lowercase">
-          same brief.<br />four models.<br />one live eval of taste.
+          same brief.<br />{numWord(EVAL_MODELS.length)} models.<br />one record.
         </div>
       </div>
 
       {/* No "models:" label on mobile: at 390px it cost 54px and pushed
           "compare all →" off the right edge, hiding the one link to the
           thesis. The four names plus the gold active marker say it anyway. */}
-      {MODELS.map((m) => (
+      {EVAL_MODELS.map((m) => (
         <Link
-          key={m.slug}
-          href={`/${m.slug}`}
-          aria-current={isActive(m.slug) ? 'page' : undefined}
+          key={m.id}
+          href={`/${m.id}`}
+          aria-current={isActive(m.id) ? 'page' : undefined}
           className={[
             'shrink-0 text-[13px] lowercase transition-colors duration-150 outline-none',
             'px-2.5 py-1.5 border-b-2',
             'md:px-6 md:py-2.5 md:border-b-0 md:border-l-2',
-            isActive(m.slug)
+            isActive(m.id)
               ? 'text-[#f0ede8] border-[#ffd34d]'
               : 'text-[#706e68] border-transparent hover:text-[#f0ede8]',
           ].join(' ')}
         >
-          {m.label}
+          {m.id}
         </Link>
       ))}
 

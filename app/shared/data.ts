@@ -170,7 +170,7 @@ export const COMPARE_META = {
   title: `${OSCAR.name.toLowerCase()} · ${numWord(EVAL_MODELS.length)} models, one brief`,
   description:
     `the same brief handed to ${nameList(EVAL_MODELS.map((m) => m.name.toLowerCase()))}. ` +
-    `same context, same stories, the model is the only variable. a live eval of taste.`,
+    `same context, same stories, the model is the only variable. ${numWord(EVAL_MODELS.length)} takes on one record.`,
   // The thesis, said short enough to read at thumbnail size.
   cardLine: 'same brief. same context. the model is the variable.',
 };
