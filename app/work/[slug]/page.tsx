@@ -38,7 +38,8 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
   // A hackathon project earns the record curve; the OS earns the wall; the agents earn the
   // chat. Furniture appears where it MEANS something, never as page filler.
   const rows = HACKATHON_TIMELINE.filter((r: any) => r.project === prose?.name || r.name === fact.name);
-  const isOS = slug === 'os';
+  const isOS = slug === 'the-os'; // NOT 'os': the record's slug is 'the-os', and the wrong
+                                  // guess silently rendered nothing at all. Dead feature, green build.
 
   const meta = [fact.year, (fact.track ?? '').toUpperCase(), fact.buildTime?.toUpperCase(), fact.id && `MRK-${fact.id}`]
     .filter(Boolean).join(' · ');
