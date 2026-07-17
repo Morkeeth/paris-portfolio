@@ -609,3 +609,47 @@ export const ARC = {
 // moment it exists in the vault, with no story written yet, which is the point: the record
 // is the source and the voice can follow later.
 export const PROJECT_INDEX = record.projects;
+
+// The terminal wall's panes. Real repos, real work in flight on 2026-07-17. The count is
+// never typed: STATS.terminals must equal this array's length or the wall and the prose
+// ("five terminals at 3am") disagree, which is the exact drift class the guards exist for.
+export const TERMINAL_WALL = [
+  { cwd: '~/favour',      prompt: 'ship the unlock fix',        effort: 'high' },
+  { cwd: '~/helicon',     prompt: 'catch the memory rot',       effort: 'high' },
+  { cwd: '~/people-radar', prompt: `score ${STATS.contacts} contacts`, effort: 'med' },
+  { cwd: '~/bagel',       prompt: 'write the 8am brief',        effort: 'high' },
+  { cwd: '~/portfolio',   prompt: 'kill the eval-of-taste line', effort: 'max' },
+  ];
+
+if (TERMINAL_WALL.length !== STATS.terminals) {
+  throw new Error(
+    `terminal drift: TERMINAL_WALL has ${TERMINAL_WALL.length} panes but STATS.terminals ` +
+    `says ${STATS.terminals}. The wall and the prose that counts it must agree.`
+  );
+}
+
+// The prize record as a dithered curve. Real eth per event, in order, from the timeline.
+// Cumulative, because the pile growing IS the story; eight disconnected spikes is not.
+export const ETH_CURVE = HACKATHON_TIMELINE
+  .filter((r) => String(r.eth ?? '').trim())
+  .map((r) => ({ label: r.date, value: parseFloat(String(r.eth)) }));
+
+// The crew, as a real exchange. EMPTY ON PURPOSE.
+//
+// The Tuscany cards land because Oscar actually asked bagel and hermes and pasted what
+// they said back. Writing agent dialogue here would be fabricating a quote from a system
+// that exists and can simply be asked. AgentChat renders nothing while this is empty, so
+// the component ships today and the words arrive the moment Oscar runs the question.
+export const AGENT_CREW: {
+  role: string; name: string; detail: string; accent: string; q: string; a: string;
+}[] = [];
+
+// Events after the last ETH purse that paid cash instead. Derived, not typed: the ETH curve
+// literally cannot render these, and without them a reader concludes the winning stopped in
+// 2023. It didn't; the currency changed.
+export const CASH_AFTER = HACKATHON_TIMELINE.filter((r) => {
+  const lastEth = [...HACKATHON_TIMELINE].reverse().find((x) => String(x.eth ?? '').trim());
+  return !String(r.eth ?? '').trim()
+    && String(r.prize ?? '').trim()
+    && lastEth ? r.date > lastEth.date : false;
+});

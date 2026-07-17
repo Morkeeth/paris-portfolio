@@ -1,23 +1,30 @@
 'use client';
 
 /*
- * /work/<slug> — the case study.
+ * /work/<slug> — the case study. Light, because Oscar prefers light.
  *
- * Oscar, Jul 17: "one image and description might be tricky" -> the depth lives here, not
- * on a card. The index is the scan; this is the read.
+ * Oscar, Jul 17: "one image and description might be tricky" -> depth lives here, not on a
+ * card. The index is the scan; this is the read.
  *
- * PLACEHOLDER IS A REAL STATE, NOT A GAP. Oscar: "We fix helicon and overtun once their
- * done!". A project in the record with no story yet renders as an honest stub that says so.
- * It does NOT get a fabricated narrative, and it does NOT get hidden: the record is the
- * source, so if it exists it is listed, and the page states plainly what is still missing.
+ * PLACEHOLDER IS A STATE, NOT A GAP ("We fix helicon and overtun once their done!"). A
+ * project in the record with no story renders an honest IN FLIGHT stub. It is listed
+ * because it exists; it is not narrated because it isn't finished. No fabricated study
+ * ships on a page whose whole argument is method.
  */
 
 import { use } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { PROJECT_INDEX, PROJECTS } from '../../shared/data';
+import { AgentChat, TerminalWall } from '@/components/AgentCrew';
+import type { Tone } from '@/components/ProjectIndex';
+import {
+  PROJECT_INDEX, PROJECTS, HACKATHON_TIMELINE, TERMINAL_WALL, ETH_CURVE, STATS, AGENT_CREW,
+} from '../../shared/data';
 
-const C = { bg: '#0a0a0a', fg: '#f0ede8', dim: '#706e68', rule: '#242320', accent: '#ffd34d' };
+const T: Tone = {
+  bg: '#f6f5f3', fg: '#131313', dim: '#8b8b87', rule: '#dbdad6',
+  hover: '#eeede9', accent: '#131313', display: 'var(--font-dm-sans), sans-serif',
+};
 const MONO = 'var(--font-jetbrains-mono), monospace';
 
 export default function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
@@ -25,29 +32,29 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
   const fact = (PROJECT_INDEX as any[]).find((p) => p.slug === slug);
   if (!fact) notFound();
 
-  // Prose is per-site and optional. Its absence is the placeholder signal: no story yet.
   const prose = (PROJECTS as any[]).find((p) => p.slug === slug);
   const written = Boolean(prose?.story);
 
+  // A hackathon project earns the record curve; the OS earns the wall; the agents earn the
+  // chat. Furniture appears where it MEANS something, never as page filler.
+  const rows = HACKATHON_TIMELINE.filter((r: any) => r.project === prose?.name || r.name === fact.name);
+  const isOS = slug === 'os';
+
+  const meta = [fact.year, (fact.track ?? '').toUpperCase(), fact.buildTime?.toUpperCase(), fact.id && `MRK-${fact.id}`]
+    .filter(Boolean).join(' · ');
+
   return (
-    <main style={{ background: C.bg, color: C.fg, minHeight: '100vh' }}>
-      <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 22px 100px' }}>
-        <Link href="/work" style={{ fontFamily: MONO, fontSize: 11, color: C.dim, textDecoration: 'none' }}>
-          ← work
-        </Link>
+    <main style={{ background: T.bg, color: T.fg, minHeight: '100vh' }}>
+      <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 22px 110px' }}>
+        <Link href="/work" style={{ fontFamily: MONO, fontSize: 11, color: T.dim, textDecoration: 'none' }}>← work</Link>
 
-        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: C.dim, marginTop: 30 }}>
-          {fact.year} · {(fact.track ?? '').toUpperCase()}
-          {fact.buildTime ? ` · ${fact.buildTime.toUpperCase()}` : ''}
-          {fact.id ? ` · MRK-${fact.id}` : ''}
-        </div>
-
-        <h1 style={{ fontSize: 'clamp(38px, 7vw, 68px)', fontWeight: 800, letterSpacing: '-0.04em', lineHeight: 0.92, margin: '10px 0 0' }}>
+        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: T.dim, marginTop: 30 }}>{meta}</div>
+        <h1 style={{ fontFamily: T.display, fontSize: 'clamp(38px,7vw,68px)', fontWeight: 800, letterSpacing: '-0.04em', lineHeight: 0.92, margin: '10px 0 0' }}>
           {fact.name}
         </h1>
 
         {(prose?.oneLiner ?? fact.oneLiner) && (
-          <p style={{ fontSize: 17, lineHeight: 1.55, color: C.dim, marginTop: 16, maxWidth: 560 }}>
+          <p style={{ fontSize: 17, lineHeight: 1.55, color: T.dim, marginTop: 16, maxWidth: 560 }}>
             {prose?.oneLiner ?? fact.oneLiner}
           </p>
         )}
@@ -55,23 +62,56 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
         {written ? (
           <>
             <p style={{ fontSize: 16, lineHeight: 1.75, marginTop: 30, maxWidth: 620 }}>{prose.story}</p>
+
+            {prose.result && (
+              <p style={{ fontFamily: MONO, fontSize: 13, marginTop: 22, borderLeft: `2px solid ${T.accent}`, paddingLeft: 12 }}>
+                {prose.result}
+              </p>
+            )}
+
             {prose.details?.length > 0 && (
-              <ul style={{ marginTop: 26, paddingLeft: 0, listStyle: 'none' }}>
+              <ul style={{ marginTop: 30, padding: 0, listStyle: 'none' }}>
                 {prose.details.map((d: string) => (
-                  <li key={d} style={{ borderTop: `1px solid ${C.rule}`, padding: '11px 0', fontSize: 14.5, lineHeight: 1.6, color: C.dim }}>
-                    {d}
-                  </li>
+                  <li key={d} style={{ borderTop: `1px solid ${T.rule}`, padding: '11px 0', fontSize: 14.5, lineHeight: 1.6, color: '#4a4a47' }}>{d}</li>
                 ))}
               </ul>
             )}
+
+            {/* the prize record, dithered — only where a purse actually exists */}
+            {rows.length > 0 && rows.some((r: any) => r.eth || r.prize) && (
+              <section style={{ marginTop: 44 }}>
+                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: T.dim, borderBottom: `1px solid ${T.rule}`, paddingBottom: 7 }}>
+                  / THE PURSE
+                </div>
+                {rows.map((r: any) => (
+                  <div key={r.date + r.name} style={{ display: 'flex', gap: 14, fontFamily: MONO, fontSize: 12, padding: '9px 0', borderBottom: `1px solid ${T.rule}` }}>
+                    <span style={{ color: T.dim, width: 74 }}>{r.date}</span>
+                    <span style={{ flex: 1 }}>{r.name}</span>
+                    <span>{r.prize || (r.eth ? `${r.eth} ETH` : r.bounties)}</span>
+                  </div>
+                ))}
+              </section>
+            )}
+
+            {/* the wall belongs to the OS and nowhere else */}
+            {isOS && (
+              <section style={{ marginTop: 44 }}>
+                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: T.dim, borderBottom: `1px solid ${T.rule}`, paddingBottom: 7, marginBottom: 16 }}>
+                  / A ONE-PERSON TEAM, RUN BY AGENTS
+                </div>
+                <TerminalWall panes={TERMINAL_WALL} tone={T} caption={`${TERMINAL_WALL.length} terminals · one brief · ship by morning`} />
+                {AGENT_CREW.length > 0 && (
+                  <div style={{ marginTop: 30 }}>
+                    <AgentChat crew={AGENT_CREW} tone={T} />
+                  </div>
+                )}
+              </section>
+            )}
           </>
         ) : (
-          /* The honest stub. Says what is true and what is missing, and never invents the
-             middle. A fabricated case study on a page whose whole argument is method would
-             cost more than an empty one. */
-          <div style={{ border: `1px solid ${C.rule}`, borderLeft: `2px solid ${C.accent}`, padding: '18px 20px', marginTop: 30 }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: C.accent }}>IN FLIGHT</div>
-            <p style={{ fontSize: 14.5, lineHeight: 1.65, color: C.dim, marginTop: 9 }}>
+          <div style={{ border: `1px solid ${T.rule}`, borderLeft: `2px solid ${T.accent}`, padding: '18px 20px', marginTop: 30 }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em' }}>IN FLIGHT</div>
+            <p style={{ fontSize: 14.5, lineHeight: 1.65, color: T.dim, marginTop: 9 }}>
               It is in the record, so it is listed. The case study lands when the thing does.
               {fact.oneLinerSource ? ' The line above is the repo description, not the written version.' : ''}
             </p>
@@ -79,10 +119,10 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
         )}
 
         {fact.links && (
-          <div style={{ display: 'flex', gap: 18, marginTop: 34, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 18, marginTop: 36, flexWrap: 'wrap' }}>
             {Object.entries(fact.links as Record<string, string>).map(([k, v]) => (
               <a key={k} href={v} target="_blank" rel="noreferrer"
-                 style={{ fontFamily: MONO, fontSize: 12, color: C.fg, borderBottom: `1px solid ${C.accent}`, textDecoration: 'none', paddingBottom: 2 }}>
+                 style={{ fontFamily: MONO, fontSize: 12, color: T.fg, borderBottom: `1px solid ${T.accent}`, textDecoration: 'none', paddingBottom: 2 }}>
                 {k} ↗
               </a>
             ))}
