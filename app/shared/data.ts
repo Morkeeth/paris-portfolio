@@ -685,3 +685,36 @@ export const CASH_AFTER = HACKATHON_TIMELINE.filter((r) => {
     && String(r.prize ?? '').trim()
     && lastEth ? r.date > lastEth.date : false;
 });
+
+// Taste Machine's REAL modules, lifted from its own README (~/CODE/taste-machine), not from
+// the design mockup. The mockup says OBSERVE/FILTER/REFINE/EXPRESS; the machine says these.
+// Shipping the mockup's words would describe software that does not exist.
+export const TASTE_MODULES = [
+  { id: 'review',   label: 'REVIEW',   line: 'decide on drafted replies: kill / send / exceptional. every draft gets a verdict, never a vibe.' },
+  { id: 'library',  label: 'LIBRARY',  line: 'kept replies, copy-paste, no api posting. plus the archived kills, because what you killed is data.' },
+  { id: 'people',   label: 'PEOPLE',   line: 'eval accounts by responsiveness and reply-roi, not follower count.' },
+  { id: 'studio',   label: 'STUDIO',   line: 'the long-form pipeline: idea, draft, editing, published.' },
+  { id: 'schedule', label: 'SCHEDULE', line: 'the outgoing copy-paste queue. mark posted.' },
+  { id: 'voice',    label: 'VOICE',    line: 'tune the tone dial and the relevance bar, curate the example corpus. editing tone means editing markdown.' },
+  { id: 'insights', label: 'INSIGHTS', line: 'the improve-loop: decisions become move-effectiveness and tone-drift. the machine learns what you actually keep.' },
+];
+
+// The real bar, from taste-machine lib/review-logic.ts. Not invented, not rounded.
+export const TASTE_BAR = 0.3;
+
+// Declared SAMPLE scores. The live ones sit in supabase behind auth and a static portfolio
+// cannot reach them. Deterministic, because a dial whose numbers reshuffle every render is
+// a dial that means nothing. The component says on its face that these are sample.
+export const TASTE_SAMPLES = [0.12, 0.22, 0.28, 0.34, 0.41, 0.47, 0.55, 0.61, 0.68, 0.74, 0.83, 0.91];
+
+// More curves. The chart engine exists; only one chart used it. Both are real columns.
+// Cadence: events per year, 2018-2026, straight off the timeline.
+export const CADENCE_CURVE = (() => {
+  const byYear = new Map<string, number>();
+  for (const r of HACKATHON_TIMELINE) {
+    if ((r as any).competed === false) continue;
+    const y = String(r.date).slice(0, 4);
+    byYear.set(y, (byYear.get(y) ?? 0) + 1);
+  }
+  return [...byYear.entries()].sort().map(([label, value]) => ({ label, value }));
+})();

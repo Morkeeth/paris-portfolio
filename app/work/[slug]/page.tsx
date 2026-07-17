@@ -18,10 +18,11 @@ import { notFound } from 'next/navigation';
 import { AgentChat, TerminalWall, CrewRoster } from '@/components/AgentCrew';
 import StackedDeck from '@/components/StackedDeck';
 import LitmusScore from '@/components/LitmusScore';
+import TasteMachine from '@/components/TasteMachine';
 import type { Tone } from '@/components/ProjectIndex';
 import {
   PROJECT_INDEX, PROJECTS, HACKATHON_TIMELINE, TERMINAL_WALL, ETH_CURVE, STATS, AGENT_CREW,
-  AGENTIC_STACK, ANOTHERBLOCK_DROPS, LITMUS,
+  AGENTIC_STACK, ANOTHERBLOCK_DROPS, LITMUS, TASTE_MODULES, TASTE_BAR, TASTE_SAMPLES,
 } from '../../shared/data';
 
 const T: Tone = {
@@ -45,6 +46,7 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
   // decoration; on Anotherblock it IS the catalogue. Gate per slug, never render for filler.
   const isDeck = slug === 'anotherblock';
   const isLitmus = slug === 'litmus';
+  const isTaste = slug === 'taste-machine';
   const isOS = slug === 'the-os';
   // NOTE: the per-slug furniture below renders OUTSIDE the `written` gate. Litmus has no
   // story, so nesting its placeholder inside "has a story" made it dead code behind a green
@@ -153,6 +155,15 @@ export default function CaseStudy({ params }: { params: Promise<{ slug: string }
               tone={T}
               caption={`fans bought shares of the songs. ${STATS.users} users, ${STATS.anotherblockVolume} in volume. no album art here: it was never ours to ship.`}
             />
+          </section>
+        )}
+
+        {isTaste && (
+          <section style={{ marginTop: 44 }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', color: T.dim, borderBottom: `1px solid ${T.rule}`, paddingBottom: 7, marginBottom: 16 }}>
+              / THE MACHINE · {TASTE_MODULES.length} MODULES
+            </div>
+            <TasteMachine modules={TASTE_MODULES} bar={TASTE_BAR} samples={TASTE_SAMPLES} tone={T} />
           </section>
         )}
 

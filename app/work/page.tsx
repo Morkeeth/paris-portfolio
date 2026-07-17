@@ -14,7 +14,7 @@
 import { useRouter } from 'next/navigation';
 import ProjectIndex, { type Tone } from '@/components/ProjectIndex';
 import DitherChart from '@/components/DitherChart';
-import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER } from '../shared/data';
+import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER, CADENCE_CURVE } from '../shared/data';
 
 // LIGHT, and that is the whole point of the tone prop: Oscar, Jul 17, "i do prefer light
 // mode, dark mode is not my style really". All four skins are dark (#060606 / #050505 /
@@ -78,6 +78,27 @@ export default function Work() {
             the eth purses stopped in 2023. {CASH_AFTER.length} events since have paid cash
             ({CASH_AFTER.map((r) => r.prize).join(' · ')}), which no eth curve can show.
           </p>
+        </section>
+
+        {/* Second curve, and it says the thing the money curve cannot: the RHYTHM. Events
+            per year, competed only, straight off the timeline. The ETH stopped in 2023 and
+            the cadence did not, which is the actual shape of the last nine years. */}
+        <section style={{ marginTop: 54 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+                        fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10,
+                        letterSpacing: '0.09em', color: LIBRARY.dim,
+                        borderBottom: `1px solid ${LIBRARY.rule}`, paddingBottom: 7 }}>
+            <span>/ THE CADENCE · EVENTS PER YEAR · {CADENCE_CURVE[0]?.label}—{CADENCE_CURVE[CADENCE_CURVE.length - 1]?.label}</span>
+            <span style={{ color: LIBRARY.fg }}>{STATS.hackathonCount} competed</span>
+          </div>
+          <div style={{ marginTop: 12 }}>
+            <DitherChart points={CADENCE_CURVE} color={LIBRARY.fg} ink={LIBRARY.fg} height={110} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between',
+                        fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9,
+                        color: LIBRARY.dim, marginTop: 6 }}>
+            {CADENCE_CURVE.map((c) => <span key={c.label}>{c.label}</span>)}
+          </div>
         </section>
       </div>
     </main>
