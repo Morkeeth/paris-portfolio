@@ -1,6 +1,12 @@
-# Oscar Morkeeth — Portfolio
+# paris-portfolio — archived 2024 site
 
-Personal portfolio. Next.js 15, TypeScript, Tailwind CSS.
+**This is not the current portfolio.** It is the 2024 Paris site, kept for history and
+no longer maintained or deployed.
+
+The live portfolio is **https://oscar-site-one.vercel.app** (source: `Morkeeth/oscar-site`),
+which renders every number from `Morkeeth/oscar-record`.
+
+Next.js 15, TypeScript, Tailwind CSS.
 
 ## Setup
 
