@@ -88,6 +88,14 @@ export default function ProjectIndex({
     fn(next);
   };
 
+  // The chips printed the raw slug: "work", "agents", "open-source". Deriving the facet list
+  // from the record was right -- printing the database's own key at a reader was not. Overrides
+  // where a slug reads badly, title-case for everything else, so a track added tomorrow gets a
+  // sane label without anyone remembering to come back here.
+  const TRACK_LABEL: Record<string, string> = { work: 'Full-time', agents: 'Agentic' };
+  const labelFor = (v: string) =>
+    TRACK_LABEL[v] ?? v.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
   const Facet = ({
     items, active, onPick, count,
   }: {
@@ -122,7 +130,7 @@ export default function ProjectIndex({
                 background: on ? tone.accent : 'transparent',
               }}
             />
-            {v} <span style={{ fontFamily: mono, fontSize: 10, opacity: 0.55 }}>({count(v)})</span>
+            {labelFor(v)} <span style={{ fontFamily: mono, fontSize: 10, opacity: 0.55 }}>({count(v)})</span>
           </button>
         );
       })}
