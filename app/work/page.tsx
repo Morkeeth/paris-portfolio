@@ -14,7 +14,7 @@
 import { useRouter } from 'next/navigation';
 import ProjectIndex, { type Tone } from '@/components/ProjectIndex';
 import DitherChart from '@/components/DitherChart';
-import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER, CADENCE_CURVE, ETH_PRICE_CURVE, ETH_PRICE_META, PRIZE_MARKS, EXPERIMENTS, EXPERIMENTS_FAILED } from '../shared/data';
+import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER, CADENCE_CURVE, ETH_PRICE_CURVE, ETH_PRICE_META, PRIZE_MARKS, EXPERIMENTS, EXPERIMENTS_FAILED, TRACK_NOTES } from '../shared/data';
 
 // LIGHT, and that is the whole point of the tone prop: Oscar, Jul 17, "i do prefer light
 // mode, dark mode is not my style really". All four skins are dark (#060606 / #050505 /
@@ -79,6 +79,14 @@ export default function Work() {
             ({CASH_AFTER.map((r) => r.prize).join(' · ')}), which no eth curve can show.
           </p>
         </section>
+
+        {TRACK_NOTES.agents && (
+          <p style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 11,
+                      lineHeight: 1.75, color: LIBRARY.dim, marginTop: 44, maxWidth: '66ch',
+                      borderTop: `1px solid ${LIBRARY.rule}`, paddingTop: 14 }}>
+            {TRACK_NOTES.agents}
+          </p>
+        )}
 
         {/* EXPERIMENTS. The section a project list cannot carry: what was believed, what was
             measured, and whether the belief survived. Three of four did not. The two honesty

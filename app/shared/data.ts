@@ -782,3 +782,9 @@ export type Experiment = {
 };
 export const EXPERIMENTS = ((record as { experiments?: Experiment[] }).experiments ?? []);
 export const EXPERIMENTS_FAILED = EXPERIMENTS.filter((e) => e.verdict !== 'held').length;
+
+// A note said once at the track level instead of thirteen times at the project level. The
+// agents note is an admission Oscar chose to publish: most of those projects were shaped by a
+// bounty rather than a problem he had, and three were not. It makes the three credible in a way
+// thirteen equally enthusiastic paragraphs could not.
+export const TRACK_NOTES = ((record as { trackNotes?: Record<string, string> }).trackNotes ?? {});
