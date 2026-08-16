@@ -619,7 +619,21 @@ export const ARC = {
 // per-skin prose and form, and the library only wants facts. A project appears here the
 // moment it exists in the vault, with no story written yet, which is the point: the record
 // is the source and the voice can follow later.
-export const PROJECT_INDEX = record.projects;
+// Newest first. The record stores projects in the order they were added, which put Etablera
+// (2017-20) and Anotherblock (2022-24) above everything built this year -- so the page opened
+// on the oldest work and a reader had to scroll past a decade to reach the agent stack. Oscar,
+// 2026-08-16: "there a lot of scrolling to see the optimal things".
+//
+// Sorted here rather than in the record because ORDER IS PRESENTATION. The record is the set of
+// facts; which end a reader starts from is this page's decision. Ties keep the record's order,
+// so the sort is stable and adding a project never reshuffles the rest.
+const _projectYear = (p: { year?: string }) => {
+  const years = String(p.year ?? '').match(/\d{2,4}/g) ?? [];
+  const last = years[years.length - 1] ?? '0';
+  return last.length === 2 ? 2000 + Number(last) : Number(last);
+};
+
+export const PROJECT_INDEX = [...record.projects].sort((a, b) => _projectYear(b) - _projectYear(a));
 
 // The terminal wall's panes. Real repos, real work in flight on 2026-07-17. The count is
 // never typed: STATS.terminals must equal this array's length or the wall and the prose
