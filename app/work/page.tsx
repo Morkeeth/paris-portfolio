@@ -14,7 +14,7 @@
 import { useRouter } from 'next/navigation';
 import ProjectIndex, { type Tone } from '@/components/ProjectIndex';
 import DitherChart from '@/components/DitherChart';
-import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER, CADENCE_CURVE } from '../shared/data';
+import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER, CADENCE_CURVE, ETH_PRICE_CURVE, ETH_PRICE_META, PRIZE_MARKS } from '../shared/data';
 
 // LIGHT, and that is the whole point of the tone prop: Oscar, Jul 17, "i do prefer light
 // mode, dark mode is not my style really". All four skins are dark (#060606 / #050505 /
@@ -77,6 +77,40 @@ export default function Work() {
                       color: LIBRARY.dim, marginTop: 14, lineHeight: 1.6 }}>
             the eth purses stopped in 2023. {CASH_AFTER.length} events since have paid cash
             ({CASH_AFTER.map((r) => r.prize).join(' · ')}), which no eth curve can show.
+          </p>
+        </section>
+
+        {/* WHAT HAPPENED NEXT. The prize and the position are two different facts, and a
+            portfolio that shows only the flattering one is doing PR. $66K is what the purses
+            were worth on the days they were won; everything after that is a price, not a prize.
+            Three marks, each stamped with its date, and the curve underneath so a reader can
+            check the arithmetic instead of taking it. The series is FROZEN and committed --
+            a number that re-prices silently between deploys is exactly the defect. */}
+        <section style={{ marginTop: 54 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+                        fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10,
+                        letterSpacing: '0.09em', color: LIBRARY.dim,
+                        borderBottom: `1px solid ${LIBRARY.rule}`, paddingBottom: 7 }}>
+            <span>/ WHAT HAPPENED NEXT · ETH/USD · {ETH_PRICE_CURVE[0]?.label}—{ETH_PRICE_CURVE[ETH_PRICE_CURVE.length - 1]?.label}</span>
+            <span style={{ color: LIBRARY.fg }}>39.05 ETH</span>
+          </div>
+          <div style={{ marginTop: 12 }}>
+            <DitherChart points={ETH_PRICE_CURVE} color={LIBRARY.fg} ink={LIBRARY.fg} height={120} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginTop: 14 }}>
+            {PRIZE_MARKS.map((m) => (
+              <div key={m.label} style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                <div style={{ fontSize: 16, color: LIBRARY.fg }}>${Math.round(m.usd / 1000)}K</div>
+                <div style={{ fontSize: 9.5, color: LIBRARY.dim, marginTop: 3, lineHeight: 1.5 }}>
+                  {m.label}<br />{m.when}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10,
+                      color: LIBRARY.dim, marginTop: 14, lineHeight: 1.6 }}>
+            same 39.05 ETH, three marks. the first one never re-prices; the other two are a
+            position, not a prize. closes from {ETH_PRICE_META.source.toLowerCase()}, frozen {ETH_PRICE_META.fetchedAt}.
           </p>
         </section>
 

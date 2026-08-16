@@ -16,6 +16,7 @@
 // Prose below still interpolates STATS. That stays: prose that restates a number drifts,
 // and flattening prose into the record would bake the values back in.
 import record from './record.json';
+import ethHistory from './eth-history.json';
 
 export const STATS = record.stats;
 
@@ -718,3 +719,32 @@ export const CADENCE_CURVE = (() => {
   }
   return [...byYear.entries()].sort().map(([label, value]) => ({ label, value }));
 })();
+
+// ════════════════════════════════════════════════════════════
+//  WHAT HAPPENED NEXT — the price the prize was later marked at.
+//
+//  The prize and the position are two different facts and this site had been mashing them
+//  into one number. $66K is what the purses were worth on the days they were won and it
+//  never re-prices. $176K is that same money marked at $4,500/ETH on 8 Oct 2025. Neither is
+//  a lie; showing one without the other is what made a team total read as personal income.
+//
+//  So: show the curve, stamp every mark with its date, and let a reader do the arithmetic
+//  themselves. FROZEN on purpose — `eth-history.json` is a committed snapshot, not a build-
+//  time fetch. A figure that moves silently between deploys is the defect.
+// ════════════════════════════════════════════════════════════
+export const ETH_PRICE_CURVE = (ethHistory.points as [string, number][])
+  .map(([label, value]) => ({ label, value }));
+
+export const ETH_PRICE_META = {
+  source: ethHistory.source,
+  fetchedAt: ethHistory.fetchedAt,
+  latestClose: ethHistory.latestClose,
+};
+
+// The same 39.05 ETH, valued three ways. Derived from the frozen series, never typed.
+export const PRIZE_MARKS = [
+  { label: 'at time of win', when: '2021-2026', usd: 66117, note: 'nominal, never re-prices' },
+  { label: 'marked 8 Oct 2025', when: '$4,500/ETH', usd: Math.round(39.05 * 4500), note: 'the bullish mark' },
+  { label: `marked ${ethHistory.fetchedAt}`, when: `$${Math.round(ethHistory.latestClose).toLocaleString()}/ETH`,
+    usd: Math.round(39.05 * ethHistory.latestClose), note: 'the same coins today' },
+];

@@ -12,7 +12,8 @@
  * countable dots — the texture IS the value, at the pixel level. It also reads as craft on
  * a page arguing for craft, and it costs nothing.
  *
- * The data is real (HACKATHON_TIMELINE's eth column, summing to the ruled 41.7). Nothing
+ * The data is real (the record's own columns; 39.05 ETH is the ledger total, and an
+ * earlier version of this comment said 41.7, which was a third number nobody had checked). Nothing
  * here is a synthetic curve, which is the entire difference between this and the AI-slop
  * "sparkline that means nothing".
  */
