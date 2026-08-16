@@ -762,3 +762,23 @@ export const PRIZE_MARKS = [
   { label: `marked ${ethHistory.fetchedAt}`, when: `$${Math.round(ethHistory.latestClose).toLocaleString()}/ETH`,
     usd: Math.round(39.05 * ethHistory.latestClose), note: 'the same coins today' },
 ];
+
+// ════════════════════════════════════════════════════════════
+//  EXPERIMENTS — the part a project list cannot carry.
+//
+//  A project says what was built. An experiment says what was believed, what was measured, and
+//  whether the belief survived. Three of these four did not, which is the reason the section
+//  exists: a portfolio of only successes is a portfolio nobody can check.
+//
+//  Two flags do real work here and must never be dropped in rendering:
+//  `ownRun` false means it is a re-analysis of someone else's data, and `public` false means
+//  the write-up is not published yet, so a reader is being asked to take the number on trust.
+//  Both are printed on the page rather than quietly omitted.
+// ════════════════════════════════════════════════════════════
+export type Experiment = {
+  id: string; name: string; date: string; hypothesis: string; method: string;
+  result: string; verdict: string; ownRun: boolean; public: boolean;
+  source?: string; note?: string;
+};
+export const EXPERIMENTS = ((record as { experiments?: Experiment[] }).experiments ?? []);
+export const EXPERIMENTS_FAILED = EXPERIMENTS.filter((e) => e.verdict !== 'held').length;

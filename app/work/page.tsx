@@ -14,7 +14,7 @@
 import { useRouter } from 'next/navigation';
 import ProjectIndex, { type Tone } from '@/components/ProjectIndex';
 import DitherChart from '@/components/DitherChart';
-import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER, CADENCE_CURVE, ETH_PRICE_CURVE, ETH_PRICE_META, PRIZE_MARKS } from '../shared/data';
+import { PROJECT_INDEX, ETH_CURVE, STATS, CASH_AFTER, CADENCE_CURVE, ETH_PRICE_CURVE, ETH_PRICE_META, PRIZE_MARKS, EXPERIMENTS, EXPERIMENTS_FAILED } from '../shared/data';
 
 // LIGHT, and that is the whole point of the tone prop: Oscar, Jul 17, "i do prefer light
 // mode, dark mode is not my style really". All four skins are dark (#060606 / #050505 /
@@ -78,6 +78,48 @@ export default function Work() {
             the eth purses stopped in 2023. {CASH_AFTER.length} events since have paid cash
             ({CASH_AFTER.map((r) => r.prize).join(' · ')}), which no eth curve can show.
           </p>
+        </section>
+
+        {/* EXPERIMENTS. The section a project list cannot carry: what was believed, what was
+            measured, and whether the belief survived. Three of four did not. The two honesty
+            flags are rendered, never hidden -- a re-analysis says so, and an unpublished
+            write-up says so, because otherwise the page is asking to be trusted on a number
+            nobody can open. */}
+        <section style={{ marginTop: 54 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+                        fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10,
+                        letterSpacing: '0.09em', color: LIBRARY.dim,
+                        borderBottom: `1px solid ${LIBRARY.rule}`, paddingBottom: 7 }}>
+            <span>/ EXPERIMENTS · {EXPERIMENTS.length} RUN · {EXPERIMENTS_FAILED} FAILED</span>
+            <span style={{ color: LIBRARY.fg }}>2026</span>
+          </div>
+          {EXPERIMENTS.map((e) => (
+            <div key={e.id} style={{ padding: '16px 0', borderBottom: `1px solid ${LIBRARY.rule}` }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 18, alignItems: 'baseline' }}>
+                <div style={{ fontSize: 15, color: LIBRARY.fg }}>
+                  <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10,
+                                 color: LIBRARY.dim, marginRight: 10 }}>{e.id}</span>
+                  {e.name}
+                </div>
+                <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10,
+                               letterSpacing: '0.14em', textTransform: 'uppercase',
+                               color: e.verdict === 'held' ? LIBRARY.fg : '#9c3a24', whiteSpace: 'nowrap' }}>
+                  {e.verdict}
+                </span>
+              </div>
+              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 11,
+                            lineHeight: 1.7, color: LIBRARY.dim, marginTop: 6, maxWidth: '68ch' }}>
+                <b style={{ fontWeight: 400, color: LIBRARY.fg }}>believed:</b> {e.hypothesis}<br />
+                <b style={{ fontWeight: 400, color: LIBRARY.fg }}>measured:</b> {e.result}
+              </div>
+              <div style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9.5,
+                            letterSpacing: '0.1em', textTransform: 'uppercase', color: LIBRARY.dim, marginTop: 8 }}>
+                {!e.ownRun && <span style={{ marginRight: 14 }}>re-analysis, not my run</span>}
+                {!e.public && <span style={{ marginRight: 14 }}>write-up not published</span>}
+                {e.source && <a href={e.source} style={{ color: LIBRARY.fg }}>source</a>}
+              </div>
+            </div>
+          ))}
         </section>
 
         {/* WHAT HAPPENED NEXT. The prize and the position are two different facts, and a
