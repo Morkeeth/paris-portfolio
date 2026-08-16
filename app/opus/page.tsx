@@ -267,11 +267,6 @@ function TheRecord({ max }: { max: boolean }) {
                 {r.project && <span style={{ fontSize: 12.5, opacity: 0.45, fontWeight: 300 }}> · {r.project}</span>}
                 {r.bounties && <div style={{ fontSize: 11, opacity: 0.35, fontWeight: 300, marginTop: 3, lineHeight: 1.5 }}>{r.bounties}</div>}
               </div>
-              {(r.prize || r.eth) && (
-                <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 11, color: accent, opacity: 0.9, flexShrink: 0 }}>
-                  {r.prize}{r.eth ? ` · ${r.eth} eth` : ''}
-                </span>
-              )}
             </div>
           </Reveal>
         ))}
